@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Analysis | Coolab ELN</title>
+    <meta
+      name="description"
+      content="Coolab ELN Data Analysis imports data from notes, supports common molecular biology assays and charts, and saves results back to Lab Notes."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="eln-subpage analysis-clean-page" data-language="en">
+    <div class="site-backdrop" aria-hidden="true">
+      <div class="grid-layer"></div>
+      <div class="scan-layer"></div>
+    </div>
+
+    <header class="topbar subpage-dark-topbar">
+      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
+        <img src="assests/logo-透明底.png" alt="" />
+        <span>Coolab ELN</span>
+      </a>
+      <nav class="nav-tabs" aria-label="Main sections">
+        <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
+        <a class="active" href="data-analysis.html"><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></a>
+        <a href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
+        <a href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
+        <a href="literatures.html"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></a>
+      </nav>
+      <div class="language-menu" data-language-menu>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path>
+          </svg>
+        </button>
+        <div class="language-options" role="listbox" aria-label="Language">
+          <button type="button" data-language-option="en" role="option">EN</button>
+          <button type="button" data-language-option="zh" role="option">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="analysis-clean-hero section-shell">
+        <div class="analysis-clean-copy reveal">
+        </div>
+
+        <div class="analysis-loop-card reveal" aria-label="Data Analysis closed loop">
+          <div class="loop-node loop-note">
+            <span>01</span>
+            <strong><span data-copy="en">Lab Notes</span><span data-copy="zh">实验笔记</span></strong>
+            <small><span data-copy="en">Import tables</span><span data-copy="zh">导入表格</span></small>
+          </div>
+          <div class="loop-node loop-data">
+            <span>02</span>
+            <strong><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></strong>
+            <small><span data-copy="en">Clean and analyze</span><span data-copy="zh">整理并分析</span></small>
+          </div>
+          <div class="loop-node loop-chart">
+            <span>03</span>
+            <strong><span data-copy="en">Charts + stats</span><span data-copy="zh">图表与统计</span></strong>
+            <small><span data-copy="en">Review outputs</span><span data-copy="zh">检查结果</span></small>
+          </div>
+          <div class="loop-node loop-save">
+            <span>04</span>
+            <strong><span data-copy="en">Back to notes</span><span data-copy="zh">回到笔记</span></strong>
+            <small><span data-copy="en">Save the result</span><span data-copy="zh">保存结果</span></small>
+          </div>
+          <div class="loop-core" aria-hidden="true">
+            <div class="loop-ring"></div>
+            <div class="loop-mini-chart">
+              <i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+          <svg class="loop-lines" viewBox="0 0 640 430" aria-hidden="true">
+            <path d="M160 120 C250 34 395 34 480 120" />
+            <path d="M520 160 C612 230 590 342 488 360" />
+            <path d="M450 382 C330 430 208 388 156 302" />
+            <path d="M126 264 C58 194 74 122 138 112" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="analysis-feature-deck section-shell" aria-label="Supported Data Analysis features">
+        <div class="deck-heading reveal">
+          <p class="eyebrow"><span data-copy="en">Analysis Paths</span><span data-copy="zh">分析路径</span></p>
+          <h2>
+            <span data-copy="en">Analyze qPCR and Western blot directly, or use General Assay to visualize by goal.</span>
+            <span data-copy="zh">直接分析 qPCR 和 Western blot，或在 General Assay 中按目标可视化数据。</span>
+          </h2>
+        </div>
+
+        <div class="analysis-path-map reveal" aria-label="Data Analysis path map">
+          <div class="path-column">
+            <p><span data-copy="en">Assay workflows</span><span data-copy="zh">实验分析流程</span></p>
+            <article class="path-node assay-node">
+              <span>qPCR</span>
+              <strong><span data-copy="en">Direct expression analysis</span><span data-copy="zh">直接完成相对表达分析</span></strong>
+            </article>
+            <article class="path-node assay-node">
+              <span>Western blot</span>
+              <strong><span data-copy="en">Direct band quantification</span><span data-copy="zh">直接完成条带定量</span></strong>
+            </article>
+            <article class="path-node assay-node general-node">
+              <span>General assay</span>
+              <strong><span data-copy="en">Choose a visualization goal</span><span data-copy="zh">选择可视化目标</span></strong>
+            </article>
+          </div>
+
+          <div class="path-column path-column-center">
+            <p><span data-copy="en">General assay goal</span><span data-copy="zh">General assay 目标</span></p>
+            <article class="path-node goal-node">
+              <span>Comparison</span>
+              <strong><span data-copy="en">Compare groups</span><span data-copy="zh">比较不同分组</span></strong>
+            </article>
+            <article class="path-node goal-node">
+              <span>Trend</span>
+              <strong><span data-copy="en">Follow time or dose</span><span data-copy="zh">查看时间或剂量趋势</span></strong>
+            </article>
+            <article class="path-node goal-node">
+              <span>Composition</span>
+              <strong><span data-copy="en">Show proportions</span><span data-copy="zh">展示组成比例</span></strong>
+            </article>
+          </div>
+
+          <div class="path-column">
+            <p><span data-copy="en">Output</span><span data-copy="zh">输出结果</span></p>
+            <article class="path-node result-node">
+              <span><span data-copy="en">Assay result</span><span data-copy="zh">实验结果</span></span>
+              <strong><span data-copy="en">Tables, statistics, and figures</span><span data-copy="zh">表格、统计和图像</span></strong>
+            </article>
+            <article class="path-node chart-node">
+              <span><span data-copy="en">Bar chart</span><span data-copy="zh">柱状图</span></span>
+              <div class="drawn-bar-chart" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </article>
+            <article class="path-node chart-node">
+              <span><span data-copy="en">Line chart</span><span data-copy="zh">折线图</span></span>
+              <div class="drawn-line-chart" aria-hidden="true"></div>
+            </article>
+            <article class="path-node chart-node">
+              <span><span data-copy="en">Stacked bar</span><span data-copy="zh">堆叠柱状图</span></span>
+              <div class="drawn-stacked-chart" aria-hidden="true"><i></i><i></i><i></i></div>
+            </article>
+          </div>
+
+          <svg class="path-connectors" viewBox="0 0 1000 560" aria-hidden="true">
+            <path d="M220 112 C430 112 560 84 780 84" />
+            <path d="M220 212 C430 212 560 84 780 84" />
+            <path d="M220 342 C340 342 356 118 472 118" />
+            <path d="M220 342 C340 342 358 276 472 276" />
+            <path d="M220 342 C340 342 358 434 472 434" />
+            <path d="M528 118 C650 118 660 206 780 206" />
+            <path d="M528 276 C650 276 660 330 780 330" />
+            <path d="M528 434 C650 434 660 454 780 454" />
+          </svg>
+        </div>
+
+        <div class="feature-orbit reveal" aria-label="Rotating supported feature cards">
+          <div class="orbit-ring">
+            <article class="orbit-card">
+              <span><span data-copy="en">Chart</span><span data-copy="zh">图表</span></span>
+              <h3><span data-copy="en">Bar chart</span><span data-copy="zh">柱状图</span></h3>
+              <div class="drawn-bar-chart" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="orbit-card">
+              <span><span data-copy="en">Chart</span><span data-copy="zh">图表</span></span>
+              <h3><span data-copy="en">Line chart</span><span data-copy="zh">折线图</span></h3>
+              <div class="drawn-line-chart" aria-hidden="true"></div>
+            </article>
+
+            <article class="orbit-card">
+              <span><span data-copy="en">Chart</span><span data-copy="zh">图表</span></span>
+              <h3><span data-copy="en">Stacked bar</span><span data-copy="zh">堆叠柱状图</span></h3>
+              <div class="drawn-stacked-chart" aria-hidden="true"><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="orbit-card">
+              <span><span data-copy="en">Assay</span><span data-copy="zh">实验</span></span>
+              <h3>qPCR</h3>
+              <div class="drawn-qpcr" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="orbit-card">
+              <span><span data-copy="en">Assay</span><span data-copy="zh">实验</span></span>
+              <h3>Western blot</h3>
+              <div class="drawn-blot" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Coolab ELN</span>
+      <span><span data-copy="en">Be simple, be real, Keep cool.</span><span data-copy="zh">简单，真实，保持冷静。</span></span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

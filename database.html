@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Database | Coolab ELN</title>
+    <meta
+      name="description"
+      content="Coolab ELN Database organizes protocols, cells, and reagents into searchable local records that connect back to Lab Notes."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="light-page notes-page database-page" data-language="en">
+    <div class="site-backdrop" aria-hidden="true">
+      <div class="grid-layer"></div>
+      <div class="scan-layer"></div>
+    </div>
+
+    <header class="topbar subpage-dark-topbar">
+      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
+        <img src="assests/logo-透明底.png" alt="" />
+        <span>Coolab ELN</span>
+      </a>
+      <nav class="nav-tabs" aria-label="Main sections">
+        <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
+        <a href="data-analysis.html"><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></a>
+        <a href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
+        <a class="active" href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
+        <a href="literatures.html"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></a>
+      </nav>
+      <div class="language-menu" data-language-menu>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path>
+          </svg>
+        </button>
+        <div class="language-options" role="listbox" aria-label="Language">
+          <button type="button" data-language-option="en" role="option">EN</button>
+          <button type="button" data-language-option="zh" role="option">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="notes-shell">
+      <section class="notes-hero flow-hero">
+        <div class="notes-hero-copy">
+          <p class="notes-kicker"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></p>
+          <h1 data-copy="en">Protocols, cells, and reagents in one local library.</h1>
+          <h1 data-copy="zh">一站式管理细胞，试剂和protocol.</h1>
+          <p data-copy="en">Build reusable lab resources, connect them back to notes, and keep materials searchable over time.</p>
+          <p data-copy="zh">沉淀可复用的实验资源，把它们连接回笔记，并让材料信息长期可查询。</p>
+        </div>
+        <figure class="module-flow-card database-flow-card" aria-label="Database workflow">
+          <figcaption><span data-copy="en">Database workflow</span><span data-copy="zh">数据库流程</span></figcaption>
+          <div class="module-flow">
+            <div class="flow-node"><strong data-copy="en">Store</strong><strong data-copy="zh">保存</strong><span data-copy="en">protocols, cells, reagents</span><span data-copy="zh">实验流程、细胞、试剂</span></div>
+            <div class="flow-node"><strong data-copy="en">Search</strong><strong data-copy="zh">查询</strong><span data-copy="en">local resource records</span><span data-copy="zh">本地资源记录</span></div>
+            <div class="flow-node"><strong data-copy="en">Reuse</strong><strong data-copy="zh">复用</strong><span data-copy="en">protocols inside notes</span><span data-copy="zh">在笔记中使用实验流程</span></div>
+            <div class="flow-node"><strong data-copy="en">Trace</strong><strong data-copy="zh">追踪</strong><span data-copy="en">material context</span><span data-copy="zh">材料来源和使用信息</span></div>
+          </div>
+          <svg viewBox="0 0 420 120" role="img" aria-hidden="true">
+            <path d="M42 72 L116 32 L210 72 L306 34 L378 72" />
+            <circle cx="42" cy="72" r="8" />
+            <circle cx="116" cy="32" r="8" />
+            <circle cx="210" cy="72" r="8" />
+            <circle cx="306" cy="34" r="8" />
+            <circle cx="378" cy="72" r="8" />
+          </svg>
+        </figure>
+      </section>
+
+      <section class="feature-book-section" aria-label="Database feature book">
+        <div class="feature-book" data-feature-book data-auto-flip="5200">
+          <div class="book-stage" aria-live="polite">
+            <article class="book-page active" data-book-page>
+              <div class="book-page-copy">
+                <span><span data-copy="en">Page 01</span><span data-copy="zh">第 01 页</span></span>
+                <h3 data-copy="en">Protocols, cells, and reagents together.</h3>
+                <h3 data-copy="zh">实验流程、细胞和试剂集中管理。</h3>
+                <p data-copy="en">Keep the resources behind experiments in one searchable local library.</p>
+                <p data-copy="zh">把实验背后的资源沉淀到一个可搜索的本地资源库里。</p>
+              </div>
+              <img src="assests/demo-%E5%AD%90%E9%A1%B5/database-page-hero-resources.png" alt="Protocol cell and reagent database overview" />
+            </article>
+            <article class="book-page" data-book-page>
+              <div class="book-page-copy">
+                <span><span data-copy="en">Page 02</span><span data-copy="zh">第 02 页</span></span>
+                <h3 data-copy="en">Reuse a saved protocol as today's note.</h3>
+                <h3 data-copy="zh">把保存的实验流程变成今天的实验记录。</h3>
+                <p data-copy="en">Turn repeated lab procedures into reusable templates for new experiment records.</p>
+                <p data-copy="zh">把重复实验流程做成可复用模板，直接用于新的实验记录。</p>
+              </div>
+              <img src="assests/demo-%E5%AD%90%E9%A1%B5/database-page-protocol-to-note.png" alt="Protocol template becoming a Lab Note" />
+            </article>
+            <article class="book-page" data-book-page>
+              <div class="book-page-copy">
+                <span><span data-copy="en">Page 03</span><span data-copy="zh">第 03 页</span></span>
+                <h3 data-copy="en">Trace every cell and reagent context.</h3>
+                <h3 data-copy="zh">追踪细胞和试剂的上下文。</h3>
+                <p data-copy="en">Keep passage, storage, concentration, source, and use context visible when reviewing experiments.</p>
+                <p data-copy="zh">复盘实验时可以看到传代次数、保存条件、浓度、来源和使用信息。</p>
+              </div>
+              <img src="assests/demo-%E5%AD%90%E9%A1%B5/database-page-cell-reagent-trace.png" alt="Cell records and reagent inventory trace view" />
+            </article>
+          </div>
+          <div class="book-controls" aria-label="Database feature book controls">
+            <button type="button" data-book-prev aria-label="Previous page">&lsaquo;</button>
+            <div class="book-dots" data-book-dots aria-label="Choose a page"></div>
+            <button type="button" data-book-next aria-label="Next page">&rsaquo;</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

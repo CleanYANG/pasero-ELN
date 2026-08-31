@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coolab ELN | Molecular Biology Workspace</title>
+    <meta
+      name="description"
+      content="Coolab ELN is a local-first electronic lab notebook for molecular biology, combining notes, analysis, plasmids, databases, literature, and desktop-mobile sync."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-language="en">
+    <div class="site-backdrop" aria-hidden="true">
+      <div class="grid-layer"></div>
+      <div class="scan-layer"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
+        <img src="assests/logo-透明底.png" alt="" />
+        <span>Coolab ELN</span>
+      </a>
+      <nav class="nav-tabs" aria-label="Main sections">
+        <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
+        <a href="data-analysis.html"><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></a>
+        <a href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
+        <a href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
+        <a href="literatures.html"><span data-copy="en">Literatures</span><span data-copy="zh">文献</span></a>
+      </nav>
+      <div class="language-menu" data-language-menu>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path>
+          </svg>
+        </button>
+        <div class="language-options" role="listbox" aria-label="Language">
+          <button type="button" data-language-option="en" role="option">EN</button>
+          <button type="button" data-language-option="zh" role="option">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="cosmic-hero section-shell" id="home">
+        <div class="cosmic-copy reveal">
+          <p class="eyebrow">
+            <span data-copy="en">A local-first workspace for life scientists</span>
+            <span data-copy="zh">为生命科学研究者打造的本地优先工作台</span>
+          </p>
+          <h1 data-copy="en">Your research,<br /><em>finally in one orbit.</em></h1>
+          <h1 data-copy="zh">打通研究任督二脉！</h1>
+          <div class="cosmic-actions">
+            <a class="button primary" href="#plans">
+              <span data-copy="en">Download Coolab ELN</span><span data-copy="zh">下载 Coolab ELN</span>
+            </a>
+            <a class="button ghost" href="#notes">
+              <span data-copy="en">Explore the workspace</span><span data-copy="zh">探索工作台</span>
+            </a>
+          </div>
+          <div class="cosmic-trust">
+            <span>Local-first</span><i></i><span>Built for biology</span><i></i><span>No cloud required</span>
+          </div>
+        </div>
+
+        <figure class="research-universe hero-dashboard-visual reveal" aria-label="Coolab ELN dashboard overview">
+          <img src="assests/dashborad-page.png" alt="Coolab ELN dashboard page" />
+        </figure>
+      </section>
+
+      <section class="feature-section section-shell" id="notes" data-section-theme="notes">
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Notes / 笔记</p>
+          <h2 data-copy="en">Record on desktop. Capture on mobile. Review anytime.</h2>
+          <h2 data-copy="zh">桌面端整理，移动端记录，任何时间随时复盘。</h2>
+          <ul>
+            <li><span data-copy="en">Painless Wi-Fi connection between desktop and mobile</span><span data-copy="zh">桌面端和移动端无痛 Wi-Fi 连接</span></li>
+            <li><span data-copy="en">Data stays local</span><span data-copy="zh">数据仍在本地</span></li>
+            <li><span data-copy="en">Review notes anytime, anywhere</span><span data-copy="zh">随时随地复盘笔记</span></li>
+          </ul>
+        </div>
+        <div class="media-slot home-art-panel reveal" aria-label="Desktop and mobile Notes connection illustration">
+          <img class="home-feature-art" src="assests/demo-子页/home-notes-desktop-mobile-art.png" alt="Desktop and mobile Lab Notes connection" />
+        </div>
+      </section>
+
+      <section class="feature-section section-shell reverse" id="analysis" data-section-theme="analysis">
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Data Analysis / 数据分析</p>
+          <h2 data-copy="en">Analyze data by experiment type, without guessing where to start.</h2>
+          <h2 data-copy="zh">通过实验类型来处理数据，新人再也不要丈二和尚摸不着头。</h2>
+          <ul>
+            <li><span data-copy="en">Processed data can be saved back to notes</span><span data-copy="zh">处理的数据保存回笔记</span></li>
+            <li><span data-copy="en">Chart preferences are remembered, so you do not restart from zero</span><span data-copy="zh">ELN 可以记住你的图表偏好，不用从头调整</span></li>
+            <li><span data-copy="en">Built-in statistical guidance makes P values less confusing</span><span data-copy="zh">自带统计分析判断，不再迷惑 P value</span></li>
+          </ul>
+        </div>
+        <div class="media-slot reveal">
+          <div class="media-label">Supported chart outputs</div>
+          <div class="home-chart-gallery" aria-label="Supported Data Analysis chart types">
+            <figure>
+              <img src="assests/bar dot chart-website.png" alt="Bar dot chart output" />
+              <figcaption>Bar + dots</figcaption>
+            </figure>
+            <figure>
+              <img src="assests/box plot-for website.png" alt="Box plot output" />
+              <figcaption>Box plot</figcaption>
+            </figure>
+            <figure>
+              <img src="assests/line chart-website.png" alt="Line chart output" />
+              <figcaption>Line chart</figcaption>
+            </figure>
+            <figure>
+              <img src="assests/composition-stacked-chart-website.png" alt="Stacked composition chart output" />
+              <figcaption>Stacked chart</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-section section-shell" id="plasmid" data-section-theme="plasmid">
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Plasmid / 质粒</p>
+          <h2 data-copy="en">Plasmid information and tools, all in one place.</h2>
+          <h2 data-copy="zh">质粒信息和工具一应俱全。</h2>
+          <ul>
+            <li><span data-copy="en">Plasmid map annotation</span><span data-copy="zh">质粒图谱注释</span></li>
+            <li><span data-copy="en">Sanger sequencing alignment</span><span data-copy="zh">Sanger 测序比对</span></li>
+            <li><span data-copy="en">Primer design</span><span data-copy="zh">引物设计</span></li>
+          </ul>
+        </div>
+        <div class="media-slot home-art-panel reveal" aria-label="Primer design and Sanger alignment illustration">
+          <img class="home-feature-art" src="assests/demo-子页/home-plasmid-primer-sanger-art.png" alt="Primer design and Sanger sequencing alignment" />
+        </div>
+      </section>
+
+      <section class="feature-section section-shell reverse" id="database" data-section-theme="database">
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Database / 数据库</p>
+          <h2 data-copy="en">Store protocols, reagents, and cell information.</h2>
+          <h2 data-copy="zh">存放 protocol、试剂、细胞信息。</h2>
+          <ul>
+            <li><span data-copy="en">Turn frequently repeated notes into saved protocols</span><span data-copy="zh">从高频重复笔记保存为 protocol</span></li>
+            <li><span data-copy="en">Traceable cell management</span><span data-copy="zh">细胞管理可追溯</span></li>
+            <li><span data-copy="en">Searchable reagent management</span><span data-copy="zh">试剂管理可查询</span></li>
+          </ul>
+        </div>
+        <div class="media-slot home-art-panel reveal" aria-label="Protocol cell and reagent database illustration">
+          <img class="home-feature-art" src="assests/demo-子页/home-database-resource-management-art.png" alt="Protocol cell and reagent resource management" />
+        </div>
+      </section>
+
+      <section class="feature-section section-shell" id="literature" data-section-theme="literature">
+        <div class="feature-copy reveal">
+          <p class="eyebrow">Literatures / 文献</p>
+          <h2 data-copy="en">Literature reading is part of experiment management.</h2>
+          <h2 data-copy="zh">文献阅读也是实验管理一部分。</h2>
+          <ul>
+            <li><span data-copy="en">Single-page and two-page reading modes</span><span data-copy="zh">支持单页、双页阅读</span></li>
+            <li><span data-copy="en">Pin one page while turning another, so text and figures can stay together</span><span data-copy="zh">双页阅读支持固定一页，翻动另一页，解决只能看文不能看图的尴尬</span></li>
+            <li><span data-copy="en">Manage reading notes</span><span data-copy="zh">管理阅读笔记</span></li>
+          </ul>
+        </div>
+        <div class="media-slot home-art-panel reveal" aria-label="Two-page reading and saved notes illustration">
+          <img class="home-feature-art" src="assests/demo-子页/home-literature-two-page-notes-art.png" alt="Two-page paper reading with saved notes" />
+        </div>
+      </section>
+
+      <section class="assistant-section section-shell">
+        <div class="assistant-card reveal">
+          <img src="assests/Sheedy-RA-PAGE (2).png" alt="" />
+          <div>
+            <p class="eyebrow">Research Assistant</p>
+            <h2 class="en-single-line-heading sheedy-en-heading" data-copy="en">Ask Sheedy what is already inside your ELN.</h2>
+            <h2 class="sheedy-heading" data-copy="zh">让 Sheedy 帮你查 ELN 里已经存在的数据。</h2>
+          </div>
+        </div>
+      </section>
+
+      <section class="plans-section section-shell" id="plans">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Plans</p>
+          <h2 class="en-single-line-heading plans-en-heading" data-copy="en">Start free. Upgrade when Coolab ELN becomes part of your daily lab work.</h2>
+          <h2 data-copy="zh">选择适合你的 plan。</h2>
+        </div>
+        <div class="plans-grid">
+          <article class="plan-card reveal">
+            <span class="plan-type">Free</span>
+            <h3>Free</h3>
+            <p>For lightweight trial and basic record keeping.</p>
+            <ul>
+              <li>1 project</li>
+              <li>30 notes</li>
+              <li>Limited analysis and database records</li>
+              <li>Basic export</li>
+            </ul>
+          </article>
+          <article class="plan-card reveal">
+            <span class="plan-type">Monthly</span>
+            <h3>Pro Monthly</h3>
+            <div class="price-row"><strong>19 RMB</strong><span> / 30 days</span></div>
+            <div class="price-row"><strong>780 JPY</strong><span> / 30 days</span></div>
+            <p>Flexible Pro access for short projects.</p>
+          </article>
+          <article class="plan-card featured reveal">
+            <span class="plan-type">Yearly</span>
+            <h3>Pro Yearly</h3>
+            <div class="price-row"><strong>198 RMB</strong><span> / 365 days</span></div>
+            <div class="price-row"><strong>6,800 JPY</strong><span> / 365 days</span></div>
+            <p>Unlimited notes, analysis, plasmids, protocols, cells, reagents, sync, export, and backup.</p>
+          </article>
+          <article class="plan-card reveal">
+            <span class="plan-type">Early Bird</span>
+            <h3>Lifetime</h3>
+            <div class="price-row"><strong>499 RMB</strong><span> first 50 in China</span></div>
+            <div class="price-row"><strong>19,800 JPY</strong><span> first 50 in Japan</span></div>
+            <p>Long-term access to the current personal local-first Pro feature set.</p>
+          </article>
+        </div>
+        <p class="plan-note reveal">
+          Pro licenses support up to 2 devices by default. Quarterly plan: 59 RMB / 90 days or 1,980 JPY / 90 days.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Coolab ELN</span>
+      <span>Be simple, be real, Keep cool.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

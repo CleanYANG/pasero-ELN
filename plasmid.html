@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plasmid | Coolab ELN</title>
+    <meta
+      name="description"
+      content="Coolab ELN Plasmid connects plasmid library, sequence editing, primer design, restriction digest, and Sanger verification in one local-first ELN workflow."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="eln-subpage plasmid-page" data-language="en">
+    <div class="site-backdrop" aria-hidden="true">
+      <div class="grid-layer"></div>
+      <div class="scan-layer"></div>
+    </div>
+
+    <header class="topbar subpage-dark-topbar">
+      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
+        <img src="assests/logo-透明底.png" alt="" />
+        <span>Coolab ELN</span>
+      </a>
+      <nav class="nav-tabs" aria-label="Main sections">
+        <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
+        <a href="data-analysis.html"><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></a>
+        <a class="active" href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
+        <a href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
+        <a href="literatures.html"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></a>
+      </nav>
+      <div class="language-menu" data-language-menu>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path>
+          </svg>
+        </button>
+        <div class="language-options" role="listbox" aria-label="Language">
+          <button type="button" data-language-option="en" role="option">EN</button>
+          <button type="button" data-language-option="zh" role="option">中文</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="plasmid-flow-hero section-shell" aria-label="Plasmid workflow overview">
+        <div class="plasmid-flow-heading reveal">
+          <p class="eyebrow"><span data-copy="en">Plasmid Workflow</span><span data-copy="zh">质粒工作流</span></p>
+          <h1><span data-copy="en">Plasmid work, end to end.</span><span data-copy="zh">质粒工作，一条链路完成。</span></h1>
+        </div>
+
+        <div class="plasmid-flow-map reveal">
+          <article class="plasmid-flow-node">
+            <span>01</span>
+            <strong><span data-copy="en">Library</span><span data-copy="zh">质粒库</span></strong>
+            <small><span data-copy="en">Upload or select plasmids</span><span data-copy="zh">上传或选择质粒</span></small>
+          </article>
+          <article class="plasmid-flow-node">
+            <span>02</span>
+            <strong><span data-copy="en">Sequence map</span><span data-copy="zh">序列图谱</span></strong>
+            <small><span data-copy="en">Inspect features and edits</span><span data-copy="zh">查看元件和修改</span></small>
+          </article>
+          <article class="plasmid-flow-node">
+            <span>03</span>
+            <strong><span data-copy="en">Primer design</span><span data-copy="zh">引物设计</span></strong>
+            <small><span data-copy="en">Check Tm, GC, and position</span><span data-copy="zh">检查 Tm、GC 和位置</span></small>
+          </article>
+          <article class="plasmid-flow-node">
+            <span>04</span>
+            <strong><span data-copy="en">Restriction digest</span><span data-copy="zh">限制性酶切</span></strong>
+            <small><span data-copy="en">Plan cut sites and fragments</span><span data-copy="zh">规划位点和片段</span></small>
+          </article>
+          <article class="plasmid-flow-node">
+            <span>05</span>
+            <strong><span data-copy="en">Sanger verification</span><span data-copy="zh">Sanger 验证</span></strong>
+            <small><span data-copy="en">Align reads to reference</span><span data-copy="zh">读段比对参考序列</span></small>
+          </article>
+
+          <div class="plasmid-flow-core" aria-hidden="true">
+            <div class="plasmid-flow-ring"></div>
+          </div>
+          <svg class="plasmid-flow-lines" viewBox="0 0 1180 440" aria-hidden="true">
+            <path d="M132 218 C248 86 396 86 512 218" />
+            <path d="M512 218 C580 292 660 292 728 218" />
+            <path d="M728 218 C840 86 990 86 1100 218" />
+            <path d="M1100 218 C964 388 758 388 590 318" />
+            <path d="M590 318 C428 390 246 368 132 218" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="plasmid-demo-stage section-shell" aria-label="Plasmid feature demonstration">
+        <div class="plasmid-demo-heading reveal">
+          <p class="eyebrow"><span data-copy="en">Feature Demo</span><span data-copy="zh">功能演示</span></p>
+          <h2><span data-copy="en">Choose a plasmid workflow and watch the actual UI loop.</span><span data-copy="zh">选择一个质粒流程，查看真实界面循环演示。</span></h2>
+        </div>
+
+        <div class="plasmid-tab-demo reveal" data-video-tabs>
+          <div class="plasmid-video-shell">
+            <video autoplay muted loop playsinline preload="metadata" data-tab-video>
+              <source src="assests/Plasmid-sequence-section.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="plasmid-demo-tabs" aria-label="Plasmid demo controls">
+            <button
+              class="active"
+              type="button"
+              data-video-src="assests/Plasmid-sequence-section.mp4"
+              data-video-tab
+            >
+              <span data-copy="en">Sequence</span><span data-copy="zh">序列</span>
+            </button>
+            <button type="button" data-video-src="assests/plasmid-primer-section.mp4" data-video-tab>
+              <span data-copy="en">Primer</span><span data-copy="zh">引物</span>
+            </button>
+            <button type="button" data-video-src="assests/Plasmid-advance-primer-section.mp4" data-video-tab>
+              <span data-copy="en">Advanced primer</span><span data-copy="zh">高级引物</span>
+            </button>
+            <button type="button" data-video-src="assests/plasmid-restriction-enzyme-cut-section.mp4" data-video-tab>
+              <span data-copy="en">Digest</span><span data-copy="zh">酶切</span>
+            </button>
+            <button type="button" data-video-src="assests/plasmid-section-Sanger.mp4" data-video-tab>
+              <span data-copy="en">Sanger</span><span data-copy="zh">Sanger</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Coolab ELN</span>
+      <span><span data-copy="en">Be simple, be real, Keep cool.</span><span data-copy="zh">简单，真实，保持冷静。</span></span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

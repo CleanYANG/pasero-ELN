@@ -1,0 +1,470 @@
+Coolab ELN 网站内容迁移摘要
+版本：基于当前 Coolab-ELN 代码与 assets 素材整理
+日期：2026-07-25
+
+用途
+====
+本文档用于下一阶段优化 Coolab Website 时，介绍 ELN 的六个核心区域：
+Lab Notes、Research Assistant、Data Analysis、Plasmid、Database、Literature。
+内容以当前产品实际功能为准，可作为网站栏目介绍、功能卡片、演示页和截图说明的基础文案。
+
+
+一、产品总览
+============
+
+Coolab ELN 是面向分子生物学实验流程的电子实验记录与研究工作台。它将实验记录、研究辅助、数据处理、质粒与序列管理、实验资源数据库和文献阅读集中在同一个界面中，让实验信息不再散落在纸质笔记、Excel、PDF 和多个独立工具之间。
+
+推荐网站主标题：
+从实验记录到数据结论，一个工作台完成分子生物学研究流程。
+
+推荐网站短介绍：
+记录实验、分析数据、管理质粒与实验资源、阅读论文，并通过 Research Assistant 在各模块之间快速调用信息。Coolab ELN 让每一步实验工作都能被保存、复用和追溯。
+
+核心价值：
+1. 统一：笔记、数据、序列、实验资源和文献集中管理。
+2. 连通：分析结果、protocol、质粒信息和研究助手可以回到 Lab Notes，形成连续的实验记录。
+3. 结构化：把零散文本、表格、图片和 PDF 转换为可搜索、可编辑、可复用的信息。
+4. 本地化工作流：围绕实验室日常工作设计，强调数据可控和操作连续性。
+
+
+二、Lab Notes
+==============
+
+网站栏目标题建议：
+Lab Notes — 让每一次实验都有完整上下文
+
+一句话简介：
+创建、导入、浏览和维护实验记录，并把表格、图片、protocol 和分析结果保存在同一条实验笔记中。
+
+网站简介文案：
+Lab Notes 是 Coolab ELN 的实验记录中心。研究人员可以新建文字或表格笔记、附加实验图片、从 protocol 模板开始记录，也可以导入已有的历史实验文档。来自 Data Analysis 的图表和统计结果能够保存回笔记，使原始数据、处理过程与实验结论保持关联。
+
+当前主要功能：
+1. New Note
+   - 设置实验日期、标题及记录内容。
+   - 支持普通文本和电子表格式表格。
+   - 表格区域可直接编辑，并支持基础公式。
+   - 可从已保存的 protocol 模板创建实验记录。
+   - 支持上传凝胶、电泳、显微镜、Western blot、培养板和截图等实验图片。
+   - 可为图片设置类型、标题和备注，并在图片上进行可视化标注。
+   - Save Note 保存记录；Trash 清空当前草稿。
+
+2. Browse Notes
+   - 浏览最近及历史实验记录。
+   - 按年份筛选，也可查看无日期记录。
+   - 打开、编辑或删除手动创建的笔记。
+   - 以表格形式保留和展示结构化实验内容。
+   - 查看笔记中的图片及图片标注。
+
+3. Upload Notes
+   - 导入已有 Excel、CSV、TSV 或文本类实验记录。
+   - 保留工作表中的行列结构，方便旧数据迁入 ELN。
+   - 将历史记录纳入统一的浏览与检索流程。
+
+4. 跨模块连接
+   - Data Analysis 的完整分析、统计表和图片可保存到 Lab Notes。
+   - Database 中的 protocol 可作为新实验笔记模板。
+   - Research Assistant 可搜索、新建、追加或整理实验记录；涉及写入的操作需要确认。
+   - Plasmid 中的酶切方案等实验输出可写入实验记录。
+
+典型使用流程：
+选择 protocol 或创建空白笔记 → 填写实验步骤与表格 → 上传并标注实验图片 → 保存 → 分析数据后把结果继续附加到记录。
+
+推荐展示素材：
+- assets/笔记本界面.png：Lab Notes 主界面或功能演示。
+- assets/sheedy notes.png：角色化的笔记场景。
+- assets/记录笔记sheedy.png：记录实验的视觉辅助。
+- assets/笔记本.png：栏目图标。
+
+
+三、Research Assistant
+======================
+
+网站栏目标题建议：
+Research Assistant — 能调用实验工具的研究助手
+
+一句话简介：
+用自然语言搜索实验记录、处理序列、调用分析流程、查询 protocol，并完成常用实验计算。
+
+网站简介文案：
+Research Assistant 不是独立于 ELN 的普通聊天窗口，而是连接笔记、数据、protocol、质粒和序列工具的操作入口。用户可以通过对话描述实验任务，由助手识别需求并调用相应的本地工具，在保留上下文的同时减少页面之间的重复操作。
+
+当前主要功能：
+1. 实验记录助手
+   - 搜索 Lab Notes 中的实验记录。
+   - 创建新笔记，或向已有笔记插入和追加内容。
+   - 协助重写与整理记录。
+   - 对写入或修改笔记的操作进行确认，减少误操作。
+
+2. DNA 与序列工具
+   - Reverse complement。
+   - GC content 计算。
+   - Primer Tm 计算。
+   - DNA/RNA 序列格式转换。
+   - DNA 翻译及蛋白序列相关处理。
+   - 序列比对与 Sanger 验证。
+   - 限制性内切酶位点搜索与酶切设计。
+   - 搜索 Plasmid Library 中的质粒。
+
+3. 常用实验计算
+   - 稀释计算。
+   - 摩尔溶液、质量浓度和百分比溶液配制。
+   - 浓度计算与单位换算。
+   - 核酸质量、摩尔量等数量换算。
+
+4. Protocol 支持
+   - 搜索已保存的 protocol。
+   - 加载 protocol 模板。
+   - 根据实验需求生成或整理当日 protocol 草稿。
+
+5. 数据与图像分析入口
+   - 接收上传的实验表格或图片。
+   - 执行概括性统计及常见 assay 分析。
+   - 支持 qPCR、luciferase、curve fitting 等分析任务入口。
+   - 支持 Western blot 图像定量相关流程。
+
+产品特点：
+- 对话与实际实验工具连接，而不只是给出文字回答。
+- 可利用 ELN 内已有的笔记、质粒和 protocol 信息。
+- 常用任务由明确的本地操作器执行，结果更容易复查。
+- 保留聊天记录，适合连续完成多步研究任务。
+
+典型使用流程：
+用自然语言描述任务 → 助手识别笔记、序列、计算、protocol 或分析需求 → 调用对应工具 → 返回可检查结果 → 经用户确认后写入 ELN。
+
+推荐展示素材：
+- assets/Sheedy-RA-PAGE (2).png：Research Assistant 页面主展示图。
+- assets/聊天界面头像.png：助手头像。
+- assets/研究icon.png：栏目图标。
+- assets/Sheedy-Hero.png：网站 Hero 或助手品牌形象。
+
+对外文案注意：
+当前实现应描述为“连接 ELN 工具的研究助手”或“自然语言实验工作入口”，不应宣传为能够替代研究者判断的全自动科研系统。
+
+
+四、Data Analysis
+=================
+
+网站栏目标题建议：
+Data Analysis — 从粘贴数据到统计图表
+
+一句话简介：
+粘贴、上传或从实验笔记导入数据，在同一工作区完成清洗确认、统计检验、可视化和结果归档。
+
+网站简介文案：
+Data Analysis 为常见分子生物学实验提供面向实验人员的分析流程。用户无需先编写代码，可以直接粘贴表格、上传数据文件，或从 Lab Notes 导入数据；解析后的表格仍可继续编辑，后续统计和图表会基于最新数据生成。最终分析结果、统计表和图片可以保存回实验笔记。
+
+输入与工作区：
+- 支持直接粘贴表格。
+- 支持 CSV、TSV、TXT 和 Excel 文件。
+- 支持从 Lab Notes 导入已有表格。
+- 解析后自动载入可编辑表格；用户编辑的内容会同步给后续处理器。
+- 当前主要模式为 General Assay、qPCR assay 和 Western blot。
+
+A. General Assay
+
+1. Comparison
+   - 支持纵向或横向分组柱状图及箱线图。
+   - 支持直接数值、ratio、difference、percent ratio 和自定义公式。
+   - 支持全局或匹配条件的 control normalization。
+   - 自动计算分组均值及 SD/SEM。
+   - 支持 Unpaired t-test、Welch t-test、one-way ANOVA、Dunnett 和 Tukey HSD。
+
+2. Trend
+   - 适合时间序列、剂量响应或连续条件数据。
+   - 自动识别 group/condition 列。
+   - 按 X 值与组别汇总重复样本，显示每个组的趋势线及误差。
+   - 保留各组独立的颜色和图例，便于直接比较处理组与对照组。
+
+3. Composition
+   - 支持长表和宽表结构。
+   - 自动识别 component 与数值列。
+   - 支持普通堆叠图和 100% 堆叠图。
+   - 适合细胞组成、群落比例和样本成分比较。
+
+B. qPCR Assay
+
+- 提供固定字段：Group、Sample ID、Detector、Ct。
+- 可解析带表头、无表头以及常见仪器导出的 TSV/CSV 数据。
+- 设置 reference gene、target/test gene 和 control group。
+- 进行基于 delta Ct 与 delta-delta Ct 的相对表达计算。
+- 生成分组汇总、误差条和统计结果。
+- 可保存 qPCR 原始数据及完整分析结果。
+
+C. Western Blot
+
+- 支持单膜和多膜分析流程。
+- 支持选择或调整 ROI/band。
+- 支持背景校正与 loading control 归一化。
+- 生成原始测量、质量检查、归一化结果、分组汇总及统计表。
+- 两组比较可使用 Welch t-test；三组及以上可使用 one-way ANOVA。
+- 完整分析和图片可保存回 Lab Notes。
+
+图表与输出：
+- 可设置标题、坐标轴、字体、颜色、尺寸和误差条。
+- 支持导出 PNG 和 SVG。
+- 支持将图、数据表、统计结果和分析参数一起保存到 Lab Notes。
+- 提供外部 Analysis Hub 入口，用于进入更扩展的数据分析环境。
+
+典型使用流程：
+粘贴/上传/导入数据 → 检查并直接编辑表格 → 选择 assay 与数据角色 → 设置归一化和统计方法 → 生成图表 → 导出或保存到 Lab Notes。
+
+推荐展示素材：
+- assets/处理数据.png：数据分析工作区截图。
+- assets/处理数据sheedy.png：角色化的数据分析场景。
+- assets/数据分析.png：栏目图标。
+
+对外文案注意：
+- Relationship 数据处理逻辑仍保留在后端，但当前已从 UI 撤出，不应在网站上作为现有功能宣传。
+- 不应使用“自动完成所有统计判断”的表述；统计方法仍应由用户根据实验设计选择。
+
+
+五、Plasmid
+============
+
+网站栏目标题建议：
+Plasmid — 从质粒库到克隆与测序验证
+
+一句话简介：
+集中管理质粒、序列、功能注释、引物、酶切方案和 Sanger 测序验证。
+
+网站简介文案：
+Plasmid 将质粒资料管理和日常序列操作放入同一工作区。研究人员可以建立实验室质粒库、查看可视化质粒图谱、检索限制性内切酶位点、设计酶切反应、管理引物，并通过 Sanger 读段检查构建结果。
+
+当前主要功能：
+1. Plasmid Library
+   - 分别管理 Lab plasmids 与 Public plasmids。
+   - 搜索和浏览质粒卡片。
+   - 上传或创建质粒，并设置名称、分类、来源和可见类型。
+   - 解析常见文本或序列文件中的 DNA 序列与功能注释。
+   - 可将公共质粒关联到实验室质粒记录。
+
+2. 序列、注释与图谱
+   - 查看质粒完整序列。
+   - 展示环状质粒图谱。
+   - 展示功能元件、primer 和 restriction site。
+   - 通过功能注释表检查序列位置与方向。
+   - 支持 deletion、mutation 和 insertion 等序列修改，并在保存前检查修改结果。
+
+3. Restriction Digest
+   - 检测限制性内切酶识别位点和切割位置。
+   - 在序列中高亮所选酶切位点。
+   - 支持单酶切、双酶切及双位点替换相关设计。
+   - 计算环状质粒酶切后的片段。
+   - 根据本地 TAKARA 规则给出 buffer 与反应条件建议。
+   - 将酶切方案保存为实验输出，并可写入 Lab Notes。
+
+4. Primer
+   - 创建、保存、查看和删除质粒相关引物。
+   - 上传 CSV、TSV、TXT 或 Excel 引物表。
+   - 自动检查引物是否与当前质粒序列匹配。
+   - 显示引物方向、位置及基础序列指标。
+
+5. Advanced Primer Design
+   - 选择质粒和目标区域建立 primer set。
+   - 生成并评估候选引物。
+   - 显示长度、GC、Tm 等指标和设计提示。
+   - 保存 primer set，便于后续实验使用。
+
+6. Sanger Verification
+   - 上传 AB1 峰图文件，或粘贴/上传 FASTA、文本读段。
+   - 将测序读段与质粒参考序列进行最佳比对。
+   - 展示 identity、coverage、mismatch 和 indel 等结果。
+   - 查看碱基级比对窗口。
+   - AB1 文件可显示 chromatogram 峰图；点击比对中的碱基可定位到对应峰。
+
+典型使用流程：
+上传或选择质粒 → 查看图谱和功能元件 → 设计引物或酶切方案 → 完成构建 → 上传 Sanger 结果 → 在峰图与序列比对中验证。
+
+推荐展示素材：
+- assets/sheedy看质粒.png：质粒模块主视觉或功能卡。
+- assets/质粒.png：栏目图标。
+- assets/DNA.png、assets/序列.png、assets/基因.png：序列相关辅助视觉。
+
+对外文案注意：
+酶切条件属于设计建议，实际实验仍需结合所用酶、批次及厂商说明确认。
+
+
+六、Database
+=============
+
+网站栏目标题建议：
+Database — 建立实验室自己的知识与资源库
+
+一句话简介：
+用结构化的 Protocol、Reagent 和 Cell 数据库替代散落的文档、网页和表格。
+
+网站简介文案：
+Database 是实验室可持续积累的资源中心。它把 protocol、试剂和细胞信息整理为可搜索、可编辑的结构化记录，使常用实验条件、库存资料和培养方法能够被团队重复使用，并与 Lab Notes 和 Research Assistant 连接。
+
+A. Protocol Library
+
+- 浏览和搜索实验 protocol。
+- 手动创建 protocol，保存名称、分类、摘要、步骤、变量字段和备注。
+- 上传 TXT、CSV 或 DOCX 类 protocol 文档。
+- 查看、编辑和删除已保存的 protocol。
+- 浏览参考 protocol，并将适合的内容转换成实验室自己的 protocol。
+- 从 protocol 模板创建新的 Lab Note。
+- Research Assistant 可搜索、加载或协助整理 protocol 草稿。
+
+B. Reagent Library
+
+- 创建、搜索、查看、编辑和删除试剂记录。
+- 保存试剂名称、供应商、catalog number、分子量、物理状态和库存浓度。
+- 保存储存条件、相关 protocol、备注和供应商图片。
+- 让实验配制和 protocol 中使用的材料有统一来源。
+
+C. Cell Library
+
+- 创建、搜索、查看、编辑和删除细胞记录。
+- 保存物种、组织、细胞类型、来源、catalog number、形态和生长特性。
+- 保存应用场景、生物安全、培养基和培养条件。
+- 记录复苏、传代、冻存、储存位置、passage number 和支原体状态。
+- 记录细胞操作信息，形成连续的培养与状态记录。
+
+典型使用流程：
+建立实验室资源记录 → 搜索并打开 protocol/试剂/细胞 → 在实验前确认条件 → 用 protocol 创建 Lab Note → 持续更新资源和操作信息。
+
+推荐展示素材：
+- assets/数据库.png：Database 栏目图标。
+- assets/protocol.png：Protocol 功能展示。
+- assets/培养基.png、assets/显微镜.png、assets/试管.png：Reagent/Cell 辅助视觉。
+
+命名说明：
+代码入口名称为 Protocol 页面，但当前用户界面承载的是 Protocol、Reagent、Cell 三类资源，因此网站上建议统一使用 “Database” 作为一级栏目名称。
+
+
+七、Literature
+===============
+
+网站栏目标题建议：
+Literature — 阅读论文时就完成知识整理
+
+一句话简介：
+建立本地论文库，在 PDF 页面上阅读、标注、记录术语和导出引用。
+
+网站简介文案：
+Literature 把论文文件、元数据、阅读状态、页面批注和研究笔记保存在同一个阅读工作区。用户可以导入 PDF、管理论文库、在原文中选中文字进行高亮或批注，并把值得追踪的实验想法与具体页面关联起来。
+
+当前主要功能：
+1. Paper Library
+   - 搜索和浏览已导入论文。
+   - 使用 Unread、Reading、Read、Important 和 Archived 管理阅读状态。
+   - 打开专注阅读界面。
+   - 查看和编辑标题、作者、年份、期刊、DOI、来源链接、citation key 和 tags。
+   - 删除不再需要的论文记录。
+
+2. PDF Import 与管理
+   - 上传 PDF 并保存在本地论文库。
+   - 使用文件哈希识别重复文件，避免重复导入。
+   - 提取 PDF 文本并尝试识别 DOI 等基础信息。
+   - 可继续手动完善论文元数据。
+
+3. PDF Reader 与批注
+   - 在内置阅读器中翻页和阅读 PDF。
+   - 对选中文字创建阅读笔记。
+   - 支持 Page note、Selected text note、Underline annotation 和 Tag annotation。
+   - 支持 Underline、Highlight、Question、Protocol idea 和 Follow-up 等批注样式。
+   - 批注与页码、选中文本保持关联。
+
+4. 术语与个人词汇
+   - 提供常见生物学术语的快速解释。
+   - 可保存个人术语、说明和来源链接。
+   - 阅读过程中逐步建立自己的研究词汇表。
+
+5. Citation
+   - 基于论文元数据生成引用文本。
+   - 支持 Nature、Vancouver 和 APA 样式。
+
+典型使用流程：
+上传 PDF → 完善元数据和阅读状态 → 在内置阅读器中选择文字并批注 → 保存实验想法或 follow-up → 导出所需引用格式。
+
+推荐展示素材：
+- assets/sheedy 读文献.png：Literature 主视觉。
+- assets/文献.png：栏目图标。
+
+对外文案注意：
+术语解释和自动提取的元数据应描述为阅读辅助；重要信息仍需要用户回到论文原文核对。
+
+
+八、六个模块之间的完整工作流
+============================
+
+推荐网站流程文案：
+1. 在 Database 中找到或建立 protocol、试剂和细胞资料。
+2. 用 protocol 在 Lab Notes 中创建当天的实验记录。
+3. 在 Plasmid 中准备质粒、引物和酶切方案，并用 Sanger 结果验证构建。
+4. 将实验数据导入 Data Analysis，完成统计、图表和质量检查。
+5. 把数据表、统计结论和图片保存回 Lab Notes。
+6. 在 Literature 中阅读和标注相关论文，积累实验想法与引用。
+7. 通过 Research Assistant 搜索和调用上述信息，快速执行跨模块任务。
+
+适合网站使用的总结句：
+Coolab ELN 不只是六个并列工具，而是一条可追溯的研究链路：从文献和实验设计，到资源准备、实验记录、数据分析和结果归档。
+
+
+九、现有 assets 素材与网站栏目对应建议
+======================================
+
+Lab Notes：
+- 笔记本界面.png
+- sheedy notes.png
+- 记录笔记sheedy.png
+- 笔记本.png
+
+Research Assistant：
+- Sheedy-RA-PAGE (2).png
+- Sheedy-Hero.png
+- 聊天界面头像.png
+- 研究icon.png
+
+Data Analysis：
+- 处理数据.png
+- 处理数据sheedy.png
+- 数据分析.png
+
+Plasmid：
+- sheedy看质粒.png
+- 质粒.png
+- DNA.png
+- 序列.png
+- 基因.png
+
+Database：
+- 数据库.png
+- protocol.png
+- 培养基.png
+- 显微镜.png
+- 试管.png
+
+Literature：
+- sheedy 读文献.png
+- 文献.png
+
+全站或 Hero 候选：
+- Logo.png
+- logo-透明底.png
+- bio_coolab_logo.svg
+- Sheedy-Hero.png
+- UI.png
+- UI-design.png
+- 网站用.png
+- 发现coolab ELN.png
+- 发现coolabELN应有尽有.png
+
+素材使用建议：
+- 产品功能介绍优先使用真实 UI 截图，Sheedy 插画用于 Hero、模块过渡或强调场景。
+- 每个模块尽量保持“真实界面 + 一句价值说明 + 3 至 5 个核心能力”的统一结构。
+- 网站文案不要在同一屏堆叠所有底层功能；详细能力可以通过展开区、轮播或独立模块页展示。
+
+
+十、网站迁移时的内容原则
+========================
+
+1. 网站首先讲用户能完成什么，再介绍技术功能名称。
+2. 每个模块都应展示一个清晰的输入、处理和输出流程。
+3. 强调模块连接，例如“分析结果保存到 Lab Notes”，而不只罗列独立功能。
+4. 对统计、酶切建议和自动提取信息保留科研边界提示。
+5. 暂不宣传 UI 中尚未开放的 Relationship 分析。
+6. 后续制作网站时，应重新核对 assets 中视频文件的位置和格式，再决定视频展示区域；本次当前 assets 目录扫描到的主要是 PNG、SVG 等图片素材。
+
