@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Database | Coolab ELN</title>
+    <title>Database | Pasero</title>
     <meta
       name="description"
-      content="Coolab ELN Database organizes protocols, cells, and reagents into searchable local records that connect back to Lab Notes."
+      content="Pasero Database organizes protocols, cells, and reagents into searchable local records that connect back to Lab Notes."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -17,9 +17,7 @@
     </div>
 
     <header class="topbar subpage-dark-topbar">
-      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
-        <img src="assests/logo-透明底.png" alt="" />
-        <span>Coolab ELN</span>
+      <a class="brand" href="./index.html#home" aria-label="Pasero home"><span>Pasero <small>雀角</small></span>
       </a>
       <nav class="nav-tabs" aria-label="Main sections">
         <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
@@ -27,6 +25,7 @@
         <a href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
         <a class="active" href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
         <a href="literatures.html"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></a>
+        <a href="mobile.html"><span data-copy="en">Mobile</span><span data-copy="zh">移动端</span></a>
       </nav>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
@@ -48,8 +47,8 @@
           <p class="notes-kicker"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></p>
           <h1 data-copy="en">Protocols, cells, and reagents in one local library.</h1>
           <h1 data-copy="zh">一站式管理细胞，试剂和protocol.</h1>
-          <p data-copy="en">Build reusable lab resources, connect them back to notes, and keep materials searchable over time.</p>
-          <p data-copy="zh">沉淀可复用的实验资源，把它们连接回笔记，并让材料信息长期可查询。</p>
+          <p data-copy="en">Build reusable lab resources, link them to notes, and see every experiment that used each cell, reagent, plasmid, or protocol.</p>
+          <p data-copy="zh">沉淀可复用的实验资源，将它们关联到笔记，并回看每个细胞、试剂、质粒或 Protocol 被哪些实验使用。</p>
         </div>
         <figure class="module-flow-card database-flow-card" aria-label="Database workflow">
           <figcaption><span data-copy="en">Database workflow</span><span data-copy="zh">数据库流程</span></figcaption>
@@ -57,7 +56,7 @@
             <div class="flow-node"><strong data-copy="en">Store</strong><strong data-copy="zh">保存</strong><span data-copy="en">protocols, cells, reagents</span><span data-copy="zh">实验流程、细胞、试剂</span></div>
             <div class="flow-node"><strong data-copy="en">Search</strong><strong data-copy="zh">查询</strong><span data-copy="en">local resource records</span><span data-copy="zh">本地资源记录</span></div>
             <div class="flow-node"><strong data-copy="en">Reuse</strong><strong data-copy="zh">复用</strong><span data-copy="en">protocols inside notes</span><span data-copy="zh">在笔记中使用实验流程</span></div>
-            <div class="flow-node"><strong data-copy="en">Trace</strong><strong data-copy="zh">追踪</strong><span data-copy="en">material context</span><span data-copy="zh">材料来源和使用信息</span></div>
+            <div class="flow-node"><strong data-copy="en">Trace</strong><strong data-copy="zh">追踪</strong><span data-copy="en">used in notes</span><span data-copy="zh">被哪些笔记使用</span></div>
           </div>
           <svg viewBox="0 0 420 120" role="img" aria-hidden="true">
             <path d="M42 72 L116 32 L210 72 L306 34 L378 72" />
@@ -68,6 +67,17 @@
             <circle cx="378" cy="72" r="8" />
           </svg>
         </figure>
+      </section>
+
+      <section class="mobile-bridge section-shell">
+        <div>
+          <p class="eyebrow">Mobile resources</p>
+          <h2 data-copy="en">Cells and reagents stay useful at the bench.</h2>
+          <h2 data-copy="zh">让细胞与试剂信息真正跟到实验台旁。</h2>
+          <p data-copy="en">Track thaw, passage, freeze, and the next passage reminder. Search reagents with visible safety signals and handling guidance.</p>
+          <p data-copy="zh">记录复苏、传代和冻存，设置下次传代提醒；搜索试剂时直接查看危险信号与处理建议。</p>
+        </div>
+        <a class="button primary" href="mobile.html"><span data-copy="en">See Mobile workflows</span><span data-copy="zh">查看移动端流程</span></a>
       </section>
 
       <section class="feature-book-section" aria-label="Database feature book">

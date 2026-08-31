@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Data Analysis | Coolab ELN</title>
+    <title>Data Analysis | Pasero</title>
     <meta
       name="description"
-      content="Coolab ELN Data Analysis imports data from notes, supports common molecular biology assays and charts, and saves results back to Lab Notes."
+      content="Pasero Data Analysis imports data from notes, supports common molecular biology assays and charts, and saves results back to Lab Notes."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -17,9 +17,7 @@
     </div>
 
     <header class="topbar subpage-dark-topbar">
-      <a class="brand" href="./index.html#home" aria-label="Coolab ELN home">
-        <img src="assests/logo-透明底.png" alt="" />
-        <span>Coolab ELN</span>
+      <a class="brand" href="./index.html#home" aria-label="Pasero home"><span>Pasero <small>雀角</small></span>
       </a>
       <nav class="nav-tabs" aria-label="Main sections">
         <a href="notes.html"><span data-copy="en">Notes</span><span data-copy="zh">笔记</span></a>
@@ -27,6 +25,7 @@
         <a href="plasmid.html"><span data-copy="en">Plasmid</span><span data-copy="zh">质粒</span></a>
         <a href="database.html"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></a>
         <a href="literatures.html"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></a>
+        <a href="mobile.html"><span data-copy="en">Mobile</span><span data-copy="zh">移动端</span></a>
       </nav>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
@@ -45,6 +44,14 @@
     <main>
       <section class="analysis-clean-hero section-shell">
         <div class="analysis-clean-copy reveal">
+          <p class="eyebrow"><span data-copy="en">Table-aware analysis</span><span data-copy="zh">自动识别表格的数据分析</span></p>
+          <h1 data-copy="en">Paste a table. Pasero finds the analysis path.</h1>
+          <h1 data-copy="zh">粘贴表格，雀角自动找到分析路径。</h1>
+          <p data-copy="en">Pasero reads the structure of your input table, identifies whether the goal is comparison, trend, or composition, then produces a suitable chart and recommends the statistical method.</p>
+          <p data-copy="zh">雀角读取输入表格的结构，判断数据适合组间比较、趋势还是组成分析，随后直接出图并推荐统计方法。</p>
+          <div class="capability-pills">
+            <span>Comparison · Bar</span><span>Trend · Line</span><span>Composition · Stacked</span>
+          </div>
         </div>
 
         <div class="analysis-loop-card reveal" aria-label="Data Analysis closed loop">
@@ -56,12 +63,12 @@
           <div class="loop-node loop-data">
             <span>02</span>
             <strong><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></strong>
-            <small><span data-copy="en">Clean and analyze</span><span data-copy="zh">整理并分析</span></small>
+            <small><span data-copy="en">Recognize the table</span><span data-copy="zh">识别表格结构</span></small>
           </div>
           <div class="loop-node loop-chart">
             <span>03</span>
             <strong><span data-copy="en">Charts + stats</span><span data-copy="zh">图表与统计</span></strong>
-            <small><span data-copy="en">Review outputs</span><span data-copy="zh">检查结果</span></small>
+            <small><span data-copy="en">Chart + recommended statistics</span><span data-copy="zh">出图并推荐统计方法</span></small>
           </div>
           <div class="loop-node loop-save">
             <span>04</span>
@@ -194,7 +201,7 @@
     </main>
 
     <footer class="footer">
-      <span>Coolab ELN</span>
+      <span>Pasero</span>
       <span><span data-copy="en">Be simple, be real, Keep cool.</span><span data-copy="zh">简单，真实，保持冷静。</span></span>
     </footer>
 
