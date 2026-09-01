@@ -4,305 +4,179 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pasero | Molecular Biology Workspace</title>
-    <meta
-      name="description"
-      content="Pasero is a local-first electronic lab notebook for molecular biology, combining notes, analysis, plasmids, databases, literature, and desktop-mobile sync."
-    />
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <meta name="description" content="Pasero is a local-first molecular biology workspace for notes, analysis, lab resources, literature, plasmid tools, and bench-side mobile work." />
+    <link rel="stylesheet" href="styles.css?v=26" />
+    <link rel="stylesheet" href="campaign.css?v=1" />
   </head>
-  <body class="home-page" data-language="en">
-    <div class="site-backdrop" aria-hidden="true">
-      <div class="grid-layer"></div>
-      <div class="scan-layer"></div>
-    </div>
-
-    <header class="topbar">
-      <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
-      </a>
-      <nav class="nav-tabs" aria-label="Main sections">
-        <a href="mobile.html"><span data-copy="en">Mobile</span><span data-copy="zh">移动端</span></a>
-        <a href="data-analysis.html"><span data-copy="en">Data Analysis</span><span data-copy="zh">数据分析</span></a>
+  <body class="campaign-page" data-language="en">
+    <header class="campaign-nav">
+      <a class="campaign-brand" href="#top" aria-label="Pasero home"><img src="assests/real-logo-cut.png" alt="Pasero" /></a>
+      <nav aria-label="Product navigation">
+        <a href="#workspace"><span data-copy="en">Workspace</span><span data-copy="zh">工作空间</span></a>
+        <a href="data-analysis.html"><span data-copy="en">Data</span><span data-copy="zh">数据</span></a>
+        <a href="mobile.html">Mobile</a>
       </nav>
-      <div class="language-menu" data-language-menu>
-        <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path>
-          </svg>
-        </button>
-        <div class="language-options" role="listbox" aria-label="Language">
-          <button type="button" data-language-option="en" role="option">EN</button>
-          <button type="button" data-language-option="zh" role="option">中文</button>
+      <div class="campaign-nav-actions">
+        <a class="campaign-download" href="#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span></a>
+        <div class="language-menu" data-language-menu>
+          <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path></svg>
+          </button>
+          <div class="language-options" role="listbox" aria-label="Language">
+            <button type="button" data-language-option="en" role="option">EN</button>
+            <button type="button" data-language-option="zh" role="option">中文</button>
+          </div>
         </div>
       </div>
     </header>
 
-    <main>
-      <section class="cosmic-hero section-shell" id="home">
-        <div class="cosmic-copy reveal">
-          <p class="eyebrow">
-            <span data-copy="en">A local-first molecular biology workspace</span>
-            <span data-copy="zh">本地优先的分子生物学工作空间</span>
-          </p>
-          <h1 data-copy="en">Pasero,<br /><em>Small but Mighty.</em></h1>
-          <h1 data-copy="zh">雀角，<br /><em>小而强大。</em></h1>
-          <div class="hero-message">
+    <main id="top">
+      <section class="campaign-hero">
+        <div class="campaign-hero-copy reveal">
+          <p class="campaign-label"><span data-copy="en">A local-first molecular biology workspace</span><span data-copy="zh">本地优先的分子生物学工作空间</span></p>
+          <h1 data-copy="en">Pasero.<br />Small but mighty.</h1>
+          <h1 data-copy="zh">雀角。<br />小而强大。</h1>
+          <div class="campaign-intro">
             <p data-copy="en">No account. No cloud. No jumping between apps.</p>
             <p data-copy="zh">无需注册，无需云端，也无需在不同软件之间来回切换。</p>
-            <p data-copy="en">Take notes, process data, and manage your reagents, cells, and protocols in one place. Then take it all to the bench with Pasero Mobile.</p>
-            <p data-copy="zh">记录笔记，管理细胞、试剂、质粒，处理数据，Protocol，尽在 Pasero。</p>
+            <p data-copy="en">Take notes, process data, and manage reagents, cells, plasmids, and protocols in one place.</p>
+            <p data-copy="zh">记录笔记，管理细胞、试剂、质粒，处理数据、Protocol，尽在 Pasero。</p>
           </div>
-          <div class="cosmic-actions">
-            <a class="button primary" href="#plans">
-              <span data-copy="en">Download Pasero</span><span data-copy="zh">下载 Pasero</span>
-            </a>
-            <a class="button ghost" href="#notes">
-              <span data-copy="en">Explore the workspace</span><span data-copy="zh">探索工作台</span>
-            </a>
+          <div class="campaign-actions">
+            <a class="campaign-button primary" href="#plans"><span data-copy="en">Download Pasero</span><span data-copy="zh">下载 Pasero</span></a>
+            <a class="campaign-button text" href="#workspace"><span data-copy="en">See the workflow ↓</span><span data-copy="zh">查看工作流 ↓</span></a>
           </div>
         </div>
-
-        <figure class="workspace-overview reveal" aria-label="Pasero connected molecular biology workspace">
-          <svg class="workspace-links" viewBox="0 0 720 560" aria-hidden="true">
-            <path d="M360 280 C285 230 250 170 180 126"></path>
-            <path d="M360 280 C435 230 470 170 540 126"></path>
-            <path d="M360 280 C270 280 225 280 135 280"></path>
-            <path d="M360 280 C450 280 495 280 585 280"></path>
-            <path d="M360 280 C285 330 250 390 180 434"></path>
-            <path d="M360 280 C435 330 470 390 540 434"></path>
-          </svg>
-          <div class="workspace-core"><strong>Pasero</strong><span>Molecular biology workspace</span></div>
-          <a class="workspace-node node-notes" href="#notes"><span>01</span><strong>Notes</strong><small>Record</small></a>
-          <a class="workspace-node node-analysis" href="#analysis"><span>02</span><strong>Data</strong><small>Process</small></a>
-          <a class="workspace-node node-plasmid" href="#plasmid"><span>03</span><strong>Plasmid</strong><small>Build</small></a>
-          <a class="workspace-node node-literature" href="#literature"><span>04</span><strong>Literature</strong><small>Read</small></a>
-          <a class="workspace-node node-resources" href="#database"><span>05</span><strong>Resources</strong><small>Connect</small></a>
-          <a class="workspace-node node-mobile" href="mobile.html"><span>06</span><strong>Mobile</strong><small>At the bench</small></a>
-        </figure>
+        <div class="campaign-hero-product reveal" aria-label="Pasero Desktop and Mobile">
+          <div class="campaign-desktop-crop"><img src="assests/首页.png" alt="Pasero Desktop workspace" /></div>
+          <img class="campaign-phone" src="assests/homepage.jpeg" alt="Pasero Mobile home" />
+          <span class="campaign-product-caption">Desktop + Mobile</span>
+        </div>
       </section>
 
-      <section class="feature-section section-shell" id="notes" data-section-theme="notes">
-        <div class="feature-copy reveal">
-          <p class="eyebrow">Notes / 笔记</p>
-          <h2 data-copy="en">Record on desktop. Capture on mobile. Review anytime.</h2>
-          <h2 data-copy="zh">桌面端整理，移动端记录，随时复盘。</h2>
-          <ul>
-            <li><span data-copy="en">Painless Wi-Fi connection between desktop and mobile</span><span data-copy="zh">桌面端和移动端无痛 Wi-Fi 连接</span></li>
-            <li><span data-copy="en">Data stays local</span><span data-copy="zh">数据仍在本地</span></li>
-            <li><span data-copy="en">Review notes anytime, anywhere</span><span data-copy="zh">随时随地复盘笔记</span></li>
-          </ul>
-        </div>
-        <div class="media-slot home-art-panel notes-dashboard-shot reveal" aria-label="Pasero Notes workspace">
-          <div class="notes-desktop-crop">
-            <img class="home-feature-art" src="assests/首页.png" alt="Pasero desktop Notes and workspace dashboard" />
+      <section class="campaign-manifesto" id="workspace">
+        <p class="campaign-label reveal">Pasero workflow</p>
+        <h2 class="reveal" data-copy="en">One workspace.<br />Fewer switches.</h2>
+        <h2 class="reveal" data-copy="zh">一个工作空间。<br />少一点来回切换。</h2>
+        <p class="reveal" data-copy="en">Notes, data, resources, literature, and molecular biology tools stay connected instead of scattered across separate software.</p>
+        <p class="reveal" data-copy="zh">笔记、数据、实验资源、文献与分子生物学工具互相关联，不再散落在不同软件里。</p>
+      </section>
+
+      <section class="campaign-story">
+        <article class="campaign-scene scene-notes">
+          <div class="campaign-scene-copy reveal">
+            <span>01</span><p class="campaign-label">Notes / 笔记</p>
+            <h2 data-copy="en">Record on desktop.<br />Capture at the bench.</h2>
+            <h2 data-copy="zh">桌面端整理。<br />实验台旁记录。</h2>
+            <p data-copy="en">Desktop and mobile use the same connected record. Images, tables, resources, and updates stay with the experiment.</p>
+            <p data-copy="zh">桌面端与移动端使用同一条实验记录，图片、表格、资源和现场更新始终跟实验放在一起。</p>
+            <a href="notes.html"><span data-copy="en">Explore Notes →</span><span data-copy="zh">查看笔记功能 →</span></a>
           </div>
-          <img class="notes-mobile-shot" src="assests/homepage.jpeg" alt="Pasero Mobile home screen for bench-side notes" />
-        </div>
-      </section>
-
-      <section class="feature-section section-shell reverse" id="analysis" data-section-theme="analysis">
-        <div class="feature-copy reveal">
-          <p class="eyebrow">Data Analysis / 数据分析</p>
-          <h2 data-copy="en">Paste your table. Get the right chart and a statistical recommendation.</h2>
-          <h2 data-copy="zh">粘贴或输入数据，Pasero 判断图表类型，自动出图以及推荐统计方法。</h2>
-          <ul>
-            <li><span data-copy="en">Automatically reads the structure of the input table</span><span data-copy="zh">自动读取用户输入表格的结构</span></li>
-            <li><span data-copy="en">Supports comparison, trend, and composition goals</span><span data-copy="zh">支持 Comparison、Trend 与 Composition</span></li>
-            <li><span data-copy="en">Saves charts and results back to the experiment note</span><span data-copy="zh">图表和结果保存回实验笔记</span></li>
-          </ul>
-        </div>
-        <div class="media-slot home-art-panel reveal" aria-label="Supported Data Analysis chart types">
-          <img class="home-feature-art home-line-art" src="assests/home-analysis-white.svg" alt="A table becoming comparison, trend, and composition charts" />
-        </div>
-      </section>
-
-      <section class="feature-section section-shell" id="plasmid" data-section-theme="plasmid">
-        <div class="feature-copy reveal">
-          <p class="eyebrow">Plasmid / 质粒</p>
-          <h2 data-copy="en">Plasmid information and tools, all in one place.</h2>
-          <h2 data-copy="zh">质粒信息和工具一应俱全。</h2>
-          <ul>
-            <li><span data-copy="en">Plasmid map annotation</span><span data-copy="zh">质粒图谱注释</span></li>
-            <li><span data-copy="en">Sanger sequencing alignment</span><span data-copy="zh">Sanger 测序比对</span></li>
-            <li><span data-copy="en">Primer design</span><span data-copy="zh">引物设计</span></li>
-          </ul>
-        </div>
-        <div class="media-slot home-art-panel reveal" aria-label="Primer design and Sanger alignment illustration">
-          <img class="home-feature-art home-line-art" src="assests/home-plasmid-white.svg" alt="Plasmid map, primer design, and Sanger sequencing alignment" />
-        </div>
-      </section>
-
-      <section class="feature-section section-shell reverse" id="database" data-section-theme="database">
-        <div class="feature-copy reveal">
-          <p class="eyebrow">Database / 数据库</p>
-          <h2 data-copy="en">Know which resources an experiment used—and where each resource was used.</h2>
-          <h2 data-copy="zh">笔记与资源互相关联。</h2>
-          <ul>
-            <li><span data-copy="en">Turn frequently repeated notes into saved protocols</span><span data-copy="zh">从高频重复笔记保存为 protocol</span></li>
-            <li><span data-copy="en">Link cells, reagents, plasmids, and protocols to Notes</span><span data-copy="zh">关联 Cells、Reagents、Plasmids 与 Protocols</span></li>
-            <li><span data-copy="en">Every resource shows its “Used in notes” history</span><span data-copy="zh">每项资源都保留 Used in notes 记录</span></li>
-          </ul>
-        </div>
-        <div class="media-slot home-art-panel reveal" aria-label="Protocol cell and reagent database illustration">
-          <img class="home-feature-art home-line-art" src="assests/home-database-white.svg" alt="Notes linked to cells, reagents, plasmids, and protocols" />
-        </div>
-      </section>
-
-      <section class="feature-section section-shell" id="literature" data-section-theme="literature">
-        <div class="feature-copy reveal">
-          <p class="eyebrow">Literatures / 文献</p>
-          <h2 data-copy="en">Search, read, and take source-linked notes without leaving the ELN.</h2>
-          <h2 data-copy="zh">在 Pasero 搜索、阅读论文，保存阅读笔记。</h2>
-          <ul>
-            <li><span data-copy="en">Single-page and two-page reading modes</span><span data-copy="zh">支持单页、双页阅读</span></li>
-            <li><span data-copy="en">Pin one page while turning another, so text and figures can stay together</span><span data-copy="zh">双页阅读支持固定一页，翻动另一页，解决只能看文不能看图的尴尬</span></li>
-            <li><span data-copy="en">Manage reading notes</span><span data-copy="zh">管理阅读笔记</span></li>
-          </ul>
-        </div>
-        <div class="media-slot home-art-panel reveal" aria-label="Two-page reading and saved notes illustration">
-          <img class="home-feature-art home-line-art" src="assests/home-literature-white.svg" alt="Two-page paper reading with source-linked notes" />
-        </div>
-      </section>
-
-      <section class="assistant-section section-shell">
-        <div class="assistant-card reveal">
-          <img src="assests/Sheedy-RA-PAGE (2).png" alt="" />
-          <div>
-            <p class="eyebrow">Research Assistant</p>
-            <h2 class="en-single-line-heading sheedy-en-heading" data-copy="en">Search your own notes—or verified public research resources.</h2>
-            <h2 class="sheedy-heading" data-copy="zh">既能搜索本地笔记，也能查询可靠的公共科研资源。</h2>
+          <div class="campaign-scene-media notes-media reveal">
+            <div class="notes-wide-crop"><img src="assests/首页.png" alt="Pasero Notes desktop interface" loading="lazy" /></div>
+            <img class="notes-phone" src="assests/homepage.jpeg" alt="Pasero Mobile note capture" loading="lazy" />
           </div>
+        </article>
+
+        <article class="campaign-scene scene-analysis">
+          <div class="campaign-scene-copy reveal">
+            <span>02</span><p class="campaign-label">Data Analysis / 数据分析</p>
+            <h2 data-copy="en">Input data.<br />Get the chart.</h2>
+            <h2 data-copy="zh">输入数据。<br />直接得到图表。</h2>
+            <p data-copy="en">Pasero reads the input table, judges the chart type, produces the chart, and recommends a statistical method.</p>
+            <p data-copy="zh">粘贴或输入数据，Pasero 判断图表类型，自动出图以及推荐统计方法。</p>
+            <a href="data-analysis.html"><span data-copy="en">Explore Data Analysis →</span><span data-copy="zh">查看数据分析 →</span></a>
+          </div>
+          <figure class="campaign-video reveal"><video autoplay muted loop playsinline preload="metadata" aria-label="Pasero Data Analysis demo"><source src="assests/data-analysis.mp4" type="video/mp4" /></video></figure>
+        </article>
+
+        <article class="campaign-tools-scene">
+          <div class="campaign-tools-heading reveal">
+            <span>03</span><p class="campaign-label"><span data-copy="en">The tools you actually use</span><span data-copy="zh">真正会用到的工具</span></p>
+            <h2 data-copy="en">Small tools.<br />One continuous workflow.</h2>
+            <h2 data-copy="zh">小工具。<br />连成完整工作流。</h2>
+          </div>
+          <div class="campaign-tool-lines">
+            <a class="campaign-tool-line reveal" href="plasmid.html"><span>Plasmid</span><strong data-copy="en">Map · Primer · Sanger · Digest</strong><strong data-copy="zh">图谱 · 引物 · Sanger · 酶切</strong><i>→</i></a>
+            <a class="campaign-tool-line reveal" href="database.html"><span>Resources</span><strong data-copy="en">Cells · Reagents · Protocols · Relationships</strong><strong data-copy="zh">细胞 · 试剂 · Protocol · 关联关系</strong><i>→</i></a>
+            <a class="campaign-tool-line reveal" href="literatures.html"><span>Literature</span><strong data-copy="en">Search · Read · Save notes</strong><strong data-copy="zh">搜索 · 阅读 · 保存笔记</strong><i>→</i></a>
+          </div>
+        </article>
+
+        <article class="campaign-mobile-scene">
+          <div class="campaign-mobile-copy reveal">
+            <span>04</span><p class="campaign-label">Pasero Mobile</p>
+            <h2 data-copy="en">Capture notes<br />at the bench.</h2>
+            <h2 data-copy="zh">记录、提醒、同步、搜索。<br />就在实验台旁。</h2>
+            <p data-copy="en">Quick Note, Todo, Timer, Discovery, cells, reagents, and public life-science search—available where the experiment happens.</p>
+            <p data-copy="zh">Quick Note、Todo、Timer、文献发现、细胞、试剂与生命科学公共搜索，就在实验发生的地方。</p>
+            <a href="mobile.html"><span data-copy="en">Explore Mobile →</span><span data-copy="zh">查看移动端 →</span></a>
+          </div>
+          <div class="campaign-phone-row reveal" aria-label="Pasero Mobile screens">
+            <figure><img src="assests/homepage.jpeg" alt="Pasero Mobile Home" loading="lazy" /><figcaption>Home</figcaption></figure>
+            <figure><img src="assests/library-page.jpeg" alt="Pasero Mobile Library" loading="lazy" /><figcaption>Library</figcaption></figure>
+            <figure><img src="assests/seek-page.jpeg" alt="Pasero Mobile Seek" loading="lazy" /><figcaption>Seek</figcaption></figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="campaign-local">
+        <p class="campaign-label reveal">Local first</p>
+        <h2 class="reveal" data-copy="en">Your work stays yours.</h2>
+        <h2 class="reveal" data-copy="zh">你的研究，留在你的设备里。</h2>
+        <div class="campaign-local-points reveal">
+          <span><b>01</b><strong data-copy="en">No account</strong><strong data-copy="zh">无需账号</strong></span>
+          <span><b>02</b><strong data-copy="en">No cloud required</strong><strong data-copy="zh">无需云端</strong></span>
+          <span><b>03</b><strong data-copy="en">Local network sync</strong><strong data-copy="zh">局域网同步</strong></span>
         </div>
       </section>
 
-      <section class="plans-section section-shell" id="plans">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Plans</p>
-          <h2 class="en-single-line-heading plans-en-heading" data-copy="en">Desktop is free. Mobile goes with you.</h2>
-          <h2 data-copy="zh">桌面端永久免费，移动端免费体验 30 天。</h2>
+      <section class="campaign-plans" id="plans">
+        <div class="campaign-plans-heading reveal">
+          <p class="campaign-label">Plans</p>
+          <h2 data-copy="en">Desktop is free.<br />Mobile starts with 30 days free.</h2>
+          <h2 data-copy="zh">桌面端永久免费。<br />移动端免费体验 30 天。</h2>
+          <p data-copy="en">No payment information required during the public beta.</p><p data-copy="zh">公开内测期间无需提供付款信息。</p>
         </div>
-
-        <div class="beta-pricing-banner reveal">
-          <div>
-            <span class="plan-type"><span data-copy="en">PASERO Public Beta</span><span data-copy="zh">PASERO 公开内测</span></span>
-            <strong data-copy="en">Desktop is free. Always.</strong>
-            <strong data-copy="zh">桌面端永久免费。</strong>
-          </div>
-          <p data-copy="en">Mobile and all premium features are free for 30 days during Public Beta. No payment information required.</p>
-          <p data-copy="zh">公开内测期间，移动端及全部高级功能免费开放 30 天，无需提供付款信息。</p>
+        <div class="campaign-price-list reveal">
+          <div><span>Desktop</span><strong>$0</strong><small data-copy="en">Free forever</small><small data-copy="zh">永久免费</small></div>
+          <div><span>Mobile</span><strong>$2.99</strong><small data-copy="en">Monthly</small><small data-copy="zh">按月</small></div>
+          <div><span>Mobile</span><strong>$7.99</strong><small data-copy="en">3 months</small><small data-copy="zh">3 个月</small></div>
+          <div><span>Mobile</span><strong>$24.99</strong><small data-copy="en">Annual</small><small data-copy="zh">按年</small></div>
         </div>
-
-        <div class="plans-grid">
-          <article class="plan-card reveal">
-            <span class="plan-type"><span data-copy="en">Desktop</span><span data-copy="zh">桌面端</span></span>
-            <h3 data-copy="en">Free forever</h3>
-            <h3 data-copy="zh">永久免费</h3>
-            <div class="price-row"><strong>$0</strong></div>
-            <p data-copy="en">The complete core ELN for individual researchers, including future Desktop updates.</p>
-            <p data-copy="zh">面向个人研究者的完整核心 ELN，并持续提供桌面端更新。</p>
-            <ul>
-              <li><span data-copy="en">Notes and experimental records</span><span data-copy="zh">笔记与实验记录</span></li>
-              <li><span data-copy="en">Protocols, cells, plasmids and reagents</span><span data-copy="zh">Protocols、Cells、Plasmids 与 Reagents</span></li>
-              <li><span data-copy="en">Data analysis and research utilities</span><span data-copy="zh">数据分析与科研工具</span></li>
-            </ul>
-          </article>
-
-          <article class="plan-card reveal">
-            <span class="plan-type"><span data-copy="en">Mobile · Monthly</span><span data-copy="zh">移动端 · 按月</span></span>
-            <h3 data-copy="en">Pay month to month</h3>
-            <h3 data-copy="zh">按月订阅</h3>
-            <div class="price-row"><strong>$2.99</strong><span data-copy="en"> / month</span><span data-copy="zh"> / 月</span></div>
-            <p data-copy="en">The lowest commitment for taking your workflow to the bench.</p>
-            <p data-copy="zh">以最低门槛，把桌面端的研究工作带到实验台。</p>
-          </article>
-
-          <article class="plan-card reveal">
-            <span class="plan-type"><span data-copy="en">Mobile · Quarterly</span><span data-copy="zh">移动端 · 按季度</span></span>
-            <h3 data-copy="en">Three months</h3>
-            <h3 data-copy="zh">三个月订阅</h3>
-            <div class="price-row"><strong>$7.99</strong><span data-copy="en"> / 3 months</span><span data-copy="zh"> / 3 个月</span></div>
-            <p data-copy="en">About $2.66 per month, with an 11% discount over monthly billing.</p>
-            <p data-copy="zh">约 $2.66/月，相比按月订阅节省约 11%。</p>
-          </article>
-
-          <article class="plan-card featured reveal">
-            <div class="best-value-row">
-              <span class="plan-type"><span data-copy="en">Mobile · Annual</span><span data-copy="zh">移动端 · 按年</span></span>
-              <span class="best-value-badge"><span data-copy="en">Best Value</span><span data-copy="zh">最超值</span></span>
-            </div>
-            <h3 data-copy="en">One year</h3>
-            <h3 data-copy="zh">年度订阅</h3>
-            <div class="price-row"><strong>$24.99</strong><span data-copy="en"> / year</span><span data-copy="zh"> / 年</span></div>
-            <p data-copy="en">About $2.08 per month, with a 30% discount over monthly billing.</p>
-            <p data-copy="zh">约 $2.08/月，相比按月订阅节省约 30%。</p>
-          </article>
-        </div>
-
-        <div class="founder-pricing-note reveal">
-          <p data-copy="en"><strong>Founder Price — $19.99/year.</strong> Meaningful beta use—such as creating 3 notes, using Pasero on 3 separate days, or using both Desktop and Mobile—may qualify. The price remains available while the subscription stays continuously active.</p>
-          <p data-copy="zh"><strong>创始用户价 — $19.99/年。</strong>内测期间创建 3 篇笔记、在不同的 3 天使用 Pasero，或同时使用桌面端和移动端，即可能符合资格。订阅持续有效期间可保留这一价格。</p>
-        </div>
-        <p class="plan-note reveal" data-copy="en">Prices may vary slightly by region, local taxes, and app-store pricing tiers.</p>
-        <p class="plan-note reveal" data-copy="zh">实际价格可能因地区、当地税费及应用商店价格档位略有差异。</p>
       </section>
 
-      <section class="brand-reference pasero-story section-shell reveal" aria-labelledby="what-is-pasero">
-        <div class="pasero-story-copy">
-          <p class="eyebrow">What is Pasero?</p>
-          <h2 id="what-is-pasero" data-copy="en">Small by design. Complete for everyday research.</h2>
-          <h2 data-copy="zh">麻雀虽小，五脏俱全。</h2>
-
-          <div data-copy="en">
-            <p>Pasero is not built to do everything. It is built to bring the everyday work of molecular biology into one place.</p>
-            <p>Most researchers use only a small part of Excel, Word, GraphPad Prism, and other specialized software—but still have to pay for the whole package and keep moving between apps.</p>
-            <p class="pasero-benefit">Pasero brings together the tools you actually use: writing research notes, processing data, managing lab resources, reading literature, and working at the bench with mobile.</p>
-            <p>Pasero means “sparrow” in Esperanto. Its Chinese name, 雀角, comes from <cite>The Book of Songs</cite>: “Who says a sparrow has no horn? How then does it pierce my house?”</p>
-            <p class="pasero-sleep-note">And 雀角 sounds like 缺觉—sleep-deprived. A familiar state for researchers.</p>
-            <p class="pasero-story-close">No account. No cloud. Download and start working.</p>
-          </div>
-
-          <div data-copy="zh">
-            <p>这就是我做 Pasero 的核心理念。</p>
-            <p>在研究中，我们会使用 Excel、Word、GraphPad Prism 和各种数据处理软件。很多时候，我们真正高频使用的功能只有几个，却仍要为整套软件付费，还要不断在不同工具之间来回切换。</p>
-            <p class="pasero-benefit">所以，我做了 Pasero（雀角）：把分子生物学研究中真正需要的实验记录、数据处理、资源管理和文献工作，放进同一个轻巧的工作空间。</p>
-            <p>Pasero 在世界语中意为“麻雀”。“雀角”则出自《诗经·召南·行露》：</p>
-            <p class="pasero-quote">“谁谓雀无角？何以穿我屋？”</p>
-            <p class="pasero-sleep-note">当然，它还有一个更贴近科研人的解释——“雀角”，也是“缺觉”。毕竟，这大概是每个科研人最熟悉的灵魂状态。</p>
-          </div>
+      <section class="campaign-about">
+        <div class="campaign-about-mark reveal"><img src="assests/real-logo.png" alt="Pasero sparrow logo" loading="lazy" /></div>
+        <div class="campaign-about-copy reveal">
+          <p class="campaign-label">What is Pasero?</p>
+          <h2 data-copy="en">Small by design.<br />Complete for everyday research.</h2><h2 data-copy="zh">麻雀虽小，<br />五脏俱全。</h2>
+          <div data-copy="en"><p>Most researchers use only a small part of Excel, Word, GraphPad Prism, and specialized molecular biology software—but still pay for the whole package and keep moving between apps.</p><p>Pasero brings the tools you actually use into one lightweight workspace.</p><p>Pasero means “sparrow” in Esperanto. Its Chinese name, 雀角, comes from <cite>The Book of Songs</cite>—and sounds like 缺觉, sleep-deprived.</p></div>
+          <div data-copy="zh"><p>在研究中，我们会使用 Excel、Word、GraphPad Prism 和各种分子生物学软件。高频使用的功能只有几个，却仍要为整套软件付费，还要不断来回切换。</p><p>所以我做了 Pasero（雀角），把真正会用到的工具放进同一个轻巧的工作空间。</p><p>Pasero 在世界语中意为“麻雀”。“雀角”出自《诗经·召南·行露》：“谁谓雀无角？何以穿我屋？”当然，它也像“缺觉”——科研人熟悉的灵魂状态。</p></div>
         </div>
-        <img class="pasero-story-logo" src="assests/real-logo.png" alt="Pasero sparrow logo" />
       </section>
 
-      <section class="creator-section section-shell reveal" aria-labelledby="behind-pasero">
-        <figure class="creator-portrait">
-          <img src="assests/author-hong-yang.jpg" alt="Hong Yang, creator of Pasero" />
-        </figure>
-        <div class="creator-copy">
-          <p class="eyebrow">Behind Pasero</p>
-          <h2 id="behind-pasero" data-copy="en">Built by a researcher, for researchers.</h2>
-          <h2 data-copy="zh">Pasero 背后的人</h2>
-
+      <section class="campaign-founder">
+        <figure class="reveal"><img src="assests/author-hong-yang.jpg" alt="Hong Yang, creator of Pasero" loading="lazy" /></figure>
+        <div class="reveal">
+          <p class="campaign-label">Behind Pasero</p>
+          <h2 data-copy="en">Built by a researcher,<br />for researchers.</h2><h2 data-copy="zh">Pasero 背后的人</h2>
           <div data-copy="en">
             <p>I’m Hong Yang—born and raised in Zunyi, Guizhou, and chronically short on sleep. I’m currently doing my best to overcome sleep deprivation and finish my PhD.</p>
             <p>I built Pasero to reduce the time we spend switching between apps—and save a little more time for sleep. After all, we Guizhou people come from green mountains and clear waters. Beautiful places raise beautiful people, and beautiful people need their sleep.</p>
-            <p class="creator-welcome">If you are sleep-deprived too, welcome to Pasero / 雀角.</p>
+            <p>If you are sleep-deprived too, welcome to Pasero / 雀角.</p>
           </div>
-
           <div data-copy="zh">
-            <p class="creator-intro">在下杨红，长期缺觉。</p>
+            <p>在下杨红，长期缺觉。</p>
             <p>土生土长贵州省遵义市人，现在正努力克服缺觉，完成博士学业。</p>
             <p>我做 Pasero，是想降低在软件之间切换的频率，省出时间来睡觉。因为我们贵州人，青山绿水出丽人。</p>
-            <p class="creator-welcome">如果你也缺觉，欢迎使用 Pasero / 雀角。</p>
+            <p>如果你也缺觉，欢迎使用 Pasero / 雀角。</p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <span>Pasero</span>
-      <span>Be simple, be real, Keep cool.</span>
-    </footer>
-
+    <footer class="campaign-footer"><img src="assests/real-logo-cut.png" alt="Pasero" /><span>Be simple, be real, keep cool.</span><a href="#top">Back to top ↑</a></footer>
     <script src="script.js"></script>
   </body>
 </html>
