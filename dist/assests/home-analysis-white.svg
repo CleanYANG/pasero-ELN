@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Pasero data analysis overview</title>
+  <desc id="desc">A table becomes comparison, trend, and composition charts.</desc>
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(72 206)">
+      <rect width="300" height="308" rx="20" stroke="#d9dfe6" stroke-width="2"/>
+      <path d="M0 68h300M100 0v308M200 0v308M0 128h300M0 188h300M0 248h300" stroke="#e8ecf0" stroke-width="2"/>
+      <path d="M30 34h40M125 34h50M226 34h44" stroke="#3A7C68" stroke-width="10"/>
+      <path d="M30 98h42M125 98h34M226 98h45M30 158h55M125 158h48M226 158h28M30 218h35M125 218h55M226 218h42M30 278h51M125 278h38M226 278h51" stroke="#aeb7c2" stroke-width="9"/>
+    </g>
+    <path d="M400 360h86" stroke="#3A7C68" stroke-width="3"/>
+    <path d="m474 349 14 11-14 11" stroke="#3A7C68" stroke-width="3"/>
+    <g transform="translate(526 100)">
+      <text x="0" y="22" fill="#18202a" font-family="Arial, sans-serif" font-size="22" font-weight="600">Comparison</text>
+      <path d="M0 184V60M0 184h172" stroke="#cbd2da" stroke-width="2"/>
+      <rect x="28" y="112" width="30" height="72" rx="4" fill="#f5d290"/>
+      <rect x="70" y="82" width="30" height="102" rx="4" fill="#3A7C68"/>
+      <rect x="112" y="126" width="30" height="58" rx="4" fill="#6b4fd3"/>
+      <circle cx="43" cy="101" r="5" fill="#18202a"/>
+      <circle cx="85" cy="70" r="5" fill="#18202a"/>
+      <circle cx="127" cy="115" r="5" fill="#18202a"/>
+    </g>
+    <g transform="translate(782 100)">
+      <text x="0" y="22" fill="#18202a" font-family="Arial, sans-serif" font-size="22" font-weight="600">Trend</text>
+      <path d="M0 184V60M0 184h172" stroke="#cbd2da" stroke-width="2"/>
+      <path d="m18 155 38-42 39 16 38-66 34 28" stroke="#3A7C68" stroke-width="6"/>
+      <g fill="#ffffff" stroke="#3A7C68" stroke-width="4">
+        <circle cx="18" cy="155" r="7"/><circle cx="56" cy="113" r="7"/><circle cx="95" cy="129" r="7"/><circle cx="133" cy="63" r="7"/><circle cx="167" cy="91" r="7"/>
+      </g>
+    </g>
+    <g transform="translate(526 414)">
+      <text x="0" y="22" fill="#18202a" font-family="Arial, sans-serif" font-size="22" font-weight="600">Composition</text>
+      <path d="M0 184V60M0 184h428" stroke="#cbd2da" stroke-width="2"/>
+      <g>
+        <rect x="34" y="81" width="64" height="103" rx="4" fill="#3A7C68"/>
+        <rect x="34" y="59" width="64" height="22" rx="4" fill="#f5d290"/>
+        <rect x="132" y="111" width="64" height="73" rx="4" fill="#3A7C68"/>
+        <rect x="132" y="73" width="64" height="38" rx="4" fill="#6b4fd3"/>
+        <rect x="132" y="51" width="64" height="22" rx="4" fill="#f5d290"/>
+        <rect x="230" y="133" width="64" height="51" rx="4" fill="#3A7C68"/>
+        <rect x="230" y="84" width="64" height="49" rx="4" fill="#6b4fd3"/>
+        <rect x="230" y="46" width="64" height="38" rx="4" fill="#f5d290"/>
+        <rect x="328" y="101" width="64" height="83" rx="4" fill="#3A7C68"/>
+        <rect x="328" y="65" width="64" height="36" rx="4" fill="#6b4fd3"/>
+      </g>
+    </g>
+  </g>
+</svg>

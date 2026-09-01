@@ -1,0 +1,9 @@
+{
+  "name": "pasero-eln-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp -R *.html *.css *.js assests dist/"
+  },
+  "displayName": "Pasero"
+}

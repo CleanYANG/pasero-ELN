@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Pasero connected lab resources</title>
+  <desc id="desc">Notes are connected to cells, reagents, plasmids, and protocols.</desc>
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <g font-family="Arial, sans-serif" stroke-linecap="round" stroke-linejoin="round">
+    <g fill="none" stroke="#cbd2da" stroke-width="3">
+      <path d="M600 318 348 187M600 318 852 187M600 402 348 533M600 402 852 533"/>
+    </g>
+    <g transform="translate(476 270)">
+      <rect width="248" height="180" rx="26" fill="#ffffff" stroke="#3A7C68" stroke-width="3"/>
+      <path d="M55 44h90M55 74h138M55 104h118M55 134h72" stroke="#aeb7c2" stroke-width="10" fill="none"/>
+      <path d="M28 34v108" stroke="#3A7C68" stroke-width="8"/>
+      <text x="162" y="145" fill="#18202a" font-size="22" font-weight="600">Notes</text>
+    </g>
+    <g transform="translate(170 92)">
+      <rect width="330" height="190" rx="24" fill="#ffffff" stroke="#d9dfe6" stroke-width="2"/>
+      <circle cx="78" cy="82" r="35" fill="#eef7f4" stroke="#3A7C68" stroke-width="3"/>
+      <circle cx="66" cy="73" r="9" fill="#3A7C68"/><circle cx="91" cy="91" r="12" fill="#3A7C68"/><circle cx="92" cy="62" r="6" fill="#3A7C68"/>
+      <text x="138" y="76" fill="#18202a" font-size="25" font-weight="600">Cells</text>
+      <path d="M138 104h130M138 130h92" stroke="#aeb7c2" stroke-width="9" fill="none"/>
+    </g>
+    <g transform="translate(700 92)">
+      <rect width="330" height="190" rx="24" fill="#ffffff" stroke="#d9dfe6" stroke-width="2"/>
+      <path d="M63 46h31v24l18 67a15 15 0 0 1-14 19H57a15 15 0 0 1-14-19l20-67z" fill="#fff8e9" stroke="#c79032" stroke-width="3"/>
+      <path d="M51 120h53" stroke="#f5d290" stroke-width="16"/>
+      <text x="138" y="76" fill="#18202a" font-size="25" font-weight="600">Reagents</text>
+      <path d="M138 104h130M138 130h92" stroke="#aeb7c2" stroke-width="9" fill="none"/>
+    </g>
+    <g transform="translate(170 438)">
+      <rect width="330" height="190" rx="24" fill="#ffffff" stroke="#d9dfe6" stroke-width="2"/>
+      <circle cx="78" cy="94" r="42" fill="none" stroke="#6b4fd3" stroke-width="10"/>
+      <path d="M78 52a42 42 0 0 1 36 21" fill="none" stroke="#f5d290" stroke-width="10"/>
+      <text x="138" y="82" fill="#18202a" font-size="25" font-weight="600">Plasmids</text>
+      <path d="M138 110h130M138 136h92" stroke="#aeb7c2" stroke-width="9" fill="none"/>
+    </g>
+    <g transform="translate(700 438)">
+      <rect width="330" height="190" rx="24" fill="#ffffff" stroke="#d9dfe6" stroke-width="2"/>
+      <path d="M45 50h65v96H45z" fill="#eef7f4" stroke="#3A7C68" stroke-width="3"/>
+      <path d="M60 76h36M60 98h36M60 120h25" stroke="#3A7C68" stroke-width="6" fill="none"/>
+      <text x="138" y="82" fill="#18202a" font-size="25" font-weight="600">Protocols</text>
+      <path d="M138 110h130M138 136h92" stroke="#aeb7c2" stroke-width="9" fill="none"/>
+    </g>
+  </g>
+</svg>

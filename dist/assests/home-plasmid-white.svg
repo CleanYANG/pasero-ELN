@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Pasero plasmid tools</title>
+  <desc id="desc">A plasmid map connected to primer design and Sanger alignment.</desc>
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="420" cy="352" r="178" stroke="#d9dfe6" stroke-width="22"/>
+    <path d="M420 174a178 178 0 0 1 166 114" stroke="#3A7C68" stroke-width="22"/>
+    <path d="M595 375a178 178 0 0 1-82 130" stroke="#6b4fd3" stroke-width="22"/>
+    <path d="M330 506a178 178 0 0 1-86-129" stroke="#f5d290" stroke-width="22"/>
+    <path d="M246 318a178 178 0 0 1 83-117" stroke="#68b8d9" stroke-width="22"/>
+    <path d="M420 149v50M618 352h-50M420 555v-50M221 352h50" stroke="#18202a" stroke-width="3"/>
+    <path d="M340 323h114" stroke="#3A7C68" stroke-width="7"/>
+    <path d="m444 311 15 12-15 12" stroke="#3A7C68" stroke-width="7"/>
+    <path d="M500 385H386" stroke="#6b4fd3" stroke-width="7"/>
+    <path d="m396 373-15 12 15 12" stroke="#6b4fd3" stroke-width="7"/>
+    <path d="M662 263h79" stroke="#cbd2da" stroke-width="3"/>
+    <path d="M662 445h79" stroke="#cbd2da" stroke-width="3"/>
+    <g transform="translate(760 128)">
+      <text x="0" y="24" fill="#18202a" font-family="Arial, sans-serif" font-size="23" font-weight="600">Primer design</text>
+      <path d="M0 88h316" stroke="#cbd2da" stroke-width="3"/>
+      <path d="M32 68h116" stroke="#3A7C68" stroke-width="8"/>
+      <path d="m138 56 16 12-16 12" stroke="#3A7C68" stroke-width="8"/>
+      <path d="M282 108H166" stroke="#6b4fd3" stroke-width="8"/>
+      <path d="m176 96-16 12 16 12" stroke="#6b4fd3" stroke-width="8"/>
+      <path d="M0 153h266M0 174h224" stroke="#aeb7c2" stroke-width="9"/>
+    </g>
+    <g transform="translate(760 364)">
+      <text x="0" y="24" fill="#18202a" font-family="Arial, sans-serif" font-size="23" font-weight="600">Sanger alignment</text>
+      <path d="M0 78c14-62 28 62 42 0s28 62 42 0 28 62 42 0 28 62 42 0 28 62 42 0 28 62 42 0 28 62 42 0" stroke="#3A7C68" stroke-width="4"/>
+      <path d="M0 119c14-55 28 55 42 0s28 55 42 0 28 55 42 0 28 55 42 0 28 55 42 0 28 55 42 0 28 55 42 0" stroke="#6b4fd3" stroke-width="4"/>
+      <path d="M0 170h292M0 202h292" stroke="#cbd2da" stroke-width="4"/>
+      <path d="M132 148v74" stroke="#f5b85c" stroke-width="7"/>
+    </g>
+  </g>
+</svg>

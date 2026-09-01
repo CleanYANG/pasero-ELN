@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Pasero literature reading and notes</title>
+  <desc id="desc">Two paper pages connect selected passages to reading notes.</desc>
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M84 99h438c43 0 78 35 78 78v454H162c-43 0-78-35-78-78z" fill="#ffffff" stroke="#d9dfe6" stroke-width="3"/>
+    <path d="M1116 99H678c-43 0-78 35-78 78v454h438c43 0 78-35 78-78z" fill="#ffffff" stroke="#d9dfe6" stroke-width="3"/>
+    <path d="M600 177v454" stroke="#cbd2da" stroke-width="3"/>
+    <path d="M140 162h220M140 199h320" stroke="#18202a" stroke-width="11"/>
+    <path d="M140 255h394M140 283h354M140 311h382M140 339h327" stroke="#aeb7c2" stroke-width="8"/>
+    <rect x="140" y="379" width="370" height="98" rx="10" fill="#eef7f4" stroke="#3A7C68" stroke-width="2"/>
+    <path d="M164 407h304M164 435h264M164 459h285" stroke="#3A7C68" stroke-width="7"/>
+    <path d="M140 523h388M140 551h340M140 579h365" stroke="#aeb7c2" stroke-width="8"/>
+    <path d="M670 162h232M670 199h330" stroke="#18202a" stroke-width="11"/>
+    <path d="M670 255h368M670 283h325M670 311h352" stroke="#aeb7c2" stroke-width="8"/>
+    <rect x="670" y="354" width="305" height="156" rx="12" fill="#faf8ff" stroke="#6b4fd3" stroke-width="2"/>
+    <path d="M704 476V396M704 476h229" stroke="#cbd2da" stroke-width="2"/>
+    <path d="m722 457 50-31 48 14 49-55 45 25" stroke="#6b4fd3" stroke-width="5"/>
+    <path d="M670 555h365M670 583h310" stroke="#aeb7c2" stroke-width="8"/>
+    <path d="M453 427h78c38 0 39-98 77-98h46" stroke="#3A7C68" stroke-width="3"/>
+    <circle cx="454" cy="427" r="7" fill="#3A7C68" stroke="none"/>
+    <g transform="translate(905 270)">
+      <rect width="240" height="122" rx="18" fill="#ffffff" stroke="#3A7C68" stroke-width="3"/>
+      <path d="M24 31h126M24 58h176M24 84h142" stroke="#aeb7c2" stroke-width="8"/>
+      <circle cx="207" cy="92" r="7" fill="#3A7C68" stroke="none"/>
+    </g>
+  </g>
+</svg>
