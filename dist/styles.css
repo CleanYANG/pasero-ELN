@@ -5849,6 +5849,76 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
   font-weight: 650;
 }
 
+/* Quiet core pages: one idea, one line drawing, no oversized marketing headline. */
+.module-core-page {
+  min-height: calc(100svh - 72px);
+  background: #fff;
+}
+
+.module-core {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(520px, 1.58fr);
+  gap: clamp(54px, 8vw, 132px);
+  align-items: center;
+  min-height: calc(100svh - 72px);
+  padding-top: clamp(90px, 11vw, 150px);
+  padding-bottom: clamp(90px, 11vw, 150px);
+}
+
+.module-core-copy {
+  max-width: 380px;
+}
+
+.module-core-copy .eyebrow {
+  margin: 0 0 24px;
+  color: var(--purple);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.module-core-copy h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+}
+
+.module-core-copy > p:not(.eyebrow) {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.module-core-art {
+  min-width: 0;
+  margin: 0;
+}
+
+.module-core-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 820px) {
+  .module-core {
+    grid-template-columns: 1fr;
+    gap: 54px;
+    min-height: auto;
+    padding-top: 72px;
+    padding-bottom: 90px;
+  }
+
+  .module-core-copy h1 {
+    font-size: 27px;
+  }
+}
+
 @media (max-width: 760px) {
   .creator-section {
     grid-template-columns: 1fr;

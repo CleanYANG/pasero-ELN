@@ -8,14 +8,9 @@
       name="description"
       content="Pasero Literature keeps local papers, PDF reading, annotations, reading notes, vocabulary, and citations in one research workspace."
     />
-    <link rel="stylesheet" href="styles.css?v=22" />
+    <link rel="stylesheet" href="styles.css?v=23" />
   </head>
   <body class="light-page notes-page literature-page" data-language="en">
-    <div class="site-backdrop" aria-hidden="true">
-      <div class="grid-layer"></div>
-      <div class="scan-layer"></div>
-    </div>
-
     <header class="topbar subpage-dark-topbar">
       <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
       </a>
@@ -37,86 +32,18 @@
       </div>
     </header>
 
-    <main class="notes-shell">
-      <section class="notes-hero flow-hero">
-        <div class="notes-hero-copy">
-          <p class="notes-kicker"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></p>
-          <h1 data-copy="en">Read papers where notes can stay attached.</h1>
-          <h1 data-copy="zh">管理文献就像理财，要整整齐齐！</h1>
-          <p data-copy="en">Search papers, manage PDFs, read inside the ELN, and turn passages or ideas into notes without losing the source.</p>
-          <p data-copy="zh">搜索论文、管理 PDF、在 ELN 内阅读，并把段落与实验想法直接转成保留来源的笔记。</p>
-        </div>
-        <figure class="module-flow-card literature-flow-card" aria-label="Literature workflow">
-          <figcaption><span data-copy="en">Literature workflow</span><span data-copy="zh">文献流程</span></figcaption>
-          <div class="module-flow">
-            <div class="flow-node"><strong data-copy="en">Import</strong><strong data-copy="zh">导入</strong><span data-copy="en">paper library</span><span data-copy="zh">论文库</span></div>
-            <div class="flow-node"><strong data-copy="en">Read</strong><strong data-copy="zh">阅读</strong><span data-copy="en">single or two-page PDF</span><span data-copy="zh">单页或双页原文</span></div>
-            <div class="flow-node"><strong data-copy="en">Annotate</strong><strong data-copy="zh">标注</strong><span data-copy="en">highlights and notes</span><span data-copy="zh">高亮和笔记</span></div>
-            <div class="flow-node"><strong data-copy="en">Cite</strong><strong data-copy="zh">引用</strong><span data-copy="en">ideas linked to pages</span><span data-copy="zh">想法关联到页面</span></div>
-          </div>
-          <svg viewBox="0 0 420 120" role="img" aria-hidden="true">
-            <path d="M52 62 C94 24 142 24 184 62 S274 100 318 62 S372 24 392 62" />
-            <circle cx="52" cy="62" r="8" />
-            <circle cx="184" cy="62" r="8" />
-            <circle cx="318" cy="62" r="8" />
-            <circle cx="392" cy="62" r="8" />
-          </svg>
+    <main class="module-core-page">
+      <section class="module-core section-shell">
+        <header class="module-core-copy">
+          <p class="eyebrow"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></p>
+          <h1><span data-copy="en">Search · Read · Save notes</span><span data-copy="zh">搜索 · 阅读 · 保存笔记</span></h1>
+          <p data-copy="en">Search and read papers in Pasero, then save reading notes.</p>
+          <p data-copy="zh">在 Pasero 搜索、阅读论文，保存阅读笔记。</p>
+        </header>
+        <figure class="module-core-art">
+          <img src="assests/literature-core-line-art.webp" alt="A line drawing showing paper search, reading, source-linked notes, and a literature library" />
         </figure>
       </section>
-
-      <section class="mobile-bridge section-shell">
-        <div>
-          <p class="eyebrow">Mobile Literature</p>
-          <h2 data-copy="en">Keep reading progress and paper ideas with you.</h2>
-          <h2 data-copy="zh">阅读进度和论文想法，也可以随身继续。</h2>
-          <p data-copy="en">Browse saved papers by folder, open PDFs, record progress, and turn useful passages into experiment notes on mobile.</p>
-          <p data-copy="zh">按文件夹浏览文献、打开 PDF、记录阅读进度，并在移动端把有用内容转成实验笔记。</p>
-        </div>
-        <a class="button primary" href="mobile.html"><span data-copy="en">Explore Mobile Literature</span><span data-copy="zh">查看移动端文献</span></a>
-      </section>
-
-      <section class="feature-book-section" aria-label="Literature feature book">
-        <div class="feature-book" data-feature-book data-auto-flip="5200">
-          <div class="book-stage" aria-live="polite">
-            <article class="book-page active" data-book-page>
-              <div class="book-page-copy">
-                <span><span data-copy="en">Page 01</span><span data-copy="zh">第 01 页</span></span>
-                <h3 data-copy="en">Library and reader in one workspace.</h3>
-                <h3 data-copy="zh">论文库和阅读器在同一个工作区。</h3>
-                <p data-copy="en">Keep local papers, reading status, notes, and reader context together.</p>
-                <p data-copy="zh">把本地论文、阅读状态、笔记和阅读上下文放在一起。</p>
-              </div>
-              <img src="assests/demo-%E5%AD%90%E9%A1%B5/literature-page-hero-library-reader.png" alt="Paper library PDF reader and saved notes overview" />
-            </article>
-            <article class="book-page" data-book-page>
-              <div class="book-page-copy">
-                <span><span data-copy="en">Page 02</span><span data-copy="zh">第 02 页</span></span>
-                <h3 data-copy="en">Two-page reading keeps context visible.</h3>
-                <h3 data-copy="zh">双页阅读让上下文保持可见。</h3>
-                <p data-copy="en">Read text and figures side by side, pin important pages, and save notes from highlighted passages.</p>
-                <p data-copy="zh">正文和图可以并排阅读，也可以固定重要页面，并从高亮段落保存笔记。</p>
-              </div>
-              <img src="assests/demo-%E5%AD%90%E9%A1%B5/literature-page-two-page-notes.png" alt="Two-page PDF reading with saved annotation notes" />
-            </article>
-            <article class="book-page" data-book-page>
-              <div class="book-page-copy">
-                <span><span data-copy="en">Page 03</span><span data-copy="zh">第 03 页</span></span>
-                <h3 data-copy="en">Reading aids stay beside the paper.</h3>
-                <h3 data-copy="zh">阅读辅助工具就在论文旁边。</h3>
-                <p data-copy="en">Turn selected text into vocabulary, follow-up notes, and citation output without leaving the reader.</p>
-                <p data-copy="zh">不用离开阅读器，就能把选中文本变成词汇、后续笔记和引用输出。</p>
-              </div>
-              <img src="assests/demo-%E5%AD%90%E9%A1%B5/literature-page-terms-citation.png" alt="Term explanation vocabulary save and citation export" />
-            </article>
-          </div>
-          <div class="book-controls" aria-label="Literature feature book controls">
-            <button type="button" data-book-prev aria-label="Previous page">&lsaquo;</button>
-            <div class="book-dots" data-book-dots aria-label="Choose a page"></div>
-            <button type="button" data-book-next aria-label="Next page">&rsaquo;</button>
-          </div>
-        </div>
-      </section>
-
     </main>
 
     <script src="script.js"></script>
