@@ -54,20 +54,14 @@
         </div>
       </section>
 
-      <section class="campaign-manifesto" id="workspace">
-        <p class="campaign-label reveal">Pasero workflow</p>
-        <h2 class="reveal" data-copy="en">One workspace.<br />Fewer switches.</h2>
-        <h2 class="reveal" data-copy="zh">一个工作空间。<br />少一点来回切换。</h2>
-        <p class="reveal" data-copy="en">Notes, data, resources, literature, and molecular biology tools stay connected instead of scattered across separate software.</p>
-        <p class="reveal" data-copy="zh">笔记、数据、实验资源、文献与分子生物学工具互相关联，不再散落在不同软件里。</p>
+      <section class="campaign-workflow" id="workspace" aria-label="Pasero workflow">
+        <img class="reveal" src="assests/pasero-workflow-line-art.webp" alt="A line drawing connecting research notes, data analysis, lab resources, literature, and mobile bench work" />
       </section>
 
       <section class="campaign-story">
-        <article class="campaign-scene scene-notes">
-          <div class="campaign-scene-copy reveal">
-            <span>01</span><p class="campaign-label">Notes / 笔记</p>
-            <h2 data-copy="en">Record on desktop.<br />Capture at the bench.</h2>
-            <h2 data-copy="zh">桌面端整理。<br />实验台旁记录。</h2>
+        <article class="campaign-section campaign-notes">
+          <div class="campaign-section-copy reveal">
+            <h2 data-copy="en"><span>01</span> Notes</h2><h2 data-copy="zh"><span>01</span> 笔记</h2>
             <p data-copy="en">Desktop and mobile use the same connected record. Images, tables, resources, and updates stay with the experiment.</p>
             <p data-copy="zh">桌面端与移动端使用同一条实验记录，图片、表格、资源和现场更新始终跟实验放在一起。</p>
             <a href="notes.html"><span data-copy="en">Explore Notes →</span><span data-copy="zh">查看笔记功能 →</span></a>
@@ -78,23 +72,20 @@
           </div>
         </article>
 
-        <article class="campaign-scene scene-analysis">
-          <div class="campaign-scene-copy reveal">
-            <span>02</span><p class="campaign-label">Data Analysis / 数据分析</p>
-            <h2 data-copy="en">Input data.<br />Get the chart.</h2>
-            <h2 data-copy="zh">输入数据。<br />直接得到图表。</h2>
-            <p data-copy="en">Pasero reads the input table, judges the chart type, produces the chart, and recommends a statistical method.</p>
-            <p data-copy="zh">粘贴或输入数据，Pasero 判断图表类型，自动出图以及推荐统计方法。</p>
-            <a href="data-analysis.html"><span data-copy="en">Explore Data Analysis →</span><span data-copy="zh">查看数据分析 →</span></a>
+        <article class="campaign-section campaign-tools">
+          <div class="campaign-section-copy reveal">
+            <h2 data-copy="en"><span>02</span> Tools</h2><h2 data-copy="zh"><span>02</span> 工具</h2>
+            <p data-copy="en">The molecular biology tools you use most often, kept close to the experiment.</p>
+            <p data-copy="zh">把分子生物学研究中最常用的工具，放在实验记录旁边。</p>
           </div>
-          <figure class="campaign-video reveal"><video autoplay muted loop playsinline preload="metadata" aria-label="Pasero Data Analysis demo"><source src="assests/data-analysis.mp4" type="video/mp4" /></video></figure>
-        </article>
-
-        <article class="campaign-tools-scene">
-          <div class="campaign-tools-heading reveal">
-            <span>03</span><p class="campaign-label"><span data-copy="en">The tools you actually use</span><span data-copy="zh">真正会用到的工具</span></p>
-            <h2 data-copy="en">Small tools.<br />One continuous workflow.</h2>
-            <h2 data-copy="zh">小工具。<br />连成完整工作流。</h2>
+          <div class="campaign-analysis-tool">
+            <div class="campaign-analysis-copy reveal">
+              <p class="campaign-tool-name">Data Analysis</p>
+              <p data-copy="en">Paste or enter data. Pasero identifies the chart type, creates the chart, and recommends a statistical method.</p>
+              <p data-copy="zh">粘贴或输入数据，Pasero 判断图表类型，自动出图以及推荐统计方法。</p>
+              <a href="data-analysis.html"><span data-copy="en">Explore Data Analysis →</span><span data-copy="zh">查看数据分析 →</span></a>
+            </div>
+            <figure class="campaign-video reveal"><video autoplay muted loop playsinline preload="metadata" aria-label="Pasero Data Analysis demo"><source src="assests/data-analysis.mp4" type="video/mp4" /></video></figure>
           </div>
           <div class="campaign-tool-lines">
             <a class="campaign-tool-line reveal" href="plasmid.html"><span>Plasmid</span><strong data-copy="en">Map · Primer · Sanger · Digest</strong><strong data-copy="zh">图谱 · 引物 · Sanger · 酶切</strong><i>→</i></a>
@@ -103,11 +94,9 @@
           </div>
         </article>
 
-        <article class="campaign-mobile-scene">
+        <article class="campaign-section campaign-mobile-scene">
           <div class="campaign-mobile-copy reveal">
-            <span>04</span><p class="campaign-label">Pasero Mobile</p>
-            <h2 data-copy="en">Capture notes<br />at the bench.</h2>
-            <h2 data-copy="zh">记录、提醒、同步、搜索。<br />就在实验台旁。</h2>
+            <h2><span>04</span> Pasero Mobile</h2>
             <p data-copy="en">Quick Note, Todo, Timer, Discovery, cells, reagents, and public life-science search—available where the experiment happens.</p>
             <p data-copy="zh">Quick Note、Todo、Timer、文献发现、细胞、试剂与生命科学公共搜索，就在实验发生的地方。</p>
             <a href="mobile.html"><span data-copy="en">Explore Mobile →</span><span data-copy="zh">查看移动端 →</span></a>
@@ -149,8 +138,7 @@
       <section class="campaign-about">
         <div class="campaign-about-mark reveal"><img src="assests/real-logo.png" alt="Pasero sparrow logo" loading="lazy" /></div>
         <div class="campaign-about-copy reveal">
-          <p class="campaign-label">What is Pasero?</p>
-          <h2 data-copy="en">Small by design.<br />Complete for everyday research.</h2><h2 data-copy="zh">麻雀虽小，<br />五脏俱全。</h2>
+          <h2>What is Pasero?</h2>
           <div data-copy="en"><p>Most researchers use only a small part of Excel, Word, GraphPad Prism, and specialized molecular biology software—but still pay for the whole package and keep moving between apps.</p><p>Pasero brings the tools you actually use into one lightweight workspace.</p><p>Pasero means “sparrow” in Esperanto. Its Chinese name, 雀角, comes from <cite>The Book of Songs</cite>—and sounds like 缺觉, sleep-deprived.</p></div>
           <div data-copy="zh"><p>在研究中，我们会使用 Excel、Word、GraphPad Prism 和各种分子生物学软件。高频使用的功能只有几个，却仍要为整套软件付费，还要不断来回切换。</p><p>所以我做了 Pasero（雀角），把真正会用到的工具放进同一个轻巧的工作空间。</p><p>Pasero 在世界语中意为“麻雀”。“雀角”出自《诗经·召南·行露》：“谁谓雀无角？何以穿我屋？”当然，它也像“缺觉”——科研人熟悉的灵魂状态。</p></div>
         </div>
@@ -159,8 +147,7 @@
       <section class="campaign-founder">
         <figure class="reveal"><img src="assests/author-hong-yang.jpg" alt="Hong Yang, creator of Pasero" loading="lazy" /></figure>
         <div class="reveal">
-          <p class="campaign-label">Behind Pasero</p>
-          <h2 data-copy="en">Built by a researcher,<br />for researchers.</h2><h2 data-copy="zh">Pasero 背后的人</h2>
+          <h2>Behind Pasero</h2>
           <div data-copy="en">
             <p>I’m Hong Yang—born and raised in Zunyi, Guizhou, and chronically short on sleep. I’m currently doing my best to overcome sleep deprivation and finish my PhD.</p>
             <p>I built Pasero to reduce the time we spend switching between apps—and save a little more time for sleep. After all, we Guizhou people come from green mountains and clear waters. Beautiful places raise beautiful people, and beautiful people need their sleep.</p>
