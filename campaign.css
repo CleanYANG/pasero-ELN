@@ -66,7 +66,7 @@
 
 .campaign-tools { padding: clamp(180px,20vw,280px) 0; }
 .campaign-tools > .campaign-section-copy { margin-left: 8%; }
-.campaign-tool-lines { width: 78%; margin: clamp(110px,13vw,180px) 0 0 auto; }
+.campaign-tool-lines { width: 84%; margin: clamp(110px,13vw,180px) auto 0 8%; }
 .campaign-tool-line { display: grid; grid-template-columns: 110px 1fr auto; gap: 30px; align-items: center; min-height: 126px; border-top: 1px solid var(--campaign-line); }
 .campaign-tool-line:last-child { border-bottom: 1px solid var(--campaign-line); }
 .campaign-tool-line > span { color: var(--campaign-muted); font-size: 12px; text-transform: uppercase; }
