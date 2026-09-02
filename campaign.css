@@ -62,11 +62,7 @@
 
 .campaign-tools { padding: clamp(180px,20vw,280px) 0; }
 .campaign-tools > .campaign-section-copy { margin-left: 8%; }
-.campaign-analysis-tool { display: grid; grid-template-columns: minmax(240px,.45fr) minmax(640px,1.55fr); gap: clamp(72px,9vw,160px); align-items: center; margin-top: clamp(100px,12vw,170px); }
-.campaign-analysis-copy { max-width: 440px; }
-.campaign-analysis-copy > p:not(.campaign-tool-name) { margin: 24px 0 0; color: var(--campaign-muted); font-size: 16px; line-height: 1.8; }
-.campaign-tool-name { margin: 0; font-size: clamp(20px,2vw,28px); font-weight: 500; }
-.campaign-tool-lines { width: 70%; margin: clamp(120px,14vw,190px) 0 0 auto; }
+.campaign-tool-lines { width: 78%; margin: clamp(110px,13vw,180px) 0 0 auto; }
 .campaign-tool-line { display: grid; grid-template-columns: 110px 1fr auto; gap: 30px; align-items: center; min-height: 126px; border-top: 1px solid var(--campaign-line); }
 .campaign-tool-line:last-child { border-bottom: 1px solid var(--campaign-line); }
 .campaign-tool-line > span { color: var(--campaign-muted); font-size: 12px; text-transform: uppercase; }
@@ -119,7 +115,7 @@
 @media (max-width: 980px) {
   .campaign-nav { grid-template-columns: 1fr auto; }
   .campaign-nav nav { display: none; }
-  .campaign-hero, .campaign-notes, .campaign-analysis-tool, .campaign-mobile-scene, .campaign-plans, .campaign-about, .campaign-founder { grid-template-columns: 1fr; }
+  .campaign-hero, .campaign-notes, .campaign-mobile-scene, .campaign-plans, .campaign-about, .campaign-founder { grid-template-columns: 1fr; }
   .campaign-hero { min-height: auto; padding-top: 80px; }
   .campaign-hero-product { width: min(100%,820px); }
   .campaign-tools > .campaign-section-copy { margin-left: 0; }
@@ -145,7 +141,6 @@
   .campaign-workflow img { width: 155%; max-width: none; margin-left: -27%; }
   .campaign-notes, .campaign-mobile-scene { gap: 70px; padding: 130px 0; }
   .campaign-tools { padding: 150px 0; }
-  .campaign-analysis-tool { gap: 60px; margin-top: 90px; }
   .campaign-tool-lines { margin-top: 100px; }
   .notes-wide-crop img { width: 170%; }
   .notes-phone { right: -2px; bottom: -34px; width: 34%; }
