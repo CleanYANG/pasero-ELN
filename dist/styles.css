@@ -5735,6 +5735,17 @@ body[data-language="zh"] .creator-copy h2 {
   letter-spacing: -0.025em;
 }
 
+.mobile-page .mobile-hero-copy > p:not(.eyebrow) {
+  margin: 26px 0 0;
+}
+
+.mobile-page .capability-pills span {
+  border-color: rgba(58, 124, 104, 0.28);
+  color: var(--green);
+  background: rgba(58, 124, 104, 0.06);
+  font-weight: 500;
+}
+
 body[data-language="zh"].mobile-page .mobile-hero h1 {
   line-height: 1.22;
   letter-spacing: -0.01em;
@@ -5800,6 +5811,16 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
   margin-top: 20px;
 }
 
+.mobile-page .feature-index-large {
+  display: block;
+  color: var(--green);
+  font-size: clamp(25px, 2.5vw, 34px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
 .sync-principles {
   display: flex;
   flex-wrap: wrap;
@@ -5857,8 +5878,8 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
 
 .module-core {
   display: grid;
-  grid-template-columns: minmax(220px, 0.42fr) minmax(520px, 1.58fr);
-  gap: clamp(54px, 8vw, 132px);
+  grid-template-columns: minmax(300px, 0.58fr) minmax(520px, 1.42fr);
+  gap: clamp(64px, 8vw, 132px);
   align-items: center;
   min-height: calc(100svh - 72px);
   padding-top: clamp(90px, 11vw, 150px);
@@ -5866,7 +5887,8 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
 }
 
 .module-core-copy {
-  max-width: 380px;
+  max-width: 480px;
+  margin-left: clamp(28px, 5vw, 78px);
 }
 
 .module-core-copy .eyebrow {
@@ -5878,20 +5900,41 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
   text-transform: uppercase;
 }
 
-.module-core-copy h1 {
+.module-core-points {
+  display: grid;
+  gap: 32px;
   margin: 0;
-  color: var(--text);
-  font-size: clamp(24px, 2.4vw, 34px);
-  font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: -0.02em;
+  padding: 0;
+  list-style: none;
 }
 
-.module-core-copy > p:not(.eyebrow) {
-  margin: 24px 0 0;
-  color: var(--muted);
+.module-core-points li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.module-core-points li > span {
+  padding-top: 4px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.module-core-points p {
+  margin: 0;
+  color: var(--text);
   font-size: 16px;
+  font-weight: 400;
   line-height: 1.75;
+}
+
+.module-core-points em {
+  color: var(--green);
+  font-style: normal;
+  font-weight: 400;
 }
 
 .module-core-art {
@@ -5914,8 +5957,8 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
     padding-bottom: 90px;
   }
 
-  .module-core-copy h1 {
-    font-size: 27px;
+  .module-core-copy {
+    margin-left: 0;
   }
 }
 
