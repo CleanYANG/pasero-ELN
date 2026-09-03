@@ -5861,6 +5861,15 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
   text-transform: none;
 }
 
+.mobile-page .paper-discovery-copy {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
 .mobile-page .mobile-hero {
   min-height: auto;
   padding-bottom: 44px;
