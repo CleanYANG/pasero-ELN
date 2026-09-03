@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Pasero Mobile tools</title>
+  <desc id="desc">A line diagram connecting quick notes, timers, literature, cell tracking, reagents, search, and AI to Pasero Mobile</desc>
+  <g fill="none" stroke="#6b4fd3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M258 132 C350 132 402 176 510 202"/>
+    <path d="M430 128 C466 145 482 161 510 180"/>
+    <path d="M288 385 C382 385 430 338 510 314"/>
+    <path d="M690 183 C745 152 774 139 819 132"/>
+    <path d="M690 213 C825 190 900 128 1018 124"/>
+    <path d="M690 302 C748 324 774 352 816 375"/>
+    <path d="M690 328 C820 382 903 380 1019 356"/>
+
+    <rect x="510" y="82" width="180" height="356" rx="34"/>
+    <path d="M566 105 H634"/>
+    <path d="M570 410 H630"/>
+    <path d="M555 177 H645 M555 216 H625 M555 255 H640"/>
+    <path d="M558 310 L584 336 L644 278" stroke="#3a7c68" stroke-width="7"/>
+
+    <path d="M82 62 H224 L258 96 V202 H82 Z"/>
+    <path d="M224 62 V96 H258"/>
+    <path d="M112 113 H210 M112 145 H230 M112 177 H188"/>
+    <path d="M196 162 L220 186" stroke="#3a7c68"/>
+    <path d="M202 186 L220 186 L220 168" stroke="#3a7c68"/>
+
+    <circle cx="367" cy="128" r="66"/>
+    <path d="M367 62 V42 M340 42 H394"/>
+    <path d="M367 128 L367 88 M367 128 L401 146"/>
+    <path d="M414 79 L430 63"/>
+
+    <path d="M76 320 Q130 298 184 326 V438 Q130 408 76 430 Z"/>
+    <path d="M184 326 Q238 298 292 320 V430 Q238 408 184 438 Z"/>
+    <path d="M184 326 V438"/>
+    <path d="M101 348 Q140 338 162 350 M101 378 Q140 368 162 380"/>
+    <path d="M207 350 Q238 338 266 347 M207 380 Q238 368 266 377"/>
+
+    <ellipse cx="864" cy="132" rx="78" ry="28"/>
+    <path d="M786 132 V190 C786 207 821 220 864 220 C907 220 942 207 942 190 V132"/>
+    <ellipse cx="864" cy="190" rx="78" ry="28"/>
+    <circle cx="836" cy="170" r="9" stroke="#3a7c68"/>
+    <circle cx="875" cy="157" r="7" stroke="#3a7c68"/>
+    <circle cx="897" cy="184" r="10" stroke="#3a7c68"/>
+
+    <path d="M1041 58 H1113 V93 L1128 116 V219 Q1128 238 1109 238 H1045 Q1026 238 1026 219 V116 L1041 93 Z"/>
+    <path d="M1041 93 H1113 M1027 147 Q1077 126 1127 147"/>
+    <path d="M1052 58 V37 H1102 V58"/>
+    <path d="M1061 37 V58 M1077 37 V58 M1093 37 V58" stroke="#3a7c68"/>
+
+    <circle cx="856" cy="356" r="58"/>
+    <path d="M897 397 L947 447"/>
+    <path d="M830 356 H882 M856 330 V382" stroke="#3a7c68"/>
+
+    <circle cx="1067" cy="350" r="20"/>
+    <circle cx="1018" cy="322" r="12"/>
+    <circle cx="1119" cy="313" r="13"/>
+    <circle cx="1122" cy="400" r="14"/>
+    <circle cx="1014" cy="399" r="11"/>
+    <path d="M1029 329 L1049 341 M1085 338 L1107 320 M1085 363 L1109 390 M1049 364 L1024 391"/>
+    <path d="M1067 278 V304 M1054 291 H1080" stroke="#3a7c68" stroke-width="6"/>
+    <path d="M1152 350 V370 M1142 360 H1162" stroke="#3a7c68"/>
+  </g>
+  <g fill="#6b4fd3">
+    <circle cx="258" cy="132" r="7"/><circle cx="510" cy="202" r="7"/>
+    <circle cx="430" cy="128" r="7"/><circle cx="510" cy="180" r="7"/>
+    <circle cx="288" cy="385" r="7"/><circle cx="510" cy="314" r="7"/>
+    <circle cx="690" cy="183" r="7"/><circle cx="819" cy="132" r="7"/>
+    <circle cx="690" cy="213" r="7"/><circle cx="1018" cy="124" r="7"/>
+    <circle cx="690" cy="302" r="7"/><circle cx="816" cy="375" r="7"/>
+    <circle cx="690" cy="328" r="7"/><circle cx="1019" cy="356" r="7"/>
+  </g>
+  <circle cx="600" cy="144" r="12" fill="#3a7c68"/>
+</svg>
