@@ -41,11 +41,12 @@
 .campaign-button { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 500; }
 .campaign-button.primary { padding: 0 22px; background: var(--campaign-ink); color: #fff; }
 .campaign-button.text { border-bottom: 1px solid var(--campaign-ink); }
-.campaign-hero-product { position: relative; min-width: 0; padding: 48px 0 20px; }
+.campaign-hero-product { position: relative; min-width: 0; padding: 48px 0 92px; }
 .campaign-desktop-crop { width: 100%; overflow: hidden; background: var(--campaign-surface); }
 .campaign-desktop-crop img { display: block; width: 124%; max-width: none; margin-left: 0; }
-.campaign-phone { position: absolute; right: 0; bottom: 0; width: clamp(150px,18vw,250px); box-shadow: 0 24px 60px rgba(22,24,30,.14); }
-.campaign-product-caption { position: absolute; left: 0; bottom: -14px; color: var(--campaign-muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.campaign-phone { position: absolute; right: 0; bottom: 72px; width: clamp(150px,18vw,250px); box-shadow: 0 24px 60px rgba(22,24,30,.14); }
+.campaign-product-caption { position: absolute; left: 0; bottom: 42px; color: var(--campaign-muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.campaign-product-tagline { position: absolute; left: 0; bottom: 0; margin: 0; color: var(--campaign-purple); font-size: clamp(17px,1.55vw,22px); font-weight: 500; line-height: 1.3; }
 
 .campaign-workflow { padding: clamp(150px,18vw,260px) 0; border-top: 1px solid var(--campaign-line); }
 .campaign-workflow img { display: block; width: min(100%,1320px); margin: 0 auto; mix-blend-mode: multiply; }
@@ -141,9 +142,11 @@
   .campaign-hero h1 > span { margin-top: 10px; font-size: 25px; }
   .campaign-intro p { font-size: 15px; }
   .campaign-actions { align-items: flex-start; flex-direction: column; }
-  .campaign-hero-product { padding-top: 18px; padding-bottom: 32px; }
+  .campaign-hero-product { padding-top: 18px; padding-bottom: 94px; }
   .campaign-desktop-crop img { width: 165%; }
-  .campaign-phone { width: 34%; }
+  .campaign-phone { bottom: 74px; width: 34%; }
+  .campaign-product-caption { bottom: 44px; }
+  .campaign-product-tagline { font-size: 17px; }
   .campaign-workflow { padding: 96px 0; overflow: hidden; }
   .campaign-workflow img { width: 100%; max-width: 100%; margin: 0 auto; }
   .campaign-notes, .campaign-mobile-scene { gap: 70px; padding: 130px 0; }
