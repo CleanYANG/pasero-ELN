@@ -8,7 +8,7 @@
       name="description"
       content="Pasero Lab Notes connects desktop writing, mobile capture, protocol templates, prompt suggestions, image attachments, and searchable experiment records."
     />
-    <link rel="stylesheet" href="styles.css?v=25" />
+    <link rel="stylesheet" href="styles.css?v=30" />
   </head>
   <body class="light-page notes-page" data-language="en">
     <div class="site-backdrop" aria-hidden="true">
@@ -19,7 +19,7 @@
     <header class="topbar subpage-dark-topbar">
       <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
       </a>
-      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span></a>
+      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span><span data-copy="ja">ダウンロード</span></a>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -30,6 +30,7 @@
         <div class="language-options" role="listbox" aria-label="Language">
           <button type="button" data-language-option="en" role="option">EN</button>
           <button type="button" data-language-option="zh" role="option">中文</button>
+          <button type="button" data-language-option="ja" role="option">日本語</button>
         </div>
       </div>
     </header>
@@ -37,19 +38,21 @@
     <main class="notes-shell">
       <section class="notes-hero flow-hero">
         <div class="notes-hero-copy">
-          <p class="notes-kicker"><span data-copy="en">Lab Notes</span><span data-copy="zh">实验笔记</span></p>
+          <p class="notes-kicker"><span data-copy="en">Lab Notes</span><span data-copy="zh">实验笔记</span><span data-copy="ja">実験ノート</span></p>
           <h1 data-copy="en">Lab notes that move with the experiment</h1>
           <h1 data-copy="zh">移动端和桌面端wifi随时联动，随地记录</h1>
+          <h1 data-copy="ja">実験と一緒に動くラボノート</h1>
           <p data-copy="en">Capture bench-side details, organize the full record, and review the experiment from one connected note</p>
           <p data-copy="zh">从实验台旁采集信息，到整理完整记录，再到复盘实验，都保存在同一条连贯笔记里</p>
+          <p data-copy="ja">実験台でのメモから記録の整理、振り返りまで、ひとつのつながったノートに残せます</p>
         </div>
         <figure class="module-flow-card notes-flow-card" aria-label="Lab Notes workflow">
-          <figcaption><span data-copy="en">Notes workflow</span><span data-copy="zh">笔记流程</span></figcaption>
+          <figcaption><span data-copy="en">Notes workflow</span><span data-copy="zh">笔记流程</span><span data-copy="ja">ノートの流れ</span></figcaption>
           <div class="module-flow">
-            <div class="flow-node"><strong data-copy="en">Capture</strong><strong data-copy="zh">采集</strong><span data-copy="en">mobile images and quick notes</span><span data-copy="zh">手机图片和现场记录</span></div>
-            <div class="flow-node"><strong data-copy="en">Write</strong><strong data-copy="zh">整理</strong><span data-copy="en">desktop experiment record</span><span data-copy="zh">桌面端实验记录</span></div>
-            <div class="flow-node"><strong data-copy="en">Link</strong><strong data-copy="zh">关联</strong><span data-copy="en">cells, reagents, plasmids, protocols</span><span data-copy="zh">细胞、试剂、质粒、Protocol</span></div>
-            <div class="flow-node"><strong data-copy="en">Trace</strong><strong data-copy="zh">回溯</strong><span data-copy="en">which note used each resource</span><span data-copy="zh">每项资源被哪些笔记使用</span></div>
+            <div class="flow-node"><strong data-copy="en">Capture</strong><strong data-copy="zh">采集</strong><strong data-copy="ja">記録</strong><span data-copy="en">mobile images and quick notes</span><span data-copy="zh">手机图片和现场记录</span><span data-copy="ja">画像とクイックノートをモバイルで</span></div>
+            <div class="flow-node"><strong data-copy="en">Write</strong><strong data-copy="zh">整理</strong><strong data-copy="ja">整理</strong><span data-copy="en">desktop experiment record</span><span data-copy="zh">桌面端实验记录</span><span data-copy="ja">デスクトップで実験記録を仕上げる</span></div>
+            <div class="flow-node"><strong data-copy="en">Link</strong><strong data-copy="zh">关联</strong><strong data-copy="ja">関連付け</strong><span data-copy="en">cells, reagents, plasmids, protocols</span><span data-copy="zh">细胞、试剂、质粒、Protocol</span><span data-copy="ja">細胞・試薬・プラスミド・Protocol</span></div>
+            <div class="flow-node"><strong data-copy="en">Trace</strong><strong data-copy="zh">回溯</strong><strong data-copy="ja">追跡</strong><span data-copy="en">which note used each resource</span><span data-copy="zh">每项资源被哪些笔记使用</span><span data-copy="ja">各リソースを使ったノートを確認</span></div>
           </div>
           <svg viewBox="0 0 420 120" role="img" aria-hidden="true">
             <path d="M48 60 C120 8 188 8 210 58 C236 114 320 102 374 54" />
@@ -65,10 +68,12 @@
           <p class="eyebrow">Mobile Notes</p>
           <h2 data-copy="en">Capture at the bench. Finish on desktop</h2>
           <h2 data-copy="zh">实验台旁快速记录，回到桌面端完整整理</h2>
+          <h2 data-copy="ja">実験台で記録し、デスクトップで仕上げる</h2>
           <p data-copy="en">Mobile notes, images, tables, and linked resources use the same record structure and sync over the lab network</p>
           <p data-copy="zh">移动端笔记、图片、表格和关联资源使用同一套数据结构，并通过实验室局域网同步</p>
+          <p data-copy="ja">モバイルのノート、画像、表、関連リソースは同じ形式で保存され、ラボ内ネットワークで同期できます</p>
         </div>
-        <a class="button primary" href="mobile.html"><span data-copy="en">Explore Mobile</span><span data-copy="zh">查看移动端</span></a>
+        <a class="button primary" href="mobile.html"><span data-copy="en">Explore Mobile</span><span data-copy="zh">查看移动端</span><span data-copy="ja">Mobile を見る</span></a>
       </section>
 
       <section class="feature-book-section" aria-label="Lab Notes feature book">
@@ -76,31 +81,37 @@
           <div class="book-stage" aria-live="polite">
             <article class="book-page active" data-book-page>
               <div class="book-page-copy">
-                <span><span data-copy="en">Page 01</span><span data-copy="zh">第 01 页</span></span>
+                <span><span data-copy="en">Page 01</span><span data-copy="zh">第 01 页</span><span data-copy="ja">ページ 01</span></span>
                 <h3 data-copy="en">Desktop and mobile stay connected</h3>
                 <h3 data-copy="zh">桌面端和移动端保持连接</h3>
+                <h3 data-copy="ja">デスクトップとモバイルをつなぐ</h3>
                 <p data-copy="en">Write the structured record on desktop and capture bench-side updates from mobile</p>
                 <p data-copy="zh">在桌面端整理结构化记录，在移动端采集实验台旁的即时更新</p>
+                <p data-copy="ja">構造化された記録はデスクトップで、実験台での更新はモバイルで残せます</p>
               </div>
               <img src="assests/demo-%E5%AD%90%E9%A1%B5/notes-page-hero-clean-sync.png" alt="Desktop and mobile Lab Notes connected workflow" />
             </article>
             <article class="book-page" data-book-page>
               <div class="book-page-copy">
-                <span><span data-copy="en">Page 02</span><span data-copy="zh">第 02 页</span></span>
+                <span><span data-copy="en">Page 02</span><span data-copy="zh">第 02 页</span><span data-copy="ja">ページ 02</span></span>
                 <h3 data-copy="en">Templates and prompts reduce repeated work</h3>
                 <h3 data-copy="zh">模板和提示减少重复书写</h3>
+                <h3 data-copy="ja">テンプレートとプロンプトで繰り返し作業を減らす</h3>
                 <p data-copy="en">Start from a protocol template and use prompts to turn rough observations into a complete note</p>
                 <p data-copy="zh">从实验流程模板开始，用提示把零散观察整理成完整笔记</p>
+                <p data-copy="ja">Protocol テンプレートから始め、断片的な観察をプロンプトで整理して一つのノートにまとめます</p>
               </div>
               <img src="assests/demo-%E5%AD%90%E9%A1%B5/notes-page-template-prompts.png" alt="Protocol template and prompt suggestions illustration" />
             </article>
             <article class="book-page" data-book-page>
               <div class="book-page-copy">
-                <span><span data-copy="en">Page 03</span><span data-copy="zh">第 03 页</span></span>
+                <span><span data-copy="en">Page 03</span><span data-copy="zh">第 03 页</span><span data-copy="ja">ページ 03</span></span>
                 <h3 data-copy="en">Images stay attached to the experiment</h3>
                 <h3 data-copy="zh">图片始终跟实验记录放在一起</h3>
+                <h3 data-copy="ja">画像も実験記録のそばに</h3>
                 <p data-copy="en">Gels, microscopy, blots, plates, and screenshots remain beside the record they support</p>
                 <p data-copy="zh">凝胶图、显微图、印迹图、培养板和截图都保留在对应实验记录旁边</p>
+                <p data-copy="ja">ゲル、顕微鏡画像、blot、プレート、スクリーンショットを、対応する実験記録と一緒に保存できます</p>
               </div>
               <img src="assests/demo-%E5%AD%90%E9%A1%B5/notes-page-image-attachments.png" alt="Lab Notes image attachments and annotations illustration" />
             </article>
@@ -115,6 +126,6 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
   </body>
 </html>

@@ -8,13 +8,13 @@
       name="description"
       content="Pasero Literature keeps local papers, PDF reading, annotations, reading notes, vocabulary, and citations in one research workspace."
     />
-    <link rel="stylesheet" href="styles.css?v=25" />
+    <link rel="stylesheet" href="styles.css?v=30" />
   </head>
   <body class="light-page notes-page literature-page" data-language="en">
     <header class="topbar subpage-dark-topbar">
       <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
       </a>
-      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span></a>
+      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span><span data-copy="ja">ダウンロード</span></a>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -25,6 +25,7 @@
         <div class="language-options" role="listbox" aria-label="Language">
           <button type="button" data-language-option="en" role="option">EN</button>
           <button type="button" data-language-option="zh" role="option">中文</button>
+          <button type="button" data-language-option="ja" role="option">日本語</button>
         </div>
       </div>
     </header>
@@ -32,7 +33,7 @@
     <main class="module-core-page">
       <section class="module-core section-shell">
         <header class="module-core-copy">
-          <p class="eyebrow"><span data-copy="en">Literature</span><span data-copy="zh">文献</span></p>
+          <p class="eyebrow"><span data-copy="en">Literature</span><span data-copy="zh">文献</span><span data-copy="ja">文献</span></p>
           <ol class="module-core-points" data-copy="en">
             <li><span>01</span><p><em>Search and find papers</em> in Pasero</p></li>
             <li><span>02</span><p>Read papers and save reading notes in the same workspace</p></li>
@@ -41,6 +42,10 @@
             <li><span>01</span><p>在 Pasero <em>搜索、查找文献</em></p></li>
             <li><span>02</span><p>阅读论文，并在同一个工作空间记录阅读笔记</p></li>
           </ol>
+          <ol class="module-core-points" data-copy="ja">
+            <li><span>01</span><p>Pasero で<em>論文を検索して見つける</em></p></li>
+            <li><span>02</span><p>論文を読み、そのまま同じワークスペースに読んだ内容をノートとして残せます</p></li>
+          </ol>
         </header>
         <figure class="module-core-art">
           <img src="assests/literature-core-line-art.webp" alt="A line drawing showing paper search, reading, source-linked notes, and a literature library" />
@@ -48,6 +53,6 @@
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
   </body>
 </html>

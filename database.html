@@ -8,13 +8,13 @@
       name="description"
       content="Pasero Database organizes protocols, cells, and reagents into searchable local records that connect back to Lab Notes."
     />
-    <link rel="stylesheet" href="styles.css?v=25" />
+    <link rel="stylesheet" href="styles.css?v=30" />
   </head>
   <body class="light-page notes-page database-page" data-language="en">
     <header class="topbar subpage-dark-topbar">
       <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
       </a>
-      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span></a>
+      <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span><span data-copy="ja">ダウンロード</span></a>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -25,6 +25,7 @@
         <div class="language-options" role="listbox" aria-label="Language">
           <button type="button" data-language-option="en" role="option">EN</button>
           <button type="button" data-language-option="zh" role="option">中文</button>
+          <button type="button" data-language-option="ja" role="option">日本語</button>
         </div>
       </div>
     </header>
@@ -32,7 +33,7 @@
     <main class="module-core-page">
       <section class="module-core section-shell">
         <header class="module-core-copy">
-          <p class="eyebrow"><span data-copy="en">Database</span><span data-copy="zh">数据库</span></p>
+          <p class="eyebrow"><span data-copy="en">Database</span><span data-copy="zh">数据库</span><span data-copy="ja">データベース</span></p>
           <ol class="module-core-points" data-copy="en">
             <li><span>01</span><p>Manage <em>protocols, cells, and reagents</em> in Pasero</p></li>
             <li><span>02</span><p>See where each protocol, cell, or reagent was used—reducing information errors as experiments accumulate</p></li>
@@ -41,6 +42,10 @@
             <li><span>01</span><p>在 Pasero 管理 <em>Protocol、细胞和试剂</em></p></li>
             <li><span>02</span><p>查看每个 Protocol、细胞或试剂被用在哪些实验里，减少实验次数增多后的信息错误</p></li>
           </ol>
+          <ol class="module-core-points" data-copy="ja">
+            <li><span>01</span><p>Pasero で <em>Protocol、細胞、試薬</em>をまとめて管理</p></li>
+            <li><span>02</span><p>どの Protocol・細胞・試薬をどの実験で使ったかを追跡し、実験が増えても情報の取り違えを防ぎます</p></li>
+          </ol>
         </header>
         <figure class="module-core-art">
           <img src="assests/database-core-line-art.webp" alt="A line drawing showing protocols, cells, and reagents linked to an experiment note" />
@@ -48,6 +53,6 @@
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
   </body>
 </html>

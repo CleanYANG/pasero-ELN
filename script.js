@@ -6,13 +6,17 @@ const reveals = document.querySelectorAll(".reveal");
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-tabs a");
 
+const supportedLanguages = ["en", "zh", "ja"];
+const languageTags = { en: "en", zh: "zh-CN", ja: "ja" };
+const languageNames = { en: "English", zh: "中文", ja: "日本語" };
 const savedLanguage = window.localStorage?.getItem("coolab-language");
-body.dataset.language = savedLanguage || body.dataset.language || "en";
-document.documentElement.lang = body.dataset.language === "zh" ? "zh-CN" : "en";
+const initialLanguage = supportedLanguages.includes(savedLanguage) ? savedLanguage : body.dataset.language;
+body.dataset.language = supportedLanguages.includes(initialLanguage) ? initialLanguage : "en";
+document.documentElement.lang = languageTags[body.dataset.language];
 
 const updateLanguageLabels = () => {
   document.querySelectorAll("[data-lang-label]").forEach((label) => {
-    label.textContent = body.dataset.language === "en" ? "English" : "中文";
+    label.textContent = languageNames[body.dataset.language];
   });
   languageOptions.forEach((option) => {
     const isActive = option.getAttribute("data-language-option") === body.dataset.language;
@@ -30,7 +34,7 @@ const closeLanguageMenus = () => {
 
 const setLanguage = (next) => {
   body.dataset.language = next;
-  document.documentElement.lang = next === "zh" ? "zh-CN" : "en";
+  document.documentElement.lang = languageTags[next];
   window.localStorage?.setItem("coolab-language", next);
   updateLanguageLabels();
 };
@@ -54,7 +58,7 @@ languageOptions.forEach((option) => {
   option.addEventListener("click", (event) => {
     event.stopPropagation();
     const next = option.getAttribute("data-language-option");
-    if (next === "en" || next === "zh") setLanguage(next);
+    if (supportedLanguages.includes(next)) setLanguage(next);
     closeLanguageMenus();
   });
 });
