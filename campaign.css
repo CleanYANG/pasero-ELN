@@ -168,7 +168,8 @@
   .campaign-tool-line i { grid-column: 2; grid-row: 2; align-self: center; font-size: 20px; }
   .campaign-phone-row { grid-template-columns: repeat(3,minmax(150px,1fr)); margin-right: -16px; padding-bottom: 10px; overflow-x: auto; scroll-snap-type: x mandatory; }
   .campaign-phone-row.single { grid-template-columns: minmax(210px, 300px); width: 100%; margin: 90px 0 0; overflow: visible; }
-  .campaign-mobile-line-art { width: 100%; margin: 72px 0 0; }
+  .campaign-mobile-line-art { width: 100vw; margin: 72px 0 0 calc(50% - 50vw); overflow: hidden; }
+  .campaign-mobile-line-art img { position: relative; left: 50%; width: min(220vw, 900px); max-width: none; transform: translateX(-50%); }
   .campaign-phone-row figure { scroll-snap-align: start; }
   .campaign-local { min-height: auto; padding: 100px 16px; }
   .campaign-local h2 { font-size: 32px; }
