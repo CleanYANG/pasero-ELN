@@ -5766,6 +5766,24 @@ body[data-language="zh"] .creator-copy h2 {
   margin: 26px 0 0;
 }
 
+.mobile-page .mobile-hero-copy {
+  align-self: center;
+}
+
+.mobile-overview-art {
+  align-self: center;
+  margin: 0;
+}
+
+.mobile-overview-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .mobile-page .mobile-hero-title {
   font-size: clamp(18px, 1.7vw, 24px);
   line-height: 1.35;
