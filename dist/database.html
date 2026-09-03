@@ -1,19 +1,22 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Database | Pasero</title>
+    <title>Resources | Pasero</title>
     <meta
       name="description"
-      content="Pasero Database organizes protocols, cells, and reagents into searchable local records that connect back to Lab Notes."
+      content="Pasero connects cells, reagents, plasmids, protocols, and notes so every resource becomes part of an experiment's history."
     />
     <link rel="stylesheet" href="styles.css?v=31" />
   </head>
-  <body class="light-page notes-page database-page" data-language="en">
+  <body class="light-page notes-page database-page resources-page" data-language="en">
+    <div class="site-backdrop" aria-hidden="true">
+      <div class="grid-layer"></div>
+      <div class="scan-layer"></div>
+    </div>
+
     <header class="topbar subpage-dark-topbar">
-      <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" />
-      </a>
+      <a class="brand" href="./index.html#home" aria-label="Pasero home"><img class="brand-logo" src="assests/real-logo-cut.png" alt="Pasero" /></a>
       <a class="subpage-download" href="index.html#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span><span data-copy="ja">ダウンロード</span></a>
       <div class="language-menu" data-language-menu>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
@@ -30,28 +33,128 @@
       </div>
     </header>
 
-    <main class="module-core-page">
-      <section class="module-core section-shell">
-        <header class="module-core-copy">
-          <p class="eyebrow"><span data-copy="en">Database</span><span data-copy="zh">数据库</span><span data-copy="ja">データベース</span></p>
-          <ol class="module-core-points" data-copy="en">
-            <li><span>01</span><p>Manage <em>protocols, cells, and reagents</em> in Pasero</p></li>
-            <li><span>02</span><p>See where each protocol, cell, or reagent was used—reducing information errors as experiments accumulate</p></li>
-          </ol>
-          <ol class="module-core-points" data-copy="zh">
-            <li><span>01</span><p>在 Pasero 管理 <em>Protocol、细胞和试剂</em></p></li>
-            <li><span>02</span><p>查看每个 Protocol、细胞或试剂被用在哪些实验里，减少实验次数增多后的信息错误</p></li>
-          </ol>
-          <ol class="module-core-points" data-copy="ja">
-            <li><span>01</span><p>Pasero で <em>Protocol、細胞、試薬</em>をまとめて管理</p></li>
-            <li><span>02</span><p>どの Protocol・細胞・試薬をどの実験で使ったかを追跡し、実験が増えても情報の取り違えを防ぎます</p></li>
-          </ol>
-        </header>
-        <figure class="module-core-art">
-          <img src="assests/database-core-line-art.webp" alt="A line drawing showing protocols, cells, and reagents linked to an experiment note" />
+    <main class="resources-story">
+      <section class="resources-hero" id="resources-hero" aria-labelledby="resources-hero-title">
+        <div class="resources-hero-copy section-shell">
+          <p class="resources-kicker reveal"><span data-copy="en">Resources</span><span data-copy="zh">资源</span><span data-copy="ja">リソース</span></p>
+          <h1 id="resources-hero-title" class="reveal"><span data-copy="en">Everything you use<br />leaves a trace.</span><span data-copy="zh">你使用的一切<br />都会留下痕迹。</span><span data-copy="ja">使ったものはすべて<br />痕跡を残す。</span></h1>
+          <p class="resources-hero-lead reveal"><span data-copy="en">Cells, reagents, plasmids, protocols — connected to the experiments that use them.</span><span data-copy="zh">细胞、试剂、质粒、Protocol，都与使用它们的实验相连。</span><span data-copy="ja">細胞、試薬、プラスミド、Protocol を、使った実験とつなげます。</span></p>
+        </div>
+        <figure class="resources-hero-art reveal" aria-label="Pasero resources interface">
+          <img src="assests/demo-子页/database-page-hero-resources.png" alt="Pasero resources connected to an experiment" />
+        </figure>
+        <span class="resources-scene-number">01 / 08</span>
+      </section>
+
+      <section class="resources-connections resources-scene section-shell" id="connections" aria-labelledby="connections-title">
+        <div class="resources-section-intro reveal">
+          <p class="resources-kicker"><span data-copy="en">The experiment creates connections</span><span data-copy="zh">实验创造连接</span><span data-copy="ja">実験がつながりを生む</span></p>
+          <h2 id="connections-title"><span data-copy="en">An experiment is more than a note.</span><span data-copy="zh">实验不只是一条笔记。</span><span data-copy="ja">実験は、ノートだけではない。</span></h2>
+        </div>
+        <div class="experiment-note-stage reveal" aria-label="Experiment note and linked resources">
+          <svg class="experiment-note-lines" viewBox="0 0 1000 620" aria-hidden="true">
+            <path d="M218 150 C330 190 352 250 410 290" />
+            <path d="M772 150 C675 188 650 246 590 290" />
+            <path d="M182 472 C292 438 344 392 410 354" />
+            <path d="M817 472 C705 438 654 392 590 354" />
+            <circle cx="218" cy="150" r="4" /><circle cx="772" cy="150" r="4" /><circle cx="182" cy="472" r="4" /><circle cx="817" cy="472" r="4" />
+          </svg>
+          <article class="experiment-note">
+            <div class="experiment-note-top"><span>EXPERIMENT / 024</span><span>14 AUG 2024</span></div>
+            <h3>AGO2 silencing assay</h3>
+            <p>Compare knockdown efficiency across the let-7b pathway.</p>
+            <div class="experiment-note-rule"></div>
+            <div class="experiment-note-meta"><span>Owner <strong>Y. Yang</strong></span><span>Status <strong>In progress</strong></span></div>
+          </article>
+          <span class="resource-fragment fragment-tm3"><b>TM3</b><small>Cell line</small></span>
+          <span class="resource-fragment fragment-ago"><b>pCMV-AGO2</b><small>Plasmid</small></span>
+          <span class="resource-fragment fragment-let"><b>let-7b</b><small>Reagent</small></span>
+          <span class="resource-fragment fragment-star"><b>STAR</b><small>Analysis</small></span>
+          <span class="resource-fragment fragment-protocol"><b>Protocol</b><small>Transfection v3</small></span>
+        </div>
+      </section>
+
+      <section class="resources-link-scene resources-scene" id="link-resources" aria-labelledby="link-title">
+        <figure class="resources-link-art reveal">
+          <img src="assests/link-resources.png" alt="Linked resource records in Pasero" loading="lazy" />
+        </figure>
+        <div class="resources-side-caption reveal">
+          <p class="resources-index">01 — LINK RESOURCES</p>
+          <h2 id="link-title"><span data-copy="en">Bring the things behind an experiment together.</span><span data-copy="zh">把实验背后的事物放在一起。</span><span data-copy="ja">実験の背景にあるものを、ひとつに。</span></h2>
+        </div>
+      </section>
+
+      <section class="resources-reuse-scene resources-scene" id="reuse" aria-labelledby="reuse-title">
+        <div class="resources-reuse-inner">
+          <div class="resources-reuse-copy reveal">
+            <p class="resources-index">02 — <span data-copy="en">REUSE NOTES &amp; PROTOCOLS</span><span data-copy="zh">复用笔记与 Protocol</span><span data-copy="ja">ノートと Protocol を再利用</span></p>
+            <h2 id="reuse-title"><span data-copy="en">Yesterday's experiment<br />is already useful today.</span><span data-copy="zh">昨天的实验，<br />今天依然有用。</span><span data-copy="ja">昨日の実験は、<br />今日すぐに役立つ。</span></h2>
+          </div>
+          <figure class="resources-reuse-art reveal">
+            <img src="assests/demo-子页/database-page-protocol-to-note.png" alt="A previous protocol reused in a new experiment note" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="resources-trace-scene resources-scene" id="trace" aria-labelledby="trace-title">
+        <div class="resources-trace-copy reveal">
+          <p class="resources-index">03 — <span data-copy="en">TRACE RESOURCES</span><span data-copy="zh">追踪资源</span><span data-copy="ja">リソースを追跡</span></p>
+          <h2 id="trace-title"><span data-copy="en">One resource.<br />Everywhere it's been.</span><span data-copy="zh">一个资源。<br />它去过的每一个地方。</span><span data-copy="ja">ひとつのリソース。<br />使われたすべての場所。</span></h2>
+        </div>
+        <figure class="resources-trace-art reveal">
+          <img src="assests/trace resource.png" alt="A resource traced through related experiments" loading="lazy" />
         </figure>
       </section>
+
+      <section class="resources-history-scene resources-scene section-shell" id="history" aria-labelledby="history-title">
+        <div class="resources-history-heading reveal">
+          <p class="resources-kicker"><span data-copy="en">The record behind the record</span><span data-copy="zh">记录背后的记录</span><span data-copy="ja">記録の、その先へ</span></p>
+          <h2 id="history-title"><span data-copy="en">A resource becomes a history.</span><span data-copy="zh">一个资源，成为一段历史。</span><span data-copy="ja">リソースは、履歴になる。</span></h2>
+        </div>
+        <div class="resource-history-layout">
+          <article class="resource-detail reveal">
+            <div class="resource-detail-bar"><span>RESOURCE / CELL LINE</span><span>•••</span></div>
+            <div class="resource-detail-name"><span>TM3</span><small>Mouse Sertoli Cell</small></div>
+            <div class="resource-detail-stats"><span><small>PASSAGE</small><strong>8</strong></span><span><small>EXPERIMENTS</small><strong>04</strong></span></div>
+            <div class="resource-detail-footer"><span>Last updated</span><strong>18 Aug 2024</strong></div>
+          </article>
+          <div class="resource-timeline" aria-label="TM3 experimental history">
+            <article class="timeline-event reveal"><time>AUG 12</time><div><span class="timeline-dot"></span><h3>Passage 8</h3><p>Cell culture / TM3</p><small>Experiment 021 · Cell maintenance</small></div></article>
+            <article class="timeline-event reveal"><time>AUG 14</time><div><span class="timeline-dot"></span><h3>Start transfection</h3><p>pCMV-AGO2 · let-7b</p><small>Experiment 024 · AGO2 silencing assay</small></div></article>
+            <article class="timeline-event reveal"><time>AUG 16</time><div><span class="timeline-dot"></span><h3>RNA extraction</h3><p>TRIzol protocol · TM3</p><small>Experiment 024 · Sample preparation</small></div></article>
+            <article class="timeline-event reveal"><time>AUG 18</time><div><span class="timeline-dot"></span><h3>Luciferase assay</h3><p>Readout / let-7b pathway</p><small>Experiment 024 · Results</small></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="resources-public-scene resources-scene section-shell" id="public-to-personal" aria-labelledby="public-title">
+        <div class="resources-public-copy reveal">
+          <p class="resources-kicker"><span data-copy="en">From public to personal</span><span data-copy="zh">从公共资源到个人工作</span><span data-copy="ja">公開情報から、自分の仕事へ</span></p>
+          <h2 id="public-title"><span data-copy="en">Find it outside Pasero.<br />Keep it inside your work.</span><span data-copy="zh">在 Pasero 之外找到它。<br />让它留在你的工作里。</span><span data-copy="ja">Pasero の外で見つけ、<br />仕事の中に残す。</span></h2>
+        </div>
+        <div class="public-resource-stage reveal">
+          <figure class="public-resource-image">
+            <img src="assests/demo-子页/database-page-cell-reagent-trace.png" alt="Finding a public cell resource and saving it to Pasero" loading="lazy" />
+          </figure>
+          <div class="public-resource-steps" aria-label="Save a public resource to Pasero">
+            <span><b>01</b> Public search</span><span><b>02</b> Select resource</span><span><b>03</b> Saved to Pasero</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="resources-closing resources-scene" id="closing" aria-labelledby="closing-title">
+        <div class="resources-closing-inner section-shell reveal">
+          <p class="resources-kicker"><span data-copy="en">Pasero / Resources</span><span data-copy="zh">Pasero / 资源</span><span data-copy="ja">Pasero / リソース</span></p>
+          <h2 id="closing-title"><span data-copy="en">Experiments are connected.<br />Your workspace should be too.</span><span data-copy="zh">实验彼此相连。<br />你的工作空间也应该如此。</span><span data-copy="ja">実験はつながっている。<br />ワークスペースも、そうあるべきだ。</span></h2>
+          <a class="resources-cta" href="index.html#plans"><span data-copy="en">Explore Pasero</span><span data-copy="zh">探索 Pasero</span><span data-copy="ja">Pasero を見る</span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer">
+      <span>Pasero</span>
+      <span><span data-copy="en">Be simple, be real, Keep cool</span><span data-copy="zh">简单，真实，保持冷静</span><span data-copy="ja">シンプルに、正直に、クールに</span></span>
+    </footer>
 
     <script src="script.js?v=2"></script>
   </body>
