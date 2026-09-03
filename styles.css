@@ -493,15 +493,10 @@ h3 {
   line-height: 1.08;
 }
 
-body [data-copy] {
-  display: none;
-}
-
-body[data-language="en"] [data-copy="en"],
-body[data-language="zh"] [data-copy="zh"],
-body[data-language="ja"] [data-copy="ja"],
-body[data-language="ja"] [data-copy-fallback="ja"] {
-  display: revert;
+body[data-language="en"] [data-copy]:not([data-copy="en"]),
+body[data-language="zh"] [data-copy]:not([data-copy="zh"]),
+body[data-language="ja"] [data-copy]:not([data-copy="ja"]):not([data-copy-fallback="ja"]) {
+  display: none !important;
 }
 
 .hero-actions {
