@@ -195,3 +195,198 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .campaign-page .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Five-scene research story */
+.pasero-story-section {
+  min-height: 100svh;
+  padding: clamp(94px, 11vh, 128px) 24px clamp(70px, 9vh, 108px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-top: 1px solid #f1eff3;
+  background: #fff;
+  color: #19171d;
+}
+
+.pasero-story-copy {
+  position: relative;
+  z-index: 2;
+  width: min(900px, 90vw);
+  margin: 0 auto clamp(34px, 5vh, 58px);
+  text-align: center;
+}
+
+.pasero-story-copy h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 2.5vw, 36px);
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: -.018em;
+}
+
+.pasero-story-copy p {
+  max-width: 620px;
+  margin: 14px auto 0;
+  color: #77727d;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.55;
+}
+
+.pasero-origin-scene {
+  position: relative;
+  width: min(1040px, 96vw);
+  height: clamp(420px, 58vh, 570px);
+}
+
+.pasero-thinker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: clamp(260px, 40vh, 300px);
+  transform: translate(-50%, -50%) rotate(30deg);
+  transform-origin: 50% 72%;
+  object-fit: contain;
+}
+
+.pasero-life {
+  position: absolute;
+  width: 122px;
+  height: 122px;
+  display: grid;
+  place-items: center;
+  color: #19171d;
+}
+
+.pasero-life img {
+  display: block;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+
+.pasero-life svg {
+  width: 88px;
+  height: 88px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pasero-life-plant { left: 7%; top: 20%; }
+.pasero-life-animal { left: 14%; bottom: 10%; }
+.pasero-life-dna { right: 13%; top: 14%; }
+.pasero-life-protein { right: 5%; top: 49%; }
+.pasero-life-molecule { right: 29%; bottom: 2%; }
+.pasero-life-beaker { left: 38%; top: 0; }
+
+.pasero-tool-grid {
+  width: min(960px, 90vw);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: clamp(24px, 3.8vh, 42px) clamp(18px, 2.5vw, 34px);
+  padding: 4px 0;
+}
+
+.pasero-tool-grid img {
+  display: block;
+  width: 100%;
+  height: clamp(82px, 9vw, 126px);
+  object-fit: contain;
+  transform: rotate(var(--tool-tilt, 0deg));
+  transform-origin: center;
+}
+
+.pasero-tool-pipette { --tool-tilt: -5deg; }
+.pasero-tool-search { --tool-tilt: 2deg; }
+.pasero-tool-notes { --tool-tilt: -3deg; }
+.pasero-tool-plasmid { --tool-tilt: 4deg; }
+.pasero-tool-tubes { --tool-tilt: -2deg; }
+.pasero-tool-surface { --tool-tilt: 3deg; }
+.pasero-tool-line { --tool-tilt: -4deg; }
+.pasero-tool-western { --tool-tilt: 2deg; }
+.pasero-tool-bar { --tool-tilt: -2deg; }
+.pasero-tool-sanger { --tool-tilt: 4deg; }
+
+.pasero-story-image {
+  display: block;
+  width: min(1120px, 94vw);
+  max-height: 64svh;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.pasero-story-materials .pasero-story-image { aspect-ratio: 3 / 2; }
+.pasero-story-presentation .pasero-story-image { aspect-ratio: 4 / 3; }
+
+.pasero-final-image {
+  display: block;
+  width: min(580px, 86vw);
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.campaign-page .pasero-story-visual.reveal { transition-delay: .12s; }
+
+@media (max-width: 760px) {
+  .pasero-story-section {
+    min-height: auto;
+    padding: 96px 18px 88px;
+  }
+
+  .pasero-story-origin { min-height: 100svh; }
+
+  .pasero-story-copy {
+    width: min(92vw, 560px);
+    margin-bottom: 34px;
+  }
+
+  .pasero-story-copy h2 { font-size: 25px; }
+  .pasero-story-copy p { font-size: 15px; }
+
+  .pasero-origin-scene {
+    width: 100%;
+    height: 440px;
+  }
+
+  .pasero-thinker { height: 210px; }
+  .pasero-life { width: 78px; height: 78px; }
+  .pasero-life img { width: 72px; height: 72px; }
+  .pasero-life svg { width: 62px; height: 62px; stroke-width: 2.8; }
+  .pasero-life-plant { left: 0; top: 19%; }
+  .pasero-life-animal { left: 4%; bottom: 13%; }
+  .pasero-life-dna { right: 3%; top: 15%; }
+  .pasero-life-protein { right: 0; top: 53%; }
+  .pasero-life-molecule { right: 27%; bottom: 1%; }
+  .pasero-life-beaker { left: 38%; top: 0; }
+
+  .pasero-story-tools .pasero-story-copy { margin-bottom: 26px; }
+
+  .pasero-tool-grid {
+    width: min(340px, 88vw);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+
+  .pasero-tool-grid img { height: 76px; }
+  .pasero-tool-sanger { grid-column: 2; grid-row: 4; }
+  .pasero-story-tools { padding-bottom: 88px; }
+
+  .pasero-story-image {
+    width: 100%;
+    max-height: none;
+  }
+
+  .pasero-story-materials .pasero-story-image,
+  .pasero-story-presentation .pasero-story-image { aspect-ratio: auto; }
+
+  .pasero-final-image { width: min(330px, 90vw); }
+}
