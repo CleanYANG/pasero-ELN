@@ -232,9 +232,13 @@
   max-width: 620px;
   margin: 14px auto 0;
   color: #77727d;
-  font-size: clamp(15px, 1.2vw, 17px);
-  line-height: 1.55;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.65;
 }
+
+.pasero-story-copy h2 > span,
+.pasero-question-line > span,
+.pasero-story-copy p > span { display: block; }
 
 .pasero-origin-scene {
   position: relative;
