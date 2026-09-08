@@ -28,7 +28,7 @@
 .campaign-hero, .campaign-workflow, .campaign-story, .campaign-plans, .campaign-about, .campaign-founder { width: min(1440px, calc(100% - 48px)); margin: 0 auto; }
 .campaign-hero { display: grid; grid-template-columns: minmax(300px,.7fr) minmax(620px,1.3fr); gap: clamp(40px,6vw,100px); align-items: center; min-height: calc(100svh - 68px); padding: 72px 0 80px; }
 .campaign-label { margin: 0; color: var(--campaign-muted); font-size: 12px; font-weight: 500; letter-spacing: .045em; text-transform: uppercase; }
-.campaign-hero h1 { max-width: none; margin: 22px 0 0; color: var(--campaign-ink); font-weight: 500; letter-spacing: -.04em; }
+.campaign-hero h1 { position: relative; top: -28px; left: clamp(28px,4.5vw,72px); max-width: none; margin: 22px 0 0; color: var(--campaign-ink); font-weight: 500; letter-spacing: -.04em; }
 .campaign-hero h1 em { display: block; font-size: clamp(52px,5.8vw,82px); font-weight: 500; line-height: .95; }
 .campaign-hero h1[data-copy="en"] em { font-style: italic; }
 .campaign-hero h1[data-copy="zh"] em { font-style: normal; letter-spacing: -.012em; }
@@ -147,6 +147,7 @@
   .campaign-download { display: inline-flex; }
   .campaign-hero, .campaign-workflow, .campaign-story, .campaign-plans, .campaign-about, .campaign-founder { width: min(100% - 32px,1440px); }
   .campaign-hero { gap: 42px; padding: 62px 0 72px; }
+  .campaign-hero h1 { top: -16px; left: 18px; }
   .campaign-hero h1 em { font-size: 52px; }
   .campaign-hero h1 > span { margin-top: 10px; font-size: 25px; }
   .campaign-intro p { font-size: 15px; }
@@ -225,7 +226,7 @@
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: -.01em;
-  color: #6c6572;
+  color: #514b58;
 }
 
 .pasero-story-copy p {
@@ -418,7 +419,7 @@
   line-height: 1.3;
   letter-spacing: -.018em;
   white-space: nowrap;
-  color: #6c6572;
+  color: #514b58;
 }
 
 @media (max-width: 760px) {
