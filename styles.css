@@ -5785,7 +5785,7 @@ body[data-language="ja"] .creator-copy h2 {
 
 /* Mobile page: product-first demo and stronger information hierarchy. */
 .mobile-page .mobile-hero {
-  grid-template-columns: minmax(0, 0.78fr) minmax(560px, 1.22fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 48px;
 }
 
@@ -5812,8 +5812,9 @@ body[data-language="ja"] .creator-copy h2 {
 
 .mobile-overview-art img {
   display: block;
-  width: 100%;
+  width: min(100%, 380px);
   height: auto;
+  margin: 0 auto;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -5983,6 +5984,7 @@ body[data-language="zh"].mobile-page .mobile-hero h1 {
 }
 
 @media (max-width: 680px) {
+  .mobile-overview-art img { width: min(72vw, 280px); }
   .mobile-page .mobile-hero h1 {
     font-size: 34px;
   }
