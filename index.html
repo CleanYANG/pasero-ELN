@@ -7,6 +7,7 @@
     <meta name="description" content="Pasero is a local-first molecular biology workspace for notes, analysis, lab resources, literature, plasmid tools, and bench-side mobile work." />
     <link rel="stylesheet" href="styles.css?v=31" />
     <link rel="stylesheet" href="campaign.css?v=17" />
+    <link rel="stylesheet" href="pricing.css?v=1" />
   </head>
   <body class="campaign-page" data-language="en">
     <header class="campaign-nav">
@@ -144,21 +145,40 @@
         </article>
       </section>
 
-      <section class="campaign-local" id="plans">
+      <section class="campaign-local pasero-pricing" id="plans" aria-labelledby="pricing-title">
         <div class="campaign-local-heading reveal">
-          <p class="campaign-label"><span data-copy="en">Plans</span><span data-copy="zh">Plans</span><span data-copy="ja">プラン</span></p>
-          <h2 data-copy="en">Desktop is free<br />Mobile starts with 30 days free</h2>
-          <h2 data-copy="zh">桌面端永久免费<br />移动端免费体验 30 天</h2>
-          <h2 data-copy="ja">デスクトップ版はずっと無料<br />モバイル版は30日間無料で試せます</h2>
-          <p data-copy="en">No payment information required during the public beta</p>
-          <p data-copy="zh">公开内测期间无需提供付款信息</p>
-          <p data-copy="ja">公開ベータ中は支払い情報の登録は不要です</p>
+          <p class="campaign-label"><span data-copy="en">Pricing</span><span data-copy="zh">定价方案</span><span data-copy="ja">料金プラン</span></p>
+          <h2 id="pricing-title"><span data-copy="en">Start free. Grow with your research.</span><span data-copy="zh">从免费开始，让科研持续向前。</span><span data-copy="ja">無料で始め、研究とともに広げる。</span></h2>
+          <p><span data-copy="en">Core notes, connected resources, literature and manual local-network sync stay free.</span><span data-copy="zh">基础笔记、资源关联、文献管理与局域网手动同步永久免费。</span><span data-copy="ja">基本ノート、リソース連携、文献管理、LAN手動同期は無料。</span></p>
+          <div class="pasero-billing-switch" role="group" aria-label="Billing period"><button class="active" type="button" data-billing="monthly" aria-pressed="true"><span data-copy="en">Monthly</span><span data-copy="zh">月付</span><span data-copy="ja">月払い</span></button><button type="button" data-billing="yearly" aria-pressed="false"><span data-copy="en">Yearly</span><span data-copy="zh">年付</span><span data-copy="ja">年払い</span></button></div>
         </div>
-        <div class="campaign-price-list reveal">
-          <div><span>Desktop</span><strong>$0</strong><small data-copy="en">Free forever</small><small data-copy="zh">永久免费</small><small data-copy="ja">永久無料</small></div>
-          <div><span>Mobile</span><strong>$2.99</strong><small data-copy="en">Monthly</small><small data-copy="zh">按月</small><small data-copy="ja">月額</small></div>
-          <div><span>Mobile</span><strong>$7.99</strong><small data-copy="en">3 months</small><small data-copy="zh">3 个月</small><small data-copy="ja">3か月</small></div>
-          <div><span>Mobile</span><strong>$24.99</strong><small data-copy="en">Annual</small><small data-copy="zh">按年</small><small data-copy="ja">年額</small></div>
+        <div class="pasero-price-grid reveal">
+          <article class="pasero-price-card"><p class="pasero-plan-type">Desktop</p><h3>Free</h3><p class="pasero-price-value">$0</p><p class="pasero-plan-summary"><span data-copy="en">Your everyday research workspace.</span><span data-copy="zh">日常科研工作空间。</span><span data-copy="ja">日々の研究ワークスペース。</span></p><ul><li><span data-copy="en">Notes, Results & connected resources</span><span data-copy="zh">Notes、Results 与资源关联</span><span data-copy="ja">ノート、Results、リソース連携</span></li><li>General Assay</li><li><span data-copy="en">Literature, protocols & basic plasmid tools</span><span data-copy="zh">文献、Protocol 与基础质粒工具</span><span data-copy="ja">文献、プロトコル、基本プラスミドツール</span></li><li><span data-copy="en">Manual LAN sync</span><span data-copy="zh">局域网手动同步</span><span data-copy="ja">LAN手動同期</span></li></ul><a href="#pricing-compare"><span data-copy="en">Compare features ↓</span><span data-copy="zh">查看功能对比 ↓</span><span data-copy="ja">機能比較 ↓</span></a></article>
+          <article class="pasero-price-card"><p class="pasero-plan-type">Desktop</p><h3>Pro</h3><p class="pasero-price-value"><span data-month="$4.99" data-year="$49.99">$4.99</span><small data-period><span data-copy="en">/ month</span><span data-copy="zh">/ 月</span><span data-copy="ja">/ 月</span></small></p><p class="pasero-plan-summary"><span data-copy="en">Professional analysis and research output.</span><span data-copy="zh">专业数据分析与科研成果整理。</span><span data-copy="ja">専門的な解析と研究成果の整理。</span></p><ul><li>qPCR & Western Blot Analysis</li><li><span data-copy="en">PPTX report generation</span><span data-copy="zh">PPTX 实验汇报生成</span><span data-copy="ja">PPTX レポート生成</span></li><li><span data-copy="en">Batch import & digest recipes</span><span data-copy="zh">批量导入与批量酶切配方</span><span data-copy="ja">一括インポート・酵素消化レシピ</span></li><li><span data-copy="en">Advanced primer & protocol tools</span><span data-copy="zh">高级引物及 Protocol 工具</span><span data-copy="ja">高度なプライマー・プロトコルツール</span></li></ul><span class="pasero-plan-footnote"><span data-copy="en">All Desktop Free features included</span><span data-copy="zh">包含全部 Desktop Free 功能</span><span data-copy="ja">Desktop Freeの全機能を含む</span></span></article>
+          <article class="pasero-price-card"><p class="pasero-plan-type">Mobile</p><h3>Free</h3><p class="pasero-price-value">$0</p><p class="pasero-plan-summary"><span data-copy="en">Capture research at the bench.</span><span data-copy="zh">在实验台旁记录科研。</span><span data-copy="ja">実験台で研究を記録。</span></p><ul><li><span data-copy="en">Mobile notes, resources & literature</span><span data-copy="zh">移动笔记、资源与文献</span><span data-copy="ja">モバイルノート・リソース・文献</span></li><li><span data-copy="en">Calculator, timer & to-do</span><span data-copy="zh">计算器、计时器与待办</span><span data-copy="ja">計算機・タイマー・To-do</span></li><li><span data-copy="en">Cell Track: 3 lifetime-created tasks</span><span data-copy="zh">Cell Track：累计新建 3 个任务</span><span data-copy="ja">Cell Track：累計3タスク作成</span></li><li><span data-copy="en">Manual LAN sync & basic AI chat (own API key)</span><span data-copy="zh">局域网手动同步与基础 AI 对话（自备密钥）</span><span data-copy="ja">LAN手動同期と基本AIチャット（APIキー持参）</span></li></ul><a href="#cell-track-rules"><span data-copy="en">Cell Track rules ↓</span><span data-copy="zh">查看 Cell Track 规则 ↓</span><span data-copy="ja">Cell Track のルール ↓</span></a></article>
+          <article class="pasero-price-card"><p class="pasero-plan-type">Mobile</p><h3>Pro</h3><p class="pasero-price-value"><span data-month="$3.99" data-year="$39.99">$3.99</span><small data-period><span data-copy="en">/ month</span><span data-copy="zh">/ 月</span><span data-copy="ja">/ 月</span></small></p><p class="pasero-plan-summary"><span data-copy="en">Keep every experiment moving.</span><span data-copy="zh">持续追踪实验进展。</span><span data-copy="ja">実験の進捗を継続管理。</span></p><ul><li><span data-copy="en">Unlimited Cell Track tasks</span><span data-copy="zh">无限 Cell Track 培养任务</span><span data-copy="ja">Cell Track タスク無制限</span></li><li><span data-copy="en">Multi-note PDF reports</span><span data-copy="zh">多篇笔记汇总 PDF</span><span data-copy="ja">複数ノートのPDFレポート</span></li><li><span data-copy="en">AI with selected note context (own API key)</span><span data-copy="zh">AI 调用选定笔记上下文（自备密钥）</span><span data-copy="ja">ノート文脈を利用するAI（APIキー持参）</span></li><li><span data-copy="en">All Mobile Free features</span><span data-copy="zh">包含全部 Mobile Free 功能</span><span data-copy="ja">Mobile Freeの全機能を含む</span></li></ul></article>
+          <article class="pasero-price-card pasero-price-complete"><p class="pasero-plan-type"><span data-copy="en">Desktop + Mobile</span><span data-copy="zh">桌面 + 移动</span><span data-copy="ja">デスクトップ + モバイル</span></p><h3>Complete</h3><p class="pasero-price-value"><span data-month="$7.99" data-year="$79.99">$7.99</span><small data-period><span data-copy="en">/ month</span><span data-copy="zh">/ 月</span><span data-copy="ja">/ 月</span></small></p><p class="pasero-plan-summary"><span data-copy="en">One connected research workflow.</span><span data-copy="zh">一套完整、关联的科研工作流。</span><span data-copy="ja">つながる研究ワークフローを一つに。</span></p><ul><li><span data-copy="en">Everything in Desktop Pro</span><span data-copy="zh">Desktop Pro 全部功能</span><span data-copy="ja">Desktop Pro の全機能</span></li><li><span data-copy="en">Everything in Mobile Pro</span><span data-copy="zh">Mobile Pro 全部功能</span><span data-copy="ja">Mobile Pro の全機能</span></li><li><span data-copy="en">Save $0.99/month vs separate Pro plans</span><span data-copy="zh">比分开购买每月省 $0.99</span><span data-copy="ja">個別契約より月 $0.99 お得</span></li></ul></article>
+        </div>
+        <div class="pasero-comparison reveal" id="pricing-compare">
+          <h3><span data-copy="en">Compare features</span><span data-copy="zh">功能对比</span><span data-copy="ja">機能比較</span></h3>
+          <div class="pasero-table-scroll"><table><thead><tr><th scope="col"><span data-copy="en">Feature</span><span data-copy="zh">功能</span><span data-copy="ja">機能</span></th><th scope="col">Desktop<br>Free</th><th scope="col">Desktop<br>Pro</th><th scope="col">Mobile<br>Free</th><th scope="col">Mobile<br>Pro</th><th scope="col">Complete</th></tr></thead><tbody>
+          <tr><th scope="row"><span data-copy="en">Notes, Results & linked resources</span><span data-copy="zh">笔记、结果与资源关联</span><span data-copy="ja">ノート・結果・リソース連携</span></th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">Literature library & public search</span><span data-copy="zh">文献库与公开检索</span><span data-copy="ja">文献ライブラリ・公開検索</span></th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">Manual LAN sync</span><span data-copy="zh">局域网手动同步</span><span data-copy="ja">LAN手動同期</span></th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">General Assay</span><span data-copy="zh">通用实验数据分析</span><span data-copy="ja">一般実験データ解析</span></th><td>✓</td><td>✓</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">qPCR & Western Blot</span><span data-copy="zh">qPCR 与 Western Blot</span><span data-copy="ja">qPCR・Western Blot</span></th><td>—</td><td>✓</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">PPTX reports & desktop batch operations</span><span data-copy="zh">PPTX 与桌面批量处理</span><span data-copy="ja">PPTX・デスクトップ一括処理</span></th><td>—</td><td>✓</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">Basic restriction digest</span><span data-copy="zh">基础限制性酶切</span><span data-copy="ja">基本制限酵素消化</span></th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">Cell Track task creations</span><span data-copy="zh">Cell Track 新建任务额度</span><span data-copy="ja">Cell Track タスク作成枠</span></th><td>—</td><td>—</td><td><span data-copy="en">3 tasks</span><span data-copy="zh">3 个任务</span><span data-copy="ja">3件のタスク</span></td><td><span data-copy="en">Unlimited</span><span data-copy="zh">无限制</span><span data-copy="ja">無制限</span></td><td><span data-copy="en">Unlimited</span><span data-copy="zh">无限制</span><span data-copy="ja">無制限</span></td></tr>
+          <tr><th scope="row"><span data-copy="en">Multi-note PDF compilation</span><span data-copy="zh">多篇笔记汇总 PDF</span><span data-copy="ja">複数ノートのPDF統合</span></th><td>—</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><th scope="row"><span data-copy="en">AI with selected note context</span><span data-copy="zh">AI 调用选定笔记上下文</span><span data-copy="ja">選択ノートの文脈を利用するAI</span></th><td>—</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="pasero-pricing-notes reveal" id="cell-track-rules">
+          <h3><span data-copy="en">A few things worth knowing</span><span data-copy="zh">关于免费额度与数据</span><span data-copy="ja">無料枠とデータについて</span></h3>
+          <p><span data-copy="en">Mobile Free includes three lifetime-created Cell Track tasks—not three passages. Each existing task can continue recording passages, thawing and freezing, even after the free creation allowance is used.</span><span data-copy="zh">Mobile Free 累计可创建 3 个 Cell Track 培养任务，并非只能操作 3 次。额度用完后，已有任务仍可继续记录复苏、传代和冻存。</span><span data-copy="ja">Mobile Freeでは累計3件のCell Trackタスクを作成できます。継代などの操作が3回に制限されるわけではなく、既存タスクには引き続き記録できます。</span></p>
+          <p><span data-copy="en">Your existing research records remain readable and exportable after Pro expires. Local-network sync is manual, not cloud sync. AI model API charges are separate when using your own key.</span><span data-copy="zh">Pro 到期后，已有科研数据仍可查看和导出。当前同步为局域网手动同步，而非云同步。自备 AI API Key 的第三方模型费用另计。</span><span data-copy="ja">Pro終了後も既存の研究記録は閲覧・エクスポートできます。同期はクラウドではなくLAN手動同期です。AIのAPI料金は別途発生します。</span></p>
+          <p class="pasero-pricing-disclaimer"><span data-copy="en">Plans shown are proposed pricing; purchasing is not yet enabled on this page.</span><span data-copy="zh">本页为计划中的套餐展示，尚未开放在线购买。</span><span data-copy="ja">表示価格は予定プランです。このページからの購入はまだできません。</span></p>
         </div>
       </section>
 
@@ -192,5 +212,6 @@
 
     <footer class="campaign-footer"><img src="assests/real-logo-cut.png" alt="Pasero" /><span><span data-copy="en">Be simple, be real, keep cool</span><span data-copy="zh">简单，真实，保持冷静</span><span data-copy="ja">シンプルに、正直に、クールに</span></span><a href="#top"><span data-copy="en">Back to top ↑</span><span data-copy="zh">返回顶部 ↑</span><span data-copy="ja">ページ上部へ ↑</span></a></footer>
     <script src="script.js?v=2"></script>
+    <script src="pricing.js?v=1"></script>
   </body>
 </html>
