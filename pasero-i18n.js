@@ -8,7 +8,7 @@ var lang='en', processing=false;
 var originals=new WeakMap(), lastTranslations=new WeakMap();
 function loadSaved(){try{var v=localStorage.getItem(KEY);return v==='zh'||v==='ja'?v:'en';}catch(e){return 'en';}}
 function store(v){try{localStorage.setItem(KEY,v);}catch(e){}}
-function stripChineseTerminalStop(text){return text.replace(/。(?=\\s*$)/u,'');}
+function stripChineseTerminalStop(text){return text.replace(/。(?=\s*$)/u,'');}
 function trimChineseRenderedTerminals(){
  // Only terminal Chinese full stops, never internal sentence punctuation.
  const tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
@@ -16,13 +16,13 @@ function trimChineseRenderedTerminals(){
   const node=tw.currentNode, parent=node.parentElement;
   if(!parent||parent.closest('script,style,pre,code,svg,[data-story-content="en"]'))continue;
   const text=node.nodeValue;
-  if(!/。\\s*$/u.test(text))continue;
+  if(!/。\s*$/u.test(text))continue;
   // Remove only at the end of an actual prose block, never internal sentences.
   const block=parent.closest('p,h1,h2,h3,h4,li,figcaption,.real-caption,.story-excerpt,.description,.summary,.panel-desc,.explorer-footer,.sync-explain-text');
   if(!block)continue;
   let next=node.nextSibling,remaining=false;
   while(next){if((next.textContent||'').trim()){remaining=true;break;}next=next.nextSibling;}
-  if(!remaining)node.nodeValue=text.replace(/。(?=\\s*$)/u,'');
+  if(!remaining)node.nodeValue=text.replace(/。(?=\s*$)/u,'');
  }
 }
 function translateText(node){
