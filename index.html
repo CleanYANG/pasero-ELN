@@ -650,6 +650,31 @@
  #desktop-explorer .explorer-footer{font-size:24px;line-height:1.5}
  #desktop-explorer .explorer-footer b{font-size:24px;font-weight:700}
 }
+
+/* Make language switching accessible on phones without changing the nav font sizing. */
+@media(max-width:800px){
+ .header .actions .lang{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:none!important;
+  font-size:12px!important;
+  line-height:1.1!important;
+  min-width:32px;
+  padding:5px 3px!important;
+  border:1px solid #bdcfc2!important;
+  border-radius:12px;
+  color:#31503a!important;
+  background:transparent!important;
+  white-space:nowrap;
+ }
+ .header .actions{gap:5px!important}
+}
+@media(max-width:360px){.header .actions .lang{font-size:11px!important;min-width:29px;padding:4px 2px!important}}
+html[lang="zh-CN"] .hero h1,html[lang="zh-CN"] .explorer-title,html[lang="zh-CN"] .mobile-headline{
+ letter-spacing:-.035em!important;
+ line-height:1.15!important;
+}
 </style>
 </head>
 <body>
