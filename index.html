@@ -497,11 +497,11 @@
    <div class="feature-tabs" id="feature-tabs" role="tablist" aria-label="Desktop features"></div>
    <div class="feature-showcase" id="feature-panel" role="tabpanel" aria-live="polite">
     <div class="showcase-top"><span>PASERO / DESKTOP</span><span class="top-state" id="feature-status">01 · NOTES</span></div>
-    <div class="image-stage" id="feature-media"><div class="stage-loading">Loading Pasero product preview…</div></div>
+    <div class="image-stage" id="feature-media"><div class="stage-loading">Loading feature…</div></div>
     <div class="showcase-bottom"><div><div class="panel-index" id="panel-index">FEATURE 01 / 06</div><h3 class="panel-title" id="panel-title">Notes</h3><p class="panel-desc" id="panel-desc"></p><div class="panel-tags" id="panel-tags"></div></div><a class="feature-link" id="feature-link" href="#" target="_blank" rel="noopener">Explore feature <span aria-hidden="true">↗︎</span></a></div>
    </div>
   </div>
-  <div class="explorer-footer"><span><b>Six areas. One connected workspace.</b> Pick a category to explore its real Pasero preview.</span><span>Preview assets from <a href="https://cleanyang.github.io/pasero-ELN/" target="_blank" rel="noopener">existing Pasero website ↗︎</a></span></div>
+  <div class="explorer-footer"><span><b>Six areas. One connected workspace.</b> Explore each tool and see how it fits into your research.</span></div>
  </div>
 </section>
 <section class="mobile-story mobile-white" id="mobile-story" aria-label="Pasero Mobile and desktop workflow">
@@ -601,7 +601,7 @@ features.forEach((f,i)=>{const btn=document.createElement('button');btn.type='bu
 function setFeature(i){selected=i;const f=features[i];[...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
  const m=document.createElement(f.type==='video'?'video':'img');m.src=ASSETS+encodeURIComponent(f.media);if(f.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
  m.addEventListener('error',()=>{media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Open the original feature page to view it.';media.appendChild(warn)});
- media.replaceChildren(m);const caption=document.createElement('span');caption.className='stage-note';caption.textContent=f.note;media.appendChild(caption);
+ media.replaceChildren(m);
  document.getElementById('feature-status').textContent=`0${i+1} · ${f.label.toUpperCase()}`;document.getElementById('panel-index').textContent=`FEATURE 0${i+1} / 06`;document.getElementById('panel-title').textContent=f.title;document.getElementById('panel-desc').textContent=f.desc;document.getElementById('panel-tags').innerHTML=f.tags.map(t=>`<span>${t}</span>`).join('');document.getElementById('feature-link').href=SITE+f.link;
 }
 setFeature(0);
