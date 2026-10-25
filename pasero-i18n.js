@@ -6,7 +6,7 @@ Object.assign(translations,{"Research moves.":"研究不止于案头。","Keep t
 var KEY='coolab-language';
 var lang='en', processing=false;
 var originals=new WeakMap(), lastTranslations=new WeakMap();
-function loadSaved(){try{return localStorage.getItem(KEY)==='zh'?'zh':'en';}catch(e){return 'en';}}
+function loadSaved(){try{var v=localStorage.getItem(KEY);return v==='zh'||v==='ja'?v:'en';}catch(e){return 'en';}}
 function store(v){try{localStorage.setItem(KEY,v);}catch(e){}}
 function translateText(node){
  if(!node||!node.parentElement||node.parentElement.closest('script,style,pre,code,svg,[data-copy],[data-story-content],[data-en][data-zh]'))return;
@@ -40,11 +40,11 @@ function translateAll(){
    btn.setAttribute('aria-label',lang==='zh'?'Switch to English':'切换至中文');
   });
   if(document.body){document.body.dataset.paseroLanguage=lang;if(document.body.hasAttribute('data-language'))document.body.dataset.language=lang;}
-  document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+  document.documentElement.lang=lang==='zh'?'zh-CN':lang==='ja'?'ja':'en';
  }finally{processing=false;}
 }
 function setLang(next){
- lang=next==='zh'?'zh':'en';store(lang);translateAll();
+ lang=(next==='zh'||next==='ja')?next:'en';store(lang);translateAll();
  if(document.getElementById('story-read')){
   var storyBtn=document.querySelector('[data-story-lang="'+lang+'"]');
   if(storyBtn&&!storyBtn.classList.contains('selected'))storyBtn.click();
@@ -52,7 +52,7 @@ function setLang(next){
 }
 document.addEventListener('click',function(ev){
  var langOption=ev.target.closest && ev.target.closest('[data-language-option]');
- if(langOption){var choice=langOption.getAttribute('data-language-option');if(choice==='zh'||choice==='en'){lang=choice;store(choice);Promise.resolve().then(translateAll);}return;}
+ if(langOption){var choice=langOption.getAttribute('data-language-option');if(choice==='zh'||choice==='en'||choice==='ja'){lang=choice;store(choice);Promise.resolve().then(translateAll);}return;}
  var btn=ev.target.closest && ev.target.closest('#language,.site-lang-switch');
  if(!btn)return;
  ev.preventDefault();ev.stopImmediatePropagation();setLang(lang==='zh'?'en':'zh');
