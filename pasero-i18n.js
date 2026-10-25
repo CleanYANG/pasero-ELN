@@ -102,10 +102,17 @@ document.addEventListener('keydown',function(ev){
 },true);
 lang=loadSaved();
 setLang(lang);
+/* Batch dynamic translations once per animation frame; never observe our own writes. */
 var pending=false;
 var obs=new MutationObserver(function(){
  if(processing||lang!=='zh'||pending)return;
- pending=true;Promise.resolve().then(function(){pending=false;translateAll();});
+ pending=true;
+ window.requestAnimationFrame(function(){
+  pending=false;
+  obs.disconnect();
+  try{if(lang==='zh')translateAll();}
+  finally{obs.observe(document.body,{childList:true,characterData:true,subtree:true});}
+ });
 });
 obs.observe(document.body,{childList:true,characterData:true,subtree:true});
 window.PaseroI18n={getLanguage:function(){return lang;},setLanguage:setLang};
