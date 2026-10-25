@@ -16,3 +16,16 @@ header:not(.header) .pasero-lang-options{left:0;right:auto}
  .pasero-lang-options{min-width:152px;top:calc(100% + 9px)}
  .pasero-lang-options button{font-size:13px;padding:10px 12px}
 }
+
+/* Give the navigation links and the globe selector distinct breathing room. */
+.header .actions{margin-left:clamp(18px,2.5vw,32px)!important}
+.navlinks>.pasero-lang-picker{margin-right:clamp(10px,1.7vw,20px)!important}
+@media(max-width:800px){
+ .header .actions{margin-left:14px!important}
+ .header .nav{min-width:0!important}
+ .navlinks>.pasero-lang-picker{margin-right:10px!important}
+}
+@media(max-width:370px){
+ .header .actions{margin-left:10px!important}
+ .navlinks>.pasero-lang-picker{margin-right:7px!important}
+}
