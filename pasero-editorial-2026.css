@@ -9,16 +9,8 @@
      url('https://raw.githubusercontent.com/deepin-community/fonts-smiley-sans/master/SmileySans-Oblique.ttf.woff2') format('woff2');
 }
 .zh-hero-subheading{display:none}
-/* Chinese-only editorial hero, without affecting the English typography. */
-html[lang="zh-CN"] .hero{
- min-height:calc(100svh - 86px)!important;
- grid-template-columns:minmax(0,43%) minmax(0,57%)!important;
- padding:7vh 5.7vw 9vh 6.2vw!important;
- align-items:center!important;
- gap:2%!important;
- overflow:hidden!important;
- background:radial-gradient(ellipse at 83% 52%,#f0eafa 0%,transparent 35%),linear-gradient(110deg,#f3f8f0,#fcfcf9 75%);
-}
+/* B1 applies only to Chinese hero text; existing hero illustration and its positioning are unchanged. */
+
 html[lang="zh-CN"] .hero .copy{max-width:560px!important;padding-right:15px!important;margin:0!important}
 html[lang="zh-CN"] .hero .copy .hero-bird-logo{
  width:206px!important;max-width:75%!important;max-height:110px!important;
@@ -59,43 +51,6 @@ html[lang="zh-CN"] .hero .trust{
  margin-top:39px!important;gap:14px!important;
  font:500 11px/1.6 'Noto Sans SC',sans-serif!important;color:#879486!important;
 }
-html[lang="zh-CN"] .hero .stage{
- height:610px!important;width:100%!important;max-width:850px!important;
- transform:none!important;margin:0!important;overflow:visible!important;
-}
-html[lang="zh-CN"] .hero .stage .blob{
- inset:6% 2% 5% 2%!important;transform:none!important;animation:none!important;
- border-radius:50%!important;filter:none!important;
- background:radial-gradient(circle at 35% 30%,#dcebd9 0%,#e7efe5 43%,#e8def4 80%,#f4eff9 100%)!important;
- opacity:.86!important;
-}
-html[lang="zh-CN"] .hero .stage .grain,
-html[lang="zh-CN"] .hero .stage .scribble,
-html[lang="zh-CN"] .hero .stage .star,
-html[lang="zh-CN"] .hero .stage .visual-label,
-html[lang="zh-CN"] .hero .stage .connections,
-html[lang="zh-CN"] .hero .stage .orbit.two,
-html[lang="zh-CN"] .hero .stage .record .real-caption{display:none!important}
-html[lang="zh-CN"] .hero .stage .orbit{inset:11% 2% auto 2%!important;width:96%!important;height:79%!important;border-radius:50%!important;transform:rotate(-15deg)!important}
-html[lang="zh-CN"] .hero .stage .record{
- top:25%!important;left:8%!important;width:84%!important;max-width:750px!important;
- min-width:0!important;transform:rotate(-1.7deg)!important;
- padding:8px!important;border:1px solid #dce8da!important;
- box-shadow:0 32px 70px #3d594529!important;
-}
-html[lang="zh-CN"] .hero .stage .node{display:none!important}
-html[lang="zh-CN"] .hero .stage .node.cells,
-html[lang="zh-CN"] .hero .stage .node.analysis{
- display:flex!important;width:auto!important;min-width:148px!important;max-width:32%!important;
- padding:12px 15px!important;border-radius:11px!important;
- box-shadow:0 10px 28px #354e3e17!important;
-}
-html[lang="zh-CN"] .hero .stage .node.cells{top:12%!important;left:1%!important;right:auto!important;bottom:auto!important}
-html[lang="zh-CN"] .hero .stage .node.analysis{top:auto!important;left:auto!important;right:2%!important;bottom:13%!important}
-html[lang="zh-CN"] .hero .stage .node strong{font:700 13px/1.3 'Space Grotesk','Noto Sans SC',sans-serif!important}
-html[lang="zh-CN"] .hero .stage .node small{display:block!important;font:400 10px/1.4 'Space Grotesk',sans-serif!important}
-html[lang="zh-CN"] .hero .stage .node-symbol{display:none!important}
-
 /* Pricing: faithful to selected dark editorial demo. */
 #pricing.pricing-chapter{
  --p-bg:#121b15;--p-ink:#f3f6ef;--p-muted:#a7b7a9;--p-card:#1b2820;--p-line:#36463a;
@@ -221,10 +176,7 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
 
 /* Mobile: maintain a comfortable card reading width, not compressed columns. */
 @media(max-width:800px){
- html[lang="zh-CN"] .hero{
-  display:flex!important;flex-direction:column!important;align-items:stretch!important;
-  min-height:0!important;padding:36px 5vw 38px!important;gap:10px!important;
- }
+ 
  html[lang="zh-CN"] .hero .copy{max-width:none!important;padding:0!important}
  html[lang="zh-CN"] .hero .copy .hero-bird-logo{
   width:195px!important;max-height:102px!important;margin:0 0 38px -7px!important;
@@ -239,21 +191,6 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
  html[lang="zh-CN"] .hero .cta{margin-top:29px!important;gap:16px!important}
  html[lang="zh-CN"] .hero .cta a.primary{padding:14px 18px!important}
  html[lang="zh-CN"] .hero .trust{margin-top:30px!important;gap:11px!important;font-size:11px!important}
- html[lang="zh-CN"] .hero .stage{
-  height:clamp(286px,84vw,470px)!important;width:100%!important;max-width:none!important;
-  margin:10px auto 4px!important;transform:none!important;overflow:hidden!important;
- }
- html[lang="zh-CN"] .hero .stage .blob{inset:4% 1% 2%!important}
- html[lang="zh-CN"] .hero .stage .record{top:25%!important;left:6%!important;width:88%!important;max-width:none!important;padding:5px!important}
- html[lang="zh-CN"] .hero .stage .node.cells,
- html[lang="zh-CN"] .hero .stage .node.analysis{
-  width:auto!important;min-width:0!important;max-width:34%!important;
-  padding:7px 10px!important;gap:0!important;border-radius:9px!important;
- }
- html[lang="zh-CN"] .hero .stage .node strong{font-size:clamp(9px,2.65vw,11px)!important}
- html[lang="zh-CN"] .hero .stage .node small{display:none!important}
- html[lang="zh-CN"] .hero .stage .node.cells{top:10%!important;left:1%!important}
- html[lang="zh-CN"] .hero .stage .node.analysis{bottom:10%!important;right:1%!important;top:auto!important}
  #pricing.pricing-chapter{padding:69px 5vw 79px!important}
  #pricing .pricing-intro{display:block!important;margin-bottom:32px!important}
  #pricing .pricing-intro h2{font-size:clamp(42px,9vw,57px)!important;margin-bottom:21px!important}
