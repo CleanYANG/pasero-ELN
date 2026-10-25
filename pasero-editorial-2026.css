@@ -189,3 +189,74 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
  #pricing .plan{padding:25px 20px!important}
  #pricing .plan .amount{font-size:50px!important}
 }
+
+
+/* 2026-10-25 — Chinese-only editorial typography for chapters 02, 03 and 05.
+   No changes to images, cards, screen positions, backgrounds or English layout. */
+html[lang="zh-CN"] #desktop-explorer .explorer-title,
+html[lang="zh-CN"] #mobile-story .mobile-headline,
+html[lang="zh-CN"] #story .story-heading h2,
+html[lang="zh-CN"] #story .story-excerpt h3{
+ font-family:'Pasero Smiley','Noto Sans SC',sans-serif!important;
+ font-style:normal!important;font-weight:400!important;
+ letter-spacing:0!important;text-wrap:pretty;
+}
+html[lang="zh-CN"] #desktop-explorer .explorer-title{
+ font-size:clamp(37px,4vw,56px)!important;line-height:1.32!important;
+ max-width:100%!important;margin-bottom:19px!important;
+}
+html[lang="zh-CN"] #desktop-explorer .explorer-lead{
+ font-family:'Noto Sans SC',sans-serif!important;line-height:1.85!important;
+ max-width:620px!important;margin-top:0!important;margin-bottom:48px!important;
+}
+html[lang="zh-CN"] #mobile-story .mobile-headline{
+ font-size:clamp(37px,4.1vw,58px)!important;line-height:1.32!important;
+ max-width:none!important;margin-bottom:0!important;
+}
+html[lang="zh-CN"] #mobile-story .mobile-side-intro p{
+ font-family:'Noto Sans SC',sans-serif!important;line-height:1.85!important;
+}
+html[lang="zh-CN"] #story .story-heading h2{
+ font-size:clamp(37px,4.3vw,62px)!important;line-height:1.35!important;
+ max-width:none!important;margin:28px 0 24px!important;
+}
+html[lang="zh-CN"] #story .story-heading{max-width:1120px!important}
+html[lang="zh-CN"] #story .story-summary{
+ font-family:'Noto Sans SC',sans-serif!important;font-size:16px!important;
+ line-height:1.85!important;max-width:620px!important;
+}
+html[lang="zh-CN"] #story .story-excerpt h3{
+ font-size:clamp(28px,3vw,43px)!important;line-height:1.54!important;
+ margin:24px 0!important;overflow-wrap:anywhere;
+}
+html[lang="zh-CN"] #story .story-excerpt p,
+html[lang="zh-CN"] #story .story-full p{
+ font-family:'Noto Sans SC',sans-serif!important;line-height:1.9!important;
+}
+html[lang="zh-CN"] #story .story-full h3{font-family:'Noto Sans SC',sans-serif!important}
+html[lang="zh-CN"] #desktop-explorer .section-kicker,
+html[lang="zh-CN"] #mobile-story .mobile-kicker,
+html[lang="zh-CN"] #story .story-topline{
+ font-family:'Noto Sans SC',sans-serif!important;letter-spacing:.04em!important;
+}
+/* Mobile language toggle: always visibly available on the home page. */
+@media(max-width:800px){
+ .header{justify-content:space-between!important;gap:4px!important;padding:0 3vw!important}
+ .header .nav{flex:1 1 auto!important;min-width:0!important;gap:clamp(7px,1.8vw,12px)!important}
+ .header .actions{flex:0 0 auto!important;margin-left:4px!important;gap:5px!important}
+ .header .pasero-lang-picker{display:inline-flex!important;visibility:visible!important;opacity:1!important;flex:0 0 auto!important}
+ .header .pasero-lang-trigger{display:inline-grid!important;visibility:visible!important;opacity:1!important;width:34px!important;height:34px!important}
+ .header .download{padding:9px 10px!important;font-size:clamp(10px,2.75vw,12px)!important}
+ html[lang="zh-CN"] #desktop-explorer .explorer-title{font-size:clamp(30px,7vw,43px)!important;line-height:1.35!important}
+ html[lang="zh-CN"] #mobile-story .mobile-headline{font-size:clamp(30px,7vw,43px)!important;line-height:1.35!important}
+ html[lang="zh-CN"] #story .story-heading h2{font-size:clamp(30px,7.4vw,45px)!important;line-height:1.4!important}
+ html[lang="zh-CN"] #story .story-excerpt h3{font-size:clamp(27px,6.5vw,38px)!important;line-height:1.55!important}
+ html[lang="zh-CN"] #desktop-explorer .explorer-lead{margin-bottom:34px!important}
+}
+@media(max-width:390px){
+ .header .nav{gap:5px!important}
+ .header .nav a{font-size:11px!important}
+ .header .actions{gap:3px!important}
+ .header .pasero-lang-trigger{width:31px!important;height:31px!important}
+ .header .download{padding:9px 7px!important;font-size:10px!important}
+}
