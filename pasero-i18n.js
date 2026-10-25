@@ -22,7 +22,7 @@ function translateAll(){
  try{
   document.querySelectorAll('[data-en][data-zh]').forEach(function(el){
    var v=el.getAttribute(lang==='zh'?'data-zh':'data-en');
-   if(el.tagName==='H1') {if(el.innerHTML!==v)el.innerHTML=v;}
+   if(el.tagName==='H1'||(el.tagName==='H2'&&v.indexOf('<br>')!==-1)) {if(el.innerHTML!==v)el.innerHTML=v;}
    else if(el.textContent!==v)el.textContent=v;
   });
   var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
