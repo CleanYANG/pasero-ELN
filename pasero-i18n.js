@@ -39,7 +39,7 @@ function translateAll(){
    btn.textContent=lang==='zh'?'EN':'中文';
    btn.setAttribute('aria-label',lang==='zh'?'Switch to English':'切换至中文');
   });
-  if(document.body){document.body.dataset.paseroLanguage=lang;}
+  if(document.body){document.body.dataset.paseroLanguage=lang;if(document.body.hasAttribute('data-language'))document.body.dataset.language=lang;}
   document.documentElement.lang=lang==='zh'?'zh-CN':'en';
  }finally{processing=false;}
 }
@@ -51,6 +51,8 @@ function setLang(next){
  }
 }
 document.addEventListener('click',function(ev){
+ var langOption=ev.target.closest && ev.target.closest('[data-language-option]');
+ if(langOption){var choice=langOption.getAttribute('data-language-option');if(choice==='zh'||choice==='en'){lang=choice;store(choice);Promise.resolve().then(translateAll);}return;}
  var btn=ev.target.closest && ev.target.closest('#language,.site-lang-switch');
  if(!btn)return;
  ev.preventDefault();ev.stopImmediatePropagation();setLang(lang==='zh'?'en':'zh');
