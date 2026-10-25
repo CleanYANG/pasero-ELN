@@ -367,13 +367,85 @@
  .header .download{font-size:10px!important;padding:9px 9px!important}
  .hero .stage{height:235px!important}
 }
+
+/* 2026-10-25: Approved layout refinements / all viewport widths */
+/* Hero: replace the fictional central app with an actual Pasero Desktop screenshot,
+   while keeping the gradient blob, orbit rings, connection lines, and linked tool cards. */
+.hero .stage .hero-real-desktop{display:none!important}
+.hero .stage .record{display:block!important;top:28%;left:12%;width:76%;min-width:0;max-width:640px;height:auto;border-radius:14px;background:#fff;box-shadow:0 26px 66px rgba(36,65,46,.22);transform:rotate(-2deg);overflow:hidden;z-index:2}
+.hero .stage .record:hover{transform:rotate(-1deg) translateY(-4px)}
+.hero .stage .real-desktop-shot{display:block;width:100%;height:auto;object-fit:contain;filter:none}
+.hero .stage .real-caption{padding:10px 14px;font:600 12px/1.45 'DM Sans',Arial,sans-serif;color:#5c4b86;background:#fff}
+.hero .stage .node{display:flex;min-width:155px}
+.hero .stage .node-symbol{font:700 12px/1 'Space Grotesk',sans-serif;color:#5e4a84;background:#eee7fa}
+.hero .stage .node.dashboard{top:5%;left:1%}
+.hero .stage .node.cells{top:18%;left:0}
+.hero .stage .node.analysis{top:8%;right:1%}
+.hero .stage .node.plasmids{top:29%;right:-2%}
+.hero .stage .node.reagents{top:49%;left:0}
+.hero .stage .node.results{bottom:9%;left:10%}
+.hero .stage .node.presentations{bottom:7%;right:0}
+/* Desktop second chapter: six horizontally aligned tabs ABOVE the full-width preview. */
+#desktop-explorer .feature-layout{display:flex!important;flex-direction:column!important;gap:22px!important;min-height:0!important}
+#desktop-explorer .feature-tabs{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:9px!important;border-top:0!important;overflow:visible!important}
+#desktop-explorer .feature-tab{width:auto!important;min-width:0!important;min-height:97px;padding:15px 12px!important;border:1px solid #dbe4dc;border-radius:12px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:2px;text-align:left}
+#desktop-explorer .feature-tab[aria-selected=true]{background:#eee8f8;border-color:#cabbdf}
+#desktop-explorer .feature-tab .number{display:block;font-size:11px;margin:0}
+#desktop-explorer .feature-tab strong{font-size:clamp(14px,1.33vw,20px);line-height:1.15}
+#desktop-explorer .feature-tab small{font-size:11px;line-height:1.4;white-space:normal}
+#desktop-explorer .feature-tab .arrow{display:none}
+#desktop-explorer .feature-showcase{width:100%;min-height:0}
+#desktop-explorer .image-stage{height:clamp(260px,39vw,490px);min-height:0}
+#desktop-explorer .image-stage img,#desktop-explorer .image-stage video{max-height:100%}
+/* Third chapter: only the real Mobile screenshot, also on desktop browsers. */
+#mobile-story .editorial-stage{display:flex!important;justify-content:center!important;align-items:center!important;min-height:570px!important;margin-top:54px!important;overflow:visible}
+#mobile-story .editorial-phone{position:relative!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;width:min(310px,75%)!important;max-width:310px!important;margin:0 auto!important;transform:none!important}
+#mobile-story .editorial-phone img{width:100%;height:auto;max-height:515px;object-fit:contain;border-radius:17px}
+#mobile-story .editorial-stage:before{width:63%;left:18%;top:5%;height:90%}
+#mobile-story .editorial-desktop,#mobile-story .desktop-index,#mobile-story .editorial-thread,#mobile-story .editorial-annotation{display:none!important}
+@media(max-width:960px){
+ #desktop-explorer .feature-tabs{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #desktop-explorer .feature-tab{min-height:81px}
+}
+@media(max-width:800px){
+ .hero .stage{position:relative!important;display:block!important;width:100%!important;max-width:none!important;height:clamp(335px,92vw,435px)!important;transform:none!important;margin:14px auto 16px!important;overflow:visible!important}
+ .hero .stage .blob{inset:5% 0 2% 0!important}
+ .hero .stage .record{display:block!important;top:34%!important;left:6%!important;width:88%!important;max-width:none!important;min-width:0!important;transform:rotate(-1.4deg)!important}
+ .hero .stage .real-caption{font-size:10px;padding:6px 9px}
+ .hero .stage .node{display:flex!important;min-width:0!important;padding:8px 9px!important;gap:6px!important;border-radius:9px;box-shadow:0 5px 17px rgba(47,72,52,.15);transform:none!important;white-space:nowrap}
+ .hero .stage .node strong{font-size:clamp(10px,2.9vw,13px)!important;margin:0!important;line-height:1.2}
+ .hero .stage .node small{display:none!important}
+ .hero .stage .node-symbol{font-size:10px!important;width:25px!important;height:25px!important;border-radius:6px}
+ .hero .stage .node.dashboard{top:4%!important;left:1%!important;right:auto!important;bottom:auto!important}
+ .hero .stage .node.cells{top:4%!important;left:36%!important;right:auto!important;bottom:auto!important}
+ .hero .stage .node.analysis{top:4%!important;right:0!important;left:auto!important;bottom:auto!important}
+ .hero .stage .node.plasmids{top:28%!important;left:0!important;right:auto!important;bottom:auto!important}
+ .hero .stage .node.reagents{top:28%!important;right:0!important;left:auto!important;bottom:auto!important}
+ .hero .stage .node.results{bottom:6%!important;left:4%!important;top:auto!important;right:auto!important}
+ .hero .stage .node.presentations{bottom:6%!important;right:4%!important;top:auto!important;left:auto!important}
+ .hero .stage .scribble{display:none!important}
+ .hero .stage .star{display:block!important;right:8%;bottom:14%;font-size:36px}
+ .hero .stage .connections{display:block!important;opacity:.42;z-index:1}
+ #desktop-explorer .feature-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px}
+ #desktop-explorer .feature-tab{width:clamp(135px,39vw,180px)!important;min-width:135px!important;flex:0 0 auto!important;min-height:80px!important;scroll-snap-align:start}
+ #desktop-explorer .feature-tab strong{font-size:16px!important}
+ #desktop-explorer .image-stage{height:clamp(180px,59vw,290px)!important}
+ #mobile-story .editorial-stage{min-height:430px!important;margin-top:30px!important}
+ #mobile-story .editorial-phone{width:min(75%,270px)!important}
+ #mobile-story .editorial-phone img{max-height:420px!important}
+}
+@media(max-width:390px){
+ .hero .stage{height:340px!important;margin-bottom:4px!important}
+ .hero .stage .node{padding:6px!important}
+ .hero .stage .node strong{font-size:10px!important}
+ .hero .stage .node-symbol{width:21px!important;height:21px!important;font-size:9px!important}
+}
 </style>
 </head>
 <body>
 <header class="header"><nav class="nav" aria-label="Main"><a href="#desktop-explorer">Desktop</a><a href="#mobile-story">Mobile</a><a href="#pricing">Pricing</a></nav><div class="actions"><button class="lang" id="language" type="button" title="Switch English/Chinese">EN ↔︎ 中文</button><a class="download" href="download.html">Download ↗︎</a></div></header>
 <main><section class="hero" aria-label="Pasero hero"><div class="copy"><img class="hero-bird-logo" src="assests/全logo-透明.png" alt="Pasero logo"><div class="eyebrow"><span class="dot"></span><span data-en="MADE FOR MOLECULAR BIOLOGY" data-zh="为分子生物学研究而设计">MADE FOR MOLECULAR BIOLOGY</span></div><h1 data-en="Your research,<br><em>finally connected.</em>" data-zh="让科研，<br><em>连接起来。</em>">Your research,<br><em>finally connected.</em></h1><p class="description" data-en="Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps." data-zh="认识 Pasero：将实验笔记、研究材料、数据分析和实验结果组织在一起。不再散落于不同工具，重要关联触手可及。">Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps.</p><div class="cta"><a class="primary" href="download.html" data-en="Download Pasero ↗︎" data-zh="下载 Pasero ↗︎">Download Pasero ↗︎</a><a class="secondary" href="#desktop-explorer" data-en="See how it works ↘" data-zh="了解工作流程 ↘">See how it works ↘</a></div><div class="trust"><span data-en="No account" data-zh="无需账号">No account</span><i></i><span data-en="Local-first" data-zh="本地优先">Local-first</span><i></i><span data-en="Desktop + mobile" data-zh="桌面端与移动端">Desktop + mobile</span></div></div>
-<div class="stage" id="stage" aria-label="Pasero desktop preview"><div class="hero-real-desktop"><img src="assests/desktop-homepage.png" alt="Pasero Desktop actual software screenshot"></div><div class="blob"></div><div class="grain"></div><div class="orbit"></div><div class="orbit two"></div><div class="scribble">One experiment.<br>So many connections.<svg width="85" height="33" viewBox="0 0 85 33" fill="none"><path d="M2 3C26 26 48 31 80 15m0 0-10 1m10-1-5 10" stroke="#492D55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><svg class="connections" id="connections" aria-hidden="true"></svg><div class="record" id="record"><div class="record-top"><i class="traffic"></i><i class="traffic"></i><i class="traffic"></i><div class="top-title">Pasero / Experiment workspace</div></div><div class="record-body"><div class="sidebar"><div class="mini-logo"><img src="assests/real-logo-cut.png" alt="Pasero logo"></div><div class="menu-item selected">✎ &nbsp; Notes</div><div class="menu-item">◫ &nbsp; Resources</div><div class="menu-item">⌁ &nbsp; Data Analysis</div><div class="menu-item">▤ &nbsp; Literature</div><div class="menu-item">▣ &nbsp; Presentations</div></div><div class="body-main"><div class="breadcrumb">Notebook &nbsp;/&nbsp; Experiments &nbsp;/&nbsp; 024</div><h3>Experiment #024</h3><div class="sub">Cell transfection &amp; expression analysis</div><div class="pills"><span class="pill">HEK293T</span><span class="pill">Transfection</span><span class="pill">Western blot</span></div><h4>Experimental procedure</h4><div class="rows"><div><span class="check on"></span>Seed HEK293T cells</div><div><span class="check on"></span>Prepare plasmid mixture</div><div><span class="check"></span>Transfect cells</div><div><span class="check"></span>Analyze protein expression</div></div><div class="record-foot"><div class="status">Saved locally</div><b id="context">Linked research resources ↗︎</b></div></div></div></div>
-<button class="node cells" data-label="Notes · Experiment #024" style="--r:-7deg"><span class="node-symbol">✎︎</span><span><strong>Notes</strong><small>Experiment #024</small></span></button><button class="node plasmids" data-label="Plasmids · pEGFP-N1" style="--r:7deg"><span class="node-symbol">⌁︎</span><span><strong>Plasmids</strong><small>pEGFP-N1</small></span></button><button class="node reagents" data-label="Resources · HEK293T / Reagents" style="--r:5deg"><span class="node-symbol">◉︎</span><span><strong>Resources</strong><small>Cells · Reagents</small></span></button><button class="node analysis" data-label="Data Analysis · Western blot" style="--r:-6deg"><span class="node-symbol">▥︎</span><span><strong>Data Analysis</strong><small>Western blot</small></span></button><button class="node results" data-label="Literature · Linked papers" style="--r:4deg"><span class="node-symbol">▤︎</span><span><strong>Literature</strong><small>Linked references</small></span></button><button class="node presentations" data-label="Presentations · Research outputs" style="--r:-4deg"><span class="node-symbol">▣︎</span><span><strong>Presentations</strong><small>Research outputs</small></span></button><div class="star" aria-hidden="true">✳︎</div><div class="visual-label">A DIFFERENT KIND OF RESEARCH SPACE / 01</div></div></section>
+<div class="stage" id="stage" aria-label="Pasero desktop preview"><div class="blob"></div><div class="grain"></div><div class="orbit"></div><div class="orbit two"></div><div class="scribble">One experiment.<br>So many connections.<svg width="85" height="33" viewBox="0 0 85 33" fill="none"><path d="M2 3C26 26 48 31 80 15m0 0-10 1m10-1-5 10" stroke="#492D55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><svg class="connections" id="connections" aria-hidden="true"></svg><div class="record" id="record"><img class="real-desktop-shot" src="assests/desktop-homepage.png" alt="Actual Pasero Desktop Dashboard screenshot"><div class="real-caption" id="context">One experiment. Connected research tools.</div></div><button class="node dashboard" type="button" data-label="Dashboard · Workspace overview"><span class="node-symbol">01</span><span><strong>Dashboard</strong><small>Workspace overview</small></span></button><button class="node cells" type="button" data-label="Notes · Experiment #024"><span class="node-symbol">02</span><span><strong>Notes</strong><small>Experiment #024</small></span></button><button class="node analysis" type="button" data-label="Data Analysis · Statistics & charts"><span class="node-symbol">03</span><span><strong>Data Analysis</strong><small>Statistics & charts</small></span></button><button class="node plasmids" type="button" data-label="Plasmid · Sequence tools"><span class="node-symbol">04</span><span><strong>Plasmid</strong><small>Sequence tools</small></span></button><button class="node reagents" type="button" data-label="Database · Cells · Reagents"><span class="node-symbol">05</span><span><strong>Database</strong><small>Cells · Reagents</small></span></button><button class="node results" type="button" data-label="Literature · Linked papers"><span class="node-symbol">06</span><span><strong>Literature</strong><small>Linked papers</small></span></button><button class="node presentations" type="button" data-label="Presentation · Research outputs"><span class="node-symbol">07</span><span><strong>Presentation</strong><small>Research outputs</small></span></button><div class="star" aria-hidden="true">✳︎</div><div class="visual-label">A DIFFERENT KIND OF RESEARCH SPACE / 01</div></div></section>
 
 <section id="desktop-explorer" class="explorer" aria-label="Pasero Desktop feature explorer">
  <div class="explorer-wrap">
@@ -396,20 +468,11 @@
   <div class="mobile-kicker">03 &nbsp;/&nbsp; PASERO MOBILE</div>
   <div class="mobile-title-row"><h2 class="mobile-headline">At your bench.<br><em>Back at your desk.</em></h2><div class="mobile-side-intro"><span class="side-line"></span><p>Capture what happens at the bench. Pick up the same research on your desktop.</p></div></div>
   <div class="editorial-stage">
-    <div class="editorial-index">01 &nbsp; / &nbsp; ON THE BENCH</div>
     <figure class="editorial-phone">
       <div class="phone-shadow"></div>
-      <img src="https://cleanyang.github.io/pasero-ELN/assests/moblie-首页-1.png" alt="Pasero Mobile real home screenshot" data-real-shot="mobile" loading="lazy"/>
+      <img src="assests/moblie-首页-1.png" alt="Actual Pasero Mobile interface" data-real-shot="mobile" loading="lazy"/>
       <figcaption>Pasero Mobile <span>Quick note · Materials · Cell Track</span></figcaption>
     </figure>
-    <div class="editorial-thread" aria-hidden="true"><svg viewBox="0 0 600 220"><path d="M4 174C130 174 136 30 283 70S464 142 596 20"/><circle cx="283" cy="70" r="5"/><circle cx="596" cy="20" r="5"/></svg></div>
-
-    <div class="editorial-index desktop-index">02 &nbsp; / &nbsp; AT YOUR DESK</div>
-    <figure class="editorial-desktop">
-      <img src="https://cleanyang.github.io/pasero-ELN/assests/desktop-homepage.png" alt="Pasero Desktop real homepage screenshot" data-real-shot="desktop" loading="lazy"/>
-      <figcaption>Pasero Desktop <span>Review · Analyze · Report</span></figcaption>
-    </figure>
-    <div class="editorial-annotation">SAME EXPERIMENT <span>↗︎</span><br><b>Different moments.</b></div>
   </div>
   <div class="sync-explain" aria-label="Local network synchronization">
     <span class="sync-explain-mark" aria-hidden="true">↔︎</span>
