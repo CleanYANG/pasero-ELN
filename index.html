@@ -264,13 +264,83 @@
 @media(max-width:800px){
  .hero .copy .hero-bird-logo{width:255px!important;max-height:120px!important;margin:-10px 0 30px -12px!important}
 }
+
+/* Mobile-first visual repair: artwork, feature explorer, and conversion-critical pricing */
+@media(max-width:700px){
+ html,body{overflow-x:hidden}
+ .hero{padding:35px 5vw 20px!important;min-height:auto!important}
+ .hero .copy{margin-top:0!important}
+ .hero .copy .hero-bird-logo{width:min(240px,62vw)!important;max-height:100px!important;margin:0 0 16px -7px!important}
+ .hero h1{font-size:clamp(39px,10.4vw,58px)!important;letter-spacing:-.068em!important;margin-bottom:16px!important}
+ .hero .description{font-size:14px;line-height:1.55;margin-bottom:20px}
+ .hero .trust{margin-top:17px}
+ .hero .stage{height:650px!important;width:700px!important;max-width:none!important;transform:scale(min(0.52, calc((100vw - 25px) / 700)))!important;transform-origin:top left!important;margin:12px 0 -290px -15px!important}
+ .hero .node{appearance:none;-webkit-appearance:none;background:#fffdfb!important;color:#26382c!important}
+ .hero .node-symbol{font-family:Arial,'Segoe UI Symbol',sans-serif!important;font-variant-emoji:text!important;background:#ede6fa!important;color:#73549e!important}
+ .hero .star,.hero .visual-label{font-family:'Space Grotesk',Arial,sans-serif!important}
+ .scribble svg{display:block}
+ .transition .down{font-family:Arial,sans-serif!important}
+ .explorer{padding:65px 5vw 75px!important}
+ .explorer-title{font-size:clamp(33px,8.2vw,48px)!important;line-height:1.08}
+ .explorer-lead{font-size:14px;margin:13px 0 22px}
+ .feature-layout{display:block!important;min-height:0!important}
+ .feature-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:12px;-webkit-overflow-scrolling:touch}
+ .feature-tab{flex:0 0 auto!important;width:148px!important;min-height:72px!important;display:block!important;padding:12px!important;border:1px solid #dce5dd!important;border-radius:10px!important;scroll-snap-align:start}
+ .feature-tab strong{font-size:16px!important;display:block}
+ .feature-tab small{font-size:11px!important}
+ .feature-tab .number,.feature-tab .arrow{display:none!important}
+ .feature-tab[aria-selected=true]{padding-left:12px!important}
+ .feature-showcase{min-height:0!important;padding:12px!important;border-radius:14px!important}
+ .showcase-top{font-size:10px;margin-bottom:11px}
+ .image-stage{height:clamp(180px,56vw,260px)!important;min-height:0!important}
+ .showcase-bottom{padding:16px 3px 4px}
+ .panel-title{font-size:27px!important}
+ .panel-desc{font-size:13px}
+ .panel-tags span{font-size:10px}
+ .pricing-chapter{padding:65px 4vw 75px!important}
+ .pricing-intro{margin-bottom:25px!important;display:block!important}
+ .pricing-intro h2{font-size:clamp(37px,9vw,52px)!important;margin-bottom:14px}
+ .pricing-intro .lead{font-size:14px!important}
+ .pricing-note{max-width:none!important;text-align:left!important;font-size:11px!important}
+ .price-tabs{gap:17px!important}
+ .price-tab{font-size:14px!important;padding:10px 0 12px}
+ .price-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:9px!important}
+ .price-grid.is-complete{grid-template-columns:1fr!important}
+ .plan{min-width:0!important;min-height:0!important;padding:18px 12px 17px!important}
+ .plan .choice{position:static!important;order:0;margin:0 0 6px;font-size:9px!important}
+ .plan-eyebrow{font-size:10px!important;letter-spacing:.05em;margin-bottom:11px}
+ .plan h3{font-size:22px!important;line-height:1.16;margin-bottom:12px}
+ .plan .amount{font-size:clamp(35px,9vw,48px)!important}
+ .plan .price{gap:4px!important;margin-bottom:13px!important;flex-wrap:wrap}
+ .plan .period{font-size:10px!important}
+ .plan .summary{font-size:12px!important;line-height:1.45;margin-bottom:15px!important}
+ .plan ul{padding-top:13px;gap:10px}
+ .plan li{font-size:12px!important;line-height:1.4;gap:5px!important}
+ .pricing-diff{margin-top:15px}
+ .pricing-diff strong{font-size:14px}
+ .pricing-diff p{font-size:12px}
+ .compare-toggle strong{font-size:17px}
+ .compare-table th{font-size:12px!important}
+ .compare-table td{font-size:12px!important;line-height:1.45}
+ .compare-table td:not(:first-child){font-size:12px!important}
+ .complete-split{display:block!important}
+ .complete-note{padding:20px 0!important}
+}
+@media(max-width:380px){
+ .hero .stage{transform:scale(.44)!important;margin-bottom:-350px!important}
+ .price-tab{font-size:12px!important}
+ .plan{padding:14px 9px!important}
+ .plan h3{font-size:19px!important}
+ .plan li{font-size:11px!important}
+ .plan .amount{font-size:34px!important}
+}
 </style>
 </head>
 <body>
 <header class="header"><nav class="nav" aria-label="Main"><a href="#desktop-explorer">Desktop</a><a href="#mobile-story">Mobile</a><a href="#pricing">Pricing</a></nav><div class="actions"><button class="lang" id="language" type="button" title="Switch English/Chinese">EN ↔ 中文</button><a class="download" href="download.html">Download ↗</a></div></header>
 <main><section class="hero" aria-label="Pasero hero"><div class="copy"><img class="hero-bird-logo" src="assests/全logo-透明.png" alt="Pasero logo"><div class="eyebrow"><span class="dot"></span><span data-en="MADE FOR MOLECULAR BIOLOGY" data-zh="为分子生物学研究而设计">MADE FOR MOLECULAR BIOLOGY</span></div><h1 data-en="Your research,<br><em>finally connected.</em>" data-zh="让科研，<br><em>连接起来。</em>">Your research,<br><em>finally connected.</em></h1><p class="description" data-en="Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps." data-zh="认识 Pasero：将实验笔记、研究材料、数据分析和实验结果组织在一起。不再散落于不同工具，重要关联触手可及。">Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps.</p><div class="cta"><a class="primary" href="download.html" data-en="Download Pasero ↗" data-zh="下载 Pasero ↗">Download Pasero ↗</a><a class="secondary" href="#desktop-explorer" data-en="See how it works ↘" data-zh="了解工作流程 ↘">See how it works ↘</a></div><div class="trust"><span data-en="No account" data-zh="无需账号">No account</span><i></i><span data-en="Local-first" data-zh="本地优先">Local-first</span><i></i><span data-en="Desktop + mobile" data-zh="桌面端与移动端">Desktop + mobile</span></div></div>
 <div class="stage" id="stage" aria-label="Interactive illustration of an experiment and its connected resources"><div class="blob"></div><div class="grain"></div><div class="orbit"></div><div class="orbit two"></div><div class="scribble">One experiment.<br>So many connections.<svg width="85" height="33" viewBox="0 0 85 33" fill="none"><path d="M2 3C26 26 48 31 80 15m0 0-10 1m10-1-5 10" stroke="#492D55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><svg class="connections" id="connections" aria-hidden="true"></svg><div class="record" id="record"><div class="record-top"><i class="traffic"></i><i class="traffic"></i><i class="traffic"></i><div class="top-title">Pasero / Experiment workspace</div></div><div class="record-body"><div class="sidebar"><div class="mini-logo"><img src="assests/real-logo-cut.png" alt="Pasero logo"></div><div class="menu-item selected">✎ &nbsp; Notes</div><div class="menu-item">◫ &nbsp; Resources</div><div class="menu-item">⌁ &nbsp; Data Analysis</div><div class="menu-item">▤ &nbsp; Literature</div><div class="menu-item">▣ &nbsp; Presentations</div></div><div class="body-main"><div class="breadcrumb">Notebook &nbsp;/&nbsp; Experiments &nbsp;/&nbsp; 024</div><h3>Experiment #024</h3><div class="sub">Cell transfection &amp; expression analysis</div><div class="pills"><span class="pill">HEK293T</span><span class="pill">Transfection</span><span class="pill">Western blot</span></div><h4>Experimental procedure</h4><div class="rows"><div><span class="check on"></span>Seed HEK293T cells</div><div><span class="check on"></span>Prepare plasmid mixture</div><div><span class="check"></span>Transfect cells</div><div><span class="check"></span>Analyze protein expression</div></div><div class="record-foot"><div class="status">Saved locally</div><b id="context">Linked research resources ↗</b></div></div></div></div>
-<button class="node cells" data-label="Notes · Experiment #024" style="--r:-7deg"><span class="node-symbol">✎</span><span><strong>Notes</strong><small>Experiment #024</small></span></button><button class="node plasmids" data-label="Plasmids · pEGFP-N1" style="--r:7deg"><span class="node-symbol">⌁</span><span><strong>Plasmids</strong><small>pEGFP-N1</small></span></button><button class="node reagents" data-label="Resources · HEK293T / Reagents" style="--r:5deg"><span class="node-symbol">◉</span><span><strong>Resources</strong><small>Cells · Reagents</small></span></button><button class="node analysis" data-label="Data Analysis · Western blot" style="--r:-6deg"><span class="node-symbol">▥</span><span><strong>Data Analysis</strong><small>Western blot</small></span></button><button class="node results" data-label="Literature · Linked papers" style="--r:4deg"><span class="node-symbol">▤</span><span><strong>Literature</strong><small>Linked references</small></span></button><button class="node presentations" data-label="Presentations · Research outputs" style="--r:-4deg"><span class="node-symbol">▣</span><span><strong>Presentations</strong><small>Research outputs</small></span></button><div class="star">✳</div><div class="visual-label">A DIFFERENT KIND OF RESEARCH SPACE / 01</div></div></section>
+<button class="node cells" data-label="Notes · Experiment #024" style="--r:-7deg"><span class="node-symbol">✎︎</span><span><strong>Notes</strong><small>Experiment #024</small></span></button><button class="node plasmids" data-label="Plasmids · pEGFP-N1" style="--r:7deg"><span class="node-symbol">⌁︎</span><span><strong>Plasmids</strong><small>pEGFP-N1</small></span></button><button class="node reagents" data-label="Resources · HEK293T / Reagents" style="--r:5deg"><span class="node-symbol">◉︎</span><span><strong>Resources</strong><small>Cells · Reagents</small></span></button><button class="node analysis" data-label="Data Analysis · Western blot" style="--r:-6deg"><span class="node-symbol">▥︎</span><span><strong>Data Analysis</strong><small>Western blot</small></span></button><button class="node results" data-label="Literature · Linked papers" style="--r:4deg"><span class="node-symbol">▤︎</span><span><strong>Literature</strong><small>Linked references</small></span></button><button class="node presentations" data-label="Presentations · Research outputs" style="--r:-4deg"><span class="node-symbol">▣︎</span><span><strong>Presentations</strong><small>Research outputs</small></span></button><div class="star" aria-hidden="true">✳︎</div><div class="visual-label">A DIFFERENT KIND OF RESEARCH SPACE / 01</div></div></section>
 
 <section id="desktop-explorer" class="explorer" aria-label="Pasero Desktop feature explorer">
  <div class="explorer-wrap">
