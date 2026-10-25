@@ -34,10 +34,12 @@ function translateAll(){
    if(el.placeholder!==target)el.placeholder=target;
   });
   var t=document.querySelector('title');if(t)translateText(t.firstChild);
-  document.querySelectorAll('.site-lang-switch,#language').forEach(function(btn){
-   if(btn.dataset.paseroLangLabel==='1')return;
-   btn.textContent=lang==='zh'?'EN':'中文';
-   btn.setAttribute('aria-label',lang==='zh'?'Switch to English':'切换至中文');
+  document.querySelectorAll('[data-pasero-lang-picker]').forEach(function(picker){
+   var trigger=picker.querySelector('.pasero-lang-trigger');
+   if(trigger)trigger.setAttribute('aria-label',lang==='zh'?'选择网站语言':'Choose site language');
+   picker.querySelectorAll('[data-pasero-lang-option]').forEach(function(opt){
+    opt.setAttribute('aria-checked',String(opt.getAttribute('data-pasero-lang-option')===(lang==='zh'?'zh':'en')));
+   });
   });
   if(document.body){document.body.dataset.paseroLanguage=lang;if(document.body.hasAttribute('data-language'))document.body.dataset.language=lang;}
   document.documentElement.lang=lang==='zh'?'zh-CN':lang==='ja'?'ja':'en';
@@ -50,12 +52,53 @@ function setLang(next){
   if(storyBtn&&!storyBtn.classList.contains('selected'))storyBtn.click();
  }
 }
+function closePaseroLanguageMenus(){
+ document.querySelectorAll('[data-pasero-lang-picker]').forEach(function(picker){
+  var panel=picker.querySelector('.pasero-lang-options'),button=picker.querySelector('.pasero-lang-trigger');
+  if(panel)panel.hidden=true;
+  if(button)button.setAttribute('aria-expanded','false');
+ });
+}
 document.addEventListener('click',function(ev){
- var langOption=ev.target.closest && ev.target.closest('[data-language-option]');
- if(langOption){var choice=langOption.getAttribute('data-language-option');if(choice==='zh'||choice==='en'||choice==='ja'){lang=choice;store(choice);Promise.resolve().then(translateAll);}return;}
- var btn=ev.target.closest && ev.target.closest('#language,.site-lang-switch');
- if(!btn)return;
- ev.preventDefault();ev.stopImmediatePropagation();setLang(lang==='zh'?'en':'zh');
+ var existingOption=ev.target.closest && ev.target.closest('[data-language-option]');
+ if(existingOption){
+  var choice=existingOption.getAttribute('data-language-option');
+  if(choice==='zh'||choice==='en'||choice==='ja'){lang=choice;store(choice);Promise.resolve().then(translateAll);}
+  closePaseroLanguageMenus();return;
+ }
+ var option=ev.target.closest && ev.target.closest('[data-pasero-lang-option]');
+ if(option){
+  ev.preventDefault();ev.stopPropagation();
+  closePaseroLanguageMenus();
+  setLang(option.getAttribute('data-pasero-lang-option'));
+  return;
+ }
+ var trigger=ev.target.closest && ev.target.closest('.pasero-lang-trigger');
+ if(trigger){
+  ev.preventDefault();ev.stopPropagation();
+  var picker=trigger.closest('[data-pasero-lang-picker]');
+  var panel=picker&&picker.querySelector('.pasero-lang-options');
+  if(!panel)return;
+  var shouldOpen=panel.hidden;
+  closePaseroLanguageMenus();
+  if(shouldOpen){panel.hidden=false;trigger.setAttribute('aria-expanded','true');}
+  return;
+ }
+ closePaseroLanguageMenus();
+},true);
+document.addEventListener('keydown',function(ev){
+ if(ev.key==='Escape'){
+  var opened=document.querySelector('[data-pasero-lang-picker] .pasero-lang-trigger[aria-expanded="true"]');
+  if(opened){closePaseroLanguageMenus();opened.focus();}
+  return;
+ }
+ var trigger=ev.target.closest && ev.target.closest('.pasero-lang-trigger');
+ if(trigger&&ev.key==='ArrowDown'){
+  var picker=trigger.closest('[data-pasero-lang-picker]'),panel=picker.querySelector('.pasero-lang-options');
+  panel.hidden=false;trigger.setAttribute('aria-expanded','true');
+  panel.querySelector('button')?.focus();
+  ev.preventDefault();
+ }
 },true);
 lang=loadSaved();
 setLang(lang);
