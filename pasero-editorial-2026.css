@@ -8,48 +8,18 @@
  src:url('https://cdn.jsdelivr.net/gh/deepin-community/fonts-smiley-sans@master/SmileySans-Oblique.ttf.woff2') format('woff2'),
      url('https://raw.githubusercontent.com/deepin-community/fonts-smiley-sans/master/SmileySans-Oblique.ttf.woff2') format('woff2');
 }
-.zh-hero-subheading{display:none}
-/* B1 applies only to Chinese hero text; existing hero illustration and its positioning are unchanged. */
-
-html[lang="zh-CN"] .hero .copy{max-width:560px!important;padding-right:15px!important;margin:0!important}
-html[lang="zh-CN"] .hero .copy .hero-bird-logo{
- width:206px!important;max-width:75%!important;max-height:110px!important;
- margin:0 0 48px -8px!important;
-}
-html[lang="zh-CN"] .hero .eyebrow{
- display:inline-flex!important;align-items:center!important;
- margin:0 0 38px!important;font:600 12px/1.5 'Noto Sans SC',sans-serif!important;
- letter-spacing:.09em!important;color:#806aaf!important;text-transform:none!important;
-}
+/* Chinese-only typography. All decoration, logo, layout grid, CTAs and artwork are shared. */
 html[lang="zh-CN"] .hero h1{
- max-width:none!important;margin:0 0 33px!important;
- font:400 clamp(54px,5.7vw,86px)/1.3 'Pasero Smiley','Noto Sans SC',sans-serif!important;
- letter-spacing:0!important;white-space:normal!important;
+ font-family:'Pasero Smiley','Noto Sans SC',sans-serif!important;
+ font-size:clamp(51px,5.5vw,84px)!important;
+ font-weight:400!important;line-height:1.24!important;letter-spacing:0!important;
+ margin-bottom:27px!important;
 }
-html[lang="zh-CN"] .hero h1 em{color:#8b71b6!important;white-space:nowrap}
-html[lang="zh-CN"] .hero h1 em::after{display:none!important}
-html[lang="zh-CN"] .hero .zh-hero-subheading{
- display:block!important;color:#2b4935;
- font:600 clamp(19px,1.65vw,23px)/1.5 'Noto Sans SC',sans-serif;
- margin:0 0 19px!important;letter-spacing:0!important;
-}
-html[lang="zh-CN"] .hero .description{
- font:400 15px/1.95 'Noto Sans SC',sans-serif!important;
- max-width:440px!important;color:#66786b!important;margin:0!important;
-}
-html[lang="zh-CN"] .hero .cta{margin-top:39px!important;gap:22px!important}
-html[lang="zh-CN"] .hero .cta a{
- font:600 13px/1.4 'Noto Sans SC',sans-serif!important;
- white-space:nowrap!important;
-}
-html[lang="zh-CN"] .hero .cta a.primary{padding:15px 24px!important}
-html[lang="zh-CN"] .hero .cta a.secondary{
- padding:11px 1px!important;border:0!important;border-bottom:1px solid #8fa28e!important;
- border-radius:0!important;
-}
-html[lang="zh-CN"] .hero .trust{
- margin-top:39px!important;gap:14px!important;
- font:500 11px/1.6 'Noto Sans SC',sans-serif!important;color:#879486!important;
+html[lang="zh-CN"] .hero h1 em{white-space:nowrap}
+html[lang="zh-CN"] .hero .eyebrow{font-family:'Noto Sans SC',sans-serif!important;letter-spacing:.04em!important;text-transform:none!important}
+html[lang="zh-CN"] .hero .description{font-family:'Noto Sans SC',sans-serif!important;line-height:1.8!important;letter-spacing:0!important}
+html[lang="zh-CN"] .hero .cta a,html[lang="zh-CN"] .hero .trust{
+ font-family:'Noto Sans SC',sans-serif!important;letter-spacing:0!important;
 }
 /* Pricing: faithful to selected dark editorial demo. */
 #pricing.pricing-chapter{
@@ -177,20 +147,8 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
 /* Mobile: maintain a comfortable card reading width, not compressed columns. */
 @media(max-width:800px){
  
- html[lang="zh-CN"] .hero .copy{max-width:none!important;padding:0!important}
- html[lang="zh-CN"] .hero .copy .hero-bird-logo{
-  width:195px!important;max-height:102px!important;margin:0 0 38px -7px!important;
- }
- html[lang="zh-CN"] .hero .eyebrow{font-size:11px!important;margin:0 0 28px!important}
- html[lang="zh-CN"] .hero h1{
-  font:400 clamp(43px,10.5vw,63px)/1.25 'Pasero Smiley','Noto Sans SC',sans-serif!important;
-  letter-spacing:0!important;margin:0 0 29px!important;
- }
- html[lang="zh-CN"] .hero .zh-hero-subheading{font-size:20px!important;margin:0 0 14px!important}
- html[lang="zh-CN"] .hero .description{font-size:14px!important;line-height:1.85!important}
- html[lang="zh-CN"] .hero .cta{margin-top:29px!important;gap:16px!important}
- html[lang="zh-CN"] .hero .cta a.primary{padding:14px 18px!important}
- html[lang="zh-CN"] .hero .trust{margin-top:30px!important;gap:11px!important;font-size:11px!important}
+ html[lang="zh-CN"] .hero h1{font-size:clamp(43px,10.4vw,61px)!important;line-height:1.25!important;letter-spacing:0!important}
+ html[lang="zh-CN"] .hero .description{line-height:1.75!important}
  #pricing.pricing-chapter{padding:69px 5vw 79px!important}
  #pricing .pricing-intro{display:block!important;margin-bottom:32px!important}
  #pricing .pricing-intro h2{font-size:clamp(42px,9vw,57px)!important;margin-bottom:21px!important}
