@@ -615,6 +615,29 @@
   font-size:11px!important;
  }
 }
+
+/* 2026-10-25: phone-only header readability and crisp Mobile screenshot border. */
+@media(max-width:800px){
+ .header .nav{
+  display:flex!important;
+  font-size:clamp(13.5px,3.85vw,16px)!important;
+  gap:clamp(7px,1.8vw,12px)!important;
+  line-height:1.2!important;
+  letter-spacing:-.015em!important;
+ }
+ .header .nav a{opacity:.95!important;white-space:nowrap!important}
+ #mobile-story .editorial-phone img{
+  box-sizing:border-box!important;
+  border:1px solid #4f7860!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+  filter:none!important;
+ }
+ #mobile-story .editorial-phone .phone-shadow{display:none!important}
+}
+@media(max-width:360px){
+ .header .nav{font-size:13px!important;gap:6px!important}
+}
 </style>
 </head>
 <body>
