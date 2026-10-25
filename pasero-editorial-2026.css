@@ -1,0 +1,296 @@
+/* Pasero 2026 editorial typography + pricing.
+   Chinese hero uses approved B1 (Smiley Sans headline + Noto Sans SC).
+   English hero and all other chapters remain unchanged.
+   Pricing structure adopts the approved editorial pricing study for both languages. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+@font-face{
+ font-family:"Pasero Smiley";font-style:normal;font-weight:400 700;font-display:swap;
+ src:url('https://cdn.jsdelivr.net/gh/deepin-community/fonts-smiley-sans@master/SmileySans-Oblique.ttf.woff2') format('woff2'),
+     url('https://raw.githubusercontent.com/deepin-community/fonts-smiley-sans/master/SmileySans-Oblique.ttf.woff2') format('woff2');
+}
+.zh-hero-subheading{display:none}
+/* Chinese-only editorial hero, without affecting the English typography. */
+html[lang="zh-CN"] .hero{
+ min-height:calc(100svh - 86px)!important;
+ grid-template-columns:minmax(0,43%) minmax(0,57%)!important;
+ padding:7vh 5.7vw 9vh 6.2vw!important;
+ align-items:center!important;
+ gap:2%!important;
+ overflow:hidden!important;
+ background:radial-gradient(ellipse at 83% 52%,#f0eafa 0%,transparent 35%),linear-gradient(110deg,#f3f8f0,#fcfcf9 75%);
+}
+html[lang="zh-CN"] .hero .copy{max-width:560px!important;padding-right:15px!important;margin:0!important}
+html[lang="zh-CN"] .hero .copy .hero-bird-logo{
+ width:206px!important;max-width:75%!important;max-height:110px!important;
+ margin:0 0 48px -8px!important;
+}
+html[lang="zh-CN"] .hero .eyebrow{
+ display:inline-flex!important;align-items:center!important;
+ margin:0 0 38px!important;font:600 12px/1.5 'Noto Sans SC',sans-serif!important;
+ letter-spacing:.09em!important;color:#806aaf!important;text-transform:none!important;
+}
+html[lang="zh-CN"] .hero h1{
+ max-width:none!important;margin:0 0 33px!important;
+ font:400 clamp(54px,5.7vw,86px)/1.3 'Pasero Smiley','Noto Sans SC',sans-serif!important;
+ letter-spacing:0!important;white-space:normal!important;
+}
+html[lang="zh-CN"] .hero h1 em{color:#8b71b6!important;white-space:nowrap}
+html[lang="zh-CN"] .hero h1 em::after{display:none!important}
+html[lang="zh-CN"] .hero .zh-hero-subheading{
+ display:block!important;color:#2b4935;
+ font:600 clamp(19px,1.65vw,23px)/1.5 'Noto Sans SC',sans-serif;
+ margin:0 0 19px!important;letter-spacing:0!important;
+}
+html[lang="zh-CN"] .hero .description{
+ font:400 15px/1.95 'Noto Sans SC',sans-serif!important;
+ max-width:440px!important;color:#66786b!important;margin:0!important;
+}
+html[lang="zh-CN"] .hero .cta{margin-top:39px!important;gap:22px!important}
+html[lang="zh-CN"] .hero .cta a{
+ font:600 13px/1.4 'Noto Sans SC',sans-serif!important;
+ white-space:nowrap!important;
+}
+html[lang="zh-CN"] .hero .cta a.primary{padding:15px 24px!important}
+html[lang="zh-CN"] .hero .cta a.secondary{
+ padding:11px 1px!important;border:0!important;border-bottom:1px solid #8fa28e!important;
+ border-radius:0!important;
+}
+html[lang="zh-CN"] .hero .trust{
+ margin-top:39px!important;gap:14px!important;
+ font:500 11px/1.6 'Noto Sans SC',sans-serif!important;color:#879486!important;
+}
+html[lang="zh-CN"] .hero .stage{
+ height:610px!important;width:100%!important;max-width:850px!important;
+ transform:none!important;margin:0!important;overflow:visible!important;
+}
+html[lang="zh-CN"] .hero .stage .blob{
+ inset:6% 2% 5% 2%!important;transform:none!important;animation:none!important;
+ border-radius:50%!important;filter:none!important;
+ background:radial-gradient(circle at 35% 30%,#dcebd9 0%,#e7efe5 43%,#e8def4 80%,#f4eff9 100%)!important;
+ opacity:.86!important;
+}
+html[lang="zh-CN"] .hero .stage .grain,
+html[lang="zh-CN"] .hero .stage .scribble,
+html[lang="zh-CN"] .hero .stage .star,
+html[lang="zh-CN"] .hero .stage .visual-label,
+html[lang="zh-CN"] .hero .stage .connections,
+html[lang="zh-CN"] .hero .stage .orbit.two,
+html[lang="zh-CN"] .hero .stage .record .real-caption{display:none!important}
+html[lang="zh-CN"] .hero .stage .orbit{inset:11% 2% auto 2%!important;width:96%!important;height:79%!important;border-radius:50%!important;transform:rotate(-15deg)!important}
+html[lang="zh-CN"] .hero .stage .record{
+ top:25%!important;left:8%!important;width:84%!important;max-width:750px!important;
+ min-width:0!important;transform:rotate(-1.7deg)!important;
+ padding:8px!important;border:1px solid #dce8da!important;
+ box-shadow:0 32px 70px #3d594529!important;
+}
+html[lang="zh-CN"] .hero .stage .node{display:none!important}
+html[lang="zh-CN"] .hero .stage .node.cells,
+html[lang="zh-CN"] .hero .stage .node.analysis{
+ display:flex!important;width:auto!important;min-width:148px!important;max-width:32%!important;
+ padding:12px 15px!important;border-radius:11px!important;
+ box-shadow:0 10px 28px #354e3e17!important;
+}
+html[lang="zh-CN"] .hero .stage .node.cells{top:12%!important;left:1%!important;right:auto!important;bottom:auto!important}
+html[lang="zh-CN"] .hero .stage .node.analysis{top:auto!important;left:auto!important;right:2%!important;bottom:13%!important}
+html[lang="zh-CN"] .hero .stage .node strong{font:700 13px/1.3 'Space Grotesk','Noto Sans SC',sans-serif!important}
+html[lang="zh-CN"] .hero .stage .node small{display:block!important;font:400 10px/1.4 'Space Grotesk',sans-serif!important}
+html[lang="zh-CN"] .hero .stage .node-symbol{display:none!important}
+
+/* Pricing: faithful to selected dark editorial demo. */
+#pricing.pricing-chapter{
+ --p-bg:#121b15;--p-ink:#f3f6ef;--p-muted:#a7b7a9;--p-card:#1b2820;--p-line:#36463a;
+ --p-soft:#1b2820;--p-active:#dcecd4;--p-active-ink:#23402b;
+ --p-cta:#ceb6e8;--p-cta-text:#282034;--p-highlight:#c4afe3;
+ background:var(--p-bg)!important;color:var(--p-ink)!important;
+ padding:106px max(5.8vw,24px) 102px!important;
+}
+#pricing .pricing-wrap{max-width:1310px!important}
+#pricing .pricing-intro{
+ display:grid!important;grid-template-columns:minmax(0,1fr) 320px!important;
+ gap:70px!important;align-items:end!important;margin-bottom:59px!important;
+}
+#pricing .pricing-eyebrow{color:#c4afe3!important;font-size:12px!important;letter-spacing:.12em!important;margin-bottom:25px!important}
+#pricing .pricing-intro h2{
+ font:600 clamp(52px,5.5vw,82px)/1.12 'Space Grotesk',sans-serif!important;
+ letter-spacing:-.065em!important;margin:0 0 25px!important;
+}
+html[lang="zh-CN"] #pricing .pricing-intro h2{
+ font:400 clamp(51px,5.7vw,82px)/1.35 'Pasero Smiley','Noto Sans SC',sans-serif!important;
+ letter-spacing:0!important;
+}
+#pricing .pricing-intro h2 em{color:#c4afe3!important}
+#pricing .pricing-intro .lead{font:400 15px/1.95 'Noto Sans SC','DM Sans',sans-serif!important;color:#a7b7a9!important;max-width:575px!important;margin:0!important}
+#pricing .pricing-note{
+ max-width:none!important;text-align:left!important;
+ padding:24px 0 0!important;border-top:1px solid #718873!important;
+}
+#pricing .pricing-note strong{display:block;font:600 15px/1.5 'Noto Sans SC','DM Sans',sans-serif!important;color:#e6f2df!important}
+#pricing .pricing-note p{margin:12px 0 0!important;font:400 13px/1.95 'Noto Sans SC','DM Sans',sans-serif!important;color:#a7b7a9!important}
+#pricing .price-controls{
+ display:flex!important;justify-content:space-between!important;gap:16px!important;align-items:center!important;
+ border:0!important;margin-bottom:28px!important;
+}
+#pricing .price-tabs{
+ display:flex!important;align-items:center!important;gap:4px!important;
+ background:#19261d!important;border:1px solid #425446!important;
+ padding:5px!important;border-radius:100px!important;
+}
+#pricing .price-tab{
+ border:0!important;border-radius:100px!important;background:transparent!important;
+ color:#b3c0b4!important;padding:13px 26px!important;
+ font:600 13px/1.35 'Noto Sans SC','DM Sans',sans-serif!important;white-space:nowrap!important;
+}
+#pricing .price-tab[aria-selected="true"]{background:#dcecd4!important;color:#23402b!important;box-shadow:0 4px 18px #0002!important}
+#pricing .price-period{font:400 12px/1.5 'Noto Sans SC','DM Sans',sans-serif!important;color:#a5b3a4!important;padding:0!important}
+#pricing .price-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important}
+#pricing .plan{
+ min-width:0!important;min-height:463px!important;
+ background:#1a271e!important;border:1px solid #435446!important;
+ border-radius:18px!important;padding:36px 39px 32px!important;
+ display:flex!important;flex-direction:column!important;position:relative!important;
+}
+#pricing .plan.featured{background:linear-gradient(135deg,#262d28,#2a2931 85%)!important;border-color:#c0addc!important}
+#pricing .plan-eyebrow{color:#b1c1b1!important;font:600 12px/1.45 'Space Grotesk'!important;letter-spacing:.12em!important;margin:0 0 26px!important}
+#pricing .plan .choice{
+ position:absolute!important;top:32px!important;right:32px!important;order:0!important;
+ font:500 11px/1.3 'Noto Sans SC','DM Sans',sans-serif!important;
+ color:#e0cff8!important;border:1px solid #77678a!important;
+ border-radius:100px!important;padding:8px 12px!important;letter-spacing:0!important;
+}
+#pricing .plan .plan-name{font:600 25px/1.3 'Noto Sans SC','Space Grotesk',sans-serif!important;margin:0 0 9px!important;letter-spacing:0!important}
+#pricing .plan .price{display:flex!important;align-items:baseline!important;gap:9px!important;flex-wrap:nowrap!important;margin:0 0 9px!important}
+#pricing .plan .amount{font:600 clamp(52px,5vw,76px)/1 'Space Grotesk',sans-serif!important;letter-spacing:-.06em!important}
+#pricing .plan .period{font:400 13px/1.4 'Noto Sans SC','DM Sans',sans-serif!important;color:#9aaa9c!important}
+#pricing .plan .summary{font:400 14px/1.8 'Noto Sans SC','DM Sans',sans-serif!important;color:#bdc9be!important;margin:9px 0 22px!important;min-height:51px!important;max-width:460px!important}
+#pricing .plan ul{
+ display:grid!important;gap:14px!important;list-style:none!important;
+ margin:0 0 27px!important;padding:19px 0 0!important;border-top:1px solid #ffffff1a!important;
+}
+#pricing .plan li{font:400 13px/1.65 'Noto Sans SC','DM Sans',sans-serif!important;color:#d8e2d8!important;gap:11px!important}
+#pricing .plan li::before{content:'✓'!important;color:#b8dcba!important;font:700 16px/1.25 'Space Grotesk'!important}
+#pricing .plan.featured li::before{color:#d9c2f4!important}
+#pricing .plan .plan-action{
+ display:block;width:100%;margin-top:auto;padding:14px 20px;border:0!important;
+ border-radius:100px;background:#cbdcc4;color:#2c4731;text-align:center;
+ font:700 13px/1.4 'Noto Sans SC','DM Sans',sans-serif;
+ cursor:default;opacity:1;
+}
+#pricing .plan.featured .plan-action{background:#ceb6e8;color:#282034}
+#pricing .complete-split{
+ display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)!important;
+ align-items:stretch!important;gap:20px!important;
+}
+#pricing .price-grid.is-complete{grid-template-columns:1fr!important}
+#pricing .complete-split .plan{min-height:450px!important}
+#pricing .complete-note{
+ display:flex!important;flex-direction:column!important;justify-content:space-between!important;
+ padding:38px 39px!important;border-radius:18px!important;
+ background:#e7efdd!important;color:#29422f!important;
+}
+#pricing .complete-note .tag{font:700 11px/1.5 'Space Grotesk'!important;color:#866eaa!important;letter-spacing:.11em!important}
+#pricing .complete-note h3{font:600 clamp(30px,3.3vw,43px)/1.38 'Space Grotesk',sans-serif!important;letter-spacing:-.04em!important;margin:23px 0 13px!important}
+html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.4 'Pasero Smiley','Noto Sans SC',sans-serif!important;letter-spacing:0!important}
+#pricing .complete-note p{font:400 14px/1.9 'Noto Sans SC','DM Sans',sans-serif!important;color:#5c6b5e!important;margin:0!important;max-width:450px!important}
+#pricing .complete-savings{display:flex;align-items:baseline;gap:11px;border-top:1px solid #bacbb7;margin-top:25px;padding-top:22px}
+#pricing .complete-savings strong{font:600 39px 'Space Grotesk',sans-serif;color:#29422f}
+#pricing .complete-savings span{font:400 12px/1.5 'Noto Sans SC','DM Sans',sans-serif;color:#5c6b5e}
+#pricing .pricing-diff{
+ background:#19231c!important;border:1px solid #334538!important;border-radius:13px!important;
+ margin:22px 0 0!important;padding:23px 27px!important;display:block!important;
+}
+#pricing .pricing-diff strong{font:600 14px/1.5 'Noto Sans SC','DM Sans',sans-serif!important;color:#e4eee2!important}
+#pricing .pricing-diff p{font:400 13px/1.75 'Noto Sans SC','DM Sans',sans-serif!important;color:#aebeb0!important;margin:7px 0 0!important}
+#pricing .compare-wrap{margin-top:76px!important;padding-top:0!important;border-top:1px solid #47594b!important}
+#pricing .compare-toggle{
+ display:flex!important;align-items:center!important;gap:20px!important;
+ padding:29px 0!important;border:0!important;background:transparent!important;
+}
+#pricing .compare-toggle strong{font:600 20px/1.4 'Noto Sans SC','DM Sans',sans-serif!important}
+#pricing .compare-toggle small{font:400 13px/1.7 'Noto Sans SC','DM Sans',sans-serif!important;color:#aebcae!important;margin-top:9px!important}
+#pricing .compare-toggle .plus{font-size:30px!important;color:#d5bdea!important}
+#pricing .compare-body{
+ padding:21px 23px!important;background:#19251d!important;border:1px solid #3b4c3e!important;border-radius:15px!important;
+}
+#pricing .compare-category{border-color:#3b4c3e!important}
+#pricing .compare-cat-toggle{font:600 14px/1.5 'Noto Sans SC','DM Sans',sans-serif!important;padding:17px 5px!important}
+#pricing .compare-table th{font:600 12px/1.5 'Noto Sans SC','DM Sans',sans-serif!important;background:#29392e!important;color:#b9c8b9!important;padding:15px 17px!important}
+#pricing .compare-table td{font:400 13px/1.55 'Noto Sans SC','DM Sans',sans-serif!important;padding:15px 17px!important;border-color:#ffffff16!important}
+#pricing .compare-table td.yes{color:#badfba!important}
+#pricing .compare-table td.pro{color:#d5bdea!important}
+#pricing .pricing-foot{margin-top:34px!important;line-height:1.9!important;color:#9cab9b!important}
+
+/* Mobile: maintain a comfortable card reading width, not compressed columns. */
+@media(max-width:800px){
+ html[lang="zh-CN"] .hero{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  min-height:0!important;padding:36px 5vw 38px!important;gap:10px!important;
+ }
+ html[lang="zh-CN"] .hero .copy{max-width:none!important;padding:0!important}
+ html[lang="zh-CN"] .hero .copy .hero-bird-logo{
+  width:195px!important;max-height:102px!important;margin:0 0 38px -7px!important;
+ }
+ html[lang="zh-CN"] .hero .eyebrow{font-size:11px!important;margin:0 0 28px!important}
+ html[lang="zh-CN"] .hero h1{
+  font:400 clamp(43px,10.5vw,63px)/1.25 'Pasero Smiley','Noto Sans SC',sans-serif!important;
+  letter-spacing:0!important;margin:0 0 29px!important;
+ }
+ html[lang="zh-CN"] .hero .zh-hero-subheading{font-size:20px!important;margin:0 0 14px!important}
+ html[lang="zh-CN"] .hero .description{font-size:14px!important;line-height:1.85!important}
+ html[lang="zh-CN"] .hero .cta{margin-top:29px!important;gap:16px!important}
+ html[lang="zh-CN"] .hero .cta a.primary{padding:14px 18px!important}
+ html[lang="zh-CN"] .hero .trust{margin-top:30px!important;gap:11px!important;font-size:11px!important}
+ html[lang="zh-CN"] .hero .stage{
+  height:clamp(286px,84vw,470px)!important;width:100%!important;max-width:none!important;
+  margin:10px auto 4px!important;transform:none!important;overflow:hidden!important;
+ }
+ html[lang="zh-CN"] .hero .stage .blob{inset:4% 1% 2%!important}
+ html[lang="zh-CN"] .hero .stage .record{top:25%!important;left:6%!important;width:88%!important;max-width:none!important;padding:5px!important}
+ html[lang="zh-CN"] .hero .stage .node.cells,
+ html[lang="zh-CN"] .hero .stage .node.analysis{
+  width:auto!important;min-width:0!important;max-width:34%!important;
+  padding:7px 10px!important;gap:0!important;border-radius:9px!important;
+ }
+ html[lang="zh-CN"] .hero .stage .node strong{font-size:clamp(9px,2.65vw,11px)!important}
+ html[lang="zh-CN"] .hero .stage .node small{display:none!important}
+ html[lang="zh-CN"] .hero .stage .node.cells{top:10%!important;left:1%!important}
+ html[lang="zh-CN"] .hero .stage .node.analysis{bottom:10%!important;right:1%!important;top:auto!important}
+ #pricing.pricing-chapter{padding:69px 5vw 79px!important}
+ #pricing .pricing-intro{display:block!important;margin-bottom:32px!important}
+ #pricing .pricing-intro h2{font-size:clamp(42px,9vw,57px)!important;margin-bottom:21px!important}
+ html[lang="zh-CN"] #pricing .pricing-intro h2{font:400 clamp(44px,10vw,62px)/1.3 'Pasero Smiley','Noto Sans SC',sans-serif!important}
+ #pricing .pricing-intro .lead{font-size:14px!important;line-height:1.85!important}
+ #pricing .pricing-note{margin-top:38px!important;padding-top:20px!important}
+ #pricing .price-controls{display:block!important;margin:29px 0 20px!important}
+ #pricing .price-tabs{display:flex!important;justify-content:space-between!important;width:100%!important;gap:3px!important}
+ #pricing .price-tab{flex:1!important;padding:12px 5px!important;font-size:12px!important}
+ #pricing .price-period{margin-top:14px!important;text-align:center!important;font-size:11px!important}
+ #pricing .price-grid{grid-template-columns:1fr!important;gap:15px!important}
+ #pricing .plan{padding:28px 25px 26px!important;min-height:0!important;border-radius:17px!important}
+ #pricing .plan-eyebrow{font-size:11px!important;margin-bottom:21px!important}
+ #pricing .plan .choice{position:absolute!important;top:26px!important;right:24px!important;font-size:10px!important;margin:0!important;padding:7px 10px!important}
+ #pricing .plan .plan-name{font-size:23px!important;margin:0 0 8px!important}
+ #pricing .plan .amount{font-size:56px!important}
+ #pricing .plan .period{font-size:13px!important}
+ #pricing .plan .summary{font-size:13px!important;min-height:0!important;margin:9px 0 20px!important}
+ #pricing .plan ul{gap:12px!important;padding-top:16px!important;margin:0 0 26px!important}
+ #pricing .plan li{font-size:13px!important;line-height:1.6!important;gap:11px!important}
+ #pricing .complete-split{display:grid!important;grid-template-columns:1fr!important;gap:15px!important}
+ #pricing .complete-note{padding:30px 26px!important}
+ #pricing .complete-note h3{font-size:33px!important}
+ #pricing .pricing-diff{margin-top:18px!important;padding:20px!important}
+ #pricing .compare-wrap{margin-top:60px!important}
+ #pricing .compare-toggle strong{font-size:18px!important}
+ #pricing .compare-toggle small{font-size:12px!important}
+ #pricing .compare-body{padding:12px 10px!important}
+ #pricing .compare-table th{font-size:11px!important;padding:11px 7px!important}
+ #pricing .compare-table td{font-size:11px!important;padding:12px 7px!important}
+ #pricing .compare-table td:not(:first-child){font-size:11px!important}
+ #pricing .compare-table th:first-child{width:52%!important}
+ #pricing .pricing-foot{font-size:11px!important}
+}
+@media(max-width:370px){
+ html[lang="zh-CN"] .hero h1{font-size:clamp(39px,10vw,46px)!important}
+ #pricing .price-tab{font-size:11px!important;padding:11px 3px!important}
+ #pricing .plan{padding:25px 20px!important}
+ #pricing .plan .amount{font-size:50px!important}
+}
