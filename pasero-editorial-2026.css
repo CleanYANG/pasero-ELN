@@ -260,3 +260,17 @@ html[lang="zh-CN"] #story .story-topline{
  .header .pasero-lang-trigger{width:31px!important;height:31px!important}
  .header .download{padding:9px 7px!important;font-size:10px!important}
 }
+
+/* Shared homepage brand placement: directly under the nav, aligned upper-left. */
+.hero{position:relative}
+.hero-home-logo{position:absolute;z-index:4;top:2px;left:4.15vw;width:clamp(185px,20vw,285px);display:block}
+.hero-home-logo img{width:100%;height:auto;display:block;object-fit:contain}
+.hero .copy{padding-top:108px!important}
+@media(max-width:800px){
+ .hero-home-logo{top:0;left:3vw;width:min(225px,56vw)}
+ .hero .copy{padding-top:91px!important}
+}
+@media(max-width:390px){
+ .hero-home-logo{width:min(192px,54vw)}
+ .hero .copy{padding-top:81px!important}
+}
