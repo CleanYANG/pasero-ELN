@@ -89,3 +89,20 @@
     font-size:10px!important;padding:9px 6px!important;
   }
 }
+
+
+/* Remove the source image's transparent headroom so both visible marks sit
+   directly below the navigation, while preserving the original artwork. */
+.hero-home-logo,
+.mobile-page-logo{
+  top:0!important;
+  aspect-ratio:3.3;
+  overflow:hidden;
+}
+.hero-home-logo img,
+.mobile-page-logo img{
+  transform:translateY(-30%);
+}
+@media(max-width:390px){
+  .mobile-page-logo{width:min(192px,54vw)}
+}
