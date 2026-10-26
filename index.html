@@ -955,35 +955,35 @@ const features=[
 /* Each feature opens its overview; these tabs expose the real product views. */
 const featureViews={
  notes:[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/new notes.png',type:'image'},
-  {id:'images-resources',label:['Images & linked resources','图片上传及资源关联','画像の追加・リソース連携'],media:'assets/资源关联和图片管理.png',type:'image'},
-  {id:'upload-vocabulary',label:['Upload notes & build your own vocabulary','上传笔记及构建词汇库','ノートの取り込み・語彙集の作成'],media:'assets/上传笔记及构建词汇库.png',type:'image'}
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/new notes.png',type:'image'},
+  {id:'images-resources',label:['Images & linked resources','图片上传及资源关联','画像の追加・リソース連携'],media:'assests/资源关联和图片上传.png',type:'image'},
+  {id:'upload-vocabulary',label:['Upload notes & build your own vocabulary','上传笔记及构建词汇库','ノートの取り込み・語彙集の作成'],media:'assests/上传笔记以及构建词汇库.png',type:'image'}
  ],
  analysis:[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/data analysis总界面.png',type:'image'},
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/data analysis总界面.png',type:'image'},
   {id:'general-assay',label:['General assay','常规实验','一般的な実験解析'],media:features.find(f=>f.id==='analysis').media,type:'video',legacyMedia:true}
  ],
  plasmids:[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/质粒管理.png',type:'image'},
-  {id:'sequences',label:['Edit sequences','编辑序列','配列の編集'],media:'assets/序列编辑.png',type:'image'},
-  {id:'primers',label:['Primer design','引物设计','プライマー設計'],media:'assets/引物设计.png',type:'image'},
-  {id:'advanced-primers',label:['Advanced primer design','高级引物设计','高度なプライマー設計'],media:'assets/高级引物设计功能.mp4',type:'video'},
-  {id:'digest',label:['Restriction digest','酶切反应','制限酵素処理'],media:'assets/酶切设置.png',type:'image'},
-  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'assets/sanger 对比.mp4',type:'video'}
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/质粒管理.png',type:'image'},
+  {id:'sequences',label:['Edit sequences','编辑序列','配列の編集'],media:'assests/序列编辑.png',type:'image'},
+  {id:'primers',label:['Primer design','引物设计','プライマー設計'],media:'assests/引物设计.png',type:'image'},
+  {id:'advanced-primers',label:['Advanced primer design','高级引物设计','高度なプライマー設計'],media:'assests/高级引物设计功能.mp4',type:'video'},
+  {id:'digest',label:['Restriction digest','酶切反应','制限酵素処理'],media:'assests/酶切设置.png',type:'image'},
+  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'sanger 对比.mp4',type:'video'}
  ],
  resources:[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/资源管理.mp4',type:'video'},
-  {id:'cell-experiments',label:['Cell experiments','设置细胞实验','細胞実験の設定'],media:'assets/细胞实验.png',type:'image'},
-  {id:'cell-tracking',label:['Cell tracking','细胞追踪','細胞の追跡'],media:'assets/细胞追踪.png',type:'image'}
+  {id:'overview',label:['Overview','总览','概要'],media:'资源管理.mp4',type:'video'},
+  {id:'cell-experiments',label:['Cell experiments','设置细胞实验','細胞実験の設定'],media:'assests/细胞实验.png',type:'image'},
+  {id:'cell-tracking',label:['Cell tracking','细胞追踪','細胞の追跡'],media:'assests/细胞追踪.png',type:'image'}
  ],
  literature:[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/论文管理.png',type:'image'},
-  {id:'search',label:['Paper search','论文搜索','論文検索'],media:'assets/论文搜索.png',type:'image'},
-  {id:'reading',label:['Paper reading','论文阅读','論文の閲覧'],media:'assets/论文阅读.mp4',type:'video'}
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/论文管理.png',type:'image'},
+  {id:'search',label:['Paper search','论文搜索','論文検索'],media:'assests/论文搜索.png',type:'image'},
+  {id:'reading',label:['Paper reading','论文阅读','論文の閲覧'],media:'assests/论文阅读.mp4',type:'video'}
  ],
  'research-assistant':[
-  {id:'overview',label:['Overview','总览','概要'],media:'assets/research assitant-find notes.png',type:'image'},
-  {id:'resource-search',label:['Resource search','资源搜索','リソース検索'],media:'assets/search the public database-research assistant.png',type:'image'}
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/research assitant-find notes.png',type:'image'},
+  {id:'resource-search',label:['Resource search','资源搜索','リソース検索'],media:'assests/search the public database-research assistant.png',type:'image'}
  ]
 };
 const tabs=document.getElementById('feature-tabs'),media=document.getElementById('feature-media'),viewTabs=document.getElementById('panel-tags');let selected=0,selectedView=0;
@@ -1173,6 +1173,7 @@ storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
 <script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script><script src="pasero-chapter-spacing.js?v=20261026-workspace1"></script></body></html>
+
 
 
 
