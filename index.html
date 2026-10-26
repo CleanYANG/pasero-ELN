@@ -516,6 +516,8 @@
 #desktop-explorer .feature-subtab:hover{background:#d6e7da;border-color:#668e72}
 #desktop-explorer .feature-subtab[aria-selected="true"]{background:#2d5940;border-color:#2d5940;color:#fff;box-shadow:0 2px 6px #244f3320}
 #desktop-explorer .feature-subtab:focus-visible{outline:3px solid #74a486;outline-offset:3px}
+/* Show the actual assistant conversation and search result without the empty header. */
+#desktop-explorer #feature-media .feature-focus-image{display:block;width:100%;height:100%;min-height:0}
 @media(min-width:801px){
  #desktop-explorer #feature-panel.feature-showcase{grid-template-rows:auto minmax(180px,1fr) auto}
 }
@@ -969,7 +971,7 @@ const featureViews={
   {id:'primers',label:['Primer design','引物设计','プライマー設計'],media:'assests/引物设计.png',type:'image'},
   {id:'advanced-primers',label:['Advanced primer design','高级引物设计','高度なプライマー設計'],media:'assests/高级引物设计功能.mp4',type:'video'},
   {id:'digest',label:['Restriction digest','酶切反应','制限酵素処理'],media:'assests/酶切设置.png',type:'image'},
-  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'sanger 对比.mp4',type:'video'}
+  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'assests/sanger-peaks-base-selection.png',type:'image'}
  ],
  resources:[
   {id:'overview',label:['Overview','总览','概要'],media:'资源管理.mp4',type:'video'},
@@ -982,7 +984,7 @@ const featureViews={
   {id:'reading',label:['Paper reading','论文阅读','論文の閲覧'],media:'assests/论文阅读.mp4',type:'video'}
  ],
  'research-assistant':[
-  {id:'overview',label:['Overview','总览','概要'],media:'assests/research assitant-find notes.png',type:'image'},
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/research assitant-find notes.png',type:'image',crop:{x:0,y:600,width:2326,height:572,sourceWidth:2326,sourceHeight:1172}},
   {id:'resource-search',label:['Resource search','资源搜索','リソース検索'],media:'assests/search the public database-research assistant.png',type:'image'}
  ]
 };
@@ -1006,13 +1008,20 @@ features.forEach((f,i)=>{
 function renderFeatureMedia(f,view,viewId){
  const previous=media.querySelector('video');
  if(previous){previous.pause();previous.removeAttribute('src');previous.load()}
- const m=document.createElement(view.type==='video'?'video':'img');
- m.src=view.legacyMedia?ASSETS+encodeURIComponent(view.media):SITE+view.media.split('/').map(encodeURIComponent).join('/');
+ const src=view.legacyMedia?ASSETS+encodeURIComponent(view.media):SITE+view.media.split('/').map(encodeURIComponent).join('/');
+ let rendered;
+ const reportError=()=>{if(!rendered||!rendered.isConnected)return;media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)};
+ if(view.crop){
+  const c=view.crop,ns='http://www.w3.org/2000/svg',frame=document.createElementNS(ns,'svg'),image=document.createElementNS(ns,'image');
+  frame.classList.add('feature-focus-image');frame.setAttribute('viewBox',`${c.x} ${c.y} ${c.width} ${c.height}`);frame.setAttribute('preserveAspectRatio','xMidYMid meet');frame.setAttribute('role','img');
+  if(viewId)frame.setAttribute('aria-labelledby',viewId);else frame.setAttribute('aria-label','Pasero product preview: '+f.label);
+  image.setAttribute('href',src);image.setAttribute('width',c.sourceWidth);image.setAttribute('height',c.sourceHeight);image.addEventListener('error',reportError);frame.appendChild(image);rendered=frame;media.replaceChildren(frame);return;
+ }
+ const m=document.createElement(view.type==='video'?'video':'img');rendered=m;m.src=src;
  if(view.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
  else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
  if(viewId)m.setAttribute('aria-labelledby',viewId);
- m.addEventListener('error',()=>{if(!m.isConnected)return;media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)});
- media.replaceChildren(m);
+ m.addEventListener('error',reportError);media.replaceChildren(m);
 }
 function setFeatureView(index,reveal=false){
  const f=features[selected],views=featureViews[f.id];selectedView=index;
@@ -1173,6 +1182,7 @@ storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
 <script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script><script src="pasero-chapter-spacing.js?v=20261026-workspace1"></script></body></html>
+
 
 
 
