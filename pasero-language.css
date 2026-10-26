@@ -119,3 +119,29 @@ html[lang="ja"] .story-language{flex-wrap:wrap;gap:16px}
   grid-template-columns:20px auto!important;
  }
 }
+
+
+/* Fit each authored Japanese heading phrase on one line, preserving its <br>. */
+html[lang="ja"] .mobile-hero-layout>div:first-child,
+html[lang="ja"] .explorer-intro>div:first-child,
+html[lang="ja"] #pricing .pricing-intro>div:first-child,
+html[lang="ja"] #story .story-excerpt{
+ container-type:inline-size;
+ min-width:0;
+}
+html[lang="ja"] .mobile-hero h1{
+ font-size:min(44px,9.5cqw)!important;
+ white-space:nowrap;
+}
+html[lang="ja"] .explorer-intro h2{
+ font-size:min(38px,7.8cqw)!important;
+ white-space:nowrap;
+}
+html[lang="ja"] #pricing .pricing-intro h2{
+ font-size:min(30px,4.4cqw)!important;
+ white-space:nowrap;
+}
+html[lang="ja"] #story .story-excerpt h3{
+ font-size:min(32px,6.6cqw)!important;
+ white-space:nowrap;
+}
