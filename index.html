@@ -510,6 +510,20 @@
  #desktop-explorer .panel-tags span{font-size:9px!important;padding:3px 7px!important;white-space:nowrap}
 }
 
+/* Real media tabs reuse the site's green palette and the feature-name size. */
+#desktop-explorer #panel-tags.feature-subtabs{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px!important;margin-top:10px!important;min-width:0}
+#desktop-explorer .feature-subtab{appearance:none;display:inline-flex;align-items:center;justify-content:center;flex:0 1 auto;max-width:100%;min-height:40px;padding:7px 11px;border:1px solid #93b29c;border-radius:8px;background:#e7f0e9;color:#28513a;font:600 18px/1.25 'DM Sans','Noto Sans SC',sans-serif;text-align:center;text-wrap:balance;cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+#desktop-explorer .feature-subtab:hover{background:#d6e7da;border-color:#668e72}
+#desktop-explorer .feature-subtab[aria-selected="true"]{background:#2d5940;border-color:#2d5940;color:#fff;box-shadow:0 2px 6px #244f3320}
+#desktop-explorer .feature-subtab:focus-visible{outline:3px solid #74a486;outline-offset:3px}
+@media(min-width:801px){
+ #desktop-explorer #feature-panel.feature-showcase{grid-template-rows:auto minmax(180px,1fr) auto}
+}
+@media(max-width:800px){
+ #desktop-explorer #panel-tags.feature-subtabs{flex-wrap:nowrap;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;padding:2px 2px 7px;gap:7px!important;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ #desktop-explorer .feature-subtab{flex:0 0 auto;max-width:none;min-height:40px;font-size:15px;line-height:1.3;padding:8px 11px;white-space:nowrap;scroll-snap-align:start}
+}
+
 /* 2026-10-25: phone-only header readability and crisp Mobile screenshot border. */
 @media(max-width:800px){
  .header .nav{
@@ -938,10 +952,45 @@ const features=[
     }
   }
 ];
-const tabs=document.getElementById('feature-tabs'),media=document.getElementById('feature-media');let selected=0;
-function setFeatureText(el,en,zh){
+/* Each feature opens its overview; these tabs expose the real product views. */
+const featureViews={
+ notes:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/new notes.png',type:'image'},
+  {id:'images-resources',label:['Images & linked resources','图片上传及资源关联','画像の追加・リソース連携'],media:'assests/资源关联和图片上传.png',type:'image'},
+  {id:'upload-vocabulary',label:['Upload notes & build your own vocabulary','上传笔记及构建词汇库','ノートの取り込み・語彙集の作成'],media:'assests/上传笔记以及构建词汇库.png',type:'image'}
+ ],
+ analysis:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/data analysis总界面.png',type:'image'},
+  {id:'general-assay',label:['General assay','常规实验','一般的な実験解析'],media:features.find(f=>f.id==='analysis').media,type:'video',legacyMedia:true}
+ ],
+ plasmids:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/质粒管理.png',type:'image'},
+  {id:'sequences',label:['Edit sequences','编辑序列','配列の編集'],media:'assests/序列编辑.png',type:'image'},
+  {id:'primers',label:['Primer design','引物设计','プライマー設計'],media:'assests/引物设计.png',type:'image'},
+  {id:'advanced-primers',label:['Advanced primer design','高级引物设计','高度なプライマー設計'],media:'assests/高级引物设计功能.mp4',type:'video'},
+  {id:'digest',label:['Restriction digest','酶切反应','制限酵素処理'],media:'assests/酶切设置.png',type:'image'},
+  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'sanger 对比.mp4',type:'video'}
+ ],
+ resources:[
+  {id:'overview',label:['Overview','总览','概要'],media:'资源管理.mp4',type:'video'},
+  {id:'cell-experiments',label:['Cell experiments','设置细胞实验','細胞実験の設定'],media:'assests/细胞实验.png',type:'image'},
+  {id:'cell-tracking',label:['Cell tracking','细胞追踪','細胞の追跡'],media:'assests/细胞追踪.png',type:'image'}
+ ],
+ literature:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/论文管理.png',type:'image'},
+  {id:'search',label:['Paper search','论文搜索','論文検索'],media:'assests/论文搜索.png',type:'image'},
+  {id:'reading',label:['Paper reading','论文阅读','論文の閲覧'],media:'assests/论文阅读.mp4',type:'video'}
+ ],
+ 'research-assistant':[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/research assitant-find notes.png',type:'image'},
+  {id:'resource-search',label:['Resource search','资源搜索','リソース検索'],media:'assests/search the public database-research assistant.png',type:'image'}
+ ]
+};
+const tabs=document.getElementById('feature-tabs'),media=document.getElementById('feature-media'),viewTabs=document.getElementById('panel-tags');let selected=0,selectedView=0;
+function setFeatureText(el,en,zh,ja){
  el.setAttribute('data-en',en);el.setAttribute('data-zh',zh);
- el.textContent=window.PaseroI18n?window.PaseroI18n.translate(en,zh):en;
+ if(ja!==undefined)el.setAttribute('data-ja',ja);else el.removeAttribute('data-ja');
+ el.textContent=window.PaseroI18n?window.PaseroI18n.translate(en,zh,ja):en;
 }
 features.forEach((f,i)=>{
  const btn=document.createElement('button');btn.type='button';btn.className='feature-tab';btn.id='ft-'+f.id;btn.role='tab';btn.setAttribute('aria-controls','feature-panel');
@@ -954,22 +1003,59 @@ features.forEach((f,i)=>{
   else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length,true);tabs.children[selected].focus()}
  });tabs.appendChild(btn);
 });
+function renderFeatureMedia(f,view,viewId){
+ const previous=media.querySelector('video');
+ if(previous){previous.pause();previous.removeAttribute('src');previous.load()}
+ const m=document.createElement(view.type==='video'?'video':'img');
+ m.src=view.legacyMedia?ASSETS+encodeURIComponent(view.media):SITE+view.media.split('/').map(encodeURIComponent).join('/');
+ if(view.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
+ else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
+ if(viewId)m.setAttribute('aria-labelledby',viewId);
+ m.addEventListener('error',()=>{if(!m.isConnected)return;media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)});
+ media.replaceChildren(m);
+}
+function setFeatureView(index,reveal=false){
+ const f=features[selected],views=featureViews[f.id];selectedView=index;
+ [...viewTabs.children].forEach((el,n)=>{const on=n===index;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
+ const active=viewTabs.children[index];media.setAttribute('role','tabpanel');media.setAttribute('aria-labelledby',active.id);
+ renderFeatureMedia(f,views[index],active.id);
+ if(reveal&&window.matchMedia('(max-width:800px)').matches)active.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+function renderFeatureViewTabs(f){
+ const views=featureViews[f.id];viewTabs.replaceChildren();
+ viewTabs.classList.toggle('feature-subtabs',Boolean(views));
+ if(!views){
+  viewTabs.removeAttribute('role');viewTabs.removeAttribute('aria-labelledby');viewTabs.removeAttribute('aria-orientation');
+  media.removeAttribute('role');media.removeAttribute('aria-labelledby');
+  viewTabs.replaceChildren(...f.tags.map((tag,n)=>{const el=document.createElement('span');setFeatureText(el,tag,f.zh.tags[n]);return el}));
+  renderFeatureMedia(f,{media:f.media,type:f.type,legacyMedia:true});return;
+ }
+ viewTabs.setAttribute('role','tablist');viewTabs.setAttribute('aria-labelledby','feature-status');viewTabs.setAttribute('aria-orientation','horizontal');
+ views.forEach((view,index)=>{
+  const btn=document.createElement('button');btn.type='button';btn.className='feature-subtab';btn.id='fv-'+f.id+'-'+view.id;btn.role='tab';btn.setAttribute('aria-controls','feature-media');
+  setFeatureText(btn,...view.label);btn.addEventListener('click',()=>setFeatureView(index,true));
+  btn.addEventListener('keydown',event=>{
+   let target=index;
+   if(event.key==='ArrowRight')target=(index+1)%views.length;
+   else if(event.key==='ArrowLeft')target=(index+views.length-1)%views.length;
+   else if(event.key==='Home')target=0;
+   else if(event.key==='End')target=views.length-1;
+   else return;
+   event.preventDefault();setFeatureView(target,true);viewTabs.children[target].focus();
+  });viewTabs.appendChild(btn);
+ });setFeatureView(0);
+}
 function setFeature(i,reveal=false){
- selected=i;const f=features[i];
+ selected=i;selectedView=0;const f=features[i];
  [...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
  document.getElementById('feature-panel').setAttribute('aria-labelledby','ft-'+f.id);
  if(reveal&&window.matchMedia('(max-width:800px)').matches)tabs.children[i].scrollIntoView({block:'nearest',inline:'nearest'});
- const m=document.createElement(f.type==='video'?'video':'img');m.src=ASSETS+encodeURIComponent(f.media);
- if(f.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
- else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
- m.addEventListener('error',()=>{media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)});
- media.replaceChildren(m);
  const number=String(i+1).padStart(2,'0'),total=String(features.length).padStart(2,'0');
  setFeatureText(document.getElementById('feature-status'),`${number} · ${f.label.toUpperCase()}`,`${number} · ${f.zh.label}`);
  setFeatureText(document.getElementById('panel-index'),`FEATURE ${number} / ${total}`,`功能 ${number} / ${total}`);
  setFeatureText(document.getElementById('panel-title'),f.title,f.zh.title);
  setFeatureText(document.getElementById('panel-desc'),f.desc,f.zh.desc);
- document.getElementById('panel-tags').replaceChildren(...f.tags.map((tag,n)=>{const el=document.createElement('span');setFeatureText(el,tag,f.zh.tags[n]);return el}));
+ renderFeatureViewTabs(f);
 }
 const featureBreakpoint=window.matchMedia('(max-width:800px)');
 function syncFeatureOrientation(){tabs.setAttribute('aria-orientation',featureBreakpoint.matches?'horizontal':'vertical')}
@@ -1087,6 +1173,8 @@ storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
 <script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script><script src="pasero-chapter-spacing.js?v=20261026-workspace1"></script></body></html>
+
+
 
 
 
