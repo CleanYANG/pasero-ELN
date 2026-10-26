@@ -26,6 +26,7 @@ Object.assign(translations,{
   "Batch restriction-digest recipes": "酶切方案",
   "Be simple, be real, keep cool.": "简单一点，真实一点，从容一点"
 });
+Object.assign(translations,{"One experiment.":"还记得这个细胞","So many connections.":"用在了哪个实验中？"});
 var KEY='coolab-language';
 var lang='en', processing=false;
 var originals=new WeakMap(), lastTranslations=new WeakMap();
