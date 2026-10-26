@@ -735,17 +735,17 @@ html[lang="zh-CN"] .hero h1,html[lang="zh-CN"] .explorer-title,html[lang="zh-CN"
 <section id="desktop-explorer" class="explorer" aria-label="Pasero Desktop feature explorer">
  <div class="explorer-wrap">
   <div class="section-kicker"><span>02 / THE WORKSPACE</span><span class="kicker-line"></span><span>DESKTOP</span></div>
-  <h2 class="explorer-title" data-en="A place for <em>everything</em><br>behind your experiments." data-zh="研究所需，<em>汇聚一处</em>">A place for <em>everything</em><br>behind your experiments.</h2>
-  <p class="explorer-lead">Record experiments, work with molecular tools, analyze data, and turn results into presentations — with the context kept together.</p>
+  <h2 class="explorer-title" data-en="Your research essentials,<br><em>all in one place.</em>" data-zh="研究所需，<em>汇聚一处</em>">Your research essentials,<br><em>all in one place.</em></h2>
+  <p class="explorer-lead" data-en="Record experiments, work with sequences, analyze data, prepare presentations, and track resources." data-zh="记录实验、处理序列、分析数据、整理汇报，追踪资源">Record experiments, work with sequences, analyze data, prepare presentations, and track resources.</p>
   <div class="feature-layout">
    <div class="feature-tabs" id="feature-tabs" role="tablist" aria-label="Desktop features"></div>
    <div class="feature-showcase" id="feature-panel" role="tabpanel" aria-live="polite">
-    <div class="showcase-top"><span>PASERO / DESKTOP</span><span class="top-state" id="feature-status">01 · NOTES</span></div>
+    <div class="showcase-top"><span data-en="PASERO / DESKTOP" data-zh="PASERO 雀角 / 桌面端">PASERO / DESKTOP</span><span class="top-state" id="feature-status">01 · NOTES</span></div>
     <div class="image-stage" id="feature-media"><div class="stage-loading">Loading feature…</div></div>
-    <div class="showcase-bottom"><div><div class="panel-index" id="panel-index">FEATURE 01 / 06</div><h3 class="panel-title" id="panel-title">Notes</h3><p class="panel-desc" id="panel-desc"></p><div class="panel-tags" id="panel-tags"></div></div></div>
+    <div class="showcase-bottom"><div><div class="panel-index" id="panel-index">FEATURE 01 / 07</div><h3 class="panel-title" id="panel-title">Notes</h3><p class="panel-desc" id="panel-desc"></p><div class="panel-tags" id="panel-tags"></div></div></div>
    </div>
   </div>
-  <div class="explorer-footer"><span><b>Six areas. One connected workspace.</b> Explore each tool and see how it fits into your research.</span></div>
+  <div class="explorer-footer"><span><b data-en="Seven features. One workspace. No tokens. Works offline." data-zh="七大功能，一个空间，不要 tokens，离线使用">Seven features. One workspace. No tokens. Works offline.</b> <span data-en="Explore each tool and find your research flow." data-zh="走近每项工具，找到适合自己的科研节奏">Explore each tool and find your research flow.</span></span></div>
  </div>
 </section>
 <section class="mobile-story mobile-white" id="mobile-story" aria-label="Pasero Mobile and desktop workflow">
@@ -834,20 +834,228 @@ const stage=document.getElementById('stage'),svg=document.getElementById('connec
 const ASSETS='https://cleanyang.github.io/pasero-ELN/assests/';
 const SITE='https://cleanyang.github.io/pasero-ELN/';
 const features=[
- {id:'notes',label:'Notes',summary:'Experiments & results',title:'Capture the experiment. Keep its context.',desc:'Experimental notes, tables, images, Results and links back to the cells, reagents and plasmids used.',tags:['Notebook','Results','Linked resources'],media:'资源in notes.png',type:'image',link:null,note:'Real screenshot · resource links inside notes'},
- {id:'analysis',label:'Data Analysis',summary:'Statistics & charts',title:'From raw values to usable figures.',desc:'A desktop workspace for general assay data, qPCR, Western blot quantification and charts that can be saved with research notes.',tags:['General assay','qPCR','Western blot'],media:'数据分析.mp4',type:'video',link:null,note:'Actual Pasero data-analysis demonstration'},
- {id:'plasmids',label:'Plasmids',summary:'Sequences & molecular tools',title:'The sequence is just the beginning.',desc:'Manage plasmid sequences and annotations, inspect restriction enzymes and prepare molecular biology workflows.',tags:['Sequences','Restriction digest','Primer design'],media:'Plasmid-sequence-section.mp4',type:'video',link:null,note:'Actual Pasero plasmid-tool demonstration'},
- {id:'resources',label:'Resources',summary:'Cells, reagents & protocols',title:'Know what you used — and where.',desc:'Keep experimental materials and protocols traceable, with links connecting the resource to the records that use it.',tags:['Cells','Reagents','Protocols'],media:'资源关联.png',type:'image',link:null,note:'Real screenshot · linked resource management'},
- {id:'literature',label:'Literature',summary:'Search, read & annotate',title:'Keep reading close to doing.',desc:'Find papers, manage PDF files, capture annotations and retain relevant literature in the research workspace.',tags:['PDF library','Search','Annotations'],media:'移动端paper阅读.png',type:'image',link:null,note:'Existing website asset · mobile PDF reader preview'},
- {id:'presentations',label:'Presentations',summary:'Results to PPTX',title:'Turn your results into a story.',desc:'Reuse experimental Results saved in notes to assemble downloadable presentation slides for research meetings.',tags:['Results','Slides','PPTX'],media:'ppt生成.png',type:'image',link:null,note:'Existing screenshot · presentation generation'}
+  {
+    "id": "notes",
+    "label": "Notes",
+    "summary": "Experiments & results",
+    "title": "Write notes and tables, import Excel files, add and edit images, and track resources.",
+    "desc": "Save data analyses, primer designs, and Sanger sequencing results in your notes, keeping experiments and results together.",
+    "tags": [
+      "Notebook",
+      "Results",
+      "Linked resources"
+    ],
+    "media": "资源in notes.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · resource links inside notes",
+    "zh": {
+      "label": "实验记录",
+      "summary": "实验与结果",
+      "title": "支持文本记录、表格记录、导入 Excel、添加与编辑图片、追踪资源",
+      "desc": "数据处理、引物设计、Sanger 测序结果都能保存进笔记，实验和结果之间不掉队",
+      "tags": [
+        "实验笔记",
+        "实验结果",
+        "关联资源"
+      ]
+    }
+  },
+  {
+    "id": "analysis",
+    "label": "Data Analysis",
+    "summary": "Statistics & charts",
+    "title": "Import data. Plot in one click: bar, line, stacked bar, and box plots.",
+    "desc": "Analyze general assay, qPCR, and Western blot data, and save charts and statistical results alongside your notes.",
+    "tags": [
+      "General assay",
+      "qPCR",
+      "Western blot"
+    ],
+    "media": "数据分析.mp4",
+    "type": "video",
+    "link": null,
+    "note": "Actual Pasero data-analysis demonstration",
+    "zh": {
+      "label": "数据分析",
+      "summary": "统计与图表",
+      "title": "导入数据，一键出图，支持柱状图、折线图、Stacked Bar、箱型图",
+      "desc": "从常规实验数据到 qPCR、Western blot 定量分析，图表与统计结果均可随笔记保存",
+      "tags": [
+        "常规实验",
+        "qPCR",
+        "Western blot"
+      ]
+    }
+  },
+  {
+    "id": "plasmids",
+    "label": "Plasmids",
+    "summary": "Sequences & molecular tools",
+    "title": "Edit sequences, design primers, compare sequences, and plan restriction digests—all in Plasmids.",
+    "desc": "Manage plasmids and primers, and set up restriction digests.",
+    "tags": [
+      "Sequences",
+      "Restriction digest",
+      "Primer design"
+    ],
+    "media": "Plasmid-sequence-section.mp4",
+    "type": "video",
+    "link": null,
+    "note": "Actual Pasero plasmid-tool demonstration",
+    "zh": {
+      "label": "质粒工具",
+      "summary": "序列与分子工具",
+      "title": "编辑序列、设计引物、序列对比、酶切反应尽在质粒板块",
+      "desc": "管理质粒以及引物，设置酶切反应",
+      "tags": [
+        "序列",
+        "限制性酶切",
+        "引物设计"
+      ]
+    }
+  },
+  {
+    "id": "resources",
+    "label": "Database",
+    "summary": "Cells, reagents & protocols",
+    "title": "Know what you used—and where.",
+    "desc": "Keep records of your experimental materials and protocols, and trace where they were used.",
+    "tags": [
+      "Cells",
+      "Reagents",
+      "Protocols"
+    ],
+    "media": "资源关联.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · linked resource management",
+    "zh": {
+      "label": "数据库",
+      "summary": "细胞、试剂与 Protocol",
+      "title": "用过什么、用在哪里，都有迹可循",
+      "desc": "让实验材料与操作流程各有记录，也能追溯它们出现在何处",
+      "tags": [
+        "细胞",
+        "试剂",
+        "实验流程"
+      ]
+    }
+  },
+  {
+    "id": "literature",
+    "label": "Literature",
+    "summary": "Search, read & annotate",
+    "title": "Organize your papers. Read in single-page or two-page view.",
+    "desc": "Find papers, manage PDFs, and record annotations, keeping important literature connected to your research.",
+    "tags": [
+      "PDF library",
+      "Search",
+      "Annotations"
+    ],
+    "media": "移动端paper阅读.png",
+    "type": "image",
+    "link": null,
+    "note": "Existing website asset · mobile PDF reader preview",
+    "zh": {
+      "label": "文献管理",
+      "summary": "检索、阅读与批注",
+      "title": "支持管理文献，单页双页阅读",
+      "desc": "检索论文、管理 PDF、记录批注，让重要文献始终留在研究脉络里",
+      "tags": [
+        "PDF 文献库",
+        "检索",
+        "批注"
+      ]
+    }
+  },
+  {
+    "id": "presentations",
+    "label": "Presentations",
+    "summary": "Results to PPTX",
+    "title": "Turn your recorded results into lab meeting slides with ease.",
+    "desc": "Bring together results saved in your experiment notes to create downloadable research presentations.",
+    "tags": [
+      "Results",
+      "Slides",
+      "PPTX"
+    ],
+    "media": "ppt生成.png",
+    "type": "image",
+    "link": null,
+    "note": "Existing screenshot · presentation generation",
+    "zh": {
+      "label": "研究汇报",
+      "summary": "从结果到 PPTX",
+      "title": "以记录的结果为中心，不费吹灰之力助你组会一臂之力",
+      "desc": "调取实验笔记中已记录的结果，整理成可下载的研究汇报幻灯片",
+      "tags": [
+        "实验结果",
+        "幻灯片",
+        "PPTX"
+      ]
+    }
+  },
+  {
+    "id": "research-assistant",
+    "label": "Research Assistant",
+    "summary": "Connected lab tools",
+    "title": "A research assistant connected to your lab tools.",
+    "desc": "Ask in natural language to find and organize notes, process sequences, look up protocols and run lab calculations. Confirm changes before they are saved.",
+    "tags": [
+      "Lab notes",
+      "Sequence tools",
+      "Lab calculations"
+    ],
+    "media": "research-assitant.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · Research Assistant workspace",
+    "zh": {
+      "label": "研究助手",
+      "summary": "跨模块实验工具",
+      "title": "能调用实验工具的研究助手",
+      "desc": "用自然语言查找与整理实验记录、处理序列、查询 Protocol、完成实验计算，写入或修改记录前由你确认",
+      "tags": [
+        "实验记录",
+        "序列工具",
+        "实验计算"
+      ]
+    }
+  }
 ];
 const tabs=document.getElementById('feature-tabs'),media=document.getElementById('feature-media');let selected=0;
-features.forEach((f,i)=>{const btn=document.createElement('button');btn.type='button';btn.className='feature-tab';btn.id='ft-'+f.id;btn.role='tab';btn.setAttribute('aria-controls','feature-panel');btn.innerHTML=`<span class="number">0${i+1}</span><span><strong>${f.label}</strong><small>${f.summary}</small></span><span class="arrow" aria-hidden="true">↗︎</span>`;btn.addEventListener('click',()=>setFeature(i));btn.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();setFeature((i+1)%features.length);tabs.children[selected].focus()}else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length);tabs.children[selected].focus()}});tabs.appendChild(btn)});
-function setFeature(i){selected=i;const f=features[i];[...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
- const m=document.createElement(f.type==='video'?'video':'img');m.src=ASSETS+encodeURIComponent(f.media);if(f.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
+function setFeatureText(el,en,zh){
+ el.setAttribute('data-en',en);el.setAttribute('data-zh',zh);
+ const language=window.PaseroI18n?.getLanguage()||(document.documentElement.lang==='zh-CN'?'zh':'en');
+ el.textContent=language==='zh'?zh:en;
+}
+features.forEach((f,i)=>{
+ const btn=document.createElement('button');btn.type='button';btn.className='feature-tab';btn.id='ft-'+f.id;btn.role='tab';btn.setAttribute('aria-controls','feature-panel');
+ btn.innerHTML=`<span class="number">${String(i+1).padStart(2,'0')}</span><span><strong></strong><small></small></span><span class="arrow" aria-hidden="true">↗︎</span>`;
+ setFeatureText(btn.querySelector('strong'),f.label,f.zh.label);
+ setFeatureText(btn.querySelector('small'),f.summary,f.zh.summary);
+ btn.addEventListener('click',()=>setFeature(i));
+ btn.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();setFeature((i+1)%features.length);tabs.children[selected].focus()}
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length);tabs.children[selected].focus()}
+ });tabs.appendChild(btn);
+});
+function setFeature(i){
+ selected=i;const f=features[i];
+ [...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
+ document.getElementById('feature-panel').setAttribute('aria-labelledby','ft-'+f.id);
+ const m=document.createElement(f.type==='video'?'video':'img');m.src=ASSETS+encodeURIComponent(f.media);
+ if(f.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
+ else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
  m.addEventListener('error',()=>{media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)});
  media.replaceChildren(m);
- document.getElementById('feature-status').textContent=`0${i+1} · ${f.label.toUpperCase()}`;document.getElementById('panel-index').textContent=`FEATURE 0${i+1} / 06`;document.getElementById('panel-title').textContent=f.title;document.getElementById('panel-desc').textContent=f.desc;document.getElementById('panel-tags').innerHTML=f.tags.map(t=>`<span>${t}</span>`).join('');
+ const number=String(i+1).padStart(2,'0'),total=String(features.length).padStart(2,'0');
+ setFeatureText(document.getElementById('feature-status'),`${number} · ${f.label.toUpperCase()}`,`${number} · ${f.zh.label}`);
+ setFeatureText(document.getElementById('panel-index'),`FEATURE ${number} / ${total}`,`功能 ${number} / ${total}`);
+ setFeatureText(document.getElementById('panel-title'),f.title,f.zh.title);
+ setFeatureText(document.getElementById('panel-desc'),f.desc,f.zh.desc);
+ document.getElementById('panel-tags').replaceChildren(...f.tags.map((tag,n)=>{const el=document.createElement('span');setFeatureText(el,tag,f.zh.tags[n]);return el}));
 }
 setFeature(0);
 
@@ -960,3 +1168,4 @@ storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
 <script src="pasero-i18n.js?v=20261026-copy2"></script></body></html>
+
