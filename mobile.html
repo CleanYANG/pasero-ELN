@@ -227,10 +227,10 @@ body>header .navlinks .pasero-lang-trigger{
 }
 
 /* Match the first chapter gap: hero bottom + explorer top. */
-#explorer.explorer{padding-bottom:90px}
+#explorer.explorer{padding-bottom:var(--workspace-tail-space,90px)}
 .sync-chapter{padding-top:115px}
 @media(max-width:800px){
- #explorer.explorer{padding-top:70px;padding-bottom:42px}
+ #explorer.explorer{padding-top:70px;padding-bottom:var(--workspace-tail-space,42px)}
  .sync-chapter{padding-top:70px}
 }
 
@@ -317,7 +317,7 @@ mobileViewSelect.addEventListener('change',()=>{activeView=Number(mobileViewSele
 function selectFeature(index){active=(index+features.length)%features.length;activeView=0;options.forEach((el,i)=>{el.classList.toggle('active',i===active);el.setAttribute('aria-pressed',String(i===active));});document.getElementById('current-slide').textContent=String(active+1).padStart(2,'0');document.getElementById('progress-line').style.width=((active+1)/features.length*100)+'%';renderView();}
 function renderView(){const group=features[active],f=group.views[activeView];mobileCapabilities.replaceChildren(...group.capabilities.map(([en,zh,ja])=>{const li=document.createElement('li');li.setAttribute('data-en',en);li.setAttribute('data-zh',zh);li.setAttribute('data-ja',ja);li.textContent=window.PaseroI18n?.translate(en,zh,ja)||en;return li;}));mobileViewPicker.hidden=group.views.length<2;mobileViewSelect.replaceChildren(...group.views.map((v,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=v.label;option.selected=i===activeView;return option;}));subnav.replaceChildren(...group.views.map((v,i)=>{const b=document.createElement('button');b.type='button';b.textContent=v.label;b.className=i===activeView?'active':'';b.setAttribute('aria-pressed',String(i===activeView));b.addEventListener('click',()=>{activeView=i;renderView()});return b}));document.getElementById('detail-kicker').textContent=f.kicker;document.getElementById('detail-title').textContent=f.title;document.getElementById('detail-description').textContent=f.description;document.getElementById('detail-tags').replaceChildren(...f.tags.map(t=>{const e=document.createElement('span');e.textContent=t;return e;}));video.pause();video.removeAttribute('src');video.load();if(f.video){img.hidden=true;video.hidden=false;video.poster=root+encodeURIComponent(f.poster);video.src=root+encodeURIComponent(f.video);video.load();video.play().catch(()=>{video.controls=true;});}else{video.hidden=true;video.controls=false;img.hidden=false;img.src=root+encodeURIComponent(f.image);img.alt='Pasero Mobile '+group.name+' - '+f.label+' preview';img.style.animation='none';void img.offsetWidth;img.style.animation='';}window.PaseroI18n?.refresh();}
 options.forEach((o,i)=>o.addEventListener('click',()=>selectFeature(i)));selectFeature(0);
-</script><script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script></body></html>
+</script><script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script><script src="pasero-chapter-spacing.js?v=20261026-workspace1"></script></body></html>
 
 
 
