@@ -958,4 +958,4 @@ const storyRead=document.getElementById('story-read');const storyExpanded=docume
 storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-expanded')!=='true';storyRead.setAttribute('aria-expanded',String(open));storyExpanded.hidden=!open;storyRead.firstChild.textContent=open?'Close the story ':'Read the story ';});
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
-<script src="pasero-i18n.js?v=20261026-copy"></script></body></html>
+<script src="pasero-i18n.js?v=20261026-copy2"></script></body></html>
