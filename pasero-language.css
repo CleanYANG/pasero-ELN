@@ -1,4 +1,5 @@
 /* Pasero language picker — shared by Home, Mobile and Download. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
 .pasero-lang-picker{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;z-index:90}
 .pasero-lang-trigger{appearance:none!important;border:1px solid rgba(67,91,75,.28)!important;background:transparent!important;color:#2d523d!important;display:inline-grid!important;place-items:center!important;width:40px!important;height:40px!important;padding:0!important;border-radius:50%!important;cursor:pointer;transition:background .15s,border-color .15s;box-shadow:none!important}
 .pasero-lang-trigger:hover,.pasero-lang-trigger[aria-expanded="true"]{background:#e7efe7!important;border-color:#93ad9a!important}
@@ -28,4 +29,93 @@ header:not(.header) .pasero-lang-options{left:0;right:auto}
 @media(max-width:370px){
  .header .actions{margin-left:10px!important}
  .navlinks>.pasero-lang-picker{margin-right:7px!important}
+}
+
+
+/* Japanese copy uses readable system fonts and natural spacing across all pages. */
+html[lang="ja"] body,
+html[lang="ja"] body button,
+html[lang="ja"] body a,
+html[lang="ja"] body h1,
+html[lang="ja"] body h2,
+html[lang="ja"] body h3,
+html[lang="ja"] body h4,
+html[lang="ja"] body strong,
+html[lang="ja"] body small{
+ font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif!important;
+ letter-spacing:normal!important;
+}
+html[lang="ja"] .hero h1,
+html[lang="ja"] .mobile-hero h1{
+ font-size:clamp(43px,4.9vw,72px)!important;line-height:1.35!important;font-weight:500!important;
+}
+html[lang="ja"] .hero h1 em{white-space:normal!important}
+html[lang="ja"] #desktop-explorer .explorer-title,
+html[lang="ja"] #mobile-story .mobile-headline,
+html[lang="ja"] #story .story-heading h2,
+html[lang="ja"] .explorer-intro h2,
+html[lang="ja"] .sync-copy h2,
+html[lang="ja"] .mobile-end h2,
+html[lang="ja"] .platform-hero h1,
+html[lang="ja"] .sec-head h2,
+html[lang="ja"] .info h2{
+ font-size:clamp(35px,4.2vw,59px)!important;line-height:1.45!important;font-weight:500!important;
+}
+html[lang="ja"] #pricing .pricing-intro h2{
+ font:500 clamp(34px,4.1vw,59px)/1.5 'Noto Sans JP','Yu Gothic',Meiryo,sans-serif!important;letter-spacing:normal!important;
+}
+html[lang="ja"] #story .story-excerpt h3{
+ font-size:clamp(30px,3.3vw,46px)!important;line-height:1.55!important;
+}
+html[lang="ja"] #desktop-explorer .panel-title,
+html[lang="ja"] .feature-detail h3{
+ font-size:clamp(21px,2vw,28px)!important;line-height:1.55!important;
+}
+html[lang="ja"] .description,
+html[lang="ja"] .lead,
+html[lang="ja"] .explorer-lead,
+html[lang="ja"] #desktop-explorer .panel-desc,
+html[lang="ja"] .feature-detail p,
+html[lang="ja"] .story-full p{line-height:1.9!important}
+html[lang="ja"] .plan-name{font-family:'Space Grotesk',sans-serif!important}
+html[lang="ja"] .feature-tab,
+html[lang="ja"] .feature-option,
+html[lang="ja"] .plan,
+html[lang="ja"] .platform{min-width:0;overflow-wrap:anywhere}
+html[lang="ja"] .showcase-top{letter-spacing:normal!important;flex-wrap:wrap}
+html[lang="ja"] .explorer-footer{line-height:1.85!important}
+html[lang="ja"] .story-language{flex-wrap:wrap;gap:16px}
+@media(max-width:800px){
+ html[lang="ja"] .hero h1,
+ html[lang="ja"] .mobile-hero h1{font-size:clamp(33px,8.8vw,48px)!important;line-height:1.42!important}
+ html[lang="ja"] #desktop-explorer .explorer-title,
+ html[lang="ja"] #mobile-story .mobile-headline,
+ html[lang="ja"] #story .story-heading h2,
+ html[lang="ja"] .explorer-intro h2,
+ html[lang="ja"] .sync-copy h2,
+ html[lang="ja"] .mobile-end h2,
+ html[lang="ja"] .platform-hero h1,
+ html[lang="ja"] .sec-head h2,
+ html[lang="ja"] .info h2{font-size:clamp(27px,7vw,39px)!important}
+ html[lang="ja"] #pricing .pricing-intro h2{font-size:clamp(28px,7vw,39px)!important}
+ html[lang="ja"] #story .story-excerpt h3{font-size:clamp(25px,6.5vw,34px)!important}
+ html[lang="ja"] .header .nav,
+ html[lang="ja"] body>header .navlinks{font-size:clamp(11px,3.25vw,14px)!important}
+ html[lang="ja"] #desktop-explorer .panel-title{font-size:19px!important}
+ html[lang="ja"] .plan .choice{font-size:10px!important;letter-spacing:normal!important}
+ html[lang="ja"] .plan .plan-action{white-space:normal!important;line-height:1.6!important}
+ html[lang="ja"] .pasero-lang-options{right:0;left:auto;min-width:152px}
+ html[lang="ja"] .header .download,
+ html[lang="ja"] body>header .navlinks>.btn{font-size:clamp(9px,2.5vw,11px)!important;padding-left:7px!important;padding-right:7px!important}
+}
+
+@media(max-width:800px){
+ html[lang="ja"] body>header .navlinks>.pasero-lang-picker:first-child .pasero-lang-options{left:0;right:auto}
+}
+
+@media(max-width:800px){
+ html[lang="ja"] .feature-menu .feature-option{
+  flex:0 0 auto!important;min-width:max-content!important;width:auto!important;
+  grid-template-columns:20px auto!important;
+ }
 }
