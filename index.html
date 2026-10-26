@@ -646,6 +646,15 @@
  #desktop-explorer .explorer-footer b{font-size:24px;font-weight:700}
 }
 
+/* Keep the full Japanese feature summary on one line on desktop. */
+@media(min-width:801px){
+ html[lang="ja"] #desktop-explorer .explorer-footer,
+ html[lang="ja"] #desktop-explorer .explorer-footer b{
+  font-size:clamp(11px,1.35vw,18px)!important;
+ }
+ html[lang="ja"] #desktop-explorer .explorer-footer>span{white-space:nowrap}
+}
+
 /* Make language switching accessible on phones without changing the nav font sizing. */
 @media(max-width:800px){
  .header .actions .lang{
@@ -1173,5 +1182,6 @@ storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
 <script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-ja1"></script></body></html>
+
 
 
