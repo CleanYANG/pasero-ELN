@@ -22,7 +22,7 @@
  }
  function schedule(){if(!pending){pending=true;requestAnimationFrame(align);}}
  var observer=new ResizeObserver(schedule);
- [hero].concat(heroParts).forEach(function(el){observer.observe(el);});
+ [hero,first,last,next.parentElement].concat(heroParts).forEach(function(el){observer.observe(el);});
  window.addEventListener('resize',schedule);
  window.addEventListener('load',schedule);
  if(document.fonts)document.fonts.ready.then(schedule);
