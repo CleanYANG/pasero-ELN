@@ -462,153 +462,50 @@
  #story-read .responsive-arrow-svg{display:block!important;width:18px!important;height:18px!important;flex:none!important}
  #story-read .responsive-arrow-svg{transition:transform .25s}
  #story-read[aria-expanded="true"] .responsive-arrow-svg{transform:rotate(180deg)}
- #desktop-explorer .feature-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:12px!important}
- #desktop-explorer #feature-tabs.feature-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-rows:minmax(76px,auto)!important;gap:8px!important;width:100%!important;max-width:100%!important;overflow:visible!important;border-top:0!important;padding:0!important;scroll-snap-type:none!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab{box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;min-width:0!important;width:100%!important;max-width:100%!important;height:auto!important;min-height:76px!important;margin:0!important;padding:10px 9px!important;gap:3px!important;white-space:normal!important;overflow-wrap:anywhere!important;border:1px solid #dce5dd!important;border-radius:11px!important;flex:initial!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{padding:10px 9px!important;border-color:#b9a7d5!important;background:#eee8f8!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:clamp(12px,3.5vw,16px)!important;line-height:1.15!important;letter-spacing:-.035em!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{display:block!important;font-size:10px!important;line-height:1.25!important;margin-top:3px!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number,
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab .arrow{display:none!important}
- #desktop-explorer #feature-panel.feature-showcase{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}
-}
-@media(max-width:350px){
- #desktop-explorer #feature-tabs.feature-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:14px!important}
 }
 
-/* 2026-10-25 / Feature Explorer: the product screenshot is the primary visual. */
-/* Desktop: compact vertical tabs, generous full-size screenshot on the right. */
+/* The seven feature tabs determine the height of the desktop preview. */
 @media(min-width:801px){
- #desktop-explorer .feature-layout{
-  display:grid!important;
-  grid-template-columns:clamp(190px,17vw,220px) minmax(0,1fr)!important;
-  gap:20px!important;
-  align-items:stretch!important;
-  min-height:0!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs{
-  display:flex!important;
-  flex-direction:column!important;
-  gap:4px!important;
-  width:100%!important;
-  min-width:0!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab{
-  box-sizing:border-box!important;
-  display:grid!important;
-  grid-template-columns:22px minmax(0,1fr) 16px!important;
-  gap:7px!important;
-  align-items:center!important;
-  width:100%!important;
-  min-height:76px!important;
-  padding:11px 9px!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{
-  padding:10px 9px!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{
-  font-size:20px!important;
-  line-height:1.18!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{
-  font-size:14px!important;
-  line-height:1.25!important;
-  margin-top:3px!important;
- }
- #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number{font-size:14px!important}
+ #desktop-explorer .feature-layout{display:grid!important;grid-template-columns:clamp(210px,19vw,260px) minmax(0,1fr)!important;gap:20px!important;align-items:stretch!important;min-height:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs{display:flex!important;flex-direction:column!important;gap:4px!important;width:100%!important;min-width:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab{display:grid!important;grid-template-columns:20px minmax(0,1fr) 14px!important;gap:7px!important;align-items:center!important;width:100%!important;min-height:76px!important;padding:11px 9px!important;flex:1 0 auto}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{padding:11px 9px!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:18px!important;line-height:1.2!important;text-wrap:balance}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{font-size:11.5px!important;line-height:1.35!important;margin-top:4px!important;text-wrap:pretty}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number{font-size:11px!important}
  #desktop-explorer #feature-tabs.feature-tabs .feature-tab .arrow{font-size:16px!important}
- #desktop-explorer #feature-panel.feature-showcase{
-  padding:15px!important;
-  min-height:0!important;
- }
- #desktop-explorer #feature-media.image-stage{
-  width:100%!important;
-  height:clamp(540px,45vw,660px)!important;
-  min-height:0!important;
- }
+ #desktop-explorer #feature-panel.feature-showcase{contain:size;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto;padding:15px!important;min-height:0!important}
+ #desktop-explorer #feature-media.image-stage{width:100%!important;height:100%!important;min-height:0!important}
  #desktop-explorer .showcase-top{margin-bottom:12px!important;font-size:10px!important}
- #desktop-explorer .showcase-bottom{padding:15px 4px 3px!important;gap:12px!important}
- #desktop-explorer .panel-index{font-size:10px!important;margin-bottom:4px!important}
- #desktop-explorer .panel-title{font-size:clamp(21px,2vw,28px)!important;margin-bottom:6px!important}
- #desktop-explorer .panel-desc{font-size:12px!important;line-height:1.45!important}
- #desktop-explorer .panel-tags{gap:5px!important;margin-top:9px!important}
- #desktop-explorer .panel-tags span{font-size:10px!important;padding:4px 8px!important}
+ #desktop-explorer .showcase-bottom{display:block!important;padding:14px 3px 3px!important}
+ #desktop-explorer .panel-index{font-size:10px!important;margin-bottom:5px!important}
+ #desktop-explorer #panel-title{font-size:clamp(16px,1.4vw,20px)!important;line-height:1.35!important;margin-bottom:6px!important;text-wrap:balance}
+ #desktop-explorer #panel-desc{font-size:13px!important;line-height:1.5!important;max-width:none!important;text-wrap:pretty}
+ #desktop-explorer .panel-tags{gap:5px!important;margin-top:10px!important}
+ #desktop-explorer .panel-tags span{font-size:10px!important;padding:4px 8px!important;white-space:nowrap}
 }
-/* Phone: retain the horizontal feature tiles, give nearly the entire content width
-   to the authentic software media, and visually de-emphasize editorial text. */
+/* One scrollable row leaves room for the product preview on phones. */
 @media(max-width:800px){
  #desktop-explorer{padding-left:4vw!important;padding-right:4vw!important}
- #desktop-explorer .feature-layout{
-  display:flex!important;
-  flex-direction:column!important;
-  gap:8px!important;
-  width:100%!important;
-  min-height:0!important;
- }
- #desktop-explorer #feature-panel.feature-showcase{
-  padding:6px!important;
-  width:100%!important;
-  max-width:100%!important;
-  border-radius:14px!important;
-  min-height:0!important;
- }
- #desktop-explorer .showcase-top{
-  padding:7px 6px 0!important;
-  margin-bottom:8px!important;
-  font-size:9px!important;
-  letter-spacing:.08em!important;
- }
- #desktop-explorer #feature-media.image-stage{
-  width:100%!important;
-  height:clamp(255px,82vw,460px)!important;
-  min-height:0!important;
-  border-radius:10px!important;
-  background:#fff!important;
-  box-shadow:0 9px 24px rgba(30,48,39,.09)!important;
- }
- #desktop-explorer #feature-media.image-stage:before{display:none!important}
+ #desktop-explorer .feature-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;width:100%!important;min-height:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:7px!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overscroll-behavior-x:contain;border-top:0!important;padding:2px 2px 8px!important;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;flex:0 0 auto!important;width:max-content!important;min-width:110px!important;max-width:none!important;height:auto!important;min-height:62px!important;margin:0!important;padding:10px 12px!important;white-space:nowrap!important;overflow-wrap:normal!important;border:1px solid #dce5dd!important;border-radius:10px!important;scroll-snap-align:start}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{padding:10px 12px!important;border-color:#b9a7d5!important;background:#eee8f8!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:15px!important;line-height:1.2!important;white-space:nowrap}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{display:block!important;font-size:10px!important;line-height:1.3!important;margin-top:2px!important;white-space:nowrap}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number,
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .arrow{display:none!important}
+ #desktop-explorer #feature-panel.feature-showcase{display:block!important;contain:none;width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;padding:8px!important;border-radius:14px!important}
+ #desktop-explorer .showcase-top{padding:4px 4px 0!important;margin-bottom:8px!important;font-size:9px!important;letter-spacing:.04em!important}
+ #desktop-explorer #feature-media.image-stage{width:100%!important;height:clamp(210px,62vw,420px)!important;min-height:0!important;border-radius:9px!important;background:#fff!important}
  #desktop-explorer #feature-media.image-stage img,
- #desktop-explorer #feature-media.image-stage video{
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:contain!important;
- }
- #desktop-explorer .showcase-bottom{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  align-items:center!important;
-  gap:10px!important;
-  padding:11px 8px 6px!important;
- }
- #desktop-explorer .showcase-bottom>div{flex:1 1 185px;min-width:0!important}
- #desktop-explorer .panel-index{
-  font-size:9px!important;
-  letter-spacing:.08em!important;
-  margin-bottom:4px!important;
- }
- #desktop-explorer .panel-title{
-  font-size:clamp(17px,4.4vw,22px)!important;
-  line-height:1.18!important;
-  margin-bottom:4px!important;
- }
- #desktop-explorer .panel-desc{
-  font-size:11px!important;
-  line-height:1.38!important;
-  max-width:none!important;
-  color:#657469!important;
- }
- #desktop-explorer .panel-tags{gap:4px!important;margin-top:7px!important}
- #desktop-explorer .panel-tags span{
-  font-size:9px!important;
-  padding:3px 7px!important;
- }
- #desktop-explorer .feature-link{
-  margin:0!important;
-  padding:9px 12px!important;
-  font-size:11px!important;
- }
+ #desktop-explorer #feature-media.image-stage video{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+ #desktop-explorer .showcase-bottom{display:block!important;padding:11px 5px 5px!important}
+ #desktop-explorer .panel-index{font-size:9px!important;margin-bottom:4px!important}
+ #desktop-explorer #panel-title{font-size:16px!important;line-height:1.35!important;margin-bottom:5px!important;text-wrap:balance}
+ #desktop-explorer #panel-desc{font-size:11px!important;line-height:1.5!important;max-width:none!important;text-wrap:pretty}
+ #desktop-explorer .panel-tags{gap:4px!important;margin-top:8px!important}
+ #desktop-explorer .panel-tags span{font-size:9px!important;padding:3px 7px!important;white-space:nowrap}
 }
 
 /* 2026-10-25: phone-only header readability and crisp Mobile screenshot border. */
@@ -634,10 +531,12 @@
  .header .nav{font-size:13px!important;gap:6px!important}
 }
 
-/* Phone-only spacing between chapter 02 and chapter 03. */
+/* Match the content gap before and after the workspace chapter. */
+#desktop-explorer.explorer{padding-bottom:65px!important}
+#mobile-story.mobile-white{padding-top:130px!important}
 @media(max-width:800px){
- #desktop-explorer.explorer{padding-bottom:20px!important}
- #mobile-story.mobile-white{padding-top:38px!important}
+ #desktop-explorer.explorer{padding-bottom:24px!important}
+ #mobile-story.mobile-white{padding-top:65px!important}
 }
 
 /* Desktop feature section footer: improve readability without affecting phones. */
@@ -1047,16 +946,17 @@ features.forEach((f,i)=>{
  btn.innerHTML=`<span class="number">${String(i+1).padStart(2,'0')}</span><span><strong></strong><small></small></span><span class="arrow" aria-hidden="true">↗︎</span>`;
  setFeatureText(btn.querySelector('strong'),f.label,f.zh.label);
  setFeatureText(btn.querySelector('small'),f.summary,f.zh.summary);
- btn.addEventListener('click',()=>setFeature(i));
+ btn.addEventListener('click',()=>setFeature(i,true));
  btn.addEventListener('keydown',e=>{
-  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();setFeature((i+1)%features.length);tabs.children[selected].focus()}
-  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length);tabs.children[selected].focus()}
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();setFeature((i+1)%features.length,true);tabs.children[selected].focus()}
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length,true);tabs.children[selected].focus()}
  });tabs.appendChild(btn);
 });
-function setFeature(i){
+function setFeature(i,reveal=false){
  selected=i;const f=features[i];
  [...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
  document.getElementById('feature-panel').setAttribute('aria-labelledby','ft-'+f.id);
+ if(reveal&&window.matchMedia('(max-width:800px)').matches)tabs.children[i].scrollIntoView({block:'nearest',inline:'nearest'});
  const m=document.createElement(f.type==='video'?'video':'img');m.src=ASSETS+encodeURIComponent(f.media);
  if(f.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
  else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
@@ -1069,6 +969,9 @@ function setFeature(i){
  setFeatureText(document.getElementById('panel-desc'),f.desc,f.zh.desc);
  document.getElementById('panel-tags').replaceChildren(...f.tags.map((tag,n)=>{const el=document.createElement('span');setFeatureText(el,tag,f.zh.tags[n]);return el}));
 }
+const featureBreakpoint=window.matchMedia('(max-width:800px)');
+function syncFeatureOrientation(){tabs.setAttribute('aria-orientation',featureBreakpoint.matches?'horizontal':'vertical')}
+featureBreakpoint.addEventListener('change',syncFeatureOrientation);syncFeatureOrientation();
 setFeature(0);
 
 // Lightweight interactive guide to mobile tools.
@@ -1181,7 +1084,8 @@ const storyRead=document.getElementById('story-read');const storyExpanded=docume
 storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-expanded')!=='true';storyRead.setAttribute('aria-expanded',String(open));storyExpanded.hidden=!open;storyRead.firstChild.textContent=open?'Close the story ':'Read the story ';window.PaseroI18n?.refresh();});
 document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
 </script>
-<script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-ja1"></script></body></html>
+<script src="pasero-ja.js?v=20261026-ja1"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script></body></html>
+
 
 
 

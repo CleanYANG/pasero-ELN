@@ -43,6 +43,7 @@ function japaneseText(source){
  if(status){var key=Object.keys(japanese).find(function(k){return k.toUpperCase()===status[2];});if(key)return status[1]+' · '+japanese[key];}
  return source;
 }
+translations['Explore selected feature']='查看所选功能';
 function translate(source,zh,ja){
  if(lang==='ja')return ja===undefined?japaneseText(source):ja;
  if(lang==='zh'){var value=zh===undefined?translations[source]:zh;return value===undefined?source:stripChineseTerminalStop(value);}
@@ -147,3 +148,4 @@ var obs=new MutationObserver(function(){
 });
 obs.observe(document.body,{childList:true,characterData:true,subtree:true});
 })();
+
