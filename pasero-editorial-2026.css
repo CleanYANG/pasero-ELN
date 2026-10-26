@@ -144,7 +144,7 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
 #pricing .compare-table td.pro{color:#d5bdea!important}
 #pricing .pricing-foot{margin-top:34px!important;line-height:1.9!important;color:#9cab9b!important}
 
-/* Mobile: maintain a comfortable card reading width, not compressed columns. */
+/* Mobile Pricing: show Free and Pro side-by-side so plans can be compared at a glance. */
 @media(max-width:800px){
  
  html[lang="zh-CN"] .hero h1{font-size:clamp(43px,10.4vw,61px)!important;line-height:1.25!important;letter-spacing:0!important}
@@ -159,16 +159,44 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
  #pricing .price-tabs{display:flex!important;justify-content:space-between!important;width:100%!important;gap:3px!important}
  #pricing .price-tab{flex:1!important;padding:12px 5px!important;font-size:12px!important}
  #pricing .price-period{margin-top:14px!important;text-align:center!important;font-size:11px!important}
- #pricing .price-grid{grid-template-columns:1fr!important;gap:15px!important}
- #pricing .plan{padding:28px 25px 26px!important;min-height:0!important;border-radius:17px!important}
- #pricing .plan-eyebrow{font-size:11px!important;margin-bottom:21px!important}
- #pricing .plan .choice{position:absolute!important;top:26px!important;right:24px!important;font-size:10px!important;margin:0!important;padding:7px 10px!important}
- #pricing .plan .plan-name{font-size:23px!important;margin:0 0 8px!important}
- #pricing .plan .amount{font-size:56px!important}
- #pricing .plan .period{font-size:13px!important}
- #pricing .plan .summary{font-size:13px!important;min-height:0!important;margin:9px 0 20px!important}
- #pricing .plan ul{gap:12px!important;padding-top:16px!important;margin:0 0 26px!important}
- #pricing .plan li{font-size:13px!important;line-height:1.6!important;gap:11px!important}
+ #pricing .price-grid{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  align-items:stretch!important;gap:9px!important;width:100%!important;
+ }
+ #pricing .price-grid.is-complete{grid-template-columns:minmax(0,1fr)!important}
+ #pricing .price-grid>.plan{
+  min-width:0!important;width:100%!important;min-height:0!important;
+  padding:16px 12px 17px!important;border-radius:14px!important;
+ }
+ #pricing .plan-eyebrow{font-size:10px!important;line-height:1.4!important;letter-spacing:.04em!important;margin:0 0 13px!important}
+ /* The Pro pill displaces the pricing row on narrow screens; its purple border already distinguishes Pro. */
+ #pricing .price-grid:not(.is-complete) .plan .choice{display:none!important}
+ #pricing .price-grid .plan .plan-name{font-size:clamp(20px,5vw,23px)!important;margin:0 0 9px!important}
+ #pricing .price-grid .plan .price{
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  gap:3px!important;min-height:58px!important;flex-wrap:nowrap!important;
+  margin:0 0 9px!important;
+ }
+ #pricing .price-grid .plan .amount{font-size:clamp(30px,7.6vw,42px)!important;letter-spacing:-.06em!important}
+ #pricing .price-grid .plan .period{font-size:10px!important;line-height:1.4!important}
+ #pricing .price-grid .plan .summary{
+  font-size:11px!important;line-height:1.5!important;
+  min-height:4.5em!important;margin:4px 0 12px!important;
+  overflow-wrap:anywhere;
+ }
+ #pricing .price-grid .plan ul{gap:10px!important;padding:13px 0 0!important;margin:0 0 17px!important}
+ #pricing .price-grid .plan li{
+  font-size:11px!important;line-height:1.48!important;gap:6px!important;
+  overflow-wrap:anywhere!important;word-break:normal!important;
+ }
+ #pricing .price-grid .plan li::before{font-size:13px!important;flex:none!important}
+ #pricing .price-grid .plan .plan-action{
+  width:100%!important;font-size:10px!important;line-height:1.45!important;
+  padding:10px 5px!important;overflow-wrap:anywhere!important;
+ }
+ #pricing .price-grid.is-complete .plan{padding:26px 25px!important}
+ #pricing .price-grid.is-complete .plan .summary{min-height:0!important}
+ #pricing .price-grid.is-complete .plan .choice{display:block!important;top:24px!important;right:23px!important;padding:6px 9px!important}
  #pricing .complete-split{display:grid!important;grid-template-columns:1fr!important;gap:15px!important}
  #pricing .complete-note{padding:30px 26px!important}
  #pricing .complete-note h3{font-size:33px!important}
@@ -186,8 +214,10 @@ html[lang="zh-CN"] #pricing .complete-note h3{font:400 clamp(32px,3.1vw,44px)/1.
 @media(max-width:370px){
  html[lang="zh-CN"] .hero h1{font-size:clamp(39px,10vw,46px)!important}
  #pricing .price-tab{font-size:11px!important;padding:11px 3px!important}
- #pricing .plan{padding:25px 20px!important}
- #pricing .plan .amount{font-size:50px!important}
+ #pricing .price-grid{gap:7px!important}
+ #pricing .price-grid:not(.is-complete) .plan{padding:15px 9px!important}
+ #pricing .price-grid .plan .amount{font-size:clamp(28px,8vw,32px)!important}
+ #pricing .price-grid .plan .plan-action{padding:9px 4px!important}
 }
 
 
