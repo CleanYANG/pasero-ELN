@@ -1,0 +1,82 @@
+/* Shared phone-browser navigation for the homepage and Mobile subpage.
+   Loaded after each page's existing styles so older 11px media queries cannot
+   shrink the navigation again. Desktop styles are intentionally untouched. */
+@media (max-width:800px){
+  .header,
+  body>header:not(.header){box-sizing:border-box!important;height:66px!important}
+  .header{padding:0 clamp(9px,2.6vw,16px)!important;gap:0!important}
+  body>header:not(.header)>.nav{
+    box-sizing:border-box!important;height:66px!important;
+    padding:0 clamp(9px,2.6vw,16px)!important;
+    display:flex!important;align-items:center!important;
+    justify-content:flex-end!important;
+  }
+
+  /* Both sets of text navigation links use the same responsive scale. */
+  .header .nav,
+  body>header .navlinks{
+    display:flex!important;align-items:center!important;
+    gap:clamp(5px,1.6vw,11px)!important;
+    font-family:'DM Sans',Arial,sans-serif!important;
+    font-size:clamp(13px,3.8vw,16px)!important;
+    font-weight:700!important;line-height:1.25!important;
+    letter-spacing:-.01em!important;
+    white-space:nowrap!important;
+  }
+  .header .nav{flex:1 1 auto!important;min-width:0!important;margin:0!important}
+  body>header .navlinks{margin-left:auto!important;min-width:0!important}
+  .header .nav>a,
+  body>header .navlinks>a:not(.btn){
+    display:inline-flex!important;align-items:center!important;
+    font-family:'DM Sans',Arial,sans-serif!important;
+    font-size:inherit!important;font-weight:700!important;
+    line-height:1.25!important;letter-spacing:-.01em!important;
+    white-space:nowrap!important;opacity:.95!important;
+  }
+
+  /* Give the selector and Download a small, consistent space after Pricing. */
+  .header .actions{display:flex!important;align-items:center!important;
+    margin-left:clamp(5px,1.6vw,10px)!important;
+    flex:0 0 auto!important;gap:clamp(4px,1.25vw,8px)!important;
+  }
+  .header .pasero-lang-picker,
+  body>header .navlinks>.pasero-lang-picker{
+    display:inline-flex!important;visibility:visible!important;
+    opacity:1!important;flex:0 0 auto!important;
+    margin:0!important;
+  }
+  .header .pasero-lang-trigger,
+  body>header .pasero-lang-trigger{
+    display:inline-grid!important;
+    width:32px!important;height:32px!important;
+    min-width:32px!important;
+  }
+  .header .download,
+  body>header .navlinks>.btn{
+    display:inline-flex!important;align-items:center!important;
+    justify-content:center!important;flex:0 0 auto!important;
+    padding:10px clamp(7px,1.8vw,10px)!important;
+    font-family:'DM Sans',Arial,sans-serif!important;
+    font-size:clamp(10.5px,2.95vw,12.5px)!important;
+    font-weight:700!important;line-height:1.2!important;
+    white-space:nowrap!important;
+  }
+}
+@media(max-width:360px){
+  .header{padding:0 7px!important}
+  body>header:not(.header)>.nav{padding:0 7px!important}
+  .header .nav,body>header .navlinks{
+    font-size:12.5px!important;
+    gap:4px!important;
+  }
+  .header .nav>a,body>header .navlinks>a:not(.btn){
+    font-size:inherit!important;
+  }
+  .header .actions{margin-left:4px!important;gap:3px!important}
+  .header .pasero-lang-trigger,body>header .pasero-lang-trigger{
+    width:29px!important;height:29px!important;min-width:29px!important;
+  }
+  .header .download,body>header .navlinks>.btn{
+    font-size:10px!important;padding:9px 6px!important;
+  }
+}
