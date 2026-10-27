@@ -412,7 +412,7 @@ window.PaseroJapanese={
   "Slides": "スライド",
   "PPTX": "PPTX",
   "Connected lab tools": "実験ツールを横断して活用",
-  "A research assistant connected to your lab tools.": "実験ツールを使える、研究アシスタント。",
+  "A not-so-smart but resourceful local workhorse for finding and writing notes, looking up protocols, calculating GC content, and more.": "ノートの検索・書き込み、プロトコル検索、GC含量の計算などをこなす、すごく賢くはないけれど気の利くローカルの作業アシスタント",
   "Ask in natural language to find and organize notes, process sequences, look up protocols and run lab calculations. Confirm changes before they are saved.": "いつもの言葉で実験ノートの検索・整理、配列の処理、プロトコルの検索、実験計算を。記録の追加や変更は、あなたが確認してから保存します。",
   "Lab notes": "実験ノート",
   "Lab calculations": "実験計算",
