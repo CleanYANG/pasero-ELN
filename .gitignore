@@ -1,2 +1,7 @@
 Pasero-ELN-website.zip
 *.zip
+node_modules/
+.env*
+!.env.example
+.vercel/
+/dist/

@@ -1,5 +1,6 @@
 /* Japanese website copy. Product names and scientific notation are preserved. */
 window.PaseroJapanese={
+  "Account": "アカウント",
   "Download — Pasero": "ダウンロード — Pasero",
   "Mobile — Pasero": "モバイル — Pasero",
   "Pasero 雀角 — 让科研，自此相连": "Pasero 雀角 — 研究の流れを、ひとつに",

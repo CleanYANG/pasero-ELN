@@ -3,7 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp -R *.html *.css *.js *.mp4 assests assets dist/"
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
-  "displayName": "Pasero"
+  "displayName": "Pasero",
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
 }

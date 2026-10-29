@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Your Pasero account and public beta access.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>Your account — Pasero</title>
+  <link rel="stylesheet" href="pasero-account.css">
+  <script defer src="assets/vendor/supabase.js"></script>
+  <script defer src="pasero-config.js"></script>
+  <script defer src="pasero-account.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#account-main" data-i18n="skip">Skip to account</a>
+  <header class="account-header">
+    <a class="account-brand" href="index.html" aria-label="Pasero home"><img src="assests/logo-透明.png" width="36" height="36" alt=""><span>Pasero<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Main navigation" class="account-nav">
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="download.html" data-i18n="downloads">Downloads</a>
+      <label class="language-picker"><span class="visually-hidden" data-i18n="language">Language</span><select id="account-language" aria-label="Language"><option value="en">English</option><option value="zh">简体中文</option><option value="ja">日本語</option></select></label>
+    </nav>
+  </header>
+  <main id="account-main" class="account-layout">
+    <section class="account-intro" aria-labelledby="intro-title">
+      <span class="eyebrow">PASERO / ACCOUNT</span>
+      <h1 id="intro-title" data-i18n="introTitle">A small space.<br>For your next steps.</h1>
+      <p class="intro-copy" data-i18n="introCopy">Your account keeps your test access in one place. Your research stays in your local workspace.</p>
+      <div class="beta-note">
+        <span class="beta-dot" aria-hidden="true"></span>
+        <div><strong data-i18n="betaTitle">Public beta · free to explore</strong><p data-i18n="betaCopy">The shared test period ends on 29 December 2026, 00:00 Japan time. No payment details are needed.</p></div>
+      </div>
+      <p class="local-note" data-i18n="optional">An account is optional for downloads and local work.</p>
+      <a class="quiet-link" href="download.html"><span data-i18n="continueDownloads">Continue to downloads</span><span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="account-panel" aria-labelledby="panel-title">
+      <div id="auth-view">
+        <div class="auth-tabs" role="tablist" aria-label="Account access">
+          <button id="tab-login" type="button" role="tab" aria-selected="true" aria-controls="auth-form" data-mode="login" data-i18n="login">Sign in</button>
+          <button id="tab-signup" type="button" role="tab" aria-selected="false" aria-controls="auth-form" data-mode="signup" data-i18n="signup">Create account</button>
+        </div>
+        <span class="panel-kicker" data-i18n="accountKicker">YOUR PASERO ACCOUNT</span>
+        <h2 id="panel-title" data-i18n="loginTitle">Welcome back.</h2>
+        <p id="panel-description" class="panel-description" data-i18n="loginDescription">Sign in to check your public beta access.</p>
+        <form id="auth-form" novalidate>
+          <div id="email-field" class="field"><label for="account-email" data-i18n="email">Email</label><input id="account-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="you@example.com"></div>
+          <div id="password-field" class="field"><div class="label-row"><label for="account-password" data-i18n="password">Password</label><button id="show-password" type="button" class="text-button" aria-controls="account-password" aria-pressed="false" data-i18n="show">Show</button></div><input id="account-password" name="password" type="password" autocomplete="current-password" maxlength="128" required aria-describedby="password-hint"><p id="password-hint" class="field-hint" hidden data-i18n="passwordHint">Use at least 12 characters.</p></div>
+          <button id="auth-submit" class="primary-button" type="submit" data-i18n="login">Sign in</button>
+        </form>
+        <div class="auth-actions"><button type="button" class="text-button" id="forgot-password" data-i18n="forgot">Forgot password?</button><button type="button" class="text-button" id="resend-confirmation" data-i18n="resend">Resend confirmation</button><button type="button" class="text-button" id="back-to-login" hidden data-i18n="backToLogin">Back to sign in</button></div>
+      </div>
+      <div id="signed-in-view" hidden>
+        <span class="panel-kicker" data-i18n="accountKicker">YOUR PASERO ACCOUNT</span>
+        <h2 data-i18n="signedInTitle">All in one place.</h2>
+        <p class="signed-in-email" id="signed-in-email"></p>
+        <div id="access-card" class="access-card" aria-live="polite" aria-atomic="true"><span class="access-label" data-i18n="accessLabel">TEST ACCESS</span><h3 id="access-title" data-i18n="checking">Checking access…</h3><p id="access-description"></p><p id="access-date" class="access-date"></p><button type="button" class="text-button" id="refresh-access" data-i18n="refresh">Refresh access</button></div>
+        <p class="account-footnote" data-i18n="accessFootnote">This page shows your server-confirmed test access. Software availability and features are provided by each app release.</p>
+        <a href="download.html" class="primary-button" data-i18n="continueDownloads">Continue to downloads</a>
+        <button type="button" id="sign-out" class="text-button sign-out" data-i18n="signout">Sign out</button>
+      </div>
+      <div id="account-message" class="account-message" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+      <noscript><p class="account-message">JavaScript is needed to sign in. You can still <a href="download.html">visit downloads</a>.</p></noscript>
+    </section>
+  </main>
+  <footer class="account-footer"><span>Pasero / 雀角</span><span data-i18n="footer">Small details. Connected research.</span></footer>
+</body>
+</html>

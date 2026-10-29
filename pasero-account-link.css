@@ -1,0 +1,5 @@
+.pasero-account-link{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 32px;width:32px;height:36px;padding:5px!important;border-radius:50%;color:inherit}
+.pasero-account-link svg{display:block;width:21px;height:21px}
+.pasero-account-link:hover{background:#e9e1f4}
+.pasero-account-link:focus-visible{outline:2px solid #8062b3;outline-offset:3px}
+@media(max-width:380px){.pasero-account-link{flex-basis:26px;width:26px;padding:3px!important}}
