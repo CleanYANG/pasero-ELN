@@ -1,0 +1,29 @@
+{
+  "version": "1.1.0",
+  "trial": {
+    "id": "pasero_public_trial_2026",
+    "startsAt": "2026-11-10T00:00:00+09:00",
+    "endsAt": "2027-01-11T00:00:00+09:00",
+    "timeZone": "Asia/Tokyo",
+    "entitlements": [
+      "desktop_pro",
+      "mobile_pro"
+    ]
+  },
+  "files": {
+    "windows": {
+      "filename": "Pasero-Windows-1.1.0-Setup.exe",
+      "bytes": 131323136,
+      "sha256": "257b5200a1fe19bb13edc83a2b2917de812f480c7bffab5965cd785c98fddf90",
+      "url": null,
+      "verified": false
+    },
+    "android": {
+      "filename": "Pasero-Android-1.1.0.apk",
+      "bytes": 125229770,
+      "sha256": "705b4001fa8e1ce5d018f1727f43737fe9ffe480c0b2bed7f7d580bd4d205382",
+      "url": null,
+      "verified": false
+    }
+  }
+}
