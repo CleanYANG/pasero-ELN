@@ -15,15 +15,15 @@
       "filename": "Pasero-Windows-1.1.0-Setup.exe",
       "bytes": 131323136,
       "sha256": "257b5200a1fe19bb13edc83a2b2917de812f480c7bffab5965cd785c98fddf90",
-      "url": null,
-      "verified": false
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.1.0/Pasero-Windows-1.1.0-Setup.exe",
+      "verified": true
     },
     "android": {
       "filename": "Pasero-Android-1.1.0.apk",
       "bytes": 125229770,
       "sha256": "705b4001fa8e1ce5d018f1727f43737fe9ffe480c0b2bed7f7d580bd4d205382",
-      "url": null,
-      "verified": false
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.1.0/Pasero-Android-1.1.0.apk",
+      "verified": true
     }
   }
 }
