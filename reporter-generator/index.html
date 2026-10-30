@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporter Generator · Pasero</title>
+<meta name="description" content="Turn research material into editable academic posters and talk slides.">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://pasero.app/" target="_blank" rel="noopener"><img src="assets/pasero-wordmark.png" alt="Pasero"></a>
+  <div class="app-name"><b>Reporter Generator</b><span class="pill-beta" data-i="beta"></span></div>
+  <div class="spacer"></div>
+  <span class="quota" id="quota"></span>
+  <div class="seg small" id="uiSeg"><button data-l="zh">中文</button><button data-l="en">EN</button></div>
+  <button class="btn-dark" id="loginBtn" data-i="login"></button>
+</header>
+<p class="tagline" data-i="app_tag"></p>
+
+<nav class="tabs" id="tabs"><button data-t="mat" class="on" data-i="tab_mat"></button><button data-t="req" data-i="tab_req"></button><button data-t="prev" data-i="tab_prev"></button></nav>
+
+<main class="grid">
+  <!-- ========== MATERIAL ========== -->
+  <section class="col" id="colMat">
+    <div class="card">
+      <h2 data-i="s_mat"></h2>
+      <label class="drop" id="drop">
+        <input type="file" id="fileIn" multiple hidden accept=".pdf,.docx,.xlsx,.xls,.csv,.tsv,.pptx,.txt,.md,image/png,image/jpeg,image/webp">
+        <span class="drop-main" data-i="drop"></span><span class="drop-sub" data-i="drop_types"></span>
+      </label>
+      <div class="row gap">
+        <button class="btn-line" id="pasteBtn" data-i="paste"></button>
+        <button class="btn-line" id="demoBtn" data-i="demo"></button>
+      </div>
+      <p class="hint" data-i="demo_hint"></p>
+      <div id="pasteBox" hidden>
+        <textarea id="pasteText" rows="6" data-ph="paste_ph"></textarea>
+        <div class="row gap"><button class="btn-dark" id="pasteAdd" data-i="add"></button><button class="btn-line" id="pasteCancel" data-i="cancel"></button></div>
+      </div>
+      <div id="fileMsgs" class="msgs"></div>
+      <div class="meta">
+        <label><span data-i="meta_title"></span><input id="mTitle"></label>
+        <label><span data-i="meta_authors"></span><input id="mAuthors"></label>
+        <label><span data-i="meta_aff"></span><input id="mAff"></label>
+        <label><span data-i="meta_doi"></span><input id="mDoi"></label>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-i="status_q"></h3>
+      <label class="radio"><input type="radio" name="st" value="published"> <span data-i="st_pub"></span></label>
+      <label class="radio"><input type="radio" name="st" value="unpublished"> <span data-i="st_unpub"></span></label>
+      <p class="hint" data-i="st_hint"></p>
+    </div>
+    <div class="card">
+      <div class="row between"><h3 data-i="s_mat"></h3><span class="hint" id="selCnt"></span></div>
+      <div class="row gap"><button class="btn-line sm" id="selAll" data-i="sel_all"></button><button class="btn-line sm" id="selNone" data-i="sel_none"></button></div>
+      <div id="blocks"><p class="hint" data-i="files_empty"></p></div>
+      <h3 data-i="figs"></h3>
+      <p class="hint" data-i="figs_hint"></p>
+      <div class="figs" id="figs"></div>
+    </div>
+  </section>
+
+  <!-- ========== REQUEST + CHAT ========== -->
+  <section class="col" id="colReq" data-hide-mobile>
+    <div class="card">
+      <h2 data-i="s_req"></h2>
+      <div class="seg big" id="kindSeg"><button data-k="poster" data-i="kind_poster"></button><button data-k="ppt" data-i="kind_ppt"></button></div>
+      <h3 data-i="tpl"></h3>
+      <div class="tpls" id="tpls"></div>
+      <h3 data-i="palette"></h3>
+      <div class="pals" id="pals"></div>
+      <h3 data-i="style"></h3>
+      <div class="chips" id="styles"></div>
+      <p class="hint" data-i="style_hint"></p>
+      <div class="opts" id="posterOpts">
+        <label><span data-i="size"></span><select id="psize">
+          <option value="A0P">A0 · 841×1189 mm ↕</option><option value="A0L">A0 · 1189×841 mm ↔</option>
+          <option value="A1P">A1 · 594×841 mm ↕</option><option value="A1L">A1 · 841×594 mm ↔</option>
+          <option value="U48P">36×48 in ↕</option><option value="U48L">48×36 in ↔</option></select></label>
+        <label><span data-i="density"></span><select id="density"><option value="concise" data-i="den_concise"></option><option value="standard" data-i="den_standard"></option><option value="detailed" data-i="den_detailed"></option></select></label>
+      </div>
+      <div class="opts" id="pptOpts">
+        <label><span data-i="audience"></span><select id="aud"><option value="specialist" data-i="aud_spec"></option><option value="adjacent" data-i="aud_adj"></option><option value="general" data-i="aud_gen"></option></select></label>
+        <label><span data-i="minutes"></span><input type="number" id="minutes" min="3" max="60" value="10"></label>
+        <label class="check"><input type="checkbox" id="notes" checked> <span data-i="notes"></span></label>
+      </div>
+      <div class="opts">
+        <label><span data-i="out_lang"></span><select id="lang"><option value="ja">日本語</option><option value="zh">中文</option><option value="en">English</option></select></label>
+      </div>
+      <label class="full"><span data-i="req_more"></span><textarea id="reqMore" rows="3" data-ph="req_ph"></textarea></label>
+      <div class="scope" id="scope"></div>
+      <details class="payload"><summary data-i="payload"></summary>
+        <textarea id="payload" rows="12" spellcheck="false"></textarea>
+        <div class="row between"><button class="btn-line sm" id="payloadReset" data-i="payload_reset"></button><span class="hint" id="payloadInfo"></span></div>
+      </details>
+      <button class="btn-dark wide" id="genBtn" data-i="gen"></button>
+      <div class="status" id="genStatus"></div>
+    </div>
+    <div class="card chat">
+      <h3 data-i="s_chat"></h3>
+      <div class="chatlog" id="chatlog"></div>
+      <div class="chips" id="quick"></div>
+      <form class="chatin" id="chatForm"><textarea id="chatIn" rows="2" data-ph="chat_ph"></textarea><button class="btn-dark" data-i="send"></button></form>
+    </div>
+  </section>
+
+  <!-- ========== PREVIEW ========== -->
+  <section class="col wide" id="colPrev" data-hide-mobile>
+    <div class="card">
+      <div class="row between wrap"><h2 data-i="s_prev"></h2>
+        <div class="row gap wrap"><button class="btn-dark sm" id="expPptx" data-i="exp_pptx"></button><button class="btn-line sm" id="expPdf" data-i="exp_pdf"></button><button class="btn-line sm" id="relayout" data-i="relayout"></button><button class="btn-line sm" id="expJson" data-i="exp_json"></button></div>
+      </div>
+      <p class="hint" data-i="edit_hint"></p>
+      <div class="schem" id="schemBox"></div>
+      <div class="pages" id="pages"><p class="hint empty" data-i="empty_prev"></p></div>
+      <div class="feedback" id="feedback" hidden><span data-i="fb_q"></span>
+        <button class="btn-line sm" data-fb="direct" data-i="fb_direct"></button><button class="btn-line sm" data-fb="minor" data-i="fb_minor"></button><button class="btn-line sm" data-fb="major" data-i="fb_major"></button><button class="btn-line sm" data-fb="no" data-i="fb_no"></button></div>
+    </div>
+  </section>
+</main>
+<footer class="foot"><span data-i="footer"></span> · <a href="privacy.html" target="_blank" data-i="privacy"></a></footer>
+
+<dialog id="loginDlg"><form method="dialog" id="loginForm">
+  <h3 data-i="login_title"></h3><p class="hint" data-i="login_desc"></p>
+  <input type="email" id="email" required data-ph="email_ph">
+  <div class="row gap"><button class="btn-dark" id="sendLink" value="send" data-i="send_link"></button><button class="btn-line" value="cancel" formnovalidate data-i="cancel"></button></div>
+  <p class="hint" id="loginMsg"></p></form></dialog>
+<dialog id="srcDlg"><h3 data-i="src_title"></h3><div id="srcBody"></div><form method="dialog"><button class="btn-line">OK</button></form></dialog>
+<div id="printRoot"></div>
+
+<script src="config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/parse.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/demo.js"></script>
+<script>RG.init();</script>
+</body>
+</html>
