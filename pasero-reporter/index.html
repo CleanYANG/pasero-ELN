@@ -135,7 +135,9 @@
   <h3 data-i="login_title"></h3><p class="hint" data-i="login_desc"></p>
   <input type="email" id="email" required data-ph="email_ph">
   <div class="row gap"><button class="btn-dark" id="sendLink" value="send" data-i="send_link"></button><button class="btn-line" value="cancel" formnovalidate data-i="cancel"></button></div>
-  <p class="hint" id="loginMsg"></p></form></dialog>
+  <p class="hint" id="loginMsg"></p>
+  <div id="codeRow" hidden><label><span data-i="code_label"></span><input id="otpCode" inputmode="numeric" autocomplete="one-time-code" maxlength="10"></label>
+  <button class="btn-dark" id="verifyCode" value="verify" data-i="code_verify"></button></div></form></dialog>
 <dialog id="srcDlg"><h3 data-i="src_title"></h3><div id="srcBody"></div><form method="dialog"><button class="btn-line">OK</button></form></dialog>
 <div id="printRoot"></div>
 

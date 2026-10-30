@@ -355,7 +355,7 @@
   }
 
   /* ---------- auth ---------- */
-  function openLogin() { if (!configured()) { alert('Supabase publishable key not configured (config.js).'); return; } $('loginMsg').textContent = ''; $('loginDlg').showModal(); }
+  function openLogin() { if (!configured()) { alert('Supabase publishable key not configured (config.js).'); return; } $('loginMsg').textContent = ''; $('codeRow').hidden = true; $('otpCode').value = ''; $('loginDlg').showModal(); }
   async function initAuth() {
     if (!configured() || !global.supabase) { $('loginBtn').disabled = !configured(); return; }
     sb = global.supabase.createClient(CFG.supabaseUrl, CFG.supabaseKey);
@@ -421,6 +421,14 @@
       e.preventDefault(); const email = $('email').value.trim(); if (!email) return;
       const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
       $('loginMsg').textContent = error ? error.message : t('link_sent');
+      if (!error) { $('codeRow').hidden = false; $('otpCode').focus(); }
+    };
+    // Works with either email template: magic link (redirect) or one-time code typed here.
+    $('verifyCode').onclick = async e => {
+      e.preventDefault(); const token = $('otpCode').value.trim(), email = $('email').value.trim(); if (!token || !email) return;
+      const { error } = await sb.auth.verifyOtp({ email, token, type: 'email' });
+      if (error) { $('loginMsg').textContent = error.message; return; }
+      $('loginDlg').close();
     };
     global.addEventListener('afterprint', () => { $('printRoot').innerHTML = ''; });
     let rz; global.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(renderOutput, 200); });
