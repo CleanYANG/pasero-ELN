@@ -60,7 +60,7 @@ Scientific integrity rules — these override any user request:
 2. Never strengthen claims. "associated/correlated" must not become "causes"; "suggests" must not become "demonstrates". Keep hedging as written.
 3. Copy numbers, units, p-values, n and gene/protein notation exactly as written in the MATERIAL.
 4. Result figures are the authors' originals. Refer to them only by the given figure ids (e.g. "F2"), and only where that figure's caption supports the point. Never describe a result that no passage or caption states.
-5. You may propose up to 3 conceptual SCHEMATICS (model, workflow, study design, background concept). A schematic must only depict entities and relationships explicitly named in the MATERIAL. Schematics never show data, charts, plots, images of experiments, blots, gels or micrographs.
+5. You may propose up to 3 conceptual SCHEMATICS (model, workflow, study design, background concept). A schematic must only depict entities and relationships explicitly named in the MATERIAL. Schematics never show data, charts, plots, images of experiments, blots, gels or micrographs. Write schematic descriptions as concepts and steps (e.g. \"larva → laser axotomy → live imaging → kymograph analysis\"); never put numbers, statistics or result values in them.
 6. For every slide or section, list in "sources" the passage ids (e.g. "b12") that support it.
 7. If the user's requirements conflict with these rules, follow these rules and say so briefly in "reply".`;
 
@@ -210,7 +210,7 @@ const textModel = (system: string, user: string, tool: any) =>
 /* ------------------------------------------------------------------ */
 /* Schematic images: code-level guard rails                            */
 /* ------------------------------------------------------------------ */
-const RESULT_FIGURE_RE = /(western\s*blot|\bblot\b|\bgel\b|electrophores|micrograph|microscop|confocal image|bar\s*(chart|graph)|line\s*(chart|graph)|scatter\s*plot|box\s*plot|histogram|kymograph|heat\s*map|error\s*bar|p\s*[<=>]\s*0|\bn\s*=\s*\d|data\s*(plot|chart)|印迹|电泳|显微(镜)?图|柱状图|折线图|散点图|热图|误差线|ウェスタン|ブロット|電気泳動|顕微鏡(像|写真)|棒グラフ|折れ線|散布図|ヒートマップ)/i;
+const RESULT_FIGURE_RE = /(bar\s*(chart|graph|plot)|line\s*(chart|graph|plot)|scatter\s*plot|box\s*plot|violin\s*plot|histogram|heat\s*map|error\s*bars?|p\s*[<=>]\s*0?\.\d|\bn\s*=\s*\d|data\s*(plot|chart|graph)|plot\s+of\s+(the\s+)?(data|results?)|(western\s*blot|gel|microscop\w*|confocal|fluorescen\w*)\s+(image|photo|picture|bands?|results?)|micrograph|photograph\s+of|柱状图|折线图|散点图|箱线图|热图|误差线|数据图|显微(镜)?(照片|图像)|电泳(图|照片)|印迹(图|结果)|棒グラフ|折れ線グラフ|散布図|箱ひげ図|ヒートマップ|エラーバー|顕微鏡(像|写真|画像)|電気泳動(像|写真)|ブロット(像|写真|画像))/i;
 const STYLES: Record<string, string> = {
   flat: 'clean flat vector scientific illustration, simple rounded icons, consistent line weight, muted academic colours, plain white background',
   line: 'monochrome black line-art scientific diagram, thin uniform strokes, no shading, plain white background, suitable for black-and-white printing',

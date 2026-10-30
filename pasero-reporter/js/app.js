@@ -159,15 +159,15 @@
 
   async function genSchematic(id) {
     const s = S.schematics.find(x => x.id === id); if (!s) return;
-    busy(true); setStatus(t('w_img'));
+    busy(true); setStatus(t('w_img')); s.busy = true; s.err = ''; renderSchem();
     try {
       let r;
       if (!S.session) { if (!S.demo) { openLogin(); throw Object.assign(new Error(''), { code: 'AUTH_REQUIRED' }); } r = global.RGDemo.schematic(s); }
       else r = await api('schematic', { schematic: { id: s.id, title: s.title, description: s.description }, style: S.settings.style, lang: S.settings.lang });
       Object.assign(s, { img: r.image, w: r.w || 1536, h: r.h || 1024 });
-      setStatus(t('done')); renderOutput();
-    } catch (e) { console.error(e); setStatus(errText(e), true); }
-    finally { busy(false); }
+      s.err = ''; setStatus(t('done')); renderOutput();
+    } catch (e) { console.error(e); s.err = errText(e); setStatus(s.err, true); renderSchem(); }
+    finally { busy(false); s.busy = false; renderSchem(); }
   }
 
   /* ---------- files ---------- */
@@ -323,7 +323,7 @@
     if (!S.report) { box.innerHTML = ''; return; }
     if (!S.schematics.length) { box.innerHTML = `<p class="hint">${t('schem_none')}</p>`; return; }
     const off = S.session && S.quota && S.quota.images === false;
-    box.innerHTML = `<h3>${t('schem')}</h3><p class="hint">${off ? t('schem_off') : t('schem_hint')}</p>` + S.schematics.map(s => `<div class="it">${s.img ? `<img src="${s.img}" alt="">` : ''}<div><b>${esc(s.title)}</b><br><span class="hint">${esc(s.description)}</span></div><button class="btn-line sm" data-g="${s.id}" ${off ? 'disabled' : ''}>${s.img ? t('schem_regen') : t('schem_gen')}</button></div>`).join('');
+    box.innerHTML = `<h3>${t('schem')}</h3><p class="hint">${off ? t('schem_off') : t('schem_hint')}</p>` + S.schematics.map(s => `<div class="it">${s.img ? `<img src="${s.img}" alt="">` : ''}<div><b>${esc(s.title)}</b><br><span class="hint">${esc(s.description)}</span>${s.err ? `<br><span class="schem-err">${esc(s.err)}</span>` : ''}${s.busy ? `<br><span class="hint">${t('w_img')}</span>` : ''}</div><button class="btn-line sm" data-g="${s.id}" ${off || s.busy ? 'disabled' : ''}>${s.img ? t('schem_regen') : t('schem_gen')}</button></div>`).join('');
     box.querySelectorAll('[data-g]').forEach(b => b.onclick = () => genSchematic(b.dataset.g));
   }
   function srcChips(ids) {
