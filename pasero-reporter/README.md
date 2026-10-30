@@ -1,10 +1,10 @@
-# Reporter Generator (Pasero public beta)
+# Pasero Reporter (Pasero public beta)
 
 A standalone web tool that turns research material into **editable** academic posters and talk slides.
 It is deliberately separate from the main site (`build-site.mjs` does not copy this folder into `dist/`).
 
 ```
-reporter-generator/            static site (no build step) → Vercel project, Root Directory = reporter-generator
+pasero-reporter/            static site (no build step) → Vercel project, Root Directory = pasero-reporter
   index.html  styles.css  config.js  privacy.html  vercel.json  assets/
   js/parse.js    local parsing: PDF, Word, Excel/CSV, PPTX, images, pasted text (in the browser)
   js/layout.js   one layout engine for preview, PPTX export and print PDF; templates + palettes
@@ -48,10 +48,10 @@ The free allowance follows the existing `public_beta_2026` window (`pasero_get_m
 Auth → URL Configuration: add `https://reporter.pasero.app` to **Redirect URLs** (email magic link).
 
 ### 2. Client config
-Put the project's **publishable (anon) key** in `reporter-generator/config.js`. Never put the service-role key or AI keys there.
+Put the project's **publishable (anon) key** in `pasero-reporter/config.js`. Never put the service-role key or AI keys there.
 
 ### 3. Vercel
-New project from this repo → **Root Directory: `reporter-generator`**, Framework: Other, no build command.
+New project from this repo → **Root Directory: `pasero-reporter`**, Framework: Other, no build command.
 Domains → add `reporter.pasero.app`, then add the CNAME record Vercel shows at your DNS provider.
 
 ### 4. Provider dashboards
@@ -59,6 +59,6 @@ Set monthly spend limits for both API accounts before opening the beta.
 
 ## Local preview
 ```bash
-cd reporter-generator && python3 -m http.server 5173
+cd pasero-reporter && python3 -m http.server 5173
 ```
 The sample paper works without any keys.

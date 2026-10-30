@@ -1,4 +1,4 @@
-/* Reporter Generator — offline sample (fictional paper). No AI is called in sample mode. */
+/* Pasero Reporter — offline sample (fictional paper). No AI is called in sample mode. */
 (function (global) {
   'use strict';
   const RG = global.RG;

@@ -1,4 +1,4 @@
-/* Reporter Generator — UI strings (Chinese / English). Model and vendor names are intentionally absent. */
+/* Pasero Reporter — UI strings (Chinese / English). Model and vendor names are intentionally absent. */
 window.RG_I18N = {
   zh: {
     app_tag: '把研究材料整理成可编辑的学术海报与报告 PPT',
@@ -44,7 +44,7 @@ window.RG_I18N = {
     num_warn: '材料中未找到这些数字：', sources: '来源', src_title: '来源段落',
     err_quota: '免费额度已用完。', err_beta: '公测未开放或已结束。', err_auth: '登录已失效，请重新登录。', err_refused: '这个请求像是要生成实验结果图，示意图功能不会生成数据或结果图。', err_generic: '出错了：',
     exported: '已导出。', fb_q: '这份结果可以直接用吗？', fb_direct: '直接用', fb_minor: '小改', fb_major: '大改', fb_no: '不能用', fb_thanks: '谢谢反馈！',
-    privacy: '隐私说明', footer: '© Pasero · Reporter Generator（公测）'
+    privacy: '隐私说明', footer: '© Pasero Reporter（公测）'
   },
   en: {
     app_tag: 'Turn research material into editable academic posters and talk slides',
@@ -90,6 +90,6 @@ window.RG_I18N = {
     num_warn: 'Not found in your material: ', sources: 'Sources', src_title: 'Source passage',
     err_quota: 'Free allowance used up.', err_beta: 'The beta is not open or has ended.', err_auth: 'Session expired — please sign in again.', err_refused: 'That looks like a request to draw experimental results. Schematics never generate data or result figures.', err_generic: 'Something went wrong: ',
     exported: 'Exported.', fb_q: 'Can you use this as it is?', fb_direct: 'As is', fb_minor: 'Small edits', fb_major: 'Big edits', fb_no: 'Not usable', fb_thanks: 'Thanks for the feedback!',
-    privacy: 'Privacy', footer: '© Pasero · Reporter Generator (beta)'
+    privacy: 'Privacy', footer: '© Pasero Reporter (beta)'
   }
 };

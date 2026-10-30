@@ -1,4 +1,4 @@
--- Reporter Generator usage counters (additive; does not touch licensing or beta tables).
+-- Pasero Reporter usage counters (additive; does not touch licensing or beta tables).
 -- Stores counts, timings and success flags only — never material, prompts or outputs.
 create table if not exists public.reporter_usage (
   id bigint generated always as identity primary key,
@@ -20,4 +20,4 @@ alter table public.reporter_usage enable row level security;
 revoke all on table public.reporter_usage from public, anon, authenticated;
 
 comment on table public.reporter_usage is
-  'Reporter Generator per-user usage counts for the free beta allowance and test analytics. No research content is stored.';
+  'Pasero Reporter per-user usage counts for the free beta allowance and test analytics. No research content is stored.';

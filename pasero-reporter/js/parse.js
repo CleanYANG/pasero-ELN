@@ -1,4 +1,4 @@
-/* Reporter Generator — local material parsing.
+/* Pasero Reporter — local material parsing.
    Everything here runs in the browser. Nothing in this file sends data anywhere. */
 (function (global) {
   'use strict';

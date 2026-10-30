@@ -1,4 +1,4 @@
-/* Reporter Generator — layout engine.
+/* Pasero Reporter — layout engine.
    One element list (inches / pt) feeds the on-screen preview, the PPTX export and the print PDF,
    so what users edit is what they export. */
 (function (global) {

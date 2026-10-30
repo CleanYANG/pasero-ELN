@@ -1,4 +1,4 @@
-// Reporter Generator — Supabase Edge Function.
+// Pasero Reporter — Supabase Edge Function.
 // Text understanding & organisation: Anthropic Messages API (Claude).
 // Schematic images: OpenAI Images API (GPT Image).
 // The browser never learns which models are used; provider keys live only in function secrets.

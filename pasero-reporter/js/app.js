@@ -1,4 +1,4 @@
-/* Reporter Generator — application logic. */
+/* Pasero Reporter — application logic. */
 (function (global) {
   'use strict';
   const CFG = global.RG_CONFIG || {};
