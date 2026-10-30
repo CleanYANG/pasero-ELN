@@ -74,7 +74,7 @@
     return j;
   }
   function errText(e) {
-    return ({ QUOTA_EXCEEDED: t('err_quota'), BETA_INACTIVE: t('err_beta'), AUTH_REQUIRED: t('err_auth'), REFUSED_RESULT_FIGURE: t('err_refused') })[e.code] || (t('err_generic') + e.message);
+    return ({ QUOTA_EXCEEDED: t('err_quota'), BETA_INACTIVE: t('err_beta'), AUTH_REQUIRED: t('err_auth'), REFUSED_RESULT_FIGURE: t('err_refused'), IMAGES_DISABLED: t('schem_off'), RATE_LIMIT: t('err_rate') })[e.code] || (t('err_generic') + e.message);
   }
 
   /* ---------- sanitising model output (code-level guard rails) ---------- */
@@ -300,6 +300,7 @@
     const q = S.quota, el = $('quota');
     if (!S.session || !q) { el.textContent = ''; return; }
     if (!q.active) { el.textContent = t('quota_off'); return; }
+    renderSchem();
     const left = k => Math.max(0, (q.limit[k] || 0) - (q.used[k] || 0));
     el.textContent = t('quota', { p: left('plan'), r: left('revise'), i: left('image') });
   }
@@ -321,7 +322,8 @@
     const box = $('schemBox');
     if (!S.report) { box.innerHTML = ''; return; }
     if (!S.schematics.length) { box.innerHTML = `<p class="hint">${t('schem_none')}</p>`; return; }
-    box.innerHTML = `<h3>${t('schem')}</h3><p class="hint">${t('schem_hint')}</p>` + S.schematics.map(s => `<div class="it">${s.img ? `<img src="${s.img}" alt="">` : ''}<div><b>${esc(s.title)}</b><br><span class="hint">${esc(s.description)}</span></div><button class="btn-line sm" data-g="${s.id}">${s.img ? t('schem_regen') : t('schem_gen')}</button></div>`).join('');
+    const off = S.session && S.quota && S.quota.images === false;
+    box.innerHTML = `<h3>${t('schem')}</h3><p class="hint">${off ? t('schem_off') : t('schem_hint')}</p>` + S.schematics.map(s => `<div class="it">${s.img ? `<img src="${s.img}" alt="">` : ''}<div><b>${esc(s.title)}</b><br><span class="hint">${esc(s.description)}</span></div><button class="btn-line sm" data-g="${s.id}" ${off ? 'disabled' : ''}>${s.img ? t('schem_regen') : t('schem_gen')}</button></div>`).join('');
     box.querySelectorAll('[data-g]').forEach(b => b.onclick = () => genSchematic(b.dataset.g));
   }
   function srcChips(ids) {

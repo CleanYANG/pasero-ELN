@@ -37,13 +37,13 @@ Model and provider names are never sent to the browser. Change models with secre
 ```bash
 supabase link --project-ref gnfxemlrgjwcqxqruzev
 supabase db push                       # applies 202610300001_reporter_usage.sql
-supabase secrets set ANTHROPIC_API_KEY=... OPENAI_API_KEY=... \
-  REPORTER_ALLOWED_ORIGINS=https://reporter.pasero.app,http://localhost:5173
+supabase secrets set DEEPSEEK_API_KEY=...        # text (default provider)
+# optional: OPENAI_API_KEY=... enables schematics; REPORTER_TEXT_PROVIDER=anthropic + ANTHROPIC_API_KEY=... switches text to Claude
 supabase functions deploy reporter
 ```
-Optional secrets (defaults in brackets): `REPORTER_TEXT_MODEL` [claude-sonnet-5-5], `REPORTER_IMAGE_MODEL` [gpt-image-2],
+Optional secrets (defaults in brackets): `REPORTER_TEXT_PROVIDER` [deepseek], `REPORTER_TEXT_MODEL` [deepseek-v4-pro / claude-sonnet-5-5], `REPORTER_TRIAL_START` / `REPORTER_TRIAL_END` [2026-10-30 → 2027-01-11 JST], `REPORTER_ALLOWED_ORIGINS` [https://reporter.pasero.app,http://localhost:5173], `REPORTER_IMAGE_MODEL` [gpt-image-2],
 `REPORTER_IMAGE_QUALITY` [medium], `REPORTER_LIMIT_PLAN` [5], `REPORTER_LIMIT_REVISE` [40], `REPORTER_LIMIT_IMAGE` [10].
-The free allowance follows the existing `public_beta_2026` window (`pasero_get_my_beta_access`).
+The free trial has its own window (independent of the desktop/mobile beta). Without `OPENAI_API_KEY`, schematic drawing is switched off and placeholders stay in the layout.
 
 Auth → URL Configuration: add `https://reporter.pasero.app` to **Redirect URLs** (email magic link).
 

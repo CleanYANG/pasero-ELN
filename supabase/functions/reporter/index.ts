@@ -1,15 +1,18 @@
 // Pasero Reporter — Supabase Edge Function.
-// Text understanding & organisation: Anthropic Messages API (Claude).
-// Schematic images: OpenAI Images API (GPT Image).
+// Text understanding & organisation: DeepSeek (default) or Anthropic Claude — chosen by REPORTER_TEXT_PROVIDER.
+// Schematic images: OpenAI Images API (GPT Image); disabled automatically when no OpenAI key is set.
 // The browser never learns which models are used; provider keys live only in function secrets.
 // Content of requests is never stored or logged — only counts, timings and success flags.
 
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
 const env = (k: string, d = '') => Deno.env.get(k) ?? d;
+const TEXT_PROVIDER = env('REPORTER_TEXT_PROVIDER', 'deepseek'); // deepseek | anthropic
 const ANTHROPIC_KEY = env('ANTHROPIC_API_KEY');
+const DEEPSEEK_KEY = env('DEEPSEEK_API_KEY');
 const OPENAI_KEY = env('OPENAI_API_KEY');
-const TEXT_MODEL = env('REPORTER_TEXT_MODEL', 'claude-sonnet-5-5');
+const TEXT_MODEL = env('REPORTER_TEXT_MODEL', TEXT_PROVIDER === 'anthropic' ? 'claude-sonnet-5-5' : 'deepseek-v4-pro');
+const IMAGES_ENABLED = !!OPENAI_KEY;
 const IMAGE_MODEL = env('REPORTER_IMAGE_MODEL', 'gpt-image-2');
 const IMAGE_QUALITY = env('REPORTER_IMAGE_QUALITY', 'medium');
 const LIMITS: Record<string, number> = {
@@ -17,8 +20,10 @@ const LIMITS: Record<string, number> = {
   revise: +env('REPORTER_LIMIT_REVISE', '40'),
   image: +env('REPORTER_LIMIT_IMAGE', '10'),
 };
-const ORIGINS = env('REPORTER_ALLOWED_ORIGINS', 'https://reporter.pasero.app').split(',').map((s) => s.trim()).filter(Boolean);
+const ORIGINS = env('REPORTER_ALLOWED_ORIGINS', 'https://reporter.pasero.app,http://localhost:5173').split(',').map((s) => s.trim()).filter(Boolean);
 const MAX_BODY = 600_000;
+const TRIAL_START = env('REPORTER_TRIAL_START', '2026-10-30T00:00:00+09:00');
+const TRIAL_END = env('REPORTER_TRIAL_END', '2027-01-11T00:00:00+09:00');
 
 const admin = createClient(env('SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY'), { auth: { persistSession: false } });
 
@@ -26,7 +31,9 @@ const admin = createClient(env('SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY')
 /* HTTP helpers                                                        */
 /* ------------------------------------------------------------------ */
 function cors(origin: string | null) {
-  const allow = origin && ORIGINS.includes(origin) ? origin : ORIGINS[0];
+  // listed origins + this project's Vercel preview URLs
+  const ok = !!origin && (ORIGINS.includes(origin) || /^https:\/\/pasero-reporter[\w-]*\.vercel\.app$/.test(origin));
+  const allow = ok ? origin! : ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allow,
     'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info',
@@ -151,6 +158,28 @@ async function claude(system: string, user: string, tool: any): Promise<any> {
   return block.input;
 }
 
+// DeepSeek: OpenAI-compatible chat completions in JSON mode. The tool's JSON Schema is given in the
+// system prompt and the result is checked for required keys; one retry on malformed output.
+async function deepseek(system: string, user: string, tool: any): Promise<any> {
+  const sys = `${system}\n\nRespond with ONE json object only (no prose, no code fences) that conforms to this JSON Schema (${tool.description}):\n${JSON.stringify(tool.input_schema)}`;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const r = await fetch('https://api.deepseek.com/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + DEEPSEEK_KEY, 'content-type': 'application/json' },
+      body: JSON.stringify({ model: TEXT_MODEL, temperature: 0.3, max_tokens: 12000, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }),
+    });
+    if (!r.ok) { console.error('text upstream', r.status); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
+    const j = await r.json();
+    const txt = String(j.choices?.[0]?.message?.content ?? '').replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+    try {
+      const out = JSON.parse(txt);
+      if ((tool.input_schema.required ?? []).every((k: string) => k in out)) return out;
+    } catch (_) { /* retry */ }
+  }
+  throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
+}
+const textModel = (system: string, user: string, tool: any) => (TEXT_PROVIDER === 'anthropic' ? claude(system, user, tool) : deepseek(system, user, tool));
+
 /* ------------------------------------------------------------------ */
 /* Schematic images: code-level guard rails                            */
 /* ------------------------------------------------------------------ */
@@ -192,7 +221,7 @@ async function quotaFor(uid: string, beta: any) {
       .eq('user_id', uid).eq('action', a).eq('ok', true).gte('created_at', beta.starts_at);
     used[a] = count ?? 0;
   }
-  return { active: !!beta.active, ends_at: beta.ends_at, used, limit: LIMITS };
+  return { active: !!beta.active, ends_at: beta.ends_at, used, limit: { ...LIMITS, image: IMAGES_ENABLED ? LIMITS.image : 0 }, images: IMAGES_ENABLED };
 }
 async function logUsage(uid: string, action: string, ok: boolean, ms: number, detail: string | null = null) {
   await admin.from('reporter_usage').insert({ user_id: uid, action, ok, ms, detail });
@@ -215,13 +244,13 @@ Deno.serve(async (req) => {
     action = String(body.action || '');
 
     const auth = req.headers.get('authorization') ?? '';
-    const userClient = createClient(env('SUPABASE_URL'), env('SUPABASE_ANON_KEY'), { global: { headers: { Authorization: auth } }, auth: { persistSession: false } });
     const token = auth.replace(/^Bearer\s+/i, '');
     const { data: u } = await admin.auth.getUser(token);
     if (!u?.user) throw new HttpError(401, 'AUTH_REQUIRED');
     uid = u.user.id;
-    const { data: beta, error: betaErr } = await userClient.rpc('pasero_get_my_beta_access');
-    if (betaErr || !beta) throw new HttpError(403, 'BETA_INACTIVE');
+    // Reporter has its own free-trial window (independent of the desktop/mobile beta), set by secrets.
+    const now = Date.now();
+    const beta = { starts_at: TRIAL_START, ends_at: TRIAL_END, active: now >= Date.parse(TRIAL_START) && now < Date.parse(TRIAL_END) };
     quota = await quotaFor(uid, beta);
 
     if (action === 'quota') return reply(200, { quota });
@@ -234,6 +263,7 @@ Deno.serve(async (req) => {
     action = action === 'schematic' ? 'image' : action;
     if (!(action in LIMITS)) throw new HttpError(400, 'BAD_ACTION');
     if (!beta.active) throw new HttpError(403, 'BETA_INACTIVE');
+    if (action === 'image' && !IMAGES_ENABLED) throw new HttpError(503, 'IMAGES_DISABLED');
     if (quota.used[action] >= LIMITS[action]) throw new HttpError(429, 'QUOTA_EXCEEDED');
 
     // simple burst limit: 8 AI calls per minute per user
@@ -248,14 +278,15 @@ Deno.serve(async (req) => {
       const user = `SETTINGS:\n${JSON.stringify(s)}\n\nUSER REQUIREMENTS (follow unless they break the integrity rules):\n${body.material?.requirements || '(none)'}\n\n` +
         (body.structure ? `EXISTING CONTENT STRUCTURE (reuse it, adjust only if needed):\n${JSON.stringify(body.structure)}\n\n` : '') +
         `MATERIAL (JSON; passages have ids; figures are the authors' originals):\n${JSON.stringify(body.material)}`;
-      out = await claude(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, deliverTool(kind));
+      out = await textModel(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, deliverTool(kind));
     } else if (action === 'revise') {
       const user = `SETTINGS:\n${JSON.stringify(s)}\n\nCURRENT REPORT:\n${JSON.stringify(body.report)}\n\nCURRENT SCHEMATICS:\n${JSON.stringify(body.schematics ?? [])}\n\nCONTENT STRUCTURE:\n${JSON.stringify(body.structure ?? {})}\n\nRECENT CHAT:\n${JSON.stringify((body.history ?? []).slice(-8))}\n\nMATERIAL:\n${JSON.stringify(body.material)}\n\nINSTRUCTION:\n${String(body.instruction ?? '').slice(0, 2000)}`;
-      out = await claude(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, reviseTool(kind));
+      out = await textModel(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, reviseTool(kind));
     } else {
       // image: only conceptual schematics; result figures are refused in code, not just by prompt
       const sch = body.schematic ?? {};
       const text = `${sch.title ?? ''} ${sch.description ?? ''}`;
+      if (!IMAGES_ENABLED) throw new HttpError(503, 'IMAGES_DISABLED');
       if (!String(sch.description ?? '').trim()) throw new HttpError(400, 'BAD_REQUEST');
       if (RESULT_FIGURE_RE.test(text)) throw new HttpError(422, 'REFUSED_RESULT_FIGURE');
       out = await gptImage(schematicPrompt(sch, String(body.style ?? 'flat'), String(body.lang ?? 'en')));

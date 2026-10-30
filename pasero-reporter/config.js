@@ -2,6 +2,6 @@
    never put the service-role key or any AI provider key here. */
 window.RG_CONFIG = {
   supabaseUrl: 'https://gnfxemlrgjwcqxqruzev.supabase.co',
-  supabaseKey: 'REPLACE_WITH_SUPABASE_PUBLISHABLE_KEY',
+  supabaseKey: 'sb_publishable_2MJ_yQEUabbfZr14Tv5gBg_BpJkZ5uU',
   functionName: 'reporter'
 };
