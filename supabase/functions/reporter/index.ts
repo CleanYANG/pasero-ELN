@@ -22,6 +22,7 @@ const LIMITS: Record<string, number> = {
   plan: +env('REPORTER_LIMIT_PLAN', '5'),
   revise: +env('REPORTER_LIMIT_REVISE', '40'),
   image: +env('REPORTER_LIMIT_IMAGE', '10'),
+  chat: +env('REPORTER_LIMIT_CHAT', '200'),
 };
 const ORIGINS = env('REPORTER_ALLOWED_ORIGINS', 'https://reporter.pasero.app,http://localhost:5173').split(',').map((s) => s.trim()).filter(Boolean);
 const MAX_BODY = 600_000;
@@ -204,6 +205,24 @@ async function gpt(system: string, user: string, tool: any): Promise<any> {
   }
   throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
 }
+// Pasero mobile/desktop assistant chat (plain text). Used by the apps instead of user-supplied API keys.
+const CHAT_SYSTEM = `You are Pasero's research assistant for life-science lab work. Answer in the language the user writes in.
+Be concise and practical. When the user attaches an experiment note, use it as the primary source, say clearly when the note does not contain the answer, and never invent data, numbers or results that are not in the note or the conversation. For protocols and safety-relevant steps, remind the user to check their institution's rules when appropriate.`;
+async function chatReply(messages: Array<{ role: string; content: string }>): Promise<string> {
+  const input = messages.map((m) => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: String(m.content ?? '').slice(0, 40000) }));
+  if (TEXT_PROVIDER === 'deepseek') {
+    const r = await fetch('https://api.deepseek.com/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + DEEPSEEK_KEY, 'content-type': 'application/json' },
+      body: JSON.stringify({ model: TEXT_MODEL, temperature: 0.4, max_tokens: 4000, messages: [{ role: 'system', content: CHAT_SYSTEM }, ...input] }) });
+    if (!r.ok) { console.error('chat upstream', r.status); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
+    const j = await r.json(); return String(j.choices?.[0]?.message?.content ?? '').trim();
+  }
+  const r = await fetch('https://api.openai.com/v1/responses', { method: 'POST', headers: { Authorization: 'Bearer ' + OPENAI_KEY, 'content-type': 'application/json' },
+    body: JSON.stringify({ model: TEXT_MODEL, instructions: CHAT_SYSTEM, input, store: false, reasoning: { effort: REASONING_EFFORT }, max_output_tokens: 6000 }) });
+  if (!r.ok) { console.error('chat upstream', r.status, (await r.text()).slice(0, 300)); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
+  const j = await r.json();
+  const text = (j.output ?? []).filter((o: any) => o.type === 'message').flatMap((o: any) => o.content ?? []).filter((c: any) => c.type === 'output_text').map((c: any) => c.text).join('').trim();
+  return text;
+}
 const textModel = (system: string, user: string, tool: any) =>
   TEXT_PROVIDER === 'anthropic' ? claude(system, user, tool) : TEXT_PROVIDER === 'deepseek' ? deepseek(system, user, tool) : gpt(system, user, tool);
 
@@ -309,6 +328,12 @@ Deno.serve(async (req) => {
     } else if (action === 'revise') {
       const user = `SETTINGS:\n${JSON.stringify(s)}\n\nCURRENT REPORT:\n${JSON.stringify(body.report)}\n\nCURRENT SCHEMATICS:\n${JSON.stringify(body.schematics ?? [])}\n\nCONTENT STRUCTURE:\n${JSON.stringify(body.structure ?? {})}\n\nRECENT CHAT:\n${JSON.stringify((body.history ?? []).slice(-8))}\n\nMATERIAL:\n${JSON.stringify(body.material)}\n\nINSTRUCTION:\n${String(body.instruction ?? '').slice(0, 2000)}`;
       out = await textModel(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, reviseTool(kind));
+    } else if (action === 'chat') {
+      const msgs = Array.isArray(body.messages) ? body.messages.slice(-30) : [];
+      if (!msgs.length || msgs.reduce((n: number, m: any) => n + String(m?.content ?? '').length, 0) > 120000) throw new HttpError(400, 'BAD_REQUEST', 'Message too long');
+      const answer = await chatReply(msgs);
+      if (!answer) throw new HttpError(502, 'UPSTREAM', 'Empty AI response');
+      out = { reply: answer };
     } else {
       // image: only conceptual schematics; result figures are refused in code, not just by prompt
       const sch = body.schematic ?? {};
@@ -318,7 +343,7 @@ Deno.serve(async (req) => {
       if (RESULT_FIGURE_RE.test(text)) throw new HttpError(422, 'REFUSED_RESULT_FIGURE');
       out = await gptImage(schematicPrompt(sch, String(body.style ?? 'flat'), String(body.lang ?? 'en')));
     }
-    await logUsage(uid, action, true, Date.now() - started, action === 'image' ? String(body.style ?? '') : kind);
+    await logUsage(uid, action, true, Date.now() - started, action === 'image' ? String(body.style ?? '') : action === 'chat' ? String(body.client ?? 'app').slice(0, 20) : kind);
     quota.used[action]++;
     return reply(200, { ...out, quota });
   } catch (e) {
