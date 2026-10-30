@@ -1,5 +1,6 @@
 // Pasero Reporter — Supabase Edge Function.
-// Text understanding & organisation: DeepSeek (default) or Anthropic Claude — chosen by REPORTER_TEXT_PROVIDER.
+// Text understanding & organisation: OpenAI GPT (default), DeepSeek or Anthropic Claude — chosen by REPORTER_TEXT_PROVIDER.
+// No silent fallback between providers, so material only ever goes to the provider stated in the privacy notice.
 // Schematic images: OpenAI Images API (GPT Image); disabled automatically when no OpenAI key is set.
 // The browser never learns which models are used; provider keys live only in function secrets.
 // Content of requests is never stored or logged — only counts, timings and success flags.
@@ -7,11 +8,13 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
 const env = (k: string, d = '') => Deno.env.get(k) ?? d;
-const TEXT_PROVIDER = env('REPORTER_TEXT_PROVIDER', 'deepseek'); // deepseek | anthropic
+const TEXT_PROVIDER = env('REPORTER_TEXT_PROVIDER', 'openai'); // openai | deepseek | anthropic
 const ANTHROPIC_KEY = env('ANTHROPIC_API_KEY');
 const DEEPSEEK_KEY = env('DEEPSEEK_API_KEY');
 const OPENAI_KEY = env('OPENAI_API_KEY');
-const TEXT_MODEL = env('REPORTER_TEXT_MODEL', TEXT_PROVIDER === 'anthropic' ? 'claude-sonnet-5-5' : 'deepseek-v4-pro');
+const DEFAULT_TEXT_MODEL: Record<string, string> = { openai: 'gpt-5.5', deepseek: 'deepseek-v4-pro', anthropic: 'claude-sonnet-5-5' };
+const TEXT_MODEL = env('REPORTER_TEXT_MODEL', DEFAULT_TEXT_MODEL[TEXT_PROVIDER] ?? 'gpt-5.5');
+const REASONING_EFFORT = env('REPORTER_REASONING_EFFORT', 'low');
 const IMAGES_ENABLED = !!OPENAI_KEY;
 const IMAGE_MODEL = env('REPORTER_IMAGE_MODEL', 'gpt-image-2');
 const IMAGE_QUALITY = env('REPORTER_IMAGE_QUALITY', 'medium');
@@ -178,7 +181,31 @@ async function deepseek(system: string, user: string, tool: any): Promise<any> {
   }
   throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
 }
-const textModel = (system: string, user: string, tool: any) => (TEXT_PROVIDER === 'anthropic' ? claude(system, user, tool) : deepseek(system, user, tool));
+// OpenAI: chat completions with a forced function call; arguments are the structured result.
+async function gpt(system: string, user: string, tool: any): Promise<any> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + OPENAI_KEY, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        model: TEXT_MODEL, max_completion_tokens: 20000, reasoning_effort: REASONING_EFFORT,
+        messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
+        tools: [{ type: 'function', function: { name: tool.name, description: tool.description, parameters: tool.input_schema } }],
+        tool_choice: { type: 'function', function: { name: tool.name } },
+      }),
+    });
+    if (!r.ok) { console.error('text upstream', r.status, (await r.text()).slice(0, 300)); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
+    const j = await r.json();
+    const args = j.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+    try {
+      const out = JSON.parse(args ?? '');
+      if ((tool.input_schema.required ?? []).every((k: string) => k in out)) return out;
+    } catch (_) { /* retry */ }
+  }
+  throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
+}
+const textModel = (system: string, user: string, tool: any) =>
+  TEXT_PROVIDER === 'anthropic' ? claude(system, user, tool) : TEXT_PROVIDER === 'deepseek' ? deepseek(system, user, tool) : gpt(system, user, tool);
 
 /* ------------------------------------------------------------------ */
 /* Schematic images: code-level guard rails                            */
