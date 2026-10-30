@@ -1,5 +1,7 @@
 # Pasero Reporter (Pasero public beta)
 
+Live test: https://reporter.pasero.app (Vercel project `pasero-reporter`, domain bound to branch `pasero-reporter` until merged).
+
 A standalone web tool that turns research material into **editable** academic posters and talk slides.
 It is deliberately separate from the main site (`build-site.mjs` does not copy this folder into `dist/`).
 
