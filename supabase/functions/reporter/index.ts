@@ -181,26 +181,26 @@ async function deepseek(system: string, user: string, tool: any): Promise<any> {
   }
   throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
 }
-// OpenAI: chat completions with a forced function call; arguments are the structured result.
+// OpenAI: Responses API with a forced function call; the call's arguments are the structured result.
 async function gpt(system: string, user: string, tool: any): Promise<any> {
   for (let attempt = 0; attempt < 2; attempt++) {
-    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    const r = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + OPENAI_KEY, 'content-type': 'application/json' },
       body: JSON.stringify({
-        model: TEXT_MODEL, max_completion_tokens: 20000, reasoning_effort: REASONING_EFFORT,
-        messages: [{ role: 'system', content: system }, { role: 'user', content: user }],
-        tools: [{ type: 'function', function: { name: tool.name, description: tool.description, parameters: tool.input_schema } }],
-        tool_choice: { type: 'function', function: { name: tool.name } },
+        model: TEXT_MODEL, instructions: system, input: user, store: false,
+        reasoning: { effort: REASONING_EFFORT }, max_output_tokens: 24000,
+        tools: [{ type: 'function', name: tool.name, description: tool.description, parameters: tool.input_schema, strict: false }],
+        tool_choice: { type: 'function', name: tool.name },
       }),
     });
     if (!r.ok) { console.error('text upstream', r.status, (await r.text()).slice(0, 300)); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
     const j = await r.json();
-    const args = j.choices?.[0]?.message?.tool_calls?.[0]?.function?.arguments;
+    const call = (j.output ?? []).find((o: any) => o.type === 'function_call' && o.name === tool.name);
     try {
-      const out = JSON.parse(args ?? '');
+      const out = JSON.parse(call?.arguments ?? '');
       if ((tool.input_schema.required ?? []).every((k: string) => k in out)) return out;
-    } catch (_) { /* retry */ }
+    } catch (_) { console.error('text parse retry', j.status, j.incomplete_details?.reason ?? ''); }
   }
   throw new HttpError(502, 'UPSTREAM', 'AI returned an invalid result, please try again');
 }
