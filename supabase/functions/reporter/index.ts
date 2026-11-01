@@ -6,6 +6,10 @@
 // Content of requests is never stored or logged — only counts, timings and success flags.
 
 import { createClient } from 'npm:@supabase/supabase-js@2';
+import { chatStreamResponse } from './streaming.ts';
+import { quotaExceeded, unlimitedActionsFor } from './quota-policy.ts';
+import { generateMobileImage, MobileImageError, readMobileImageBody } from './mobile-image.ts';
+import { mobileChatPrompt } from './mobile-chat.ts';
 
 const env = (k: string, d = '') => Deno.env.get(k) ?? d;
 const TEXT_PROVIDER = env('REPORTER_TEXT_PROVIDER', 'openai'); // openai | deepseek | anthropic
@@ -18,9 +22,12 @@ const REASONING_EFFORT = env('REPORTER_REASONING_EFFORT', 'low');
 const IMAGES_ENABLED = !!OPENAI_KEY;
 const IMAGE_MODEL = env('REPORTER_IMAGE_MODEL', 'gpt-image-2');
 const IMAGE_QUALITY = env('REPORTER_IMAGE_QUALITY', 'medium');
+// Generation allowances are counted per output kind (journal club / conference talk / poster).
 const LIMITS: Record<string, number> = {
-  plan: +env('REPORTER_LIMIT_PLAN', '5'),
-  revise: +env('REPORTER_LIMIT_REVISE', '40'),
+  paper: +env('REPORTER_LIMIT_PAPER', '5'),
+  ppt: +env('REPORTER_LIMIT_PPT', '3'),
+  poster: +env('REPORTER_LIMIT_POSTER', '3'),
+  revise: +env('REPORTER_LIMIT_REVISE', '30'),
   image: +env('REPORTER_LIMIT_IMAGE', '10'),
   chat: +env('REPORTER_LIMIT_CHAT', '200'),
 };
@@ -55,7 +62,7 @@ class HttpError extends Error {
 const LANG: Record<string, string> = { ja: 'Japanese', zh: 'Simplified Chinese', en: 'English' };
 const lim = (lang: string, cjk: number, en: number) => (lang === 'en' ? `≤ ${en} words` : `≤ ${cjk} characters`);
 
-const SCIENCE_RULES = `You help researchers in the life sciences turn THEIR OWN selected material into a talk or a poster.
+const SCIENCE_RULES = `You help researchers in the life sciences turn the material THEY SELECTED (their own records, or a published paper they present at a journal club) into a talk or a poster.
 Scientific integrity rules — these override any user request:
 1. Use ONLY information present in the MATERIAL. Do not add facts, background knowledge, numbers, statistics, sample sizes, gene/protein names, mechanisms or conclusions that are not in it. If something is missing, leave it out — never guess.
 2. Never strengthen claims. "associated/correlated" must not become "causes"; "suggests" must not become "demonstrates". Keep hedging as written.
@@ -75,6 +82,11 @@ const PPT_TPL: Record<string, string> = {
   seminar: 'lab meeting / progress report: denser slides are fine, include method details and open questions',
   lecture: 'teaching: fewer words per slide, more "section" slides, explain step by step',
 };
+const PAPER_TPL: Record<string, string> = {
+  standard: 'standard journal-club walkthrough: background → question → approach → results (figure by figure) → conclusion → discussion',
+  figurewalk: 'figure walkthrough: almost every slide is one paper figure with what it shows and how it supports the claim',
+  critical: 'critical appraisal: after the results, dedicated slides on strengths, limitations, alternative interpretations and open questions',
+};
 const POSTER_TPL: Record<string, string> = {
   classic: 'classic multi-column poster: balanced sections in reading order',
   centerfig: 'centre-figure poster: exactly one section with "emphasis": true holds the key result and its figure; keep other sections short',
@@ -84,6 +96,16 @@ const DENSITY: Record<string, string> = { concise: '1–2 bullets per section', 
 
 function taskPrompt(s: any): string {
   const L = LANG[s.lang] ?? 'English';
+  if (s.kind === 'paper') {
+    const n = Math.max(6, Math.round((+s.minutes || 15) * 0.8));
+    return `OUTPUT: journal-club slides in ${L} presenting ONE published paper from the MATERIAL (the presenter is not an author).
+- Template: ${PAPER_TPL[s.template] ?? PAPER_TPL.standard}.
+- About ${n} slides for a ${s.minutes || 15}-minute presentation. Slide 1 layout "title" (title = the paper title; bullets = [authors as given, journal and year if given]). Last slide layout "conclusion" holding 2–4 discussion questions for the group.
+- For every key result, use the paper figure that the caption or text links to that result ("figure_bullets" or "figure"), and say in the bullets what the figure shows. Use each figure at most once. Match figures to results only through figure numbers or captions in the MATERIAL; never guess.
+- Include one methods slide (key models, assays, design) and, before the conclusion, one slide of limitations stated or clearly implied by the paper; phrase your own critical remarks as questions, not facts.
+- Max 4 bullets per slide, each ${lim(s.lang, 34, 14)}. Audience: ${AUD[s.audience] ?? AUD.specialist}.
+- ${s.speaker_notes ? `Speaker notes in ${L}: what to say for each slide.` : 'Leave notes empty.'}`;
+  }
   if (s.kind === 'ppt') {
     const n = Math.max(5, Math.round((+s.minutes || 10) * 0.9));
     return `OUTPUT: academic talk slides in ${L}.
@@ -138,14 +160,14 @@ function deliverTool(kind: string) {
   return {
     name: 'deliver_report',
     description: 'Return the content structure, the laid-out report content, suggested schematics and a one-sentence reply to the user.',
-    input_schema: { type: 'object', properties: { structure: STRUCTURE, report: kind === 'ppt' ? SLIDES : POSTER, schematics: SCHEMATICS, reply: { type: 'string' } }, required: ['structure', 'report', 'schematics', 'reply'] },
+    input_schema: { type: 'object', properties: { structure: STRUCTURE, report: kind === 'poster' ? POSTER : SLIDES, schematics: SCHEMATICS, reply: { type: 'string' } }, required: ['structure', 'report', 'schematics', 'reply'] },
   };
 }
 function reviseTool(kind: string) {
   return {
     name: 'apply_revision',
     description: 'Return the full revised report. Change only what the instruction asks; keep everything else identical. Use settings_patch only for layout requests (template, colours, size/orientation, text amount).',
-    input_schema: { type: 'object', properties: { report: kind === 'ppt' ? SLIDES : POSTER, schematics: SCHEMATICS, settings_patch: PATCH, reply: { type: 'string', description: 'Short answer to the user, in the language of their instruction.' } }, required: ['report', 'reply'] },
+    input_schema: { type: 'object', properties: { report: kind === 'poster' ? POSTER : SLIDES, schematics: SCHEMATICS, settings_patch: PATCH, reply: { type: 'string', description: 'Short answer to the user, in the language of their instruction.' } }, required: ['report', 'reply'] },
   };
 }
 
@@ -208,16 +230,16 @@ async function gpt(system: string, user: string, tool: any): Promise<any> {
 // Pasero mobile/desktop assistant chat (plain text). Used by the apps instead of user-supplied API keys.
 const CHAT_SYSTEM = `You are Pasero's research assistant for life-science lab work. Answer in the language the user writes in.
 Be concise and practical. When the user attaches an experiment note, use it as the primary source, say clearly when the note does not contain the answer, and never invent data, numbers or results that are not in the note or the conversation. For protocols and safety-relevant steps, remind the user to check their institution's rules when appropriate.`;
-async function chatReply(messages: Array<{ role: string; content: string }>): Promise<string> {
+async function chatReply(messages: Array<{ role: string; content: string }>, system = CHAT_SYSTEM): Promise<string> {
   const input = messages.map((m) => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: String(m.content ?? '').slice(0, 40000) }));
   if (TEXT_PROVIDER === 'deepseek') {
     const r = await fetch('https://api.deepseek.com/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + DEEPSEEK_KEY, 'content-type': 'application/json' },
-      body: JSON.stringify({ model: TEXT_MODEL, temperature: 0.4, max_tokens: 4000, messages: [{ role: 'system', content: CHAT_SYSTEM }, ...input] }) });
+      body: JSON.stringify({ model: TEXT_MODEL, temperature: 0.4, max_tokens: 4000, messages: [{ role: 'system', content: system }, ...input] }) });
     if (!r.ok) { console.error('chat upstream', r.status); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
     const j = await r.json(); return String(j.choices?.[0]?.message?.content ?? '').trim();
   }
   const r = await fetch('https://api.openai.com/v1/responses', { method: 'POST', headers: { Authorization: 'Bearer ' + OPENAI_KEY, 'content-type': 'application/json' },
-    body: JSON.stringify({ model: TEXT_MODEL, instructions: CHAT_SYSTEM, input, store: false, reasoning: { effort: REASONING_EFFORT }, max_output_tokens: 6000 }) });
+    body: JSON.stringify({ model: TEXT_MODEL, instructions: system, input, store: false, reasoning: { effort: REASONING_EFFORT }, max_output_tokens: 6000 }) });
   if (!r.ok) { console.error('chat upstream', r.status, (await r.text()).slice(0, 300)); throw new HttpError(502, 'UPSTREAM', 'AI service unavailable (' + r.status + ')'); }
   const j = await r.json();
   const text = (j.output ?? []).filter((o: any) => o.type === 'message').flatMap((o: any) => o.content ?? []).filter((c: any) => c.type === 'output_text').map((c: any) => c.text).join('').trim();
@@ -260,14 +282,15 @@ async function gptImage(prompt: string) {
 /* ------------------------------------------------------------------ */
 /* Quota (counts only)                                                 */
 /* ------------------------------------------------------------------ */
-async function quotaFor(uid: string, beta: any) {
+async function quotaFor(uid: string, beta: any, unlimited: string[]) {
   const used: Record<string, number> = {};
-  for (const a of Object.keys(LIMITS)) {
-    const { count } = await admin.from('reporter_usage').select('id', { count: 'exact', head: true })
+  await Promise.all(Object.keys(LIMITS).map(async (a) => {
+    const { count, error } = await admin.from('reporter_usage').select('id', { count: 'exact', head: true })
       .eq('user_id', uid).eq('action', a).eq('ok', true).gte('created_at', beta.starts_at);
+    if (error) throw new HttpError(503, 'UNAVAILABLE');
     used[a] = count ?? 0;
-  }
-  return { active: !!beta.active, ends_at: beta.ends_at, used, limit: { ...LIMITS, image: IMAGES_ENABLED ? LIMITS.image : 0 }, images: IMAGES_ENABLED };
+  }));
+  return { active: !!beta.active, ends_at: beta.ends_at, used, limit: { ...LIMITS, image: IMAGES_ENABLED ? LIMITS.image : 0 }, unlimited, images: IMAGES_ENABLED };
 }
 async function logUsage(uid: string, action: string, ok: boolean, ms: number, detail: string | null = null) {
   await admin.from('reporter_usage').insert({ user_id: uid, action, ok, ms, detail });
@@ -284,20 +307,29 @@ Deno.serve(async (req) => {
   let uid = '', action = '', quota: any = null;
   try {
     if (req.method !== 'POST') throw new HttpError(405, 'METHOD');
-    const raw = await req.text();
-    if (raw.length > MAX_BODY) throw new HttpError(413, 'TOO_LARGE', 'Material too large');
+    const mobileEdit = new URL(req.url).searchParams.get('mobile_image_edit') === '1';
+    if (mobileEdit) {
+      const { data } = await admin.auth.getUser((req.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, ''));
+      if (!data?.user) throw new HttpError(401, 'AUTH_REQUIRED');
+      uid = data.user.id;
+    }
+    const raw = mobileEdit ? await readMobileImageBody(req) : await req.text();
+    if (!mobileEdit && raw.length > MAX_BODY) throw new HttpError(413, 'TOO_LARGE', 'Material too large');
     const body = JSON.parse(raw || '{}');
     action = String(body.action || '');
+    if (mobileEdit && (body.client !== 'mobile' || !['schematic', 'image'].includes(action) || !body.image_reference)) throw new HttpError(400, 'BAD_REQUEST');
 
     const auth = req.headers.get('authorization') ?? '';
     const token = auth.replace(/^Bearer\s+/i, '');
-    const { data: u } = await admin.auth.getUser(token);
-    if (!u?.user) throw new HttpError(401, 'AUTH_REQUIRED');
-    uid = u.user.id;
+    if (!uid) {
+      const { data: u } = await admin.auth.getUser(token);
+      if (!u?.user) throw new HttpError(401, 'AUTH_REQUIRED');
+      uid = u.user.id;
+    }
     // Reporter has its own free-trial window (independent of the desktop/mobile beta), set by secrets.
     const now = Date.now();
     const beta = { starts_at: TRIAL_START, ends_at: TRIAL_END, active: now >= Date.parse(TRIAL_START) && now < Date.parse(TRIAL_END) };
-    quota = await quotaFor(uid, beta);
+    quota = await quotaFor(uid, beta, unlimitedActionsFor(uid, env('REPORTER_UNLIMITED_TEST_USERS')));
 
     if (action === 'quota') return reply(200, { quota });
     if (action === 'event') {
@@ -305,12 +337,15 @@ Deno.serve(async (req) => {
       await logUsage(uid, 'event:' + ev, true, 0, [val, body.kind].filter(Boolean).join('|') || null);
       return reply(200, { ok: true });
     }
-    // quota key: plan / revise / image (client action "schematic" uses the image allowance)
-    action = action === 'schematic' ? 'image' : action;
-    if (!(action in LIMITS)) throw new HttpError(400, 'BAD_ACTION');
+    const s = body.settings ?? {};
+    const kind = s.kind === 'ppt' ? 'ppt' : s.kind === 'paper' ? 'paper' : 'poster';
+    // quota keys: paper / ppt / poster (generation, by output kind), revise, image (client "schematic"), chat
+    const op = action;
+    if (!['plan', 'revise', 'schematic', 'image', 'chat'].includes(op)) throw new HttpError(400, 'BAD_ACTION');
+    action = op === 'schematic' ? 'image' : op === 'plan' ? kind : op;
     if (!beta.active) throw new HttpError(403, 'BETA_INACTIVE');
     if (action === 'image' && !IMAGES_ENABLED) throw new HttpError(503, 'IMAGES_DISABLED');
-    if (quota.used[action] >= LIMITS[action]) throw new HttpError(429, 'QUOTA_EXCEEDED');
+    if (quotaExceeded(action, quota)) throw new HttpError(429, 'QUOTA_EXCEEDED');
 
     // simple burst limit: 8 AI calls per minute per user
     const { count: burst } = await admin.from('reporter_usage').select('id', { count: 'exact', head: true })
@@ -318,20 +353,46 @@ Deno.serve(async (req) => {
     if ((burst ?? 0) >= 8) throw new HttpError(429, 'RATE_LIMIT', 'Too many requests, please wait a minute');
 
     let out: any;
-    const s = body.settings ?? {};
-    const kind = s.kind === 'ppt' ? 'ppt' : 'poster';
-    if (action === 'plan') {
-      const user = `SETTINGS:\n${JSON.stringify(s)}\n\nUSER REQUIREMENTS (follow unless they break the integrity rules):\n${body.material?.requirements || '(none)'}\n\n` +
-        (body.structure ? `EXISTING CONTENT STRUCTURE (reuse it, adjust only if needed):\n${JSON.stringify(body.structure)}\n\n` : '') +
-        `MATERIAL (JSON; passages have ids; figures are the authors' originals):\n${JSON.stringify(body.material)}`;
+    // The MATERIAL always leads the user message so repeated calls share a cacheable prefix (cheaper revisions).
+    const materialBlock = `MATERIAL (JSON; passages have ids; figures are originals, referred to only by id):\n${JSON.stringify(body.material)}\n\n`;
+    if (op === 'plan') {
+      const user = materialBlock + `SETTINGS:\n${JSON.stringify(s)}\n\nUSER REQUIREMENTS (follow unless they break the integrity rules):\n${body.material?.requirements || '(none)'}\n\n` +
+        (body.structure ? `EXISTING CONTENT STRUCTURE (reuse it, adjust only if needed):\n${JSON.stringify(body.structure)}\n` : '');
       out = await textModel(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, deliverTool(kind));
-    } else if (action === 'revise') {
-      const user = `SETTINGS:\n${JSON.stringify(s)}\n\nCURRENT REPORT:\n${JSON.stringify(body.report)}\n\nCURRENT SCHEMATICS:\n${JSON.stringify(body.schematics ?? [])}\n\nCONTENT STRUCTURE:\n${JSON.stringify(body.structure ?? {})}\n\nRECENT CHAT:\n${JSON.stringify((body.history ?? []).slice(-8))}\n\nMATERIAL:\n${JSON.stringify(body.material)}\n\nINSTRUCTION:\n${String(body.instruction ?? '').slice(0, 2000)}`;
+    } else if (op === 'revise') {
+      const user = materialBlock + `SETTINGS:\n${JSON.stringify(s)}\n\nCONTENT STRUCTURE:\n${JSON.stringify(body.structure ?? {})}\n\nCURRENT REPORT:\n${JSON.stringify(body.report)}\n\nCURRENT SCHEMATICS:\n${JSON.stringify(body.schematics ?? [])}\n\nRECENT CHAT:\n${JSON.stringify((body.history ?? []).slice(-8))}\n\nINSTRUCTION:\n${String(body.instruction ?? '').slice(0, 2000)}`;
       out = await textModel(SCIENCE_RULES + '\n\n' + taskPrompt(s), user, reviseTool(kind));
-    } else if (action === 'chat') {
+    } else if (op === 'chat') {
+      const chatSystem = mobileChatPrompt(CHAT_SYSTEM, body);
       const msgs = Array.isArray(body.messages) ? body.messages.slice(-30) : [];
       if (!msgs.length || msgs.reduce((n: number, m: any) => n + String(m?.content ?? '').length, 0) > 120000) throw new HttpError(400, 'BAD_REQUEST', 'Message too long');
-      const answer = await chatReply(msgs);
+      if (body.stream === true && TEXT_PROVIDER === 'openai') {
+        const abort = new AbortController();
+        const stop = () => abort.abort();
+        req.signal.addEventListener('abort', stop, { once: true });
+        try {
+          const upstream = await fetch('https://api.openai.com/v1/responses', {
+            method: 'POST', signal: abort.signal,
+            headers: { Authorization: 'Bearer ' + OPENAI_KEY, 'content-type': 'application/json' },
+            body: JSON.stringify({ model: TEXT_MODEL, instructions: chatSystem,
+              input: msgs.map((m: any) => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: String(m.content ?? '').slice(0, 40000) })),
+              store: false, stream: true, reasoning: { effort: REASONING_EFFORT }, max_output_tokens: 6000 })
+          });
+          if (!upstream.ok || !upstream.body) {
+            await upstream.body?.cancel();
+            throw new HttpError(502, 'UPSTREAM', 'AI service unavailable');
+          }
+          return chatStreamResponse(upstream, headers, abort, async (ok, firstTokenMs) => {
+            req.signal.removeEventListener('abort', stop);
+            await logUsage(uid, 'chat', ok, Date.now() - started, `${String(body.client ?? 'app').slice(0, 20)}|stream|first_ms=${firstTokenMs ?? -1}`);
+          }, started);
+        } catch (error) {
+          req.signal.removeEventListener('abort', stop);
+          abort.abort();
+          throw error;
+        }
+      }
+      const answer = await chatReply(msgs, chatSystem);
       if (!answer) throw new HttpError(502, 'UPSTREAM', 'Empty AI response');
       out = { reply: answer };
     } else {
@@ -341,15 +402,26 @@ Deno.serve(async (req) => {
       if (!IMAGES_ENABLED) throw new HttpError(503, 'IMAGES_DISABLED');
       if (!String(sch.description ?? '').trim()) throw new HttpError(400, 'BAD_REQUEST');
       if (RESULT_FIGURE_RE.test(text)) throw new HttpError(422, 'REFUSED_RESULT_FIGURE');
-      out = await gptImage(schematicPrompt(sch, String(body.style ?? 'flat'), String(body.lang ?? 'en')));
+      if (body.client === 'mobile') {
+        try {
+          out = await generateMobileImage({ description: sch.description, language: String(body.lang ?? 'en'),
+            model: IMAGE_MODEL, quality: IMAGE_QUALITY, key: OPENAI_KEY, signal: req.signal, reference: body.image_reference });
+        } catch (error) {
+          if (error instanceof MobileImageError) throw new HttpError(error.status, error.code, error.message);
+          throw error;
+        }
+      } else {
+        out = await gptImage(schematicPrompt(sch, String(body.style ?? 'flat'), String(body.lang ?? 'en')));
+      }
     }
-    await logUsage(uid, action, true, Date.now() - started, action === 'image' ? String(body.style ?? '') : action === 'chat' ? String(body.client ?? 'app').slice(0, 20) : kind);
+    await logUsage(uid, action, true, Date.now() - started, action === 'image' ? body.client === 'mobile' ? body.image_reference ? 'mobile|edit' : 'mobile|prompt' : String(body.style ?? '') : action === 'chat' ? String(body.client ?? 'app').slice(0, 20) : kind);
     quota.used[action]++;
     return reply(200, { ...out, quota });
   } catch (e) {
-    const err = e instanceof HttpError ? e : new HttpError(500, 'SERVER', 'Server error');
+    const err = e instanceof HttpError || e instanceof MobileImageError ? e : new HttpError(500, 'SERVER', 'Server error');
     if (!(e instanceof HttpError)) console.error('reporter error', (e as Error)?.message);
     if (uid && action in LIMITS && err.code === 'UPSTREAM') await logUsage(uid, action, false, Date.now() - started).catch(() => {});
     return reply(err.status, { error: err.message, code: err.code, quota });
   }
 });
+

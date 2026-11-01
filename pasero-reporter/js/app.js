@@ -302,7 +302,7 @@
     if (!q.active) { el.textContent = t('quota_off'); return; }
     renderSchem();
     const left = k => Math.max(0, (q.limit[k] || 0) - (q.used[k] || 0));
-    el.textContent = t('quota', { p: left('plan'), r: left('revise'), i: left('image') });
+    el.textContent = t('quota', { p: left(S.settings.kind === 'ppt' ? 'ppt' : 'poster'), r: left('revise'), i: left('image') });
   }
   function changed(full) { S.payloadEdited = false; if (full !== false) { renderBlocks(); renderFigs(); } renderScope(); }
 
@@ -396,7 +396,7 @@
     document.querySelectorAll('input[name=st]').forEach(r => r.onchange = () => { S.status = r.value; changed(false); });
     $('selAll').onclick = () => { S.blocks.forEach(b => { if (b.kind !== 'cap' && b.kind !== 'ref') b.sel = true; }); changed(); };
     $('selNone').onclick = () => { S.blocks.forEach(b => b.sel = false); changed(); };
-    document.querySelectorAll('#kindSeg button').forEach(b => b.onclick = () => { S.settings.kind = b.dataset.k; renderOutput(); });
+    document.querySelectorAll('#kindSeg button').forEach(b => b.onclick = () => { S.settings.kind = b.dataset.k; renderOutput(); renderQuota(); });
     $('psize').onchange = e => { S.settings.posterSize = e.target.value; renderOutput(); };
     $('density').onchange = e => S.settings.density = e.target.value;
     $('aud').onchange = e => S.settings.aud = e.target.value;
