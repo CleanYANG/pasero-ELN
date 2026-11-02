@@ -1,196 +1,1098 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pasero | Molecular Biology Workspace</title>
-    <meta name="description" content="Pasero is a local-first molecular biology workspace for notes, analysis, lab resources, literature, plasmid tools, and bench-side mobile work." />
-    <link rel="stylesheet" href="styles.css?v=31" />
-    <link rel="stylesheet" href="campaign.css?v=17" />
-  </head>
-  <body class="campaign-page" data-language="en">
-    <header class="campaign-nav">
-      <a class="campaign-brand" href="#top" aria-label="Pasero home"><img src="assests/real-logo-cut.png" alt="Pasero" /></a>
-      <div class="campaign-nav-actions">
-        <a class="campaign-download" href="#plans"><span data-copy="en">Download</span><span data-copy="zh">下载</span><span data-copy="ja">ダウンロード</span></a>
-        <div class="language-menu" data-language-menu>
-          <button class="language-toggle" type="button" data-language-toggle aria-label="Choose language" aria-haspopup="listbox" aria-expanded="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.2 2.5 3.3 5.5 3.3 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.3 5.5-3.3 9S9.8 18.5 12 21"></path></svg>
-          </button>
-          <div class="language-options" role="listbox" aria-label="Language">
-            <button type="button" data-language-option="en" role="option">EN</button>
-            <button type="button" data-language-option="zh" role="option">中文</button>
-            <button type="button" data-language-option="ja" role="option">日本語</button>
-          </div>
-        </div>
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Pasero 雀角 — 让科研，自此相连</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--ink:#14241f;--muted:#62756b;--cream:#f4f7f3;--purple:#6ea88d;--pink:#DFD3F7;--mint:#C8B8F0;--yellow:#F1ECFB;--line:#E5DEF4}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}button:focus-visible,a:focus-visible{outline:3px solid #6545ff;outline-offset:4px}
+.header{height:86px;padding:0 5.1vw;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5;background:var(--cream)}.brand{display:flex;gap:11px;align-items:center;font-size:24px;letter-spacing:-1.2px;font-weight:700;font-family:'Space Grotesk',sans-serif}.brand-mark{height:34px;width:34px;border-radius:11px;background:var(--ink);display:grid;place-items:center;color:#f9e77d;transform:rotate(-8deg)}.brand-mark svg{width:25px;height:25px}.nav{display:flex;align-items:center;gap:37px;font-size:13px;font-weight:700}.nav a{opacity:.78;transition:opacity .2s}.nav a:hover{opacity:1}.actions{display:flex;align-items:center;gap:15px}.lang{border:0;background:transparent;color:#505052;font-size:12px;font-weight:700}.download{border:1px solid var(--ink);background:var(--ink);color:white;border-radius:100px;padding:13px 20px;font-weight:700;font-size:13px;transition:transform .2s}.download:hover{transform:translateY(-3px)}
+.hero{min-height:min(850px,calc(100svh - 86px));position:relative;overflow:hidden;display:grid;grid-template-columns:42% 58%;align-items:center;padding:44px 0 65px 5.1vw;isolation:isolate}.hero:before{content:'';position:absolute;right:-14%;top:1%;height:92%;width:80%;background:radial-gradient(ellipse at 62% 54%,rgba(134,202,162,.16),transparent 59%);z-index:-1}.copy{position:relative;z-index:2;padding:0 12px 0 0;margin-top:-35px}.eyebrow{font-size:11px;letter-spacing:2.3px;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:9px;margin-bottom:27px}.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:#8E73CF;box-shadow:0 0 0 5px #E7DDF9}.hero h1{font-family:'Space Grotesk',Arial,sans-serif;font-size:clamp(58px,6.4vw,108px);font-weight:600;letter-spacing:-.088em;line-height:.99;margin:0 0 29px;max-width:700px}.hero h1 em{font-style:normal;position:relative;white-space:nowrap}.hero h1 em:after{content:'';height:12px;background:#DDD0F8;position:absolute;bottom:.05em;left:1%;right:0;z-index:-1;border-radius:100px;transform:rotate(-2deg)}.description{max-width:460px;color:#42544d;line-height:1.66;font-size:clamp(15px,1.15vw,18px);margin:0 0 32px}.cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cta .primary{border:0;background:var(--ink);color:#fff;border-radius:100px;padding:17px 24px;font-size:14px;font-weight:700;box-shadow:5px 5px 0 #DFD3F7;transition:transform .2s,box-shadow .2s}.cta .primary:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 #DFD3F7}.cta .secondary{border:1.5px solid #171919;border-radius:100px;padding:16px 22px;background:transparent;font-size:14px;font-weight:700;transition:background .2s}.cta .secondary:hover{background:white}.trust{margin-top:32px;font-size:11px;color:#717173;display:flex;align-items:center;gap:11px;letter-spacing:.01em}.trust i{height:3px;width:3px;border-radius:50%;background:#a6a1a5}
+.stage{position:relative;height:650px;max-width:1000px;width:100%;isolation:isolate;overflow:visible}.blob{position:absolute;inset:7% -14% 0 -4%;border-radius:38% 60% 49% 42% / 57% 43% 50% 50%;background:radial-gradient(ellipse at 28% 20%,#e6f3e9 0,transparent 42%),radial-gradient(ellipse at 72% 74%,#B5A0E6 0,transparent 50%),radial-gradient(ellipse at 82% 21%,#d9ecdc 0,transparent 48%),#DED5F3;transform:rotate(-9deg);filter:saturate(1.1);z-index:-2;animation:morph 13s ease-in-out infinite alternate}.grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 170 170' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.21'/%3E%3C/svg%3E");opacity:.15;mix-blend-mode:multiply;pointer-events:none;z-index:-1}.orbit{position:absolute;width:570px;height:465px;border:1px solid #ffffff70;border-radius:50%;top:93px;left:15%;transform:rotate(-24deg);z-index:-1}.orbit.two{width:720px;height:360px;left:6%;top:155px;transform:rotate(28deg)}.scribble{position:absolute;right:6%;top:4%;transform:rotate(12deg);font-size:16px;font-weight:700;color:#28453a;font-family:'Space Grotesk';letter-spacing:-.6px;z-index:2}.scribble svg{display:block;margin:1px 0 0 55px}.star{position:absolute;right:14%;bottom:15%;font-size:75px;font-weight:700;color:#BEADEB;line-height:1;transform:rotate(20deg);z-index:2}
+.record{position:absolute;top:24%;left:18%;width:min(70%,620px);min-width:475px;background:#fff;border:1px solid #27202722;border-radius:17px;box-shadow:0 28px 70px rgba(54,107,79,.22),0 3px 0 #00000008;transform:rotate(-4deg);overflow:hidden;z-index:2;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s}.record:hover{transform:rotate(-2deg) translateY(-6px);box-shadow:0 34px 85px rgba(54,107,79,.28)}.record-top{height:35px;border-bottom:1px solid #efedf0;display:flex;align-items:center;gap:6px;padding:0 15px;background:#faf9fc}.traffic{width:8px;height:8px;border-radius:50%;background:#f1b2a7}.traffic:nth-child(2){background:#ffde82}.traffic:nth-child(3){background:#a0e6b6}.top-title{margin:auto;font-size:10px;color:#a1a0a3;letter-spacing:.2px;transform:translateX(-13px)}.record-body{display:grid;grid-template-columns:115px 1fr;min-height:330px}.sidebar{background:#f6f5fa;border-right:1px solid #eeecf0;padding:20px 9px;font-size:10px;color:#9994a1}.mini-logo{font-size:14px;font-weight:700;color:#282133;margin:0 0 22px 10px}.menu-item{padding:9px 10px;border-radius:7px;margin-bottom:3px}.menu-item.selected{background:#E7E0F6;color:#28453a;font-weight:700}.body-main{padding:27px 26px}.breadcrumb{font-size:10px;color:#958da5;margin-bottom:13px}.record h3{font:600 23px/1.1 'Space Grotesk';margin:0 0 9px;letter-spacing:-.8px}.record .sub{font-size:10px;color:#999; margin-bottom:24px}.pills{display:flex;gap:6px;margin-bottom:20px}.pill{font-size:9px;padding:5px 8px;background:#F0EBFB;border-radius:5px;color:#6B5B9F;font-weight:700}.record h4{font-size:10px;margin:0 0 9px}.rows{border-top:1px solid #eeeeee}.rows div{font-size:10px;display:flex;align-items:center;gap:10px;padding:9px 3px;border-bottom:1px solid #f0f0f0;color:#605e65}.check{border:1.4px solid #aaa5b0;height:10px;width:10px;border-radius:3px}.check.on{background:#8E73CF;border-color:#8E73CF}.record-foot{border-top:1px solid #f0edf4;margin-top:20px;padding-top:13px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#a19ba7}.record-foot b{color:#6B5B9F;font-size:10px}.status{display:flex;gap:4px;align-items:center}.status:before{content:'';width:5px;height:5px;background:#7cdb9a;border-radius:50%}
+.node{position:absolute;z-index:3;background:#fffdfb;border:1px solid #fff;box-shadow:0 10px 26px rgba(54,107,79,.18);border-radius:13px;padding:13px 15px;display:flex;align-items:center;gap:10px;min-width:153px;transform:rotate(var(--r,0deg));transition:transform .22s,box-shadow .22s,border .22s;cursor:pointer;text-align:left}.node:hover,.node.active{transform:rotate(0deg) scale(1.07);box-shadow:0 17px 38px rgba(54,107,79,.24);border-color:#1c1b1b}.node-symbol{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;font-size:18px;flex:none}.node strong{display:block;font-size:11px;margin-bottom:4px}.node small{display:block;font-size:9px;color:#8b8790}.cells{top:10%;left:12%;--r:-11deg}.cells .node-symbol{background:#F0EBFB}.plasmids{top:15%;right:0%;--r:9deg}.plasmids .node-symbol{background:#F5F1FD}.reagents{top:60%;left:1%;--r:6deg}.reagents .node-symbol{background:#E7DDF9}.analysis{top:71%;right:2%;--r:-8deg}.analysis .node-symbol{background:#EFE8FC}.results{bottom:2%;left:32%;--r:4deg}.results .node-symbol{background:#E8E0FA}.connections{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:visible}.connections path{stroke:#8B76C3;stroke-width:1.7;fill:none;stroke-dasharray:5 8;opacity:.46;transition:opacity .2s,stroke-width .2s}.connections path.hot{opacity:1;stroke-width:3;stroke:#6D57AF;stroke-dasharray:none}.visual-label{position:absolute;bottom:8%;left:3%;font-size:10px;font-weight:700;letter-spacing:2.1px;color:#5E4E8F;transform:rotate(-8deg)}
+.transition{border-top:1px solid var(--line);padding:32px 5.1vw 36px;display:flex;justify-content:space-between;align-items:center;gap:24px}.transition .intro{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:#7e9787}.transition strong{font:500 clamp(20px,2.8vw,34px)/1.2 'Space Grotesk';letter-spacing:-1.4px}.transition strong span{color:#8E73CF}.transition .down{width:53px;height:53px;border:1px solid #bdb8bb;border-radius:100%;display:grid;place-items:center;font-size:24px;flex:none}.details{padding:120px 6vw 150px;min-height:500px;background:#15201b;color:#fff}.details .overline{color:#D3C0F5;text-transform:uppercase;letter-spacing:2px;font-size:12px}.details h2{font:500 clamp(40px,5vw,75px)/1.03 'Space Grotesk';max-width:950px;letter-spacing:-3px;margin:28px 0}.details p{color:#c6c2ca;font-size:18px;line-height:1.5;max-width:600px}.details .tags{display:flex;gap:12px;flex-wrap:wrap;margin-top:39px}.details .tags span{padding:13px 19px;border:1px solid #9687B8;border-radius:50px;font-size:13px}
+@keyframes morph{from{border-radius:38% 60% 49% 42% / 57% 43% 50% 50%;transform:rotate(-9deg)}to{border-radius:53% 43% 36% 61% / 49% 55% 50% 55%;transform:rotate(-3deg)}}
+@media(max-width:1120px){.hero{grid-template-columns:42% 58%;padding-left:4vw}.stage{transform:scale(.85);transform-origin:left center}.hero h1{font-size:clamp(53px,6vw,76px)}.nav{gap:19px}.description{font-size:15px}}
+@media(max-width:800px){.header{height:75px;padding:0 6vw}.nav{display:none}.hero{display:flex;flex-direction:column;align-items:stretch;padding:58px 6vw 10px;min-height:unset;overflow:hidden}.copy{margin:0}.hero h1{font-size:clamp(53px,12.5vw,80px)}.description{max-width:530px}.stage{height:550px;width:700px;max-width:none;transform:scale(.8);transform-origin:top left;margin:10px 0 -100px -45px}.blob{inset:7% -7% 0 -4%}.trust{margin-top:28px}.transition{padding:30px 6vw}.transition .intro{display:none}.transition strong{letter-spacing:-.6px}.details{padding:90px 6vw}.details h2{letter-spacing:-2px}}
+@media(max-width:490px){.brand{font-size:20px}.brand-mark{width:30px;height:30px}.lang{display:none}.header .download{padding:11px 16px;font-size:12px}.hero{padding-top:55px}.eyebrow{font-size:9px;letter-spacing:1.5px}.hero h1{font-size:clamp(52px,13.1vw,67px);margin-bottom:23px}.description{font-size:15px;line-height:1.6}.cta .primary,.cta .secondary{padding:14px 17px;font-size:12px}.trust{font-size:10px}.stage{transform:scale(.59);margin-top:18px;margin-bottom:-205px;margin-left:-57px}.transition strong{font-size:20px}.transition .down{height:40px;width:40px}.details{min-height:400px}.details h2{font-size:43px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Desktop Feature Explorer — built as a separate real section */
+.explorer{background:#f5f7f3;padding:116px 5.1vw 124px;border-top:1px solid #dce8df;color:#183729;position:relative;overflow:hidden}
+.explorer:before{content:"";width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,#e7def8 0%,transparent 69%);position:absolute;right:-170px;top:-180px;pointer-events:none}
+.explorer-wrap{max-width:1400px;margin:auto;position:relative}
+.section-kicker{display:flex;gap:12px;align-items:center;text-transform:uppercase;letter-spacing:2px;color:#6c7a70;font-weight:700;font-size:11px;margin-bottom:25px}
+.kicker-line{display:inline-block;height:1px;width:32px;background:#9278c3}
+.explorer-title{font:600 clamp(45px,5.7vw,78px)/1.06 'Space Grotesk',sans-serif;letter-spacing:-.072em;margin:0;max-width:920px}
+.explorer-title em{font-style:normal;color:#8f72c7}
+.explorer-lead{font-size:17px;line-height:1.75;color:#637468;max-width:550px;margin:22px 0 48px}
+.feature-layout{display:grid;grid-template-columns:minmax(235px,30%) minmax(0,1fr);gap:28px;align-items:stretch;min-height:584px}
+.feature-tabs{display:flex;flex-direction:column;gap:3px;border-top:1px solid #d6e3d9}
+.feature-tab{width:100%;display:grid;grid-template-columns:35px 1fr 22px;gap:12px;align-items:center;padding:20px 13px 20px 8px;border:0;border-bottom:1px solid #d6e3d9;background:transparent;text-align:left;color:#526659;cursor:pointer;transition:background .2s,color .2s,padding .2s}
+.feature-tab .number{font:500 11px 'DM Sans';color:#8b9a8e;align-self:start;margin-top:5px}
+.feature-tab strong{font:600 clamp(18px,1.6vw,24px) 'Space Grotesk';letter-spacing:-.045em}
+.feature-tab small{display:block;margin-top:5px;font:400 12px/1.4 'DM Sans';color:#849287;transition:color .2s}
+.feature-tab .arrow{font-size:20px;color:#849287;transform:translateX(-4px);opacity:0;transition:transform .2s,opacity .2s}
+.feature-tab[aria-selected=true]{color:#302548;background:#eae2f7;padding-left:18px;border-radius:11px}
+.feature-tab[aria-selected=true] .number,.feature-tab[aria-selected=true] small{color:#76668f}
+.feature-tab[aria-selected=true] .arrow,.feature-tab:hover .arrow{opacity:1;transform:translateX(0)}
+.feature-tab:hover:not([aria-selected=true]){background:#ebf1eb;color:#254632}
+.feature-showcase{position:relative;background:#e5ede6;border-radius:24px;padding:25px;min-width:0;overflow:hidden;display:flex;flex-direction:column;box-shadow:inset 0 0 0 1px #d8e5dc}
+.showcase-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px;color:#53705a;font-size:11px;font-weight:700;letter-spacing:1.35px;text-transform:uppercase}
+.top-state{display:flex;align-items:center;gap:8px}.top-state:before{content:"";height:7px;width:7px;border-radius:50%;background:#9878d5}
+.image-stage{height:360px;min-height:360px;position:relative;border-radius:14px;background:#eff3ec;box-shadow:0 20px 44px rgba(30,48,39,.12);overflow:hidden;border:1px solid #dae5dc;display:grid;place-items:center}
+.image-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(140deg,#ecf3ea,#e4daef);pointer-events:none}
+.image-stage img,.image-stage video{position:relative;width:100%;height:100%;object-fit:contain;z-index:1}
+.image-stage video{background:#151923;object-fit:contain}
+.image-stage img{object-position:center}
+.stage-loading{position:absolute;z-index:0;font-size:13px;color:#667568;padding:25px;text-align:center}
+.stage-note{position:absolute;z-index:2;bottom:12px;left:12px;background:rgba(255,255,255,.93);border:1px solid #e2e9e1;color:#526255;padding:8px 11px;border-radius:20px;font-size:10px}
+.showcase-bottom{padding:23px 5px 4px;display:flex;align-items:end;justify-content:space-between;gap:20px}
+.panel-index{font-size:11px;font-weight:700;color:#7b6d98;letter-spacing:1.3px;margin-bottom:8px}
+.panel-title{font:600 clamp(25px,2.7vw,38px)/1.15 'Space Grotesk';letter-spacing:-.055em;margin:0 0 10px;color:#183729}
+.panel-desc{font-size:14px;color:#53685a;line-height:1.55;max-width:490px;margin:0}
+.panel-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.panel-tags span{background:rgba(255,255,255,.66);border:1px solid #d7e3da;border-radius:30px;font-size:11px;padding:6px 10px;color:#52685a}
+.feature-link{display:inline-flex;flex:none;align-items:center;gap:11px;background:#263e32;color:#fff;padding:13px 17px;border-radius:99px;font-size:12px;font-weight:700;transition:background .2s,transform .2s}
+.feature-link:hover{background:#7d61b7;transform:translateY(-2px)}
+.explorer-footer{display:flex;align-items:center;justify-content:space-between;margin-top:23px;font-size:12px;color:#7b887f;gap:20px;flex-wrap:wrap}
+.explorer-footer b{color:#4b6353}
+.explorer-footer a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:960px){.feature-layout{grid-template-columns:1fr}.feature-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:0}.feature-tab{border:1px solid #d6e3d9;border-radius:11px;padding:14px;grid-template-columns:1fr 14px;gap:6px}.feature-tab .number{display:none}.feature-tab strong{font-size:18px}.feature-tab small{font-size:11px}.feature-tab[aria-selected=true]{padding-left:14px}.feature-showcase{min-height:550px}}
+@media(max-width:620px){.explorer{padding:72px 5vw 80px}.explorer-title{font-size:43px}.explorer-lead{font-size:15px;margin-bottom:29px}.feature-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-tab strong{font-size:16px}.feature-tab small{font-size:10px}.feature-showcase{padding:14px;border-radius:17px;min-height:unset}.image-stage{height:245px;min-height:245px}.showcase-bottom{display:block}.panel-title{font-size:29px}.feature-link{margin-top:21px}.stage-note{font-size:9px}.explorer-footer{line-height:1.5}}
+
+/* v3: intentional chapter rhythm */
+.explorer{background:#ffffff;border-top:0;padding-top:130px;padding-bottom:140px;color:#1d2922}
+.explorer:before{display:none}
+.explorer-title{max-width:840px}
+.explorer-lead{color:#6c7570}
+.feature-tabs{border-color:#e5e8e5}
+.feature-tab{border-color:#e5e8e5;color:#435149}
+.feature-tab:hover:not([aria-selected=true]){background:#f6f6f4}
+.feature-tab[aria-selected=true]{background:#eee8f8;color:#382858}
+.feature-showcase{background:#f8f8f7;box-shadow:inset 0 0 0 1px #e9eae7;border-radius:20px}
+.image-stage{background:#fff;border-color:#e8e9e6;box-shadow:0 12px 40px rgba(19,36,28,.07)}
+.image-stage:before{display:none}
+.panel-desc{color:#65716b}.showcase-top{color:#64746a}
+.panel-tags span{background:#fff;border-color:#e8e8e6}
+.mobile-story{position:relative;overflow:hidden;background:#efeaf6;color:#173228;padding:130px max(5.1vw,24px) 145px}
+.mobile-story::before{content:'';pointer-events:none;position:absolute;width:760px;height:760px;border-radius:50%;right:-270px;top:-40px;background:radial-gradient(circle,rgba(169,148,222,.18),transparent 66%)}
+.mobile-story::after{content:'';pointer-events:none;position:absolute;width:560px;height:560px;border-radius:50%;left:-220px;bottom:-140px;background:radial-gradient(circle,rgba(121,176,144,.10),transparent 70%)}
+.mobile-wrap{max-width:1400px;margin:auto;position:relative}
+.mobile-kicker{font-size:12px;letter-spacing:2.1px;color:#7c67a8;font-weight:700;text-transform:uppercase;margin-bottom:28px}
+.mobile-headline{font:600 clamp(58px,7.3vw,110px)/.99 'Space Grotesk',sans-serif;letter-spacing:-.075em;margin:0 0 22px;max-width:980px;color:#173228}
+.mobile-headline em{font-style:normal;color:#7f67b9}
+.mobile-sub{font-size:17px;line-height:1.7;color:#57675f;max-width:640px;margin:0 0 62px}
+.mobile-stage{position:relative;min-height:560px}
+.mobile-trace{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.mobile-trace path{fill:none;stroke:#9a87c8;stroke-width:1.7;stroke-dasharray:7 9;opacity:.7}
+.mobile-trace circle{fill:#7c67a8}
+.mobile-cardless{position:absolute}
+.mobile-cardless .meta{margin-bottom:12px}
+.mobile-cardless .meta b{display:block;font:600 28px 'Space Grotesk';letter-spacing:-.05em;color:#173228;margin-bottom:4px}
+.mobile-cardless .meta span{font-size:13px;color:#5e6b66}
+.phone-float{left:2%;bottom:0;width:min(30vw,290px)}
+.phone-float .media-asset{border-radius:26px;overflow:hidden;box-shadow:0 26px 70px rgba(71,60,99,.15),0 2px 0 rgba(0,0,0,.04);background:#1e1928}
+.phone-float img{display:block;width:100%;height:auto}
+.desktop-float{right:0;top:18px;width:min(61vw,760px)}
+.desktop-float .media-asset{border-radius:20px;overflow:hidden;box-shadow:0 26px 70px rgba(39,50,44,.12),0 2px 0 rgba(0,0,0,.04);background:#ffffff;border:1px solid rgba(23,50,40,.08)}
+.desktop-float img{display:block;width:100%;height:auto}
+.sync-note{position:absolute;left:35.5%;top:48%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:14px;color:#765fb0}
+.sync-note .sync-glyph{font:600 34px/1 'Space Grotesk';letter-spacing:-.08em}
+.sync-note .sync-copy{font-size:11px;letter-spacing:1.3px;line-height:1.6;text-transform:uppercase;color:#7159a9}
+.floating-note{position:absolute;background:rgba(255,255,255,.58);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.58);border-radius:999px;padding:10px 14px;font-size:12px;color:#355347;box-shadow:0 10px 30px rgba(89,81,109,.08)}
+.note-a{left:20%;top:52%}
+.note-b{right:11%;top:8%}
+.note-c{right:5%;bottom:4%}
+.mobile-foot{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:34px}
+.mobile-pills{display:flex;gap:8px;flex-wrap:wrap}
+.mobile-pills span{border:1px solid rgba(23,50,40,.12);background:rgba(255,255,255,.55);border-radius:999px;padding:9px 12px;color:#456255;font-size:12px}
+.mobile-foot a{background:#7f67b9;color:#fff;padding:14px 22px;border-radius:999px;font-weight:700;font-size:13px;box-shadow:5px 5px 0 #dfd3f7}
+.mobile-caveat{font-size:11px;color:#6c6b76;margin-top:21px}
+.transition{background:#fff;border-color:#e8e9e6}
+.details{background:#faf8fc;color:#241f2b}
+.details .overline{color:#7e61b2}
+.details p{color:#665e6b}
+.details .tags span{border-color:#d9d1df}
+@media(max-width:1100px){.mobile-stage{min-height:710px}.phone-float{left:0;width:250px}.desktop-float{width:66vw;right:0}.sync-note{left:37%;top:46%}.note-a{left:16%;top:54%}.note-b{right:8%;top:7%}.note-c{right:3%;bottom:7%}}
+@media(max-width:900px){.mobile-story{padding:95px 6vw 110px}.mobile-sub{margin-bottom:40px}.mobile-stage{min-height:auto;display:grid;gap:30px}.mobile-cardless,.sync-note,.floating-note,.mobile-trace{position:relative;left:auto;right:auto;top:auto;bottom:auto;transform:none}.phone-float,.desktop-float{width:100%}.phone-float{max-width:320px}.sync-note{justify-content:flex-start;margin:8px 0 2px}.mobile-cardless .meta b{font-size:24px}.mobile-cardless .meta{margin-bottom:10px}.mobile-story::after{display:none}}
+.transition{background:#fff;border-color:#e8e9e6}
+.details{background:#faf8fc;color:#241f2b}
+.details .overline{color:#7e61b2}
+.details p{color:#665e6b}
+.details .tags span{border-color:#d9d1df}
+@media(max-width:900px){.mobile-demo-grid{grid-template-columns:1fr 1fr;gap:15px}.sync-middle{grid-column:1/-1;grid-row:2;padding:12px}.mobile-device{min-height:370px}.mobile-device .media-frame{height:210px}.mobile-story{padding-top:90px;padding-bottom:85px}}
+@media(max-width:560px){.mobile-story{padding:76px 5vw 88px}.mobile-headline{font-size:55px}.mobile-sub{font-size:15px}.mobile-demo-grid{grid-template-columns:1fr}.sync-middle{grid-column:1;grid-row:auto}.mobile-device .media-frame{height:250px}.mobile-device{min-height:unset}.mobile-foot{align-items:stretch}.mobile-foot a{text-align:center}}
+
+/* V5: white editorial Mobile chapter, fewer containers, more whitespace */
+.mobile-white{background:#fff!important;color:#1b3329!important;padding:138px max(5.1vw,24px) 125px!important;overflow:hidden;}
+.mobile-white::before,.mobile-white::after{display:none!important}
+.mobile-white .mobile-kicker{color:#8b78ad!important;margin:0 0 30px;font-size:11px;letter-spacing:.21em}
+.mobile-title-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(245px,.5fr);gap:9vw;align-items:end}
+.mobile-white .mobile-headline{font-size:clamp(55px,7.2vw,106px);line-height:1.02;letter-spacing:-.079em;margin:0;color:#1c3429}
+.mobile-white .mobile-headline em{color:#9c84ce}
+.mobile-side-intro{max-width:285px;padding-bottom:7px}.side-line{display:block;width:37px;height:2px;background:#9c84ce;margin:0 0 23px}.mobile-side-intro p{color:#647368;font-size:16px;line-height:1.65;margin:0 0 23px}.mobile-side-intro a{color:#6f55aa;font-size:13px;font-weight:700;border-bottom:1px solid #bfaee1;padding-bottom:6px}
+.editorial-stage{position:relative;margin-top:94px;min-height:660px;isolation:isolate}
+.editorial-stage:before{content:'';position:absolute;width:43%;height:72%;left:5%;top:10%;border-radius:50%;background:radial-gradient(circle,#eae3f3,transparent 68%);z-index:-1;opacity:.38}
+.editorial-index{position:absolute;top:2%;left:6%;font-size:10px;letter-spacing:2px;font-weight:700;color:#87968c}.editorial-index.desktop-index{top:12%;left:auto;right:30%}
+.editorial-phone{position:absolute;left:8%;top:7%;width:24%;max-width:290px;margin:0;z-index:3}.editorial-phone img{width:100%;display:block;object-fit:contain;filter:drop-shadow(0 24px 28px rgba(51,60,49,.12));border-radius:28px}.phone-shadow{position:absolute;width:70%;height:45px;background:#bacbbd;filter:blur(35px);bottom:9%;left:10%;opacity:.3;z-index:-1}
+.editorial-desktop{position:absolute;right:2%;top:19%;width:63%;margin:0;z-index:2}.editorial-desktop img{width:100%;display:block;border:1px solid #e5e9e6;border-radius:9px;box-shadow:0 26px 52px rgba(38,57,47,.10),0 2px 4px rgba(0,0,0,.03)}
+.editorial-stage figure figcaption{font-weight:700;letter-spacing:-.02em;color:#254539;font-size:14px;margin:16px 0 0}.editorial-stage figure figcaption span{display:block;font-weight:400;letter-spacing:0;color:#8b948c;font-size:12px;margin-top:3px}
+.editorial-thread{position:absolute;left:28%;top:40%;width:47%;z-index:1}.editorial-thread svg{width:100%;height:auto;overflow:visible}.editorial-thread path{fill:none;stroke:#ac99cf;stroke-width:1.6;stroke-dasharray:5 7}.editorial-thread circle{fill:#9d86cf}
+.editorial-sync{position:absolute;left:33.5%;top:63%;display:flex;gap:12px;align-items:flex-start;z-index:3}.sync-round{width:38px;height:38px;border:1px solid #c3b1e4;border-radius:50%;display:grid;place-items:center;color:#8567bd;font-size:24px;background:#fff}.editorial-sync b{display:block;color:#284538;font-size:14px}.editorial-sync small{display:block;color:#839187;font-size:11px;line-height:1.65;margin-top:6px}
+.editorial-annotation{position:absolute;right:0;top:5%;text-align:right;color:#9d86c8;font-size:10px;letter-spacing:2px;line-height:2}.editorial-annotation b{font-size:16px;color:#536d5b;letter-spacing:0;font-weight:500}
+.mobile-bottom{display:grid;grid-template-columns:1fr minmax(250px,.7fr);align-items:start;gap:28px;border-top:1px solid #e9ece9;border-bottom:1px solid #e9ece9;padding:21px 0;margin-top:32px}.mobile-features{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.mobile-features button{background:transparent;border:1px solid transparent;color:#728177;padding:10px 12px;border-radius:0;font-weight:600;font-size:13px;transition:color .2s,background .2s,border .2s}.mobile-features button:hover{color:#785aaa}.mobile-features button.is-active{color:#785aaa;border-bottom:2px solid #a18ad0;background:#f8f6fc}.mobile-feature-desc{font-size:13px;line-height:1.55;color:#657569;text-align:right;min-height:48px;padding-top:10px}.mobile-disclaimer{display:flex;justify-content:space-between;gap:30px;margin-top:23px;color:#87958b;font-size:11px;line-height:1.6;letter-spacing:.02em}.mobile-disclaimer span:first-child{color:#6d5e8c;font-weight:700;letter-spacing:.10em}
+.shot-fallback{min-height:320px;background:linear-gradient(130deg,#f7f8f6,#ebe9f3);border:1px dashed #b5abbf;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center;color:#796e85;border-radius:12px;gap:12px}.shot-fallback strong{color:#594b6f;font-size:15px}.shot-fallback small{line-height:1.55;font-size:11px;max-width:280px}.editorial-phone .shot-fallback{min-height:410px}.editorial-desktop .shot-fallback{min-height:340px}
+@media(max-width:1000px){.editorial-stage{min-height:610px}.editorial-phone{width:28%;left:1%}.editorial-desktop{width:69%;right:0;top:22%}.editorial-sync{top:75%;left:31%}.editorial-index.desktop-index{right:19%}.mobile-title-row{gap:25px}}
+@media(max-width:720px){.mobile-white{padding:85px 6vw 90px!important}.mobile-title-row{grid-template-columns:1fr}.mobile-white .mobile-headline{font-size:clamp(48px,11vw,78px)}.mobile-side-intro{max-width:460px;margin-top:24px}.editorial-stage{display:flex;flex-direction:column;align-items:center;gap:22px;min-height:unset;margin-top:45px}.editorial-stage>*{position:static!important}.editorial-stage:before,.editorial-thread,.editorial-annotation,.editorial-index{display:none!important}.editorial-phone{width:70%;max-width:260px}.editorial-desktop{width:100%}.editorial-sync{align-self:center}.mobile-bottom{grid-template-columns:1fr}.mobile-feature-desc{text-align:left}.mobile-disclaimer{flex-direction:column;gap:6px}.editorial-stage figure figcaption{margin-top:10px}}
+
+
+/* v6: sync caption is a separate editorial row, never overlaying screenshots */
+.sync-explain{display:flex;align-items:center;gap:20px;position:relative;border-top:1px solid #e8e9e6;margin:18px 0 0;padding:30px 3px 15px;color:#1c3429}
+.sync-explain-mark{display:grid;place-items:center;width:48px;height:48px;flex:none;border:1px solid #c9b9e6;border-radius:50%;font:500 27px 'Space Grotesk',sans-serif;color:#8469b8}
+.sync-explain-text{min-width:0;flex:1}.sync-explain-text strong{font:600 19px 'Space Grotesk',sans-serif;letter-spacing:-.035em}.sync-explain-text p{margin:6px 0 0;color:#738177;font-size:13px;line-height:1.6}.sync-explain-aside{color:#9b88bb;font-size:10px;font-weight:700;letter-spacing:.17em;white-space:nowrap}
+.mobile-bottom{margin-top:20px}
+@media(max-width:720px){.sync-explain{gap:13px;padding-top:22px;flex-wrap:wrap}.sync-explain-mark{width:42px;height:42px}.sync-explain-aside{width:100%;padding-left:55px;font-size:9px}}
+
+/* Pricing chapter: shared layout, theme tokens switch only */
+.pricing-chapter{--p-bg:#f5f6f3;--p-ink:#193329;--p-muted:#62716a;--p-card:#fff;--p-line:#e0e5df;--p-soft:#e9ece8;--p-active:#e9ddfa;--p-active-ink:#64458f;--p-cta:#1e4937;--p-cta-text:#fff;--p-highlight:#815fc0;--p-info:#eee8f7;background:var(--p-bg);color:var(--p-ink);padding:124px max(5.1vw,24px) 126px;transition:background .2s}
+.pricing-chapter.pricing-dark{--p-bg:#101510;--p-ink:#f1f4ed;--p-muted:#b8c1b7;--p-card:#1a211b;--p-line:#343e34;--p-soft:#262f27;--p-active:#b7a3df;--p-active-ink:#1f182a;--p-cta:#d1bee9;--p-cta-text:#231a30;--p-highlight:#d1bee9;--p-info:#282438}
+.pricing-wrap{max-width:1260px;margin:0 auto}.pricing-intro{display:flex;justify-content:space-between;gap:50px;align-items:end;margin-bottom:50px}.pricing-eyebrow{color:var(--p-highlight);font-weight:700;font-size:12px;letter-spacing:.16em;margin:0 0 19px}.pricing-intro h2{font:600 clamp(52px,5.7vw,88px)/1.02 'Space Grotesk',sans-serif;letter-spacing:-.07em;margin:0 0 22px}.pricing-intro h2 em{font-style:normal;color:var(--p-highlight)}.pricing-intro .lead{color:var(--p-muted);font-size:16px;line-height:1.7;max-width:515px;margin:0}.pricing-note{color:var(--p-muted);font-size:12px;line-height:1.6;text-align:right;max-width:225px}
+.price-controls{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--p-line);gap:12px;margin-bottom:27px;flex-wrap:wrap}.price-tabs{display:flex;align-items:center;gap:36px}.price-tab{background:none;color:var(--p-muted);border:0;padding:13px 0 17px;font-weight:650;font-size:14px;border-bottom:3px solid transparent}.price-tab[aria-selected="true"]{border-color:var(--p-highlight);color:var(--p-ink)}.price-period{color:var(--p-muted);font-size:12px;padding-bottom:12px}.price-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.price-grid.is-complete{grid-template-columns:1fr}.plan{background:var(--p-card);border:1px solid var(--p-line);padding:36px 38px 33px;min-height:370px;display:flex;flex-direction:column;position:relative;gap:0}.plan-eyebrow{color:var(--p-muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin:0 0 17px}.plan h3{font:600 29px/1.12 'Space Grotesk';letter-spacing:-.04em;margin:0 0 12px}.plan .price{display:flex;align-items:baseline;gap:9px;margin-bottom:20px}.plan .amount{font:600 clamp(52px,5vw,74px)/1 'Space Grotesk';letter-spacing:-.075em}.plan .period{color:var(--p-muted);font-size:13px}.plan .summary{color:var(--p-muted);font-size:14px;line-height:1.6;max-width:480px;margin:0 0 28px}.plan ul{list-style:none;padding:20px 0 0;margin:auto 0 0;border-top:1px solid var(--p-line);display:grid;gap:12px}.plan li{font-size:13px;line-height:1.4;display:flex;gap:12px;align-items:start}.plan li::before{content:'↗︎';font-weight:700;color:var(--p-highlight)}.plan.featured{border-color:var(--p-highlight)}.plan .choice{position:absolute;right:32px;top:34px;font-size:11px;color:var(--p-highlight);font-weight:700;letter-spacing:.04em}.complete-split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.complete-split .plan{min-height:370px}.complete-note{padding:26px 0}.complete-note .tag{font-size:12px;color:var(--p-highlight);letter-spacing:.12em;font-weight:700}.complete-note h3{font:600 clamp(30px,3.8vw,52px)/1.08 'Space Grotesk';letter-spacing:-.05em;margin:18px 0}.complete-note p{color:var(--p-muted);font-size:16px;line-height:1.7;max-width:390px}.complete-note a{display:inline-block;color:var(--p-cta-text);background:var(--p-cta);padding:15px 25px;text-decoration:none;border-radius:40px;font-weight:700;font-size:13px;margin-top:20px}.pricing-foot{display:flex;gap:20px;justify-content:space-between;align-items:center;margin-top:24px;color:var(--p-muted);font-size:11px;line-height:1.7}.pricing-foot a{color:var(--p-highlight);font-weight:700}
+@media(max-width:780px){.pricing-chapter{padding:82px 6vw 90px}.pricing-intro{display:block}.pricing-note{text-align:left;margin-top:20px}.price-grid,.complete-split{grid-template-columns:1fr}.plan{min-height:340px;padding:28px}.price-tabs{gap:19px}.price-tab{font-size:12px}.complete-note{padding:5px 0 20px}.pricing-foot{align-items:start;flex-direction:column}}
+
+.pricing-diff{margin:20px 0 26px;padding:16px 20px;border:1px solid var(--p-line);background:var(--p-soft);display:flex;justify-content:space-between;gap:18px;align-items:center}
+.pricing-diff strong{font-size:13px;color:var(--p-ink)}
+.pricing-diff p{font-size:12px;margin:5px 0 0;line-height:1.6;color:var(--p-muted)}
+.compare-wrap{border-top:1px solid var(--p-line);margin-top:28px}
+.compare-toggle{border:0;width:100%;background:none;color:var(--p-ink);padding:22px 0;display:flex;align-items:center;justify-content:space-between;text-align:left;cursor:pointer}
+.compare-toggle strong{font-size:17px}
+.compare-toggle small{display:block;color:var(--p-muted);font-size:12px;margin-top:5px;font-weight:400}
+.compare-toggle .plus{font-size:26px;color:var(--p-highlight);font-weight:300;transition:transform .2s}
+.compare-toggle[aria-expanded=true] .plus{transform:rotate(45deg)}
+.compare-body{display:none;padding-bottom:20px}
+.compare-body.open{display:block}
+.compare-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0 15px}
+.compare-head h3{font-size:17px;margin:0}
+.compare-head span{font-size:12px;color:var(--p-muted)}
+.compare-category{border-top:1px solid var(--p-line)}
+.compare-cat-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:0;color:var(--p-ink);padding:16px 4px;text-align:left;font-weight:700;cursor:pointer}
+.compare-cat-toggle .indicator{color:var(--p-highlight)}
+.compare-cat-content{display:none}
+.compare-cat-content.open{display:block}
+.compare-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.compare-table th{text-align:left;color:var(--p-muted);font-size:11px;font-weight:650;padding:12px 14px;background:var(--p-soft)}
+.compare-table th:not(:first-child){text-align:center}
+.compare-table th:first-child{width:54%}
+.compare-table td{padding:13px 14px;border-bottom:1px solid var(--p-line);color:var(--p-ink);font-size:13px;line-height:1.4}
+.compare-table td:not(:first-child){text-align:center;font-size:12px;color:var(--p-muted)}
+.compare-table td.yes{color:#ccf0d2;font-weight:700}
+.compare-table td.pro{color:var(--p-highlight);font-weight:700}
+.compare-table td.no{opacity:.5}
+.compare-caveat{color:var(--p-muted);font-size:12px;line-height:1.8;margin-top:17px}
+@media(max-width:640px){.pricing-diff{align-items:flex-start;flex-direction:column}.compare-table th:first-child{width:48%}.compare-table td,.compare-table th{padding:12px 6px;font-size:11px}.compare-head{align-items:flex-start;flex-direction:column}}
+
+.mobile-caveat-line{max-width:1100px;margin:30px 0 0;color:#89948d;font-size:12px;line-height:1.6}
+.brand-story{background:#f2f4f7;color:#24313c;padding:118px max(5.1vw,24px) 42px;position:relative}
+.story-shell{max-width:1350px;margin:0 auto}.story-topline{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #d8dde4;padding-bottom:20px;font-size:11px;letter-spacing:1.9px;font-weight:650;color:#6f7580}.story-heading{margin:100px 0 90px;max-width:1050px}.story-kicker,.story-overline{font-size:11px;letter-spacing:2px;color:#7a6bb0;font-weight:700}.story-heading h2{font:600 clamp(50px,6.1vw,100px)/1.04 'Space Grotesk',sans-serif;letter-spacing:-.075em;margin:25px 0 28px}.story-heading h2 em{font-style:normal;color:#7868ab}.story-summary{max-width:560px;font-size:18px;color:#66707a;line-height:1.6}.story-editorial{display:grid;grid-template-columns: .92fr 1fr;gap:9%;align-items:center;padding-bottom:80px}.story-bird{margin:0;min-height:385px;background:#e6ebf0;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}.story-bird img{max-width:68%;max-height:285px;object-fit:contain;mix-blend-mode:multiply}.story-bird figcaption{position:absolute;left:24px;bottom:20px;color:#566474;font-size:12px;letter-spacing:1.1px}.story-excerpt{max-width:510px}.story-excerpt h3{font:500 clamp(35px,4vw,64px)/1.05 'Space Grotesk';letter-spacing:-.06em;margin:24px 0}.story-excerpt h3 em{font-style:normal;color:#7b69b2}.story-excerpt p{font-size:15px;color:#5d6872;line-height:1.65}.story-read{padding:15px 0;margin-top:12px;border:0;border-bottom:1px solid #7363aa;background:transparent;color:#7363aa;font-weight:700;font-size:14px;display:flex;gap:35px;align-items:center}.story-read span{font-size:20px;transition:transform .25s}.story-read[aria-expanded=true] span{transform:rotate(180deg)}.story-expanded{border-top:1px solid #d8dde4;padding:36px 0 60px}.story-expanded[hidden],.story-full[hidden]{display:none}.story-language{display:flex;align-items:center;justify-content:space-between;color:#76808a;font-size:11px;letter-spacing:1.6px;margin-bottom:45px}.story-language button{border:1px solid #d5dbe2;background:transparent;color:#5d6770;padding:8px 13px;cursor:pointer}.story-language button.selected{background:#33485a;color:#fff;border-color:#33485a}.story-full{display:grid;gap:70px}.story-full article{display:grid;grid-template-columns: .38fr 1fr;gap:7%;border-bottom:1px solid #dce1e7;padding-bottom:65px}.story-full article>h3{margin:0;font:600 24px/1.2 'Space Grotesk';letter-spacing:-.05em}.story-full article>p{grid-column:2}.story-full p{font-size:16px;color:#52606b;line-height:1.9;margin:0 0 17px}.story-founder figure{grid-column:1;grid-row:1;margin:0}.story-founder figure img{width:100%;max-width:340px;max-height:450px;object-fit:cover;display:block}.story-founder div{grid-column:2}.story-founder h3{font:600 25px 'Space Grotesk';margin:0 0 25px}.story-end{border-top:1px solid #dbd6cc;display:flex;gap:25px;align-items:center;justify-content:space-between;padding:26px 0;font-size:12px;color:#7c796f}.story-end a{color:#6f5b93;font-weight:650}
+@media(max-width:760px){.brand-story{padding-top:78px}.story-heading{margin:60px 0}.story-heading h2{font-size:clamp(47px,10vw,74px)}.story-editorial{grid-template-columns:1fr;gap:37px}.story-bird{min-height:280px}.story-full article{display:block;padding-bottom:42px}.story-full article>h3{margin:0 0 25px}.story-founder figure{margin-bottom:30px}.story-end{flex-wrap:wrap}}
+
+/* Hero diagram aligns with the six Desktop feature categories. */
+.stage .node.cells{top:9%;left:6%}.stage .node.plasmids{top:11%;right:-1%}.stage .node.reagents{top:46%;left:0%}.stage .node.analysis{top:47%;right:0%}.stage .node.results{bottom:5%;left:10%}.stage .node.presentations{position:absolute;bottom:4%;right:0%;--r:-4deg}.stage .node.presentations .node-symbol{background:#ebe4f8}.stage .node{min-width:145px}.stage .node small{white-space:nowrap}
+@media(max-width:750px){.stage .node{min-width:108px;padding:9px 10px}.stage .node small{white-space:normal}}
+
+/* Readability adjustment 2026-10-23 — preserve approved layout */
+@media(min-width:801px){.header{height:94px}.brand{font-size:29px;gap:14px}.brand-mark{height:43px;width:43px}.brand-mark svg{width:32px;height:32px}.nav{font-size:16px;gap:34px}.header .download{font-size:15px;padding:14px 23px}.header .lang{font-size:14px}}
+.pricing-chapter .pricing-intro .lead{font-size:18px}
+.pricing-chapter .pricing-note{font-size:14px;line-height:1.65}
+.pricing-chapter .price-tab{font-size:17px}
+.pricing-chapter .price-period{font-size:14px}
+.pricing-chapter .plan h3{font-size:32px}
+.pricing-chapter .plan .summary{font-size:16px}
+.pricing-chapter .plan li{font-size:16px;line-height:1.58}
+.pricing-chapter .plan .period{font-size:15px}
+.pricing-diff strong{font-size:16px}.pricing-diff p{font-size:15px}
+.compare-toggle strong{font-size:21px}.compare-toggle small{font-size:15px}
+.compare-head h3{font-size:21px}.compare-head span{font-size:14px}
+.compare-cat-toggle{font-size:17px;padding:19px 5px}
+.compare-table th{font-size:14px;padding:16px 18px}
+.compare-table td{font-size:16px;line-height:1.55;padding:17px 18px}
+.compare-table td:not(:first-child){font-size:15px}
+.compare-caveat{font-size:14px;line-height:1.7}
+@media(max-width:800px){.header .brand{font-size:23px}.header .brand-mark{height:37px;width:37px}.header .brand-mark svg{width:28px;height:28px}.compare-table th{font-size:12px;padding:12px 8px}.compare-table td{font-size:13px;padding:13px 8px}.compare-table td:not(:first-child){font-size:12px}.pricing-chapter .plan li{font-size:15px}}
+.header .brand-logo{display:block;width:45px;height:45px;object-fit:contain;flex:none}@media(max-width:800px){.header .brand-logo{width:38px;height:38px}}.header .brand-logo{width:194px!important;height:auto!important;max-height:65px!important;object-fit:contain!important;display:block!important}.header .brand{gap:0!important}@media(max-width:800px){.header .brand-logo{width:145px!important;height:auto!important}}
+/* October 23: wordmark-only nav, larger illustrated labels and better chapter hierarchy */
+.header .brand{font-family:'Space Grotesk',sans-serif;font-size:30px!important;font-weight:700;letter-spacing:-1.35px;white-space:nowrap}
+.header .brand-logo{display:none!important}
+.record .mini-logo img{display:block;width:105px;max-height:50px;object-fit:contain;object-position:left center}
+.stage .node{min-width:170px;padding:15px 16px;gap:12px}
+.stage .node strong{font-size:15px;line-height:1.2;margin-bottom:5px}
+.stage .node small{font-size:12px;line-height:1.35}
+.stage .node-symbol{width:39px;height:39px;font-size:21px}
+.stage .record .menu-item{font-size:11px}
+.hero h1{font-size:clamp(52px,5.5vw,90px)}
+.section-kicker,.mobile-kicker,.pricing-eyebrow{font-size:15px!important;letter-spacing:1.7px}
+.explorer-title{font-size:clamp(49px,5.1vw,70px)}
+/* Match the desktop Mobile chapter headline to chapter 02. */
+@media(min-width:801px){html[lang="en"] #mobile-story .mobile-headline{font-size:clamp(49px,5.1vw,70px)}}
+.mobile-headline{font-size:clamp(51px,6.2vw,91px)}
+.pricing-intro h2{font-size:clamp(48px,5.1vw,74px)}
+@media(max-width:800px){.header .brand{font-size:25px!important}.stage .node{min-width:146px;padding:12px}.stage .node strong{font-size:13px}.stage .node small{font-size:11px}.section-kicker,.mobile-kicker,.pricing-eyebrow{font-size:13px!important}.hero h1{font-size:clamp(49px,11vw,68px)}}
+
+/* Chapter numbering and Hero illustration refinements */
+.hero .eyebrow,.explorer .section-kicker,.mobile-story .mobile-kicker,.pricing-chapter .pricing-eyebrow,.brand-story .story-topline,.story .story-topline{font-size:19px!important;letter-spacing:1.35px!important;line-height:1.4}
+.hero .eyebrow{margin-bottom:24px}
+.stage .stage-brand{position:absolute;top:-1%;left:2%;width:185px;z-index:4;filter:drop-shadow(0 5px 12px rgba(32,38,42,.08))}
+.stage .stage-brand img{display:block;width:100%;height:auto;object-fit:contain}
+.stage .scribble{top:0!important;right:4%!important;transform:rotate(3deg)!important;z-index:5;font-size:19px!important;line-height:1.35;text-align:left;white-space:nowrap}
+.stage .scribble svg{margin-left:50px}
+.stage .node.cells{top:19%!important;left:4%!important}
+.stage .node.plasmids{top:20%!important;right:-2%!important}
+@media(max-width:800px){.hero .eyebrow,.explorer .section-kicker,.mobile-story .mobile-kicker,.pricing-chapter .pricing-eyebrow,.brand-story .story-topline,.story .story-topline{font-size:15px!important}.stage .stage-brand{width:160px}.stage .scribble{font-size:17px!important}}
+
+/* Hero transparent sparrow and visible Mobile discovery link */
+.hero .copy .hero-bird-logo{display:block;width:125px;height:125px;object-fit:contain;object-position:left center;margin:0 0 10px 0;filter:drop-shadow(0 8px 14px rgba(47,28,101,.09))}
+.stage .stage-brand{display:none!important}
+.sync-title-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.sync-discover-link{display:inline-flex;align-items:center;gap:9px;font:700 20px/1.35 'Space Grotesk',sans-serif!important;letter-spacing:-.025em;color:#7152b4!important;text-decoration:none;border-bottom:2px solid #a58bd4;padding-bottom:3px;transition:color .2s}
+.sync-discover-link:hover{color:#402d83!important}
+@media(max-width:800px){.hero .copy .hero-bird-logo{width:94px;height:94px;margin-bottom:6px}.sync-title-row{gap:14px}.sync-discover-link{font-size:17px!important}}
+.hero .copy .hero-bird-logo{width:285px!important;height:auto!important;max-height:130px!important;object-fit:contain!important;object-position:left center!important}@media(max-width:800px){.hero .copy .hero-bird-logo{width:215px!important;max-height:100px!important}}.header{justify-content:flex-end!important}.header .nav{margin-left:auto}
+/* Hero brand spacing refinement */
+@media(min-width:801px){
+ .hero .copy .hero-bird-logo{width:345px!important;max-height:165px!important;margin: -28px 0 43px -22px!important}
+}
+@media(max-width:800px){
+ .hero .copy .hero-bird-logo{width:255px!important;max-height:120px!important;margin:-10px 0 30px -12px!important}
+}
+
+/* Mobile-first visual repair: artwork, feature explorer, and conversion-critical pricing */
+@media(max-width:700px){
+ html,body{overflow-x:hidden}
+ .hero{padding:35px 5vw 20px!important;min-height:auto!important}
+ .hero .copy{margin-top:0!important}
+ .hero .copy .hero-bird-logo{width:min(240px,62vw)!important;max-height:100px!important;margin:0 0 16px -7px!important}
+ .hero h1{font-size:clamp(39px,10.4vw,58px)!important;letter-spacing:-.068em!important;margin-bottom:16px!important}
+ .hero .description{font-size:14px;line-height:1.55;margin-bottom:20px}
+ .hero .trust{margin-top:17px}
+ .hero .stage{height:650px!important;width:700px!important;max-width:none!important;transform:scale(min(0.52, calc((100vw - 25px) / 700)))!important;transform-origin:top left!important;margin:12px 0 -290px -15px!important}
+ .hero .node{appearance:none;-webkit-appearance:none;background:#fffdfb!important;color:#26382c!important}
+ .hero .node-symbol{font-family:Arial,'Segoe UI Symbol',sans-serif!important;font-variant-emoji:text!important;background:#ede6fa!important;color:#73549e!important}
+ .hero .star,.hero .visual-label{font-family:'Space Grotesk',Arial,sans-serif!important}
+ .scribble svg{display:block}
+ .transition .down{font-family:Arial,sans-serif!important}
+ .explorer{padding:65px 5vw 75px!important}
+ .explorer-title{font-size:clamp(33px,8.2vw,48px)!important;line-height:1.08}
+ .explorer-lead{font-size:14px;margin:13px 0 22px}
+ .feature-layout{display:block!important;min-height:0!important}
+ .feature-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important;scroll-snap-type:x proximity;scrollbar-width:thin;padding-bottom:12px;-webkit-overflow-scrolling:touch}
+ .feature-tab{flex:0 0 auto!important;width:148px!important;min-height:72px!important;display:block!important;padding:12px!important;border:1px solid #dce5dd!important;border-radius:10px!important;scroll-snap-align:start}
+ .feature-tab strong{font-size:16px!important;display:block}
+ .feature-tab small{font-size:11px!important}
+ .feature-tab .number,.feature-tab .arrow{display:none!important}
+ .feature-tab[aria-selected=true]{padding-left:12px!important}
+ .feature-showcase{min-height:0!important;padding:12px!important;border-radius:14px!important}
+ .showcase-top{font-size:10px;margin-bottom:11px}
+ .image-stage{height:clamp(180px,56vw,260px)!important;min-height:0!important}
+ .showcase-bottom{padding:16px 3px 4px}
+ .panel-title{font-size:27px!important}
+ .panel-desc{font-size:13px}
+ .panel-tags span{font-size:10px}
+ .pricing-chapter{padding:65px 4vw 75px!important}
+ .pricing-intro{margin-bottom:25px!important;display:block!important}
+ .pricing-intro h2{font-size:clamp(37px,9vw,52px)!important;margin-bottom:14px}
+ .pricing-intro .lead{font-size:14px!important}
+ .pricing-note{max-width:none!important;text-align:left!important;font-size:11px!important}
+ .price-tabs{gap:17px!important}
+ .price-tab{font-size:14px!important;padding:10px 0 12px}
+ .price-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:9px!important}
+ .price-grid.is-complete{grid-template-columns:1fr!important}
+ .plan{min-width:0!important;min-height:0!important;padding:18px 12px 17px!important}
+ .plan .choice{position:static!important;order:0;margin:0 0 6px;font-size:9px!important}
+ .plan-eyebrow{font-size:10px!important;letter-spacing:.05em;margin-bottom:11px}
+ .plan h3{font-size:22px!important;line-height:1.16;margin-bottom:12px}
+ .plan .amount{font-size:clamp(35px,9vw,48px)!important}
+ .plan .price{gap:4px!important;margin-bottom:13px!important;flex-wrap:wrap}
+ .plan .period{font-size:10px!important}
+ .plan .summary{font-size:12px!important;line-height:1.45;margin-bottom:15px!important}
+ .plan ul{padding-top:13px;gap:10px}
+ .plan li{font-size:12px!important;line-height:1.4;gap:5px!important}
+ .pricing-diff{margin-top:15px}
+ .pricing-diff strong{font-size:14px}
+ .pricing-diff p{font-size:12px}
+ .compare-toggle strong{font-size:17px}
+ .compare-table th{font-size:12px!important}
+ .compare-table td{font-size:12px!important;line-height:1.45}
+ .compare-table td:not(:first-child){font-size:12px!important}
+ .complete-split{display:block!important}
+ .complete-note{padding:20px 0!important}
+}
+@media(max-width:380px){
+ .hero .stage{transform:scale(.44)!important;margin-bottom:-350px!important}
+ .price-tab{font-size:12px!important}
+ .plan{padding:14px 9px!important}
+ .plan h3{font-size:19px!important}
+ .plan li{font-size:11px!important}
+ .plan .amount{font-size:34px!important}
+}
+
+/* Mobile: authentic Desktop Hero; screenshots and navigation respect narrow screens */
+.hero-real-desktop{display:none}
+@media(max-width:800px){
+ .header{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:0 3vw!important;height:64px!important}
+ .header .nav{display:flex!important;align-items:center!important;gap:clamp(7px,2.4vw,17px)!important;margin:0!important;white-space:nowrap!important;font-size:clamp(11px,2.9vw,14px)!important}
+ .header .actions{display:flex!important;gap:8px!important;flex-shrink:0!important}
+ .header .actions .lang{display:none!important}
+ .header .download{font-size:clamp(11px,2.8vw,13px)!important;padding:10px 12px!important;white-space:nowrap}
+ .hero .stage{position:relative!important;display:block!important;width:100%!important;max-width:100%!important;height:clamp(215px,66vw,390px)!important;margin:16px auto 8px!important;transform:none!important;overflow:hidden!important}
+ .hero .stage .blob{inset:4% 1% 1% 1%!important;filter:saturate(.9)!important}
+ .hero .stage .grain{opacity:.09!important}
+ .hero .stage .orbit{width:95%!important;height:79%!important;top:10%!important;left:3%!important}
+ .hero .stage .orbit.two{width:90%!important;height:70%!important;top:19%!important;left:5%!important}
+ .hero .stage .record,.hero .stage .node,.hero .stage .scribble,.hero .stage .star,.hero .stage .visual-label,.hero .stage .connections,.hero .stage .stage-brand{display:none!important}
+ .hero-real-desktop{position:absolute;inset:8% 5% 10%;z-index:3;display:flex;justify-content:center;align-items:center}
+ .hero-real-desktop img{width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 11px 28px rgba(17,32,22,.2);background:#fff}
+ .explorer .feature-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:9px!important;scroll-snap-type:x mandatory;padding:0 0 13px}
+ .explorer .feature-tab{display:flex!important;flex:0 0 auto!important;width:clamp(138px,39vw,184px)!important;height:78px!important;text-align:left!important;scroll-snap-align:start}
+ .explorer .feature-showcase{width:100%;max-width:100%}
+ .explorer .image-stage{height:clamp(195px,60vw,320px)!important}
+ .mobile-story .editorial-stage{display:flex!important;flex-direction:column!important;min-height:0!important;gap:12px!important;align-items:center!important}
+ .mobile-story .editorial-desktop,.mobile-story .desktop-index,.mobile-story .editorial-thread,.mobile-story .editorial-annotation{display:none!important}
+ .mobile-story .editorial-phone{position:relative!important;inset:auto!important;transform:none!important;width:min(80%,330px)!important;margin:0 auto!important}
+ .mobile-story .editorial-phone img{width:100%!important;height:auto!important;max-height:440px!important;object-fit:contain!important}
+ .mobile-story .editorial-index{position:static!important;align-self:flex-start}
+}
+@media(max-width:390px){
+ .header{padding:0 2.5vw!important;gap:4px!important}
+ .header .nav{gap:7px!important;font-size:10px!important}
+ .header .download{font-size:10px!important;padding:9px 9px!important}
+ .hero .stage{height:235px!important}
+}
+
+
+/* October 25 responsive refinement: orderly hero cards, breakpoint-specific chapters */
+/* Hero screenshot and outer graphic remain on both desktop and mobile. */
+.hero .stage{isolation:isolate}
+.hero .stage .hero-real-desktop{display:none!important}
+/* Restore the original organic screenshot-and-chip composition from the approved site. */
+.hero .stage .record{display:block!important;top:28%;left:12%;width:76%;min-width:0;max-width:640px;height:auto;border-radius:14px;background:#fff;box-shadow:0 26px 66px rgba(36,65,46,.22);transform:rotate(-2deg);overflow:hidden;z-index:2}
+.hero .stage .record:hover{transform:rotate(-1deg) translateY(-4px)}
+.hero .stage .real-desktop-shot{display:block;width:100%;height:auto;object-fit:contain;filter:none}
+.hero .stage .real-caption{padding:10px 14px;font:600 12px/1.45 'DM Sans',Arial,sans-serif;color:#5c4b86;background:#fff}
+.hero .stage .node{display:flex;min-width:155px}
+.hero .stage .node-symbol{font:700 12px/1 'Space Grotesk',sans-serif;color:#5e4a84;background:#eee7fa}
+.hero .stage .node.dashboard{top:5%;left:1%}
+.hero .stage .node.cells{top:18%;left:0}
+.hero .stage .node.analysis{top:8%;right:1%}
+.hero .stage .node.plasmids{top:29%;right:-2%}
+.hero .stage .node.reagents{top:49%;left:0}
+.hero .stage .node.results{bottom:9%;left:10%}
+.hero .stage .node.presentations{bottom:7%;right:0}
+
+/* Restore the original desktop two-column feature explorer, with vertical tabs on the left. */
+@media(min-width:801px){
+ #desktop-explorer .feature-layout{display:grid!important;grid-template-columns:minmax(235px,30%) minmax(0,1fr)!important;align-items:stretch!important;gap:28px!important;min-height:584px!important}
+ #desktop-explorer .feature-tabs{display:flex!important;flex-direction:column!important;gap:3px!important;overflow:visible!important;border-top:1px solid #d6e3d9!important}
+ #desktop-explorer .feature-tab{width:100%!important;min-height:0!important;display:grid!important;grid-template-columns:35px minmax(0,1fr) 22px!important;align-items:center!important;gap:12px!important;border:0!important;border-bottom:1px solid #d6e3d9!important;border-radius:0!important;padding:20px 13px 20px 8px!important;text-align:left!important}
+ #desktop-explorer .feature-tab[aria-selected=true]{border-radius:11px!important;padding-left:18px!important}
+ #desktop-explorer .feature-tab .number{display:block!important}
+ #desktop-explorer .feature-tab .arrow{display:block!important}
+ #desktop-explorer .feature-tab strong{font-size:clamp(18px,1.6vw,24px)!important}
+ #desktop-explorer .feature-tab small{font-size:12px!important}
+ #desktop-explorer .feature-showcase{width:100%;min-height:0}
+ #desktop-explorer .image-stage{height:clamp(285px,35vw,490px);min-height:0}
+}
+/* Desktop third chapter: original juxtaposition with an explicit two-way sync symbol. */
+@media(min-width:801px){
+ #mobile-story .editorial-stage{display:block!important;position:relative!important;min-height:660px!important;margin-top:94px!important;overflow:visible!important}
+ #mobile-story .editorial-phone{position:absolute!important;left:8%!important;top:7%!important;width:24%!important;max-width:290px!important;margin:0!important}
+ #mobile-story .editorial-desktop{display:block!important;position:absolute!important;right:2%!important;top:19%!important;width:63%!important;margin:0!important}
+ #mobile-story .editorial-thread{display:block!important}
+ #mobile-story .editorial-annotation{display:block!important}
+ #mobile-story .desktop-index{display:block!important}
+ #mobile-story .editorial-index:not(.desktop-index){display:block!important}
+}
+#mobile-story .editorial-sync-arrow{position:absolute;z-index:5;left:32.5%;top:58%;transform:translate(-50%,-50%);display:grid;place-items:center;width:52px;height:52px;border:1px solid #c8b8e2;border-radius:50%;color:#8163b6;background:rgba(255,255,255,.96);box-shadow:0 9px 30px rgba(72,57,106,.09)}
+/* Phone/tablet: horizontal scrollable tabs, screenshot beneath the tabs. */
+@media(max-width:800px){
+ #desktop-explorer .feature-layout{display:flex!important;flex-direction:column!important;gap:9px!important;min-height:0!important}
+ #desktop-explorer .feature-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch;padding:0 0 12px!important;border-top:0!important}
+ #desktop-explorer .feature-tab{display:block!important;width:clamp(135px,39vw,180px)!important;min-height:73px!important;flex:0 0 auto!important;padding:12px!important;border:1px solid #dce5dd!important;border-radius:11px!important;scroll-snap-align:start}
+ #desktop-explorer .feature-tab strong{font-size:16px!important}
+ #desktop-explorer .feature-tab small{display:block!important;font-size:11px!important}
+ #desktop-explorer .feature-tab .number,#desktop-explorer .feature-tab .arrow{display:none!important}
+ #desktop-explorer .feature-showcase{width:100%}
+ #desktop-explorer .image-stage{height:clamp(180px,56vw,300px)!important;min-height:0!important}
+ .hero .stage{position:relative!important;display:block!important;width:100%!important;max-width:100%!important;height:clamp(300px,88vw,405px)!important;transform:none!important;margin:12px auto 4px!important;overflow:hidden!important}
+ .hero .stage .blob{inset:4% 1% 1% 1%!important}
+ .hero .stage .record{display:block!important;top:27%!important;left:5%!important;width:90%!important;max-width:none!important;transform:none!important;box-shadow:0 12px 26px rgba(35,66,45,.15)}
+ .hero .stage .node{display:flex!important;width:24%!important;min-width:0!important;padding:7px 5px!important;gap:0!important;border-radius:8px!important;box-shadow:0 3px 12px rgba(51,83,63,.12)!important;transform:none!important;justify-content:center}
+ .hero .stage .node-symbol{display:none!important}
+ .hero .stage .node strong{font-size:clamp(9px,2.75vw,12px)!important;line-height:1.2;text-align:center;letter-spacing:-.03em}
+ .hero .stage .node small{display:none!important}
+ .hero .stage .node.dashboard{top:4%!important;left:1%!important;width:30%!important}
+ .hero .stage .node.cells{top:4%!important;left:35%!important;width:30%!important}
+ .hero .stage .node.analysis{top:4%!important;right:1%!important;width:30%!important}
+ .hero .stage .node.plasmids{bottom:3%!important;left:0!important}
+ .hero .stage .node.reagents{bottom:3%!important;left:25.3%!important}
+ .hero .stage .node.results{bottom:3%!important;left:50.6%!important}
+ .hero .stage .node.presentations{bottom:3%!important;right:0!important}
+ .hero .stage .real-caption{font-size:9px;padding:5px 8px}
+ .hero .stage .connections{display:block!important;z-index:1;opacity:.30}
+ .hero .stage .scribble{display:none!important}
+ .hero .stage .star{display:none!important}
+ .hero .stage .visual-label{display:none!important}
+ #mobile-story .editorial-stage{display:flex!important;flex-direction:column!important;min-height:0!important;gap:12px!important;align-items:center!important;margin-top:34px!important}
+ #mobile-story .editorial-desktop,#mobile-story .desktop-index,#mobile-story .editorial-thread,#mobile-story .editorial-annotation,#mobile-story .editorial-sync-arrow{display:none!important}
+ #mobile-story .editorial-phone{display:block!important;position:relative!important;inset:auto!important;transform:none!important;width:min(78%,300px)!important;max-width:300px!important;margin:0 auto!important}
+ #mobile-story .editorial-phone img{width:100%!important;height:auto!important;max-height:440px!important;object-fit:contain!important}
+}
+@media(max-width:390px){
+ .hero .stage{height:clamp(292px,92vw,342px)!important}
+ .hero .stage .node{padding:6px 2px!important}
+ .hero .stage .node strong{font-size:10px!important}
+}
+
+/* Mobile-only precision fix: render CTA/story arrows as vectors, and guarantee horizontal feature tiles. */
+.responsive-arrow-svg{display:none}
+@media(max-width:800px){
+ .hero .cta a.secondary{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important}
+ .hero .cta a.secondary .responsive-arrow-glyph,
+ #story-read .responsive-arrow-glyph{display:none!important}
+ .hero .cta a.secondary .responsive-arrow-svg,
+ #story-read .responsive-arrow-svg{display:block!important;width:18px!important;height:18px!important;flex:none!important}
+ #story-read .responsive-arrow-svg{transition:transform .25s}
+ #story-read[aria-expanded="true"] .responsive-arrow-svg{transform:rotate(180deg)}
+}
+
+/* The seven feature tabs determine the height of the desktop preview. */
+@media(min-width:801px){
+ #desktop-explorer .feature-layout{display:grid!important;grid-template-columns:clamp(210px,19vw,260px) minmax(0,1fr)!important;gap:20px!important;align-items:stretch!important;min-height:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs{display:flex!important;flex-direction:column!important;gap:4px!important;width:100%!important;min-width:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab{display:grid!important;grid-template-columns:20px minmax(0,1fr) 14px!important;gap:7px!important;align-items:center!important;width:100%!important;min-height:76px!important;padding:11px 9px!important;flex:1 0 auto}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{padding:11px 9px!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:18px!important;line-height:1.2!important;text-wrap:balance}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{font-size:11.5px!important;line-height:1.35!important;margin-top:4px!important;text-wrap:pretty}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number{font-size:11px!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .arrow{font-size:16px!important}
+ #desktop-explorer #feature-panel.feature-showcase{contain:size;display:grid!important;grid-template-rows:auto minmax(0,1fr) auto;padding:15px!important;min-height:0!important}
+ #desktop-explorer #feature-media.image-stage{width:100%!important;height:100%!important;min-height:0!important}
+ #desktop-explorer .showcase-top{margin-bottom:12px!important;font-size:10px!important}
+ #desktop-explorer .showcase-bottom{display:block!important;padding:14px 3px 3px!important}
+ #desktop-explorer .panel-index{font-size:10px!important;margin-bottom:5px!important}
+ #desktop-explorer #panel-title{font-size:clamp(16px,1.4vw,20px)!important;line-height:1.35!important;margin-bottom:6px!important;text-wrap:balance}
+ #desktop-explorer #panel-desc{font-size:13px!important;line-height:1.5!important;max-width:none!important;text-wrap:pretty}
+ #desktop-explorer .panel-tags{gap:5px!important;margin-top:10px!important}
+ #desktop-explorer .panel-tags span{font-size:10px!important;padding:4px 8px!important;white-space:nowrap}
+}
+/* One scrollable row leaves room for the product preview on phones. */
+@media(max-width:800px){
+ #desktop-explorer{padding-left:4vw!important;padding-right:4vw!important}
+ #desktop-explorer .feature-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;width:100%!important;min-height:0!important}
+ #desktop-explorer #feature-tabs.feature-tabs{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:7px!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:auto!important;overscroll-behavior-x:contain;border-top:0!important;padding:2px 2px 8px!important;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:3px!important;flex:0 0 auto!important;width:max-content!important;min-width:110px!important;max-width:none!important;height:auto!important;min-height:62px!important;margin:0!important;padding:10px 12px!important;white-space:nowrap!important;overflow-wrap:normal!important;border:1px solid #dce5dd!important;border-radius:10px!important;scroll-snap-align:start}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab[aria-selected="true"]{padding:10px 12px!important;border-color:#b9a7d5!important;background:#eee8f8!important}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab strong{font-size:15px!important;line-height:1.2!important;white-space:nowrap}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{display:block!important;font-size:10px!important;line-height:1.3!important;margin-top:2px!important;white-space:nowrap}
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number,
+ #desktop-explorer #feature-tabs.feature-tabs .feature-tab .arrow{display:none!important}
+ #desktop-explorer #feature-panel.feature-showcase{display:block!important;contain:none;width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;padding:8px!important;border-radius:14px!important}
+ #desktop-explorer .showcase-top{padding:4px 4px 0!important;margin-bottom:8px!important;font-size:9px!important;letter-spacing:.04em!important}
+ #desktop-explorer #feature-media.image-stage{width:100%!important;height:clamp(210px,62vw,420px)!important;min-height:0!important;border-radius:9px!important;background:#fff!important}
+ #desktop-explorer #feature-media.image-stage img,
+ #desktop-explorer #feature-media.image-stage video{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
+ #desktop-explorer .showcase-bottom{display:block!important;padding:11px 5px 5px!important}
+ #desktop-explorer .panel-index{font-size:9px!important;margin-bottom:4px!important}
+ #desktop-explorer #panel-title{font-size:16px!important;line-height:1.35!important;margin-bottom:5px!important;text-wrap:balance}
+ #desktop-explorer #panel-desc{font-size:11px!important;line-height:1.5!important;max-width:none!important;text-wrap:pretty}
+ #desktop-explorer .panel-tags{gap:4px!important;margin-top:8px!important}
+ #desktop-explorer .panel-tags span{font-size:9px!important;padding:3px 7px!important;white-space:nowrap}
+}
+
+/* Real media tabs reuse the site's green palette and the feature-name size. */
+#desktop-explorer #panel-tags.feature-subtabs{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px!important;margin-top:10px!important;min-width:0}
+#desktop-explorer .feature-subtab{appearance:none;display:inline-flex;align-items:center;justify-content:center;flex:0 1 auto;max-width:100%;min-height:40px;padding:7px 11px;border:1px solid #93b29c;border-radius:8px;background:#e7f0e9;color:#28513a;font:600 18px/1.25 'DM Sans','Noto Sans SC',sans-serif;text-align:center;text-wrap:balance;cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+#desktop-explorer .feature-subtab:hover{background:#d6e7da;border-color:#668e72}
+#desktop-explorer .feature-subtab[aria-selected="true"]{background:#2d5940;border-color:#2d5940;color:#fff;box-shadow:0 2px 6px #244f3320}
+#desktop-explorer .feature-subtab:focus-visible{outline:3px solid #74a486;outline-offset:3px}
+/* Show the actual assistant conversation and search result without the empty header. */
+#desktop-explorer #feature-media .feature-focus-image{display:block;width:100%;height:100%;min-height:0}
+@media(min-width:801px){
+ #desktop-explorer #feature-panel.feature-showcase{grid-template-rows:auto minmax(180px,1fr) auto}
+}
+@media(max-width:800px){
+ #desktop-explorer #panel-tags.feature-subtabs{flex-wrap:nowrap;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;padding:2px 2px 7px;gap:7px!important;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ #desktop-explorer .feature-subtab{flex:0 0 auto;max-width:none;min-height:40px;font-size:15px;line-height:1.3;padding:8px 11px;white-space:nowrap;scroll-snap-align:start}
+}
+
+/* 2026-10-25: phone-only header readability and crisp Mobile screenshot border. */
+@media(max-width:800px){
+ .header .nav{
+  display:flex!important;
+  font-size:clamp(13.5px,3.85vw,16px)!important;
+  gap:clamp(7px,1.8vw,12px)!important;
+  line-height:1.2!important;
+  letter-spacing:-.015em!important;
+ }
+ .header .nav a{opacity:.95!important;white-space:nowrap!important}
+ #mobile-story .editorial-phone img{
+  box-sizing:border-box!important;
+  border:1px solid #4f7860!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+  filter:none!important;
+ }
+ #mobile-story .editorial-phone .phone-shadow{display:none!important}
+}
+@media(max-width:360px){
+ .header .nav{font-size:13px!important;gap:6px!important}
+}
+
+/* Match the content gap before and after the workspace chapter. */
+#desktop-explorer.explorer{padding-bottom:var(--workspace-tail-space,65px)!important}
+#mobile-story.mobile-white{padding-top:130px!important}
+@media(max-width:800px){
+ #desktop-explorer.explorer{padding-bottom:var(--workspace-tail-space,24px)!important}
+ #mobile-story.mobile-white{padding-top:65px!important}
+}
+
+/* Desktop feature section footer: improve readability without affecting phones. */
+@media(min-width:801px){
+ #desktop-explorer .explorer-footer{font-size:24px;line-height:1.5}
+ #desktop-explorer .explorer-footer b{font-size:24px;font-weight:700}
+}
+
+/* Keep the full Japanese feature summary on one line on desktop. */
+@media(min-width:801px){
+ html[lang="ja"] #desktop-explorer .explorer-footer,
+ html[lang="ja"] #desktop-explorer .explorer-footer b{
+  font-size:clamp(11px,1.35vw,18px)!important;
+ }
+ html[lang="ja"] #desktop-explorer .explorer-footer>span{white-space:nowrap}
+}
+
+/* Make language switching accessible on phones without changing the nav font sizing. */
+@media(max-width:800px){
+ .header .actions .lang{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:none!important;
+  font-size:12px!important;
+  line-height:1.1!important;
+  min-width:32px;
+  padding:5px 3px!important;
+  border:1px solid #bdcfc2!important;
+  border-radius:12px;
+  color:#31503a!important;
+  background:transparent!important;
+  white-space:nowrap;
+ }
+ .header .actions{gap:5px!important}
+}
+@media(max-width:360px){.header .actions .lang{font-size:11px!important;min-width:29px;padding:4px 2px!important}}
+html[lang="zh-CN"] .hero h1,html[lang="zh-CN"] .explorer-title,html[lang="zh-CN"] .mobile-headline{
+ letter-spacing:-.035em!important;
+ line-height:1.15!important;
+}
+
+/* Shared artwork geometry: both zh-CN and en use exactly these positions.
+   The real screenshot remains the visual anchor; chips hug its edges instead
+   of occupying two detached symmetrical rows. */
+.hero .stage .node{
+ position:absolute!important;display:flex!important;align-items:center!important;
+ width:auto!important;min-width:145px!important;max-width:29%!important;
+ top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
+ padding:10px 12px!important;gap:9px!important;border-radius:12px!important;
+ white-space:normal!important;border:1px solid #ffffffee!important;
+ box-shadow:0 8px 25px rgba(47,76,57,.15)!important;
+ transform:rotate(var(--r,0deg))!important;
+ transition:transform .22s,box-shadow .22s,border-color .22s!important;
+}
+.hero .stage .node:hover,.hero .stage .node.active{
+ transform:rotate(0deg) translateY(-3px)!important;
+ box-shadow:0 13px 29px rgba(47,76,57,.21)!important;
+ border-color:#b4a0d5!important;
+}
+.hero .stage .node .node-symbol{
+ display:grid!important;width:28px!important;height:28px!important;flex:none!important;
+ font:700 11px/1 'Space Grotesk',sans-serif!important;
+}
+.hero .stage .node strong{font:700 clamp(11px,1vw,14px)/1.25 'Space Grotesk','Noto Sans SC',sans-serif!important;white-space:normal!important}
+.hero .stage .node small{display:block!important;font:400 10px/1.35 'DM Sans','Noto Sans SC',sans-serif!important;white-space:normal!important}
+.hero .stage .node.dashboard{top:10%!important;left:5%!important;right:auto!important;bottom:auto!important;--r:-5deg}
+.hero .stage .node.cells{top:19%!important;left:0%!important;right:auto!important;bottom:auto!important;--r:-2deg}
+.hero .stage .node.analysis{top:12%!important;right:3%!important;left:auto!important;bottom:auto!important;--r:5deg}
+.hero .stage .node.plasmids{top:36%!important;right:0%!important;left:auto!important;bottom:auto!important;--r:3deg}
+.hero .stage .node.reagents{top:54%!important;left:0%!important;right:auto!important;bottom:auto!important;--r:4deg}
+.hero .stage .node.results{bottom:7%!important;left:11%!important;top:auto!important;right:auto!important;--r:-4deg}
+.hero .stage .node.presentations{bottom:8%!important;right:1%!important;top:auto!important;left:auto!important;--r:4deg}
+.hero .stage .record{top:26%!important;left:12%!important;width:76%!important;max-width:640px!important}
+.hero .stage .scribble{top:1%!important;right:5%!important;left:auto!important;transform:rotate(3deg)!important;font-size:16px!important;z-index:4}
+.hero .stage .scribble svg{width:70px!important;height:auto!important;margin-left:45px!important}
+.hero .stage .connections{display:block!important;opacity:.46!important}
+@media(max-width:800px){
+ .hero .stage .record{top:30%!important;left:6%!important;width:88%!important;max-width:none!important}
+ .hero .stage .node{
+   min-width:0!important;width:auto!important;max-width:31%!important;
+   padding:7px 8px!important;gap:0!important;border-radius:9px!important;
+ }
+ .hero .stage .node .node-symbol{display:none!important}
+ .hero .stage .node strong{font:700 clamp(9px,2.55vw,12px)/1.2 'Space Grotesk','Noto Sans SC',sans-serif!important}
+ .hero .stage .node small{display:none!important}
+ .hero .stage .node.dashboard{top:5%!important;left:1%!important;right:auto!important;bottom:auto!important;--r:-5deg}
+ .hero .stage .node.cells{top:14%!important;right:1%!important;left:auto!important;bottom:auto!important;--r:3deg}
+ .hero .stage .node.analysis{top:42%!important;right:0%!important;left:auto!important;bottom:auto!important;--r:4deg}
+ .hero .stage .node.plasmids{top:35%!important;left:0%!important;right:auto!important;bottom:auto!important;--r:-3deg}
+ .hero .stage .node.reagents{top:auto!important;bottom:29%!important;left:0%!important;right:auto!important;--r:4deg}
+ .hero .stage .node.results{bottom:4%!important;left:7%!important;right:auto!important;top:auto!important;--r:-3deg}
+ .hero .stage .node.presentations{bottom:6%!important;right:1%!important;left:auto!important;top:auto!important;--r:3deg}
+ .hero .stage .scribble{display:none!important}
+ .hero .stage .connections{opacity:.25!important}
+}
+</style>
+<link rel="stylesheet" href="pasero-language.css?v=20261026-ja2"><link rel="stylesheet" href="pasero-editorial-2026.css?v=7"><link rel="stylesheet" href="pasero-mobile-nav-2026.css?v=3"><link rel="stylesheet" href="pricing-2026.css?v=1"></head>
+<body>
+<header class="header"><nav class="nav" aria-label="Main"><a href="#desktop-explorer">Desktop</a><a href="mobile.html">Mobile</a><a href="#pricing">Pricing</a></nav><div class="actions"><div class="pasero-lang-picker" data-pasero-lang-picker><button type="button" class="pasero-lang-trigger" aria-label="Choose site language" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c-2.5 2.7-3.8 5.7-3.8 9s1.3 6.3 3.8 9M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9"></path></svg></button><div class="pasero-lang-options" role="menu" hidden><button type="button" role="menuitemradio" data-pasero-lang-option="en" aria-checked="true">English</button><button type="button" role="menuitemradio" data-pasero-lang-option="zh" aria-checked="false">简体中文</button><button type="button" role="menuitemradio" data-pasero-lang-option="ja" aria-checked="false">日本語</button></div></div><a class="download" href="download.html">Download ↗︎</a></div></header>
+<main><section class="hero" aria-label="Pasero hero"><a class="hero-home-logo" href="index.html" aria-label="Pasero 首页"><img src="assests/全logo-透明.png" alt="Pasero"></a><div class="copy"><div class="eyebrow"><span class="dot"></span><span data-en="MADE FOR MOLECULAR BIOLOGY" data-zh="专为分子生物学研究而设计" data-ja="分子生物学の研究のために">MADE FOR MOLECULAR BIOLOGY</span></div><h1 data-en="Your research,<br><em>finally connected.</em>" data-zh="打通科研的，<em>任督二脉</em>" data-ja="研究の流れを、&lt;br&gt;&lt;em&gt;ひとつにつなぐ&lt;/em&gt;">Your research,<br><em>finally connected.</em></h1><p class="description" data-en="Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps." data-zh="认识 Pasero 雀角：集实验记录、数据分析、引物设计以及资源管理为一体，减少软件之间的反复横跳。时间是挤出来的，挤出来的时间，应该用来睡觉" data-ja="Pasero 雀角は、実験ノート、データ解析、プライマー設計、リソース管理をひとつに。アプリを行き来する手間を減らして、生まれた時間は睡眠に。">Meet Pasero — a home for your experiment notes, research materials, analysis, and results. Everything in context, not scattered across apps.</p><div class="cta"><a class="primary" href="download.html" data-en="Download Pasero ↗︎" data-zh="下载 Pasero ↗︎" data-ja="Pasero をダウンロード ↗︎">Download Pasero ↗︎</a><a class="secondary" href="#desktop-explorer"><span data-en="See how it works" data-zh="了解工作流程" data-ja="ワークフローを見る">See how it works</span><span class="responsive-arrow-glyph" aria-hidden="true"> ↘</span><svg class="responsive-arrow-svg" aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5L19 19M9 19h10V9"/></svg></a></div><div class="trust"><span data-en="No account" data-zh="无需账号" data-ja="アカウント不要">No account</span><i></i><span data-en="Local-first" data-zh="本地优先" data-ja="データはローカルに">Local-first</span><i></i><span data-en="Desktop + mobile" data-zh="桌面端与移动端" data-ja="デスクトップとモバイル">Desktop + mobile</span></div></div>
+<div class="stage" id="stage" aria-label="Pasero desktop preview"><div class="blob"></div><div class="grain"></div><div class="orbit"></div><div class="orbit two"></div><div class="scribble">One experiment.<br>So many connections.<svg width="85" height="33" viewBox="0 0 85 33" fill="none"><path d="M2 3C26 26 48 31 80 15m0 0-10 1m10-1-5 10" stroke="#492D55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><svg class="connections" id="connections" aria-hidden="true"></svg><div class="record" id="record"><img class="real-desktop-shot" src="assests/desktop-homepage.png" alt="Actual Pasero Desktop Dashboard screenshot"><div class="real-caption" id="context">One experiment. Connected research tools.</div></div><button class="node dashboard" type="button" data-label="Dashboard · Workspace overview"><span class="node-symbol">01</span><span><strong>Dashboard</strong><small>Workspace overview</small></span></button><button class="node cells" type="button" data-label="Notes · Experiment #024"><span class="node-symbol">02</span><span><strong>Notes</strong><small>Experiment #024</small></span></button><button class="node analysis" type="button" data-label="Data Analysis · Statistics & charts"><span class="node-symbol">03</span><span><strong>Data Analysis</strong><small>Statistics & charts</small></span></button><button class="node plasmids" type="button" data-label="Plasmid · Sequence tools"><span class="node-symbol">04</span><span><strong>Plasmid</strong><small>Sequence tools</small></span></button><button class="node reagents" type="button" data-label="Database · Cells · Reagents"><span class="node-symbol">05</span><span><strong>Database</strong><small>Cells · Reagents</small></span></button><button class="node results" type="button" data-label="Literature · Linked papers"><span class="node-symbol">06</span><span><strong>Literature</strong><small>Linked papers</small></span></button><button class="node presentations" type="button" data-label="Presentation · Research outputs"><span class="node-symbol">07</span><span><strong>Presentation</strong><small>Research outputs</small></span></button><div class="star" aria-hidden="true">✳︎</div><div class="visual-label">A DIFFERENT KIND OF RESEARCH SPACE / 01</div></div></section>
+
+<section id="desktop-explorer" class="explorer" aria-label="Pasero Desktop feature explorer">
+ <div class="explorer-wrap">
+  <div class="section-kicker"><span>02 / THE WORKSPACE</span><span class="kicker-line"></span><span>DESKTOP</span></div>
+  <h2 class="explorer-title" data-en="Your research essentials,<br><em>all in one place.</em>" data-zh="研究所需，<em>汇聚一处</em>" data-ja="研究に必要なものを、&lt;br&gt;&lt;em&gt;ひとつの場所に&lt;/em&gt;">Your research essentials,<br><em>all in one place.</em></h2>
+  <p class="explorer-lead" data-en="Record experiments, work with sequences, analyze data, prepare presentations, and track resources." data-zh="记录实验、处理序列、分析数据、整理汇报，追踪资源" data-ja="実験の記録、配列の編集、データ解析、発表資料の作成、リソースの追跡まで。">Record experiments, work with sequences, analyze data, prepare presentations, and track resources.</p>
+  <div class="feature-layout">
+   <div class="feature-tabs" id="feature-tabs" role="tablist" aria-label="Desktop features"></div>
+   <div class="feature-showcase" id="feature-panel" role="tabpanel" aria-live="polite">
+    <div class="showcase-top"><span data-en="PASERO / DESKTOP" data-zh="PASERO 雀角 / 桌面端" data-ja="PASERO 雀角 / デスクトップ">PASERO / DESKTOP</span><span class="top-state" id="feature-status">01 · NOTES</span></div>
+    <div class="image-stage" id="feature-media"><div class="stage-loading">Loading feature…</div></div>
+    <div class="showcase-bottom"><div><div class="panel-index" id="panel-index">FEATURE 01 / 07</div><h3 class="panel-title" id="panel-title">Notes</h3><p class="panel-desc" id="panel-desc"></p><div class="panel-tags" id="panel-tags"></div></div></div>
+   </div>
+  </div>
+  <div class="explorer-footer"><span><b data-en="Seven features. One workspace. No tokens. Works offline." data-zh="七大功能，一个空间，不要 tokens，离线使用" data-ja="7つの機能を、ひとつの場所に。トークン不要、オフラインで使える。">Seven features. One workspace. No tokens. Works offline.</b> <span data-en="Explore each tool and find your research flow." data-zh="走近每项工具，找到适合自己的科研节奏" data-ja="それぞれのツールから、自分に合う研究の進め方を見つけましょう。">Explore each tool and find your research flow.</span></span></div>
+ </div>
+</section>
+<section class="mobile-story mobile-white" id="mobile-story" aria-label="Pasero Mobile and desktop workflow">
+<div class="mobile-wrap">
+  <div class="mobile-kicker">03 &nbsp;/&nbsp; PASERO MOBILE</div>
+  <div class="mobile-title-row"><h2 class="mobile-headline" data-en="At your bench.<br><em>Back at your desk.</em>" data-zh="从实验台，<em>到电脑旁</em>" data-ja="実験台から、&lt;br&gt;&lt;em&gt;デスクへ&lt;/em&gt;">At your bench.<br><em>Back at your desk.</em></h2><div class="mobile-side-intro"><span class="side-line"></span><p>Capture what happens at the bench. Pick up the same research on your desktop.</p></div></div>
+  <div class="editorial-stage">
+    <div class="editorial-index">01 &nbsp; / &nbsp; ON THE BENCH</div>
+    <figure class="editorial-phone">
+      <div class="phone-shadow"></div>
+      <img src="https://cleanyang.github.io/pasero-ELN/assests/moblie-首页-1.png" alt="Pasero Mobile real home screenshot" data-real-shot="mobile" loading="lazy"/>
+      <figcaption>Pasero Mobile <span>Quick note · Materials · Cell Track</span></figcaption>
+    </figure>
+    <div class="editorial-thread" aria-hidden="true"><svg viewBox="0 0 600 220"><path d="M4 174C130 174 136 30 283 70S464 142 596 20"/><circle cx="283" cy="70" r="5"/><circle cx="596" cy="20" r="5"/></svg></div>
+
+    <div class="editorial-sync-arrow" aria-hidden="true"><svg viewBox="0 0 52 52" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 19h34l-8-7M44 33H10l8 7"/></svg></div>
+    <div class="editorial-index desktop-index">02 &nbsp; / &nbsp; AT YOUR DESK</div>
+    <figure class="editorial-desktop">
+      <img src="https://cleanyang.github.io/pasero-ELN/assests/desktop-homepage.png" alt="Pasero Desktop real homepage screenshot" data-real-shot="desktop" loading="lazy"/>
+      <figcaption>Pasero Desktop <span>Review · Analyze · Report</span></figcaption>
+    </figure>
+    <div class="editorial-annotation">SAME EXPERIMENT <span>↗︎</span><br><b>Different moments.</b></div>
+  </div>
+  <div class="sync-explain" aria-label="Local network synchronization">
+    <span class="sync-explain-mark" aria-hidden="true">↔︎</span>
+    <div class="sync-explain-text"><div class="sync-title-row"><strong>One research flow.</strong><a class="sync-discover-link" href="mobile.html">Discover Pasero Mobile <span aria-hidden="true">↗︎</span></a></div><p>Pair by QR code. Sync manually over your local network.</p></div>
+    <span class="sync-explain-aside">LOCAL-FIRST / TWO-WAY SYNC</span>
+  </div>
+  <p class="mobile-caveat-line">Manual two-way synchronization on the same local network — not cloud sync.</p>
+</div></section>
+<section class="px-pricing" id="pricing" aria-label="Pasero pricing" data-pricing-2026>
+ <div class="px-wrap" data-copy>
+  <div class="px-intro">
+   <div><p class="px-chapter" data-en="04 / PRICING" data-zh="04 / 价格方案" data-ja="04 / 料金プラン">04 / PRICING</p>
+   <h2 data-en="Start free.<br><em>Stay connected.</em>" data-zh="免费体验，按需升级，<em>老板不是黄鹤，绝对不会跑路！</em>" data-ja="無料で始めて、必要に応じてアップグレード。&lt;br&gt;&lt;em&gt;作り手も、ずっとここに。&lt;/em&gt;">Start free.<br><em>Stay connected.</em></h2></div>
+   <p class="px-beta" data-px-beta></p>
+   <p class="px-lead" data-px-lead></p>
+  </div>
+  <div class="px-controls">
+   <div class="px-seg" role="group" data-px-billing><button type="button" data-value="annual" aria-pressed="true">Yearly</button><button type="button" data-value="monthly" aria-pressed="false">Monthly</button></div>
+   <div class="px-seg" role="group" data-px-currency><button type="button" data-value="USD" aria-pressed="true">USD</button><button type="button" data-value="JPY" aria-pressed="false">JPY</button><button type="button" data-value="CNY" aria-pressed="false">CNY</button></div>
+  </div>
+  <div class="px-plans" data-px-plans aria-live="polite"></div>
+  <div class="px-compare-head">
+   <h3 data-px-compare-title>Free and Pro, side by side</h3>
+   <div class="px-tabs" role="tablist"><button type="button" role="tab" id="px-tab-desktop" data-px-tab="desktop" aria-selected="true">Desktop</button><button type="button" role="tab" id="px-tab-mobile" data-px-tab="mobile" aria-selected="false">Mobile</button></div>
+  </div>
+  <table class="px-table" data-px-table role="tabpanel"></table>
+  <ol class="px-notes" data-px-notes></ol>
+ </div>
+</section>
+<section class="brand-story" id="story" aria-label="The story behind Pasero">
+  <div class="story-shell">
+    <div class="story-topline"><span>05 / THE STORY</span><span>PASERO — 雀角</span></div>
+    <div class="story-heading"><p class="story-kicker">SMALL BUT MIGHTY</p><h2 data-en="Made for research.<br><em>Made by a researcher.</em>" data-zh="为科研而生，<em>由科研人创造</em>" data-ja="研究のために、&lt;br&gt;&lt;em&gt;研究者がつくりました&lt;/em&gt;">Made for research.<br><em>Made by a researcher.</em></h2><p class="story-summary">A smaller, more connected workspace — built from the everyday frustrations of research.</p></div>
+    <div class="story-editorial">
+      <figure class="story-bird"><img src="https://cleanyang.github.io/pasero-ELN/assests/real-logo.png" alt="Original Pasero sparrow mark" loading="lazy"><figcaption>Pasero / 雀角</figcaption></figure>
+      <div class="story-excerpt"><span class="story-overline">A NOTE FROM THE CREATOR</span><h3 data-en="Less switching.<br>More discovering.<br><em>Maybe more sleep.</em>" data-zh="少一点切换，多一点发现，<em>或许还能多睡一会儿</em>" data-ja="切り替える手間を減らして、&lt;br&gt;発見を増やす。&lt;br&gt;&lt;em&gt;睡眠時間も、少し増えるかも。&lt;/em&gt;">Less switching.<br>More discovering.<br><em>Maybe more sleep.</em></h3><p>Behind the name is a simple reason for making Pasero.</p><button class="story-read" id="story-read" type="button" aria-expanded="false" aria-controls="story-expanded">Read the story <span class="responsive-arrow-glyph" aria-hidden="true">↘</span><svg class="responsive-arrow-svg" aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5L19 19M9 19h10V9"/></svg></button></div>
+    </div>
+    <div class="story-expanded" id="story-expanded" hidden>
+      <div class="story-language"><span>THE ORIGINAL STORY</span><div role="group" aria-label="Story language"><button type="button" class="selected" data-story-lang="en" aria-pressed="true">EN</button><button type="button" data-story-lang="zh" aria-pressed="false">中文</button><button type="button" data-story-lang="ja" aria-pressed="false">日本語</button></div></div>
+      <div class="story-full" data-story-content="en">
+        <article><h3>What is Pasero</h3><p>Most researchers use only a small part of Excel, Word, GraphPad Prism, and specialized molecular biology software—but still pay for the whole package and keep moving between apps</p><p>Pasero brings the tools you actually use into one lightweight workspace</p><p>Pasero means “sparrow” in Esperanto. Its Chinese name, 雀角, comes from <cite>The Book of Songs</cite>—and sounds like 缺觉, sleep-deprived</p></article>
+        <article class="story-founder"><figure><img src="https://cleanyang.github.io/pasero-ELN/assests/author-hong-yang.jpg" alt="Original Pasero creator photograph" loading="lazy"></figure><div><h3>Behind Pasero</h3><p>I’m Hong Yang—born and raised in Zunyi, Guizhou, and chronically short on sleep. I’m currently doing my best to overcome sleep deprivation and finish my PhD</p><p>I built Pasero to reduce the time we spend switching between apps—and save a little more time for sleep. After all, we Guizhou people come from green mountains and clear waters. Beautiful places raise beautiful people, and beautiful people need their sleep</p><p>If you are sleep-deprived too, welcome to Pasero / 雀角</p></div></article>
       </div>
-    </header>
+      <div class="story-full" data-story-content="zh" hidden>
+        <article><h3>What is Pasero</h3><p>在研究中，我们会使用 Excel、Word、GraphPad Prism 和各种分子生物学软件。高频使用的功能只有几个，却仍要为整套软件付费，还要不断来回切换</p><p>所以我做了 Pasero（雀角），把真正会用到的工具放进同一个轻巧的工作空间</p><p>Pasero 在世界语中意为“麻雀”。“雀角”出自《诗经·召南·行露》：“谁谓雀无角？何以穿我屋？”当然，它也像“缺觉”——科研人熟悉的灵魂状态</p></article>
+        <article class="story-founder"><figure><img src="https://cleanyang.github.io/pasero-ELN/assests/author-hong-yang.jpg" alt="Original Pasero creator photograph" loading="lazy"></figure><div><h3>Behind Pasero</h3><p>在下杨红，长期缺觉</p><p>土生土长贵州省遵义市人，现在正努力克服缺觉，完成博士学业</p><p>我做 Pasero，是想降低在软件之间切换的频率，省出时间来睡觉。因为我们贵州人，青山绿水出丽人</p><p>如果你也缺觉，欢迎使用 Pasero / 雀角</p></div></article>
+      </div>
+      <div class="story-full" data-story-content="ja" hidden>
+        <article><h3>Pasero とは</h3><p>研究では、Excel、Word、GraphPad Prism、そしてさまざまな分子生物学ソフトを使います。よく使う機能はほんの一部なのに、ソフト一式の料金を払い、アプリの間を何度も行き来しなければなりません。</p><p>そこでつくったのが Pasero（雀角）です。本当に使うツールを、ひとつの軽やかなワークスペースにまとめました。</p><p>Pasero はエスペラント語で「スズメ」。「雀角」は<cite>『詩経』の「召南・行露」</cite>にある「誰がスズメに角がないと言うのか。どうして私の屋根に穴を開けるのか」という一節に由来します。中国語では「缺觉」（寝不足）にも似た響き。研究者にはおなじみの状態です。</p></article>
+        <article class="story-founder"><figure><img src="https://cleanyang.github.io/pasero-ELN/assests/author-hong-yang.jpg" alt="Pasero の開発者の写真" loading="lazy"></figure><div><h3>Pasero が生まれた理由</h3><p>どうも、楊紅（Hong Yang）です。いつも寝不足です。</p><p>中国・貴州省遵義市で生まれ育ちました。今は寝不足と戦いながら、博士号の取得を目指しています。</p><p>Pasero をつくったのは、アプリを切り替える回数を減らし、そのぶん眠る時間を増やしたかったから。私たち貴州人は「美しい山と水が、美しい人を育てる」と言いますから。</p><p>あなたも寝不足なら、Pasero / 雀角へようこそ。</p></div></article>
+      </div>
+    </div>
+    <div class="story-end"><span>Small but mighty.</span><span>Be simple, be real, keep cool.</span><a href="#top">Back to top ↑</a></div>
+  </div>
+</section></main>
+<script>
+const stage=document.getElementById('stage'),svg=document.getElementById('connections'),record=document.getElementById('record'),nodes=[...document.querySelectorAll('.node')],context=document.getElementById('context');const NS='http://www.w3.org/2000/svg';let paths=[];function draw(){const box=stage.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);svg.innerHTML='';paths=[];const c=record.getBoundingClientRect();const center={x:c.left+c.width/2-box.left,y:c.top+c.height/2-box.top};nodes.forEach(n=>{const r=n.getBoundingClientRect();const x=r.left+r.width/2-box.left,y=r.top+r.height/2-box.top;const p=document.createElementNS(NS,'path');const bend=(center.x+x)/2; p.setAttribute('d',`M${center.x} ${center.y} C ${bend} ${center.y}, ${bend} ${y}, ${x} ${y}`);svg.appendChild(p);paths.push(p)})}window.addEventListener('resize',draw);window.addEventListener('load',draw);requestAnimationFrame(draw);nodes.forEach((n,i)=>{const activate=()=>{nodes.forEach(v=>v.classList.remove('active'));paths.forEach(v=>v.classList.remove('hot'));n.classList.add('active');paths[i]?.classList.add('hot');context.textContent=n.dataset.label+' ↗︎'};n.addEventListener('mouseenter',activate);n.addEventListener('focus',activate);n.addEventListener('click',activate)});stage.addEventListener('mouseleave',()=>{nodes.forEach(v=>v.classList.remove('active'));paths.forEach(v=>v.classList.remove('hot'));context.textContent='Linked research resources ↗︎'});
 
-    <main id="top">
-      <section class="campaign-hero">
-        <div class="campaign-hero-copy reveal">
-          <h1 data-copy="en"><em>Pasero</em><span>Small but mighty</span></h1>
-          <h1 data-copy="zh"><em>雀角，</em><span>微而具体</span></h1>
-          <h1 data-copy="ja"><em>雀角</em><span>小さくても、頼れる</span></h1>
-          <div class="campaign-intro">
-            <p data-copy="en">No account. No cloud. No jumping between apps</p>
-            <p data-copy="zh">无需注册，无需云端，无需在工具之间反复横跳</p>
-            <p data-copy="ja">アカウント不要、クラウド不要、ツールを行き来する必要もありません</p>
-            <p data-copy="en">Take notes, process data, and manage reagents, cells, plasmids, and protocols in one place</p>
-            <p data-copy="zh">记录笔记，管理细胞、试剂、质粒，处理数据、Protocol，尽在 Pasero</p>
-            <p data-copy="ja">ノート、データ解析、試薬・細胞・プラスミド・Protocol の管理を、Pasero ひとつで</p>
-          </div>
-          <div class="campaign-actions">
-            <a class="campaign-button primary" href="#plans"><span data-copy="en">Download Pasero</span><span data-copy="zh">下载 Pasero</span><span data-copy="ja">Pasero をダウンロード</span></a>
-            <a class="campaign-button text" href="#workspace"><span data-copy="en">See the workflow ↓</span><span data-copy="zh">查看工作流 ↓</span><span data-copy="ja">ワークフローを見る ↓</span></a>
-          </div>
-        </div>
-        <div class="campaign-hero-product reveal" aria-label="Pasero Desktop and Mobile">
-          <div class="campaign-desktop-crop"><img src="assests/首页.png" alt="Pasero Desktop workspace" /></div>
-          <img class="campaign-phone" src="assests/homepage.jpeg" alt="Pasero Mobile home" />
-          <span class="campaign-product-caption">Desktop + Mobile</span>
-          <p class="campaign-product-tagline"><span data-copy="en">A local-first molecular biology workspace</span><span data-copy="zh">本地优先的分子生物学工作空间</span><span data-copy="ja">ローカルファーストの分子生物学ワークスペース</span></p>
-        </div>
-      </section>
+/* All previews below reference existing assets in the public Pasero website. */
+const ASSETS='https://cleanyang.github.io/pasero-ELN/assests/';
+const SITE='https://cleanyang.github.io/pasero-ELN/';
+const features=[
+  {
+    "id": "notes",
+    "label": "Notes",
+    "summary": "Experiments & results",
+    "title": "Write notes and tables, import Excel files, add and edit images, and track resources.",
+    "desc": "Save data analyses, primer designs, and Sanger sequencing results in your notes, keeping experiments and results together.",
+    "tags": [
+      "Notebook",
+      "Results",
+      "Linked resources"
+    ],
+    "media": "资源in notes.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · resource links inside notes",
+    "zh": {
+      "label": "实验记录",
+      "summary": "实验与结果",
+      "title": "支持文本记录、表格记录、导入 Excel、添加与编辑图片、追踪资源",
+      "desc": "数据处理、引物设计、Sanger 测序结果都能保存进笔记，实验和结果之间不掉队",
+      "tags": [
+        "实验笔记",
+        "实验结果",
+        "关联资源"
+      ]
+    }
+  },
+  {
+    "id": "analysis",
+    "label": "Data Analysis",
+    "summary": "Statistics & charts",
+    "title": "Import data. Plot in one click: bar, line, stacked bar, and box plots.",
+    "desc": "Analyze general assay, qPCR, and Western blot data, and save charts and statistical results alongside your notes.",
+    "tags": [
+      "General assay",
+      "qPCR",
+      "Western blot"
+    ],
+    "media": "数据分析.mp4",
+    "type": "video",
+    "link": null,
+    "note": "Actual Pasero data-analysis demonstration",
+    "zh": {
+      "label": "数据分析",
+      "summary": "统计与图表",
+      "title": "导入数据，一键出图，支持柱状图、折线图、Stacked Bar、箱型图",
+      "desc": "从常规实验数据到 qPCR、Western blot 定量分析，图表与统计结果均可随笔记保存",
+      "tags": [
+        "常规实验",
+        "qPCR",
+        "Western blot"
+      ]
+    }
+  },
+  {
+    "id": "plasmids",
+    "label": "Plasmids",
+    "summary": "Sequences & molecular tools",
+    "title": "Edit sequences, design primers, compare sequences, and plan restriction digests—all in Plasmids.",
+    "desc": "Manage plasmids and primers, and set up restriction digests.",
+    "tags": [
+      "Sequences",
+      "Restriction digest",
+      "Primer design"
+    ],
+    "media": "Plasmid-sequence-section.mp4",
+    "type": "video",
+    "link": null,
+    "note": "Actual Pasero plasmid-tool demonstration",
+    "zh": {
+      "label": "质粒工具",
+      "summary": "序列与分子工具",
+      "title": "编辑序列、设计引物、序列对比、酶切反应尽在质粒板块",
+      "desc": "管理质粒以及引物，设置酶切反应",
+      "tags": [
+        "序列",
+        "限制性酶切",
+        "引物设计"
+      ]
+    }
+  },
+  {
+    "id": "resources",
+    "label": "Database",
+    "summary": "Cells, reagents & protocols",
+    "title": "Know what you used—and where.",
+    "desc": "Keep records of your experimental materials and protocols, and trace where they were used.",
+    "tags": [
+      "Cells",
+      "Reagents",
+      "Protocols"
+    ],
+    "media": "资源关联.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · linked resource management",
+    "zh": {
+      "label": "数据库",
+      "summary": "细胞、试剂与 Protocol",
+      "title": "用过什么、用在哪里，都有迹可循",
+      "desc": "让实验材料与操作流程各有记录，也能追溯它们出现在何处",
+      "tags": [
+        "细胞",
+        "试剂",
+        "实验流程"
+      ]
+    }
+  },
+  {
+    "id": "literature",
+    "label": "Literature",
+    "summary": "Search, read & annotate",
+    "title": "Organize your papers. Read in single-page or two-page view.",
+    "desc": "Find papers, manage PDFs, and record annotations, keeping important literature connected to your research.",
+    "tags": [
+      "PDF library",
+      "Search",
+      "Annotations"
+    ],
+    "media": "移动端paper阅读.png",
+    "type": "image",
+    "link": null,
+    "note": "Existing website asset · mobile PDF reader preview",
+    "zh": {
+      "label": "文献管理",
+      "summary": "检索、阅读与批注",
+      "title": "支持管理文献，单页双页阅读",
+      "desc": "检索论文、管理 PDF、记录批注，让重要文献始终留在研究脉络里",
+      "tags": [
+        "PDF 文献库",
+        "检索",
+        "批注"
+      ]
+    }
+  },
+  {
+    "id": "presentations",
+    "label": "Presentations",
+    "summary": "Results to PPTX",
+    "title": "Turn your recorded results into lab meeting slides with ease.",
+    "desc": "Bring together results saved in your experiment notes to create downloadable research presentations.",
+    "tags": [
+      "Results",
+      "Slides",
+      "PPTX"
+    ],
+    "media": "ppt生成.png",
+    "type": "image",
+    "link": null,
+    "note": "Existing screenshot · presentation generation",
+    "zh": {
+      "label": "研究汇报",
+      "summary": "从结果到 PPTX",
+      "title": "以记录的结果为中心，不费吹灰之力助你组会一臂之力",
+      "desc": "调取实验笔记中已记录的结果，整理成可下载的研究汇报幻灯片",
+      "tags": [
+        "实验结果",
+        "幻灯片",
+        "PPTX"
+      ]
+    }
+  },
+  {
+    "id": "research-assistant",
+    "label": "Research Assistant",
+    "summary": "Connected lab tools",
+    "title": "A not-so-smart but resourceful local workhorse for finding and writing notes, looking up protocols, calculating GC content, and more.",
+    "desc": "Ask in natural language to find and organize notes, process sequences, look up protocols and run lab calculations. Confirm changes before they are saved.",
+    "tags": [
+      "Lab notes",
+      "Sequence tools",
+      "Lab calculations"
+    ],
+    "media": "research-assitant.png",
+    "type": "image",
+    "link": null,
+    "note": "Real screenshot · Research Assistant workspace",
+    "zh": {
+      "label": "研究助手",
+      "summary": "跨模块实验工具",
+      "title": "能够查找、写入笔记，查询 Protocol、计算 GC 比等功能的不太智能但聪明的本地搬砖助手",
+      "desc": "用自然语言查找与整理实验记录、处理序列、查询 Protocol、完成实验计算，写入或修改记录前由你确认",
+      "tags": [
+        "实验记录",
+        "序列工具",
+        "实验计算"
+      ]
+    }
+  }
+];
+/* Each feature opens its overview; these tabs expose the real product views. */
+const featureViews={
+ notes:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/new notes.png',type:'image'},
+  {id:'images-resources',label:['Images & linked resources','图片上传及资源关联','画像の追加・リソース連携'],media:'assests/资源关联和图片上传.png',type:'image'},
+  {id:'upload-vocabulary',label:['Upload notes & build your own vocabulary','上传笔记及构建词汇库','ノートの取り込み・語彙集の作成'],media:'assests/上传笔记以及构建词汇库.png',type:'image'}
+ ],
+ analysis:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/data analysis总界面.png',type:'image'},
+  {id:'general-assay',label:['General assay','常规实验','一般的な実験解析'],media:features.find(f=>f.id==='analysis').media,type:'video',legacyMedia:true}
+ ],
+ plasmids:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/质粒管理.png',type:'image'},
+  {id:'sequences',label:['Edit sequences','编辑序列','配列の編集'],media:'assests/序列编辑.png',type:'image'},
+  {id:'primers',label:['Primer design','引物设计','プライマー設計'],media:'assests/引物设计.png',type:'image'},
+  {id:'advanced-primers',label:['Advanced primer design','高级引物设计','高度なプライマー設計'],media:'assests/高级引物设计功能.mp4',type:'video'},
+  {id:'digest',label:['Restriction digest','酶切反应','制限酵素処理'],media:'assests/酶切设置.png',type:'image'},
+  {id:'sanger',label:['Sanger annealing','Sanger 比对','Sanger 配列比較'],media:'assests/sanger-peaks-base-selection.png',type:'image'}
+ ],
+ resources:[
+  {id:'overview',label:['Overview','总览','概要'],media:'资源管理.mp4',type:'video'},
+  {id:'cell-experiments',label:['Cell experiments','设置细胞实验','細胞実験の設定'],media:'assests/细胞实验.png',type:'image'},
+  {id:'cell-tracking',label:['Cell tracking','细胞追踪','細胞の追跡'],media:'assests/细胞追踪.png',type:'image'}
+ ],
+ literature:[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/论文管理.png',type:'image'},
+  {id:'search',label:['Paper search','论文搜索','論文検索'],media:'assests/论文搜索.png',type:'image'},
+  {id:'reading',label:['Paper reading','论文阅读','論文の閲覧'],media:'assests/论文阅读.mp4',type:'video'}
+ ],
+ 'research-assistant':[
+  {id:'overview',label:['Overview','总览','概要'],media:'assests/research assitant-find notes.png',type:'image',crop:{x:0,y:600,width:2326,height:572,sourceWidth:2326,sourceHeight:1172}},
+  {id:'resource-search',label:['Resource search','资源搜索','リソース検索'],media:'assests/search the public database-research assistant.png',type:'image'}
+ ]
+};
+const tabs=document.getElementById('feature-tabs'),media=document.getElementById('feature-media'),viewTabs=document.getElementById('panel-tags');let selected=0,selectedView=0;
+function setFeatureText(el,en,zh,ja){
+ el.setAttribute('data-en',en);el.setAttribute('data-zh',zh);
+ if(ja!==undefined)el.setAttribute('data-ja',ja);else el.removeAttribute('data-ja');
+ el.textContent=window.PaseroI18n?window.PaseroI18n.translate(en,zh,ja):en;
+}
+features.forEach((f,i)=>{
+ const btn=document.createElement('button');btn.type='button';btn.className='feature-tab';btn.id='ft-'+f.id;btn.role='tab';btn.setAttribute('aria-controls','feature-panel');
+ btn.innerHTML=`<span class="number">${String(i+1).padStart(2,'0')}</span><span><strong></strong><small></small></span><span class="arrow" aria-hidden="true">↗︎</span>`;
+ setFeatureText(btn.querySelector('strong'),f.label,f.zh.label);
+ setFeatureText(btn.querySelector('small'),f.summary,f.zh.summary);
+ btn.addEventListener('click',()=>setFeature(i,true));
+ btn.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();setFeature((i+1)%features.length,true);tabs.children[selected].focus()}
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();setFeature((i+features.length-1)%features.length,true);tabs.children[selected].focus()}
+ });tabs.appendChild(btn);
+});
+function renderFeatureMedia(f,view,viewId){
+ const previous=media.querySelector('video');
+ if(previous){previous.pause();previous.removeAttribute('src');previous.load()}
+ const src=view.legacyMedia?ASSETS+encodeURIComponent(view.media):SITE+view.media.split('/').map(encodeURIComponent).join('/');
+ let rendered;
+ const reportError=()=>{if(!rendered||!rendered.isConnected)return;media.innerHTML='';const warn=document.createElement('div');warn.className='stage-loading';warn.style.zIndex='3';warn.textContent='Could not load the existing website asset. Please check the existing preview asset.';media.appendChild(warn)};
+ if(view.crop){
+  const c=view.crop,ns='http://www.w3.org/2000/svg',frame=document.createElementNS(ns,'svg'),image=document.createElementNS(ns,'image');
+  frame.classList.add('feature-focus-image');frame.setAttribute('viewBox',`${c.x} ${c.y} ${c.width} ${c.height}`);frame.setAttribute('preserveAspectRatio','xMidYMid meet');frame.setAttribute('role','img');
+  if(viewId)frame.setAttribute('aria-labelledby',viewId);else frame.setAttribute('aria-label','Pasero product preview: '+f.label);
+  image.setAttribute('href',src);image.setAttribute('width',c.sourceWidth);image.setAttribute('height',c.sourceHeight);image.addEventListener('error',reportError);frame.appendChild(image);rendered=frame;media.replaceChildren(frame);return;
+ }
+ const m=document.createElement(view.type==='video'?'video':'img');rendered=m;m.src=src;
+ if(view.type==='video'){m.autoplay=true;m.muted=true;m.loop=true;m.playsInline=true;m.controls=true;m.preload='metadata';m.setAttribute('aria-label',f.title)}
+ else{m.alt='Pasero product preview: '+f.label;m.loading='eager'}
+ if(viewId)m.setAttribute('aria-labelledby',viewId);
+ m.addEventListener('error',reportError);media.replaceChildren(m);
+}
+function setFeatureView(index,reveal=false){
+ const f=features[selected],views=featureViews[f.id];selectedView=index;
+ [...viewTabs.children].forEach((el,n)=>{const on=n===index;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
+ const active=viewTabs.children[index];media.setAttribute('role','tabpanel');media.setAttribute('aria-labelledby',active.id);
+ renderFeatureMedia(f,views[index],active.id);
+ if(reveal&&window.matchMedia('(max-width:800px)').matches)active.scrollIntoView({block:'nearest',inline:'nearest'});
+}
+function renderFeatureViewTabs(f){
+ const views=featureViews[f.id];viewTabs.replaceChildren();
+ viewTabs.classList.toggle('feature-subtabs',Boolean(views));
+ if(!views){
+  viewTabs.removeAttribute('role');viewTabs.removeAttribute('aria-labelledby');viewTabs.removeAttribute('aria-orientation');
+  media.removeAttribute('role');media.removeAttribute('aria-labelledby');
+  viewTabs.replaceChildren(...f.tags.map((tag,n)=>{const el=document.createElement('span');setFeatureText(el,tag,f.zh.tags[n]);return el}));
+  renderFeatureMedia(f,{media:f.media,type:f.type,legacyMedia:true});return;
+ }
+ viewTabs.setAttribute('role','tablist');viewTabs.setAttribute('aria-labelledby','feature-status');viewTabs.setAttribute('aria-orientation','horizontal');
+ views.forEach((view,index)=>{
+  const btn=document.createElement('button');btn.type='button';btn.className='feature-subtab';btn.id='fv-'+f.id+'-'+view.id;btn.role='tab';btn.setAttribute('aria-controls','feature-media');
+  setFeatureText(btn,...view.label);btn.addEventListener('click',()=>setFeatureView(index,true));
+  btn.addEventListener('keydown',event=>{
+   let target=index;
+   if(event.key==='ArrowRight')target=(index+1)%views.length;
+   else if(event.key==='ArrowLeft')target=(index+views.length-1)%views.length;
+   else if(event.key==='Home')target=0;
+   else if(event.key==='End')target=views.length-1;
+   else return;
+   event.preventDefault();setFeatureView(target,true);viewTabs.children[target].focus();
+  });viewTabs.appendChild(btn);
+ });setFeatureView(0);
+}
+function setFeature(i,reveal=false){
+ selected=i;selectedView=0;const f=features[i];
+ [...tabs.children].forEach((el,n)=>{const on=n===i;el.setAttribute('aria-selected',String(on));el.tabIndex=on?0:-1});
+ document.getElementById('feature-panel').setAttribute('aria-labelledby','ft-'+f.id);
+ if(reveal&&window.matchMedia('(max-width:800px)').matches)tabs.children[i].scrollIntoView({block:'nearest',inline:'nearest'});
+ const number=String(i+1).padStart(2,'0'),total=String(features.length).padStart(2,'0');
+ setFeatureText(document.getElementById('feature-status'),`${number} · ${f.label.toUpperCase()}`,`${number} · ${f.zh.label}`);
+ setFeatureText(document.getElementById('panel-index'),`FEATURE ${number} / ${total}`,`功能 ${number} / ${total}`);
+ setFeatureText(document.getElementById('panel-title'),f.title,f.zh.title);
+ setFeatureText(document.getElementById('panel-desc'),f.desc,f.zh.desc);
+ renderFeatureViewTabs(f);
+}
+const featureBreakpoint=window.matchMedia('(max-width:800px)');
+function syncFeatureOrientation(){tabs.setAttribute('aria-orientation',featureBreakpoint.matches?'horizontal':'vertical')}
+featureBreakpoint.addEventListener('change',syncFeatureOrientation);syncFeatureOrientation();
+setFeature(0);
 
-      <section class="pasero-story-section pasero-story-origin" id="workspace" aria-labelledby="research-question-title">
-        <h2 class="pasero-story-intro reveal"><em>what is <span>Pasero</span></em></h2>
-        <header class="pasero-story-copy reveal">
-          <h3 id="research-question-title" class="pasero-question-line"><span data-copy="en">Research begins with questions.</span><span data-copy="zh">问起于心</span><span data-copy="ja">研究は「なぜ？」から始まります。</span></h3>
-          <p><span data-copy="en">Curiosity can start anywhere in life science.</span><span data-copy="zh">复杂研究，往往始于一个简单的好奇：花儿为什么这样红？</span><span data-copy="ja">小さな疑問が、研究の始まりです。</span></p>
-        </header>
-        <div class="pasero-origin-scene pasero-story-visual reveal" aria-label="A thinker surrounded by life science">
-          <img class="pasero-thinker" src="assets/pasero-story/thinker.webp" alt="A seated woman thinking" />
-          <div class="pasero-life pasero-life-plant"><img src="assets/pasero-story/life/plant.webp" alt="Plant" /></div>
-          <div class="pasero-life pasero-life-animal"><img src="assets/pasero-story/life/animal.webp" alt="Animal" /></div>
-          <div class="pasero-life pasero-life-dna"><img src="assets/pasero-story/life/dna.webp" alt="Open DNA helix" /></div>
-          <div class="pasero-life pasero-life-protein" aria-label="Protein">
-            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 35c8-24 26 5 32-22M12 28l5 4M18 20l5 5M25 18l5 4M32 13l5 4" /></svg>
-          </div>
-          <div class="pasero-life pasero-life-molecule" aria-label="Molecule">
-            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 28c3-11 9-16 17-12 8 4 4 12 12 14 6 2 5 10-3 11-8 1-9-6-16-3-8 4-13-2-10-10Z" /><circle cx="16" cy="24" r="2" /><circle cx="28" cy="27" r="2" /></svg>
-          </div>
-          <div class="pasero-life pasero-life-beaker" aria-label="Laboratory beaker">
-            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 6h14M20 6v13L9 39c-1 2 1 4 3 4h24c3 0 4-2 3-4L28 19V6M15 31h18" /></svg>
-          </div>
-        </div>
-      </section>
+// Lightweight interactive guide to mobile tools.
+const mobileFeatureDescriptions=[
+  "Keep a quick record of the experiment while you're at the bench.",
+  "Carry plasmid sequences and associated information with your notes.",
+  "Find the reagents you need and keep their context close to your experiment.",
+  "Check cell information and capture culture history with Cell Track.",
+  "Read papers, browse your literature library, and discover open research.",
+  "Use Seek to search public life-science data and save useful results."
+];
+document.querySelectorAll('[data-mobile-feature]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('[data-mobile-feature]').forEach(b=>b.classList.toggle('is-active',b===btn));
+  document.getElementById('mobile-feature-desc').textContent=mobileFeatureDescriptions[Number(btn.dataset.mobileFeature)];
+}));
+// Never pass off placeholder artwork as a product screenshot.
+document.querySelectorAll('img[data-real-shot]').forEach(img=>{
+  const fail=()=>{const d=document.createElement('div');d.className='shot-fallback';d.innerHTML='<strong>'+ (img.dataset.realShot==='mobile'?'Pasero Mobile':'Pasero Desktop') +'</strong><small>真实产品截图未能加载。连接网络后可查看官网原图；此处是明确标注的占位区域，不是模拟产品 UI。</small>';img.replaceWith(d)};
+  img.addEventListener('error',fail);
+  if(img.complete&&!img.naturalWidth)fail();
+});
 
-      <section class="pasero-story-section pasero-story-tools" aria-labelledby="research-tools-title">
-        <header class="pasero-story-copy reveal">
-          <h2 id="research-tools-title"><span data-copy="en">Questions, switching from tools to tools</span><span data-copy="zh">假器以求其真</span><span data-copy="ja">さまざまなツールで答えを探します。</span></h2>
-          <p><span data-copy="en">Notes, data analysis and molecular biology tools move the work forward.</span><span data-copy="zh">我们借助不同的工具，观察、分析、验证，逐步逼近答案。</span><span data-copy="ja">観察し、分析し、確かめます。</span></p>
-        </header>
-        <div class="pasero-tool-grid pasero-story-visual reveal" aria-label="Research tools">
-          <img class="pasero-tool-pipette" src="assets/pasero-story/tools/pipette.webp" alt="Laboratory pipette" loading="lazy" />
-          <img class="pasero-tool-search" src="assets/pasero-story/tools/search.webp" alt="Literature search" loading="lazy" />
-          <img class="pasero-tool-notes" src="assets/pasero-story/tools/notes.webp" alt="Research notebook" loading="lazy" />
-          <img class="pasero-tool-plasmid" src="assets/pasero-story/tools/plasmid.webp" alt="Plasmid map" loading="lazy" />
-          <img class="pasero-tool-tubes" src="assets/pasero-story/tools/tubes.webp" alt="Microcentrifuge tubes" loading="lazy" />
-          <img class="pasero-tool-surface" src="assets/pasero-story/tools/surface.webp" alt="Three-dimensional analysis surface" loading="lazy" />
-          <img class="pasero-tool-line" src="assets/pasero-story/tools/line-chart.webp" alt="Line chart" loading="lazy" />
-          <img class="pasero-tool-western" src="assets/pasero-story/tools/western.webp" alt="Protein quantification blot" loading="lazy" />
-          <img class="pasero-tool-bar" src="assets/pasero-story/tools/bar-chart.webp" alt="Bar chart" loading="lazy" />
-          <img class="pasero-tool-sanger" src="assets/pasero-story/tools/sanger.webp" alt="Sanger sequencing trace" loading="lazy" />
-        </div>
-      </section>
+const storyRead=document.getElementById('story-read');const storyExpanded=document.getElementById('story-expanded');
+storyRead.addEventListener('click',()=>{const open=storyRead.getAttribute('aria-expanded')!=='true';storyRead.setAttribute('aria-expanded',String(open));storyExpanded.hidden=!open;storyRead.firstChild.textContent=open?'Close the story ':'Read the story ';window.PaseroI18n?.refresh();});
+document.querySelectorAll('[data-story-lang]').forEach(button=>button.addEventListener('click',()=>{const lang=button.dataset.storyLang;document.querySelectorAll('[data-story-lang]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});document.querySelectorAll('[data-story-content]').forEach(el=>el.hidden=el.dataset.storyContent!==lang); }));
+</script>
+<script src="pasero-ja.js?v=20261027-assistant-copy"></script><script src="pasero-i18n.js?v=20261026-workspace1"></script><script src="pricing-2026.js?v=1"></script><script src="pasero-chapter-spacing.js?v=20261026-workspace1"></script></body></html>
 
-      <section class="pasero-story-section pasero-story-materials" aria-labelledby="research-materials-title">
-        <header class="pasero-story-copy reveal">
-          <h2 id="research-materials-title"><span data-copy="en">Questions, becoming materials and methods</span><span data-copy="zh">由问而成其法</span><span data-copy="ja">材料や方法が増えていきます。</span></h2>
-          <p><span data-copy="en">Questions enter the experiment and unfold into materials, methods and records.</span><span data-copy="zh">问题进入实验，也由此展开为材料、方法与一次次记录。</span><span data-copy="ja">細胞、試薬、プラスミド、実験方法。</span></p>
-        </header>
-        <img class="pasero-story-image pasero-story-visual reveal" src="assets/pasero-story/scenes/materials.webp" alt="Experiment note connected to cells, DNA, plasmids, reagents and equipment" loading="lazy" />
-      </section>
 
-      <section class="pasero-story-section pasero-story-presentation" aria-labelledby="research-presentation-title">
-        <header class="pasero-story-copy reveal">
-          <h2 id="research-presentation-title"><span data-copy="en">Finally, we answer our questions</span><span data-copy="zh">终得其解</span><span data-copy="ja">結果をまとめて伝えます。</span></h2>
-          <p><span data-copy="en">Finally, we organize our data and results into charts and slides to share.</span><span data-copy="zh">最终我们把数据和结果整理成图表和幻灯片展示出来。</span><span data-copy="ja">データを図やスライドにします。</span></p>
-        </header>
-        <img class="pasero-story-image pasero-story-visual reveal" src="assets/pasero-story/scenes/presentation.webp" alt="A researcher preparing and presenting scientific data" loading="lazy" />
-      </section>
 
-      <section class="pasero-story-section pasero-story-finale" aria-labelledby="pasero-answers-title">
-        <header class="pasero-story-copy reveal">
-          <h2 id="pasero-answers-title"><span data-copy="en">Answers your questions in Pasero</span><span data-copy="zh">雀角，应问而生</span><span data-copy="ja">雀角は、「なぜ？」から生まれました。</span></h2>
-          <p><span data-copy="en">Pasero brings notes, resources, data analysis, molecular biology tools and results together in one place.</span><span data-copy="zh">而雀角将笔记、资源、数据分析、分子生物学工具与结果呈现汇于一处。</span><span data-copy="ja">研究に必要なものを、ひとつに。</span></p>
-        </header>
-        <img class="pasero-final-image pasero-story-visual reveal" src="assets/pasero-story/finale.webp" alt="Pasero connects note management, data analysis, material tracing, plasmid tools and presentation generation" loading="lazy" />
-      </section>
 
-      <section class="campaign-story">
-        <article class="campaign-section campaign-tools">
-          <div class="campaign-section-copy reveal">
-            <h2 data-copy="en"><span>01</span> Tools</h2><h2 data-copy="zh"><span>01</span> 工具</h2><h2 data-copy="ja"><span>01</span> ツール</h2>
-          </div>
-          <div class="campaign-tool-lines">
-            <a class="campaign-tool-line reveal" href="data-analysis.html"><span>Data Analysis</span><strong data-copy="en">Chart · Statistics · Western blot · qPCR</strong><strong data-copy="zh">图表 · 统计建议 · Western blot · qPCR</strong><strong data-copy="ja">グラフ · 統計手法の提案 · Western blot · qPCR</strong><i>→</i></a>
-            <a class="campaign-tool-line reveal" href="plasmid.html"><span>Plasmid</span><strong data-copy="en">Map · Primer · Sanger · Digest</strong><strong data-copy="zh">图谱 · 引物 · Sanger · 酶切</strong><strong data-copy="ja">マップ · Primer · Sanger · 制限酵素</strong><i>→</i></a>
-            <a class="campaign-tool-line reveal" href="database.html"><span>Resources</span><strong data-copy="en">Cells · Reagents · Protocols · Relationships</strong><strong data-copy="zh">细胞 · 试剂 · Protocol · 关联关系</strong><strong data-copy="ja">細胞 · 試薬 · Protocol · 関連付け</strong><i>→</i></a>
-            <a class="campaign-tool-line reveal" href="literatures.html"><span>Literature</span><strong data-copy="en">Search · Read · Save notes</strong><strong data-copy="zh">搜索 · 阅读 · 保存笔记</strong><strong data-copy="ja">検索 · 閲覧 · ノート保存</strong><i>→</i></a>
-          </div>
-        </article>
 
-        <article class="campaign-section campaign-mobile-scene">
-          <div class="campaign-mobile-copy reveal">
-            <h2><span>02</span> Pasero Mobile</h2>
-            <p data-copy="en">Quick Note, Todo, Timer, Discovery, cells, reagents, and public life-science search—available where the experiment happens</p>
-            <p data-copy="zh">Quick Note、Todo、Timer、文献发现、细胞、试剂与<span class="no-break">生命科学公共搜索</span></p>
-            <p data-copy="ja">Quick Note、Todo、Timer、論文 Discovery、細胞、試薬、生命科学データベース検索を実験台のそばで</p>
-            <a href="mobile.html"><span data-copy="en">Explore Mobile →</span><span data-copy="zh">查看移动端 →</span><span data-copy="ja">Mobile を見る →</span></a>
-          </div>
-          <figure class="campaign-mobile-line-art reveal"><img src="assests/moblie-pasero-EN.png" alt="Pasero Mobile overview showing Quick Note, Todo, Timer, literature, cells, reagents, search, and connected AI" loading="lazy" /></figure>
-        </article>
-      </section>
 
-      <section class="campaign-local" id="plans">
-        <div class="campaign-local-heading reveal">
-          <p class="campaign-label"><span data-copy="en">Plans</span><span data-copy="zh">Plans</span><span data-copy="ja">プラン</span></p>
-          <h2 data-copy="en">Desktop is free<br />Mobile starts with 30 days free</h2>
-          <h2 data-copy="zh">桌面端永久免费<br />移动端免费体验 30 天</h2>
-          <h2 data-copy="ja">デスクトップ版はずっと無料<br />モバイル版は30日間無料で試せます</h2>
-          <p data-copy="en">No payment information required during the public beta</p>
-          <p data-copy="zh">公开内测期间无需提供付款信息</p>
-          <p data-copy="ja">公開ベータ中は支払い情報の登録は不要です</p>
-        </div>
-        <div class="campaign-price-list reveal">
-          <div><span>Desktop</span><strong>$0</strong><small data-copy="en">Free forever</small><small data-copy="zh">永久免费</small><small data-copy="ja">永久無料</small></div>
-          <div><span>Mobile</span><strong>$2.99</strong><small data-copy="en">Monthly</small><small data-copy="zh">按月</small><small data-copy="ja">月額</small></div>
-          <div><span>Mobile</span><strong>$7.99</strong><small data-copy="en">3 months</small><small data-copy="zh">3 个月</small><small data-copy="ja">3か月</small></div>
-          <div><span>Mobile</span><strong>$24.99</strong><small data-copy="en">Annual</small><small data-copy="zh">按年</small><small data-copy="ja">年額</small></div>
-        </div>
-      </section>
 
-      <section class="campaign-about">
-        <div class="campaign-about-mark reveal"><img src="assests/real-logo.png" alt="Pasero sparrow logo" loading="lazy" /></div>
-        <div class="campaign-about-copy reveal">
-          <h2>What is Pasero</h2>
-          <div data-copy="en" data-copy-fallback="ja"><p>Most researchers use only a small part of Excel, Word, GraphPad Prism, and specialized molecular biology software—but still pay for the whole package and keep moving between apps</p><p>Pasero brings the tools you actually use into one lightweight workspace</p><p>Pasero means “sparrow” in Esperanto. Its Chinese name, 雀角, comes from <cite>The Book of Songs</cite>—and sounds like 缺觉, sleep-deprived</p></div>
-          <div data-copy="zh"><p>在研究中，我们会使用 Excel、Word、GraphPad Prism 和各种分子生物学软件。高频使用的功能只有几个，却仍要为整套软件付费，还要不断来回切换</p><p>所以我做了 Pasero（雀角），把真正会用到的工具放进同一个轻巧的工作空间</p><p>Pasero 在世界语中意为“麻雀”。“雀角”出自《诗经·召南·行露》：“谁谓雀无角？何以穿我屋？”当然，它也像“缺觉”——科研人熟悉的灵魂状态</p></div>
-        </div>
-      </section>
 
-      <section class="campaign-founder">
-        <figure class="reveal"><img src="assests/author-hong-yang.jpg" alt="Hong Yang, creator of Pasero" loading="lazy" /></figure>
-        <div class="reveal">
-          <h2>Behind Pasero</h2>
-          <div data-copy="en" data-copy-fallback="ja">
-            <p>I’m Hong Yang—born and raised in Zunyi, Guizhou, and chronically short on sleep. I’m currently doing my best to overcome sleep deprivation and finish my PhD</p>
-            <p>I built Pasero to reduce the time we spend switching between apps—and save a little more time for sleep. After all, we Guizhou people come from green mountains and clear waters. Beautiful places raise beautiful people, and beautiful people need their sleep</p>
-            <p>If you are sleep-deprived too, welcome to Pasero / 雀角</p>
-          </div>
-          <div data-copy="zh">
-            <p>在下杨红，长期缺觉</p>
-            <p>土生土长贵州省遵义市人，现在正努力克服缺觉，完成博士学业</p>
-            <p>我做 Pasero，是想降低在软件之间切换的频率，省出时间来睡觉。因为我们贵州人，青山绿水出丽人</p>
-            <p>如果你也缺觉，欢迎使用 Pasero / 雀角</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="campaign-footer"><img src="assests/real-logo-cut.png" alt="Pasero" /><span><span data-copy="en">Be simple, be real, keep cool</span><span data-copy="zh">简单，真实，保持冷静</span><span data-copy="ja">シンプルに、正直に、クールに</span></span><a href="#top"><span data-copy="en">Back to top ↑</span><span data-copy="zh">返回顶部 ↑</span><span data-copy="ja">ページ上部へ ↑</span></a></footer>
-    <script src="script.js?v=2"></script>
-  </body>
-</html>
