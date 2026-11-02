@@ -55,6 +55,9 @@
         what: { en: 'Everything in Desktop Pro and Mobile Pro, on one account.', zh: '桌面 Pro 和移动 Pro 的全部功能，一个账号通用。', ja: 'デスクトップ Pro とモバイル Pro のすべてを 1 つのアカウントで。' }
       }
     },
+    diffOnly: { en: 'Only features that differ between Free and Pro', zh: '只看免费和 Pro 不同的功能', ja: '無料版と Pro で違う機能だけ表示' },
+    hiddenSame: { en: '{n} more features work the same in Free and Pro.', zh: '另有 {n} 项功能在免费版和 Pro 中相同。', ja: 'ほかに {n} 件の機能は無料版と Pro で同じです。' },
+    showAll: { en: 'Show all', zh: '显示全部', ja: 'すべて表示' },
     compareTitle: { en: 'Free and Pro, side by side', zh: '免费版和 Pro 逐项对比', ja: '無料版と Pro の比較' },
     tabDesktop: { en: 'Desktop', zh: '桌面端', ja: 'デスクトップ' },
     tabMobile: { en: 'Mobile', zh: '移动端', ja: 'モバイル' },
@@ -162,7 +165,7 @@
 
   var root = document.querySelector('[data-pricing-2026]');
   if (!root) return;
-  var state = { billing: 'annual', currency: null, platform: 'desktop', currencyChosen: false };
+  var state = { billing: 'annual', currency: null, platform: 'desktop', currencyChosen: false, diffOnly: true };
 
   function lang() {
     var l = window.PaseroI18n && window.PaseroI18n.getLanguage ? window.PaseroI18n.getLanguage() : 'en';
@@ -206,6 +209,7 @@
     root.querySelector('[data-px-currency]').setAttribute('aria-label', tr(T.currencyLabel));
     root.querySelector('[data-px-tab="desktop"]').textContent = tr(T.tabDesktop);
     root.querySelector('[data-px-tab="mobile"]').textContent = tr(T.tabMobile);
+    root.querySelector('[data-px-diff-label]').textContent = tr(T.diffOnly);
     var notes = root.querySelector('[data-px-notes]');
     notes.replaceChildren();
     tr(T.notes).forEach(function (n) { notes.appendChild(el('li', null, n)); });
@@ -214,6 +218,7 @@
   function renderControls() {
     root.querySelectorAll('[data-px-billing] button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.value === state.billing)); });
     root.querySelectorAll('[data-px-currency] button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.value === state.currency)); });
+    root.querySelector('[data-px-diff]').setAttribute('aria-checked', String(state.diffOnly));
     root.querySelectorAll('[data-px-tab]').forEach(function (b) {
       var on = b.dataset.pxTab === state.platform;
       b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
@@ -263,11 +268,15 @@
     th2.appendChild(el('span', 'px-col-name', tr(T.colPro)));
     th2.appendChild(el('span', 'px-col-note', tr(platform === 'desktop' ? T.colProDesktop : T.colProMobile)));
     hr.append(th0, th1, th2); thead.appendChild(hr); table.appendChild(thead);
+    var hidden = 0;
     FEATURES[platform].forEach(function (section) {
+      var rows = section.rows.filter(function (r) { return !state.diffOnly || r[2] !== r[3]; });
+      hidden += section.rows.length - rows.length;
+      if (!rows.length) return;
       var tbody = el('tbody');
       var gr = el('tr', 'px-group'), gth = el('th', null, tr(section.group));
       gth.colSpan = 3; gth.scope = 'colgroup'; gr.appendChild(gth); tbody.appendChild(gr);
-      section.rows.forEach(function (r) {
+      rows.forEach(function (r) {
         var tr_ = el('tr');
         var name = el('th', 'px-feature'); name.scope = 'row';
         name.appendChild(el('span', 'px-feature-name', tr(r[0])));
@@ -278,6 +287,17 @@
       });
       table.appendChild(tbody);
     });
+    // Say how many rows are hidden, so the shorter table never reads as the whole list.
+    var note = root.querySelector('[data-px-hidden-note]');
+    note.replaceChildren();
+    note.hidden = !hidden;
+    if (hidden) {
+      note.appendChild(document.createTextNode(tr(T.hiddenSame).replace('{n}', hidden) + ' '));
+      var all = el('button', 'px-show-all', tr(T.showAll));
+      all.type = 'button';
+      all.addEventListener('click', function () { state.diffOnly = false; renderControls(); renderTable(); });
+      note.appendChild(all);
+    }
   }
 
   function render() {
@@ -291,6 +311,9 @@
   });
   root.querySelectorAll('[data-px-currency] button').forEach(function (b) {
     b.addEventListener('click', function () { state.currency = b.dataset.value; state.currencyChosen = true; renderControls(); renderPlans(); });
+  });
+  root.querySelector('[data-px-diff]').addEventListener('click', function () {
+    state.diffOnly = !state.diffOnly; renderControls(); renderTable();
   });
   var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-px-tab]'));
   tabs.forEach(function (b, i) {

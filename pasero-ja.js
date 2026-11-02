@@ -419,7 +419,7 @@ window.PaseroJapanese={
   "Could not load the existing website asset. Please check the existing preview asset.": "プレビューを読み込めませんでした。接続を確認して、もう一度お試しください。",
   "03  /  PASERO MOBILE": "03 / PASERO モバイル",
   "03  /  PASERO MOBILE": "03 / PASERO モバイル",
-  "Capture what happens at the bench. Pick up the same research on your desktop.": "モバイルとデスクトップを QR コードで簡単に接続し、研究記録を同期。",
+  "Capture what happens at the bench. Pick up the same research on your desktop.": "実験台でスマホに記録し、デスクで続きを。QR コードでペアリングし、同じネットワーク内で手動同期。",
   "01   /   ON THE BENCH": "01 / 実験台で",
   "01   /   ON THE BENCH": "01 / 実験台で",
   "02   /   AT YOUR DESK": "02 / デスクで",

@@ -115,3 +115,16 @@ html[lang="ja"] .px-intro h2{font:600 clamp(32px,4.2vw,58px)/1.3 'Noto Sans JP',
 /* The site clips horizontal overflow on html/body. "hidden" turns body into a scroll container and breaks the
    sticky table header; "clip" keeps the clipping without that side effect. */
 @supports (overflow:clip){html,body{overflow-x:clip!important}}
+
+/* "Only features that differ" switch (on by default) */
+.px-diff{appearance:none;display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;padding:6px 0;border:0;background:transparent;color:var(--px-ink);font:500 14px/1.4 inherit;cursor:pointer;text-align:left}
+.px-diff-track{position:relative;flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:var(--px-line);transition:background .2s}
+.px-diff-track::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--px-ink);transition:transform .2s}
+.px-diff[aria-checked="true"] .px-diff-track{background:var(--px-mint)}
+.px-diff[aria-checked="true"] .px-diff-track::after{transform:translateX(16px);background:var(--px-mint-ink)}
+.px-diff:focus-visible{outline:2px solid var(--px-lav);outline-offset:3px;border-radius:6px}
+.px-hidden-note{margin:12px 0 0;color:var(--px-muted);font-size:14px;line-height:1.6}
+.px-show-all{appearance:none;border:0;background:transparent;color:var(--px-lav);font:600 14px/1.6 inherit;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.px-show-all:focus-visible{outline:2px solid var(--px-lav);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.px-diff-track,.px-diff-track::after{transition:none}}
+@media (max-width:640px){.px-diff{font-size:13.5px}.px-hidden-note,.px-show-all{font-size:13px}}

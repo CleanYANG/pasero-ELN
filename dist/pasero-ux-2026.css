@@ -1,0 +1,203 @@
+/* Pasero site UX layer (2026-11): screenshot slots, phone carousels, explorer details and the shared type scale.
+   Loaded last on index.html, mobile.html and download.html. */
+
+/* ---------- Type scale ----------
+   One modular scale for every page. Headlines use the same steps whichever page or language they are on. */
+:root{
+  --ps-display:clamp(40px,5.6vw,80px);
+  --ps-h2:clamp(30px,4vw,56px);
+  --ps-h3:clamp(21px,1.9vw,28px);
+  --ps-lead:clamp(16px,1.15vw,18px);
+  --ps-body:16px;
+  --ps-small:14px;
+  --ps-label:12px;
+  --ps-chapter:14px;
+  --ps-ink:#14241f;--ps-muted:#5b6b62;--ps-green:#2d5940;--ps-green-soft:#e7f0e9;--ps-lav:#6f58a0;--ps-lav-soft:#efe9f7;--ps-line:#d9e2dc;
+}
+@media (max-width:640px){:root{--ps-body:15px;--ps-small:13.5px;--ps-chapter:13px}}
+
+/* index */
+.hero .copy h1{font-size:var(--ps-display)!important}
+.hero .copy .description{font-size:var(--ps-lead)!important;line-height:1.7!important}
+/* Chapter labels: one size on every page (index had 19px, mobile.html 11px, pricing 12px). */
+html body .hero .eyebrow,html body .explorer .section-kicker,html body .mobile-story .mobile-kicker,html body .brand-story .story-topline,html body .story .story-topline,
+html body #pricing.px-pricing .px-chapter,html body .mobile-hero .eyebrow,html body #explorer .eyebrow,html body .sync-copy .eyebrow,html body .mobile-end .eyebrow,html body .platform-hero .eyebrow,html body .section .eyebrow,html body .cta .eyebrow{font-size:var(--ps-chapter)!important;letter-spacing:.08em!important}
+.story-kicker{font-size:var(--ps-label)!important}
+.explorer-title,.mobile-headline,#story h2,.brand-story h2{font-size:var(--ps-h2)!important}
+.explorer-lead,.mobile-side-intro p{font-size:var(--ps-lead)!important;line-height:1.7!important}
+#desktop-explorer .panel-title{font-size:var(--ps-h3)!important;line-height:1.3!important}
+#desktop-explorer #panel-desc{font-size:var(--ps-small)!important;line-height:1.6!important}
+#desktop-explorer .panel-index{font-size:var(--ps-label)!important}
+.feature-tab strong{font-size:16px}
+.feature-tab small{font-size:13px!important}
+.explorer-footer,.explorer-footer b{font-size:var(--ps-small)!important}
+.sync-explain-text p,.mobile-caveat-line{font-size:var(--ps-small)!important}
+#pricing.px-pricing .px-intro h2{font-size:var(--ps-h2)!important}
+/* mobile.html */
+.mobile-hero h1{font-size:var(--ps-display)!important}
+.mobile-hero .lead{font-size:var(--ps-lead)!important}
+#explorer .explorer-intro h2,.sync-copy h2,.mobile-end h2{font-size:var(--ps-h2)!important}
+#explorer .explorer-intro>p,.sync-copy>p,.mobile-end p{font-size:var(--ps-lead)!important;line-height:1.7!important}
+#explorer .feature-detail h3{font-size:var(--ps-h3)!important;line-height:1.3!important}
+#explorer .feature-detail>p{font-size:var(--ps-body)!important;line-height:1.65!important}
+.detail-kicker,.visual-dash{font-size:var(--ps-label)!important;letter-spacing:.06em!important}
+.feature-option{font-size:15px}
+/* download.html */
+.platform-hero h1{font-size:var(--ps-display)!important}
+.platform-hero p{font-size:var(--ps-lead)!important}
+.info h2,.cta h2,.sec-head h2{font-size:var(--ps-h2)!important}
+.platform h3{font-size:var(--ps-h3)!important}
+.platform p,.info p{font-size:var(--ps-small)!important}
+.meta{font-size:var(--ps-label)!important}
+/* Chinese headlines use the display face at the same steps. */
+html[lang="zh-CN"] .hero .copy h1,html[lang="zh-CN"] .mobile-hero h1{line-height:1.25!important}
+html[lang="zh-CN"] .explorer-title,html[lang="zh-CN"] .mobile-headline,html[lang="zh-CN"] #explorer .explorer-intro h2,html[lang="zh-CN"] .sync-copy h2,html[lang="zh-CN"] .mobile-end h2{line-height:1.3!important}
+/* Japanese runs long; one step smaller on headlines. */
+html[lang="ja"] .hero .copy h1,html[lang="ja"] .mobile-hero h1{font-size:clamp(34px,4.6vw,66px)!important;line-height:1.3!important}
+html[lang="ja"] .explorer-title,html[lang="ja"] .mobile-headline,html[lang="ja"] #explorer .explorer-intro h2,html[lang="ja"] .sync-copy h2,html[lang="ja"] .mobile-end h2,html[lang="ja"] #pricing.px-pricing .px-intro h2{font-size:clamp(26px,3.4vw,46px)!important;line-height:1.35!important}
+
+/* ---------- Screenshot slots ---------- */
+.shot{position:relative;container-type:inline-size;overflow:hidden}
+.shot[data-device="desktop"]{aspect-ratio:16/10}
+.shot[data-device="phone"]{aspect-ratio:9/19.5}
+.shot-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(4px,2.2cqi,12px);padding:clamp(10px,6cqi,36px);text-align:center;
+  color:var(--ps-ink);border:1.5px dashed #b4a3d3;border-radius:inherit;
+  background:repeating-linear-gradient(135deg,rgba(111,88,160,.06) 0 1px,transparent 1px 12px),#f6f8f5}
+.shot[data-device="phone"] .shot-ph{border-radius:clamp(14px,11cqi,30px)}
+.shot[data-device="desktop"] .shot-ph{border-radius:clamp(6px,1.6cqi,12px)}
+.shot-ph-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border-radius:999px;background:var(--ps-lav-soft);color:var(--ps-lav);font:600 clamp(10px,3cqi,13px)/1.2 'DM Sans','Noto Sans SC',sans-serif;white-space:nowrap}
+.shot-ph-badge svg{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.shot-ph-screen{font:600 clamp(13px,4.6cqi,24px)/1.3 'Space Grotesk','Noto Sans SC','Hiragino Sans',sans-serif;letter-spacing:-.01em;max-width:24ch;text-wrap:balance}
+.shot-ph-show{font:400 clamp(11px,3.1cqi,15px)/1.5 'DM Sans','Noto Sans SC','Hiragino Sans',sans-serif;color:var(--ps-muted);max-width:40ch;text-wrap:pretty}
+.shot-ph-file{font:500 clamp(9px,2.2cqi,11px)/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8f99;word-break:break-all;max-width:100%}
+.shot[data-device="phone"] .shot-ph-screen{font-size:clamp(12px,8cqi,22px)}
+.shot[data-device="phone"] .shot-ph-show{font-size:clamp(10px,5.6cqi,14px)}
+.shot[data-device="phone"] .shot-ph-badge{font-size:clamp(9px,5cqi,12px)}
+.shot[data-device="phone"] .shot-ph-file{font-size:clamp(8px,4cqi,10px)}
+@container (max-width:150px){.shot-ph-show,.shot-ph-file{display:none}}
+.shot-real img,.shot-real video{display:block;width:100%;height:100%;object-fit:contain;background:#fff}
+.shot-video{position:relative;width:100%;height:100%}
+.shot-play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;border:0;background:rgba(20,36,31,.78);color:#fff;display:grid;place-items:center;cursor:pointer}
+.shot-play svg{width:26px;height:26px;fill:currentColor;margin-left:3px}
+.shot-play:focus-visible{outline:3px solid #b4a3d3;outline-offset:3px}
+
+/* Hosts with a fixed box: the slot fills the box instead of keeping its own ratio. */
+#feature-media.shot,#phone-shot.shot{aspect-ratio:auto}
+#feature-media.shot{background:transparent!important}
+#feature-media.shot .shot-ph{inset:12px}
+.phone-shot{position:absolute;inset:0}
+#phone-shot .shot-ph{border:0;border-radius:0}
+
+/* Hero (index): desktop slot on wide screens, phone slot on phones. */
+.hero .stage .record .hero-shot-desktop{width:100%}
+.hero .stage .record .hero-shot-phone{display:none}
+.hero .stage .record .real-caption{display:none}
+@media (max-width:800px){
+  .hero .stage .record{background:transparent!important;box-shadow:none!important;transform:none!important;border:0!important;left:50%!important;top:50%!important;translate:-50% -50%;width:auto!important;height:88%!important;overflow:visible!important}
+  .hero .stage .record:hover{transform:none!important}
+  .hero .stage .record .hero-shot-desktop{display:none}
+  .hero .stage .record .hero-shot-phone{display:block;height:100%;width:auto;box-shadow:0 22px 50px rgba(36,65,46,.18);border-radius:clamp(14px,11cqi,30px);background:#f6f8f5}
+}
+
+/* Mobile story (index) */
+#mobile-story .editorial-phone .story-shot{width:78%;margin:0 auto;border-radius:28px;box-shadow:0 24px 40px rgba(51,60,49,.12);background:#f6f8f5}
+#mobile-story .editorial-desktop .story-shot{width:100%;border-radius:10px;box-shadow:0 26px 52px rgba(38,57,47,.10);background:#f6f8f5}
+@media (max-width:800px){#mobile-story .editorial-phone .story-shot{max-height:440px;width:auto;height:min(440px,62svh);margin:0 auto}}
+
+/* mobile.html hero + sync */
+.hero-visual-photo .hero-phone-shot{height:100%;width:auto;margin:0 auto;border-radius:clamp(14px,11cqi,26px)}
+.hero-visual-photo:has(.hero-phone-shot){background:transparent;border:0;box-shadow:none;padding:0;width:auto;aspect-ratio:auto}
+.sync-shots{position:relative;width:100%;max-width:520px;padding:0 12% 9% 0}
+.sync-shot-desktop{width:100%;border-radius:10px;background:#f6f8f5;box-shadow:0 18px 40px rgba(38,57,47,.10)}
+.sync-shot-phone{position:absolute;right:0;bottom:0;width:28%;border-radius:18px;background:#f6f8f5;box-shadow:0 18px 36px rgba(38,57,47,.16)}
+@media (max-width:800px){
+  .sync-chapter{display:block!important;padding-top:64px!important}
+  .sync-layout{grid-template-columns:1fr!important;gap:28px!important}
+  .sync-visual{padding:20px!important;min-height:0!important}
+}
+
+/* ---------- Explorer details ---------- */
+/* Screens are buttons; points are plain text. They no longer share a look. */
+.feature-flag{margin-left:6px;padding-left:6px;border-left:1px solid currentColor;font-weight:500;opacity:.78;white-space:nowrap}
+#desktop-explorer .feature-subtab{gap:0;font-size:14px!important;font-weight:600}
+#desktop-explorer .panel-tags .feature-subtab span{background:none!important;border:0!important;border-radius:0!important;padding:0!important;font-size:inherit!important;color:inherit!important;white-space:nowrap}
+#desktop-explorer .panel-tags .feature-subtab .feature-flag{padding-left:6px!important;border-left:1px solid currentColor!important}
+.panel-points{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--ps-muted);font-size:var(--ps-small);line-height:1.5}
+.panel-points li{position:relative;padding-left:14px}
+.panel-points li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:#9b86c4}
+
+/* mobile.html wide layout */
+@media (min-width:801px){
+  #explorer .mobile-capabilities{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;margin:16px 0 0;padding:0;color:var(--ps-muted);font-size:var(--ps-small);line-height:1.5}
+  #explorer .mobile-capabilities li{position:relative;padding-left:14px}
+  #explorer .mobile-capabilities li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:#9b86c4}
+  #explorer .feature-subnav{margin-top:22px}
+  #explorer .feature-subnav button{font-size:14px!important;font-weight:600;min-height:40px;padding:8px 13px;border:1px solid #93b29c;border-radius:8px;background:var(--ps-green-soft);color:#28513a}
+  #explorer .feature-subnav button:hover{background:#d6e7da;border-color:#668e72}
+  #explorer .feature-subnav button.active{background:var(--ps-green);border-color:var(--ps-green);color:#fff}
+  #explorer .detail-kicker{letter-spacing:.04em}
+}
+.stage-pagination{bottom:-26px!important;gap:10px!important;letter-spacing:.08em!important;font-size:var(--ps-label)!important}
+.slide-step{appearance:none;width:32px;height:32px;border-radius:50%;border:1px solid #c9d3cc;background:#fff;color:#3c5446;display:grid;place-items:center;cursor:pointer;padding:0}
+.slide-step svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.slide-step:hover{border-color:#8a71b3;color:#5b4779}
+.slide-step:focus-visible{outline:2px solid #8f70b5;outline-offset:2px}
+
+/* ---------- Phone carousel ---------- */
+.feature-carousel{display:none}
+@media (max-width:800px){
+  .feature-carousel{display:block;margin:4px -16px 0}
+  #desktop-explorer .feature-layout{display:none!important}
+  #explorer .explorer-layout{display:none!important}
+}
+.pc-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 7% 10px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.pc-track::-webkit-scrollbar{display:none}
+.pc-track:focus-visible{outline:2px solid #8f70b5;outline-offset:-2px}
+.pc-slide{flex:0 0 86%;scroll-snap-align:center;display:flex;justify-content:center}
+.pc-media{width:100%;border-radius:12px;background:#f6f8f5;box-shadow:0 14px 32px rgba(30,48,39,.10)}
+.pc-media[data-device="phone"]{width:auto;height:min(52svh,440px);border-radius:26px}
+#mobile-carousel .pc-slide{flex-basis:66%}
+.pc-nav{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 16px 0}
+.pc-dots{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.pc-dot{appearance:none;border:0;background:transparent;width:24px;height:32px;padding:0;display:grid;place-items:center;cursor:pointer}
+.pc-dot::before{content:'';width:8px;height:8px;border-radius:999px;background:#c5cfc8;transition:width .2s,background .2s}
+.pc-dot[aria-current="true"]::before{width:22px;background:var(--ps-green)}
+.pc-dot:focus-visible{outline:2px solid #8f70b5;outline-offset:-4px;border-radius:8px}
+.pc-step{appearance:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--ps-line);background:#fff;color:var(--ps-ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.pc-step svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pc-step:disabled{opacity:.35;cursor:default}
+.pc-step:focus-visible{outline:2px solid #8f70b5;outline-offset:2px}
+.pc-detail{padding:14px 16px 0}
+.pc-count{margin:0 0 6px;color:var(--ps-muted);font:600 var(--ps-label)/1 'DM Sans',sans-serif;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.pc-name{margin:0;font:600 var(--ps-h3)/1.25 'Space Grotesk','Noto Sans SC','Hiragino Sans',sans-serif;letter-spacing:-.02em;color:var(--ps-ink)}
+html[lang="zh-CN"] .pc-name{font-family:'Pasero Smiley','Noto Sans SC',sans-serif;font-weight:400;letter-spacing:0}
+.pc-line{margin:6px 0 0;font-size:var(--ps-body);line-height:1.6;color:var(--ps-muted)}
+.pc-views{margin-top:14px}
+.pc-views-label{display:block;margin-bottom:8px;font-size:var(--ps-label);font-weight:600;color:var(--ps-muted)}
+.pc-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pc-chip{appearance:none;display:inline-flex;align-items:center;min-height:40px;padding:8px 13px;border:1px solid #93b29c;border-radius:8px;background:var(--ps-green-soft);color:#28513a;font:600 14px/1.25 'DM Sans','Noto Sans SC','Hiragino Sans',sans-serif;cursor:pointer;text-align:left}
+.pc-chip[aria-pressed="true"]{background:var(--ps-green);border-color:var(--ps-green);color:#fff}
+.pc-chip:focus-visible{outline:2px solid #8f70b5;outline-offset:2px}
+.pc-flag{margin-left:6px;padding-left:6px;border-left:1px solid currentColor;font-weight:500;opacity:.8}
+.pc-points{list-style:none;margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--ps-line);display:grid;gap:8px;font-size:var(--ps-small);line-height:1.55;color:var(--ps-ink)}
+.pc-points li{position:relative;padding-left:16px}
+.pc-points li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:#9b86c4}
+@media (prefers-reduced-motion:reduce){.pc-track{scroll-behavior:auto}.pc-dot::before{transition:none}}
+
+/* ---------- 12px floor for readable text ---------- */
+html body .hero .trust span,html body .sync-explain-aside,html body .editorial-index,html body .editorial-annotation,
+html body .showcase-top span,html body .hero-visual .visual-foot,html body .sync-visual>span,html body .story-overline,
+html body .feature-tab .number,html body .feature-option .feature-index,html body #desktop-explorer .feature-tab small{font-size:12px!important}
+html body #desktop-explorer .feature-tab small{font-size:13px!important}
+html body .hero .stage .node strong{font-size:max(11px,1em)}
+html body .hero .stage .node small{font-size:11px!important}
+html body #pricing.px-pricing .px-col-note,html body #pricing.px-pricing .px-feature-detail{font-size:12px}
+@media (max-width:800px){html body .navlinks a,html body .navlinks .btn{font-size:12px!important}}
+.shot-ph-badge{white-space:normal;max-width:100%;text-align:center}
+@media (max-width:800px){.feature-carousel{width:100vw;margin:4px 0 0 calc(50% - 50vw)!important}}
+html body #desktop-explorer #feature-tabs.feature-tabs .feature-tab small{font-size:13px!important}
+html body #desktop-explorer #feature-tabs.feature-tabs .feature-tab .number,html body .hero .stage .node .node-symbol{font-size:12px!important}
+html body .hero .stage .node small{font-size:12px!important}
+html body .hero .stage .visual-label{font-size:11px!important}
+@media (max-width:800px){html body .hero .stage .node strong{font-size:11px!important}}
+#mobile-story .editorial-desktop .story-shot{aspect-ratio:16/9}

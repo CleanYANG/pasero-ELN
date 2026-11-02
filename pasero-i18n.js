@@ -16,8 +16,8 @@ Object.assign(translations,{
   "Keep reading close to doing.": "支持管理文献，单页双页阅读",
   "Turn your results into a story.": "以记录的结果为中心，不费吹灰之力助你组会一臂之力",
   "Resources": "数据库",
-  "Six areas. One connected workspace.": "七大功能，一个空间，不要 tokens，离线使用",
-  "Capture what happens at the bench. Pick up the same research on your desktop.": "移动端与桌面端二维码丝滑连接，实时同步",
+  "Six areas. One connected workspace.": "七大功能，一个空间，核心功能离线可用",
+  "Capture what happens at the bench. Pick up the same research on your desktop.": "在实验台用手机记录，回到电脑前接着整理。扫码配对，同一局域网内手动同步",
   "A smaller screen. The same research context.": "麻雀虽小，五脏俱全",
   "Your experimental notes, lab materials, cell culture, and literature — ready when you're away from your desk.": "实验笔记、试剂材料、细胞培养与文献，随时都能接续",
   "Explore the mobile workflow by area. Switch between features and their tools while the phone stays in place.": "按研究场景逐一探索，可在不同工具之间轻松切换",
@@ -32,7 +32,13 @@ var KEY='coolab-language';
 var lang='en',processing=false;
 var originals=new WeakMap(),lastTranslations=new WeakMap(),attributeOriginals=new WeakMap();
 var japanese=window.PaseroJapanese||{};
-function loadSaved(){try{var v=localStorage.getItem(KEY);return v==='zh'||v==='ja'?v:'en';}catch(e){return 'en';}}
+function detect(){
+ var list=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en']);
+ for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('ja')===0)return 'ja';if(l.indexOf('en')===0)return 'en';}
+ return 'en';
+}
+/* A choice made with the language picker wins; otherwise follow the browser (zh / ja / en). */
+function loadSaved(){try{var v=localStorage.getItem(KEY);if(v==='zh'||v==='ja'||v==='en')return v;}catch(e){}return detect();}
 function store(v){try{localStorage.setItem(KEY,v);}catch(e){}}
 function stripChineseTerminalStop(text){return text.replace(/。(?=\s*$)/u,'');}
 function japaneseText(source){
@@ -112,8 +118,8 @@ function closePaseroLanguageMenus(){
   if(panel)panel.hidden=true;if(button)button.setAttribute('aria-expanded','false');
  });
 }
-function setLang(next){
- lang=next==='zh'||next==='ja'?next:'en';store(lang);translateAll();
+function setLang(next,remember){
+ lang=next==='zh'||next==='ja'?next:'en';if(remember!==false)store(lang);translateAll();
  var storyButton=document.querySelector('[data-story-lang="'+lang+'"]');
  if(storyButton&&!storyButton.classList.contains('selected'))storyButton.click();
 }
@@ -136,7 +142,7 @@ document.addEventListener('keydown',function(ev){
  if(trigger&&ev.key==='ArrowDown'){var panel=trigger.closest('[data-pasero-lang-picker]').querySelector('.pasero-lang-options');panel.hidden=false;trigger.setAttribute('aria-expanded','true');panel.querySelector('button')?.focus();ev.preventDefault();}
 },true);
 window.PaseroI18n={getLanguage:function(){return lang;},setLanguage:setLang,translate:translate,refresh:translateAll};
-lang=loadSaved();setLang(lang);
+lang=loadSaved();setLang(lang,false);
 var pending=false;
 var obs=new MutationObserver(function(){
  if(processing||lang==='en'||pending)return;pending=true;
