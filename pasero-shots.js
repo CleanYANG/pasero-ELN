@@ -1,8 +1,9 @@
 /* Pasero screenshot slots (2026-11).
    Every product screenshot on the site is a named slot. Until the new build is captured, a slot renders a
    clearly-labelled placeholder that says which screen belongs there. To publish a real capture, save it as
-   assests/shots/<id>.png (or <id>.mp4 for a video slot); the slot picks it up automatically, no code change.
-   The full list of slots lives in assests/shots/README.md. */
+   assests/shots/<id>.<lang>.webp (lang = en, ja or zh; <id>.<lang>.mp4 for a video slot, with a .webp poster);
+   the slot picks it up automatically, no code change. Each visitor sees the capture in the page language,
+   falling back to English, then to a legacy <id>.png. The full list of slots lives in assests/shots/README.md. */
 (function () {
   'use strict';
   var BASE = 'assests/shots/';
@@ -21,6 +22,8 @@
       show: T('Excel, CSV or documents turned into notes, plus your own vocabulary list', 'Excel、CSV 或文档批量生成笔记，并构建自己的词汇库', 'Excel・CSV・文書からノートを作成し、語彙集も作る') },
     'd-notes-export': { device: 'desktop', screen: T('Lab notes · Export', '实验笔记 · 导出', '実験ノート · 書き出し'),
       show: T('Word / PDF export preview of a note', '笔记导出 Word / PDF 的预览', 'ノートを Word / PDF に書き出すプレビュー') },
+    'd-analysis-oneclick': { device: 'desktop', kind: 'video', screen: T('Data analysis · One-click figures', '数据分析 · 一键出图', 'データ解析 · ワンクリックで図'),
+      show: T('Short recording: paste a table, get a journal-ready figure, statistics and methods text', '短录屏：粘贴表格，得到期刊级图表、统计结果和方法描述', '短い録画：表を貼り付けると、論文品質の図・統計・方法の文章ができる') },
     'd-analysis-overview': { device: 'desktop', screen: T('Data analysis · Import and plot', '数据分析 · 导入与出图', 'データ解析 · 取り込みとグラフ'),
       show: T('A data table next to its bar, line or box plot', '数据表与对应的柱状图、折线图或箱型图并排', 'データ表と棒・折れ線・箱ひげ図を並べて') },
     'd-analysis-stats': { device: 'desktop', screen: T('Data analysis · Statistics and fitting', '数据分析 · 统计与拟合', 'データ解析 · 統計とフィッティング'),
@@ -41,7 +44,7 @@
       show: T('Sample table with volumes and the start-reaction button that logs to a note', '样品表、加样量，以及开始反应并写入笔记的按钮', 'サンプル表と添加量、反応開始してノートに記録するボタン') },
     'd-plasmid-primer': { device: 'desktop', screen: T('Plasmids · Primer design', '质粒 · 引物设计', 'プラスミド · プライマー設計'),
       show: T('A primer pair on the template with Tm and GC%', '模板上的一对引物及其 Tm 和 GC%', 'テンプレート上のプライマー対と Tm・GC%') },
-    'd-plasmid-primer-adv': { device: 'desktop', kind: 'video', screen: T('Plasmids · Advanced primer design', '质粒 · 高级引物设计', 'プラスミド · 高度なプライマー設計'),
+    'd-plasmid-primer-adv': { device: 'desktop', screen: T('Plasmids · Advanced primer design', '质粒 · 高级引物设计', 'プラスミド · 高度なプライマー設計'),
       show: T('Short screen recording of the advanced primer workflow', '高级引物设计流程的短录屏', '高度なプライマー設計の短い画面録画') },
     'd-plasmid-sanger': { device: 'desktop', screen: T('Plasmids · Sanger alignment', '质粒 · Sanger 比对', 'プラスミド · サンガー配列比較'),
       show: T('AB1 trace aligned to the reference with a mismatch selected', 'AB1 峰图与参考序列比对，选中一处差异', 'AB1 波形とリファレンスの比較、不一致を選択') },
@@ -150,23 +153,37 @@
     wrap.appendChild(textEl('span', 'shot-ph-show', spec.show));
     var file = document.createElement('code');
     file.className = 'shot-ph-file';
-    file.textContent = BASE + id + (kind === 'video' ? '.mp4' : '.png');
+    file.textContent = BASE + id + '.' + lang() + (kind === 'video' ? '.mp4' : '.webp');
     wrap.appendChild(file);
     return wrap;
   }
-  function realMedia(id, spec, opts) {
+  function lang() {
+    var i18n = window.PaseroI18n;
+    var l = i18n && i18n.getLanguage ? i18n.getLanguage() : (document.documentElement.lang || 'en').slice(0, 2);
+    return l === 'zh' || l === 'ja' ? l : 'en';
+  }
+  /* Files tried for a slot, best first: page language, English, legacy single file. */
+  function candidates(id, kind, l) {
+    var ext = kind === 'video' ? '.mp4' : '.webp';
+    var list = [id + '.' + l + ext];
+    if (l !== 'en') list.push(id + '.en' + ext);
+    list.push(id + (kind === 'video' ? '.mp4' : '.png'));
+    return list.map(function (f) { return BASE + encodeURIComponent(f).replace(/%2E/g, '.'); });
+  }
+  function posterFor(src) { return src.replace(/\.mp4$/, '.webp'); }
+  function realMedia(src, spec, opts) {
     var kind = spec.kind || 'image';
     var alt = 'Pasero — ' + tr(spec.screen);
     if (kind !== 'video') {
       var img = document.createElement('img');
-      img.src = BASE + encodeURIComponent(id) + '.png';
+      img.src = src;
       img.alt = alt;
       img.decoding = 'async';
       return img;
     }
     var v = document.createElement('video');
-    v.src = BASE + encodeURIComponent(id) + '.mp4';
-    v.poster = BASE + encodeURIComponent(id) + '.png';
+    v.src = src;
+    v.poster = posterFor(src);
     v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
     v.setAttribute('aria-label', alt);
     if (opts.tapToPlay || reducedMotion()) {
@@ -187,24 +204,32 @@
     v.controls = true;
     return v;
   }
-  function probe(id, kind, cb) {
-    var state = probed[id];
+  function probeOne(src, kind, cb) {
+    var state = probed[src];
     if (state === true || state === false) { cb(state); return; }
     if (Array.isArray(state)) { state.push(cb); return; }
-    probed[id] = [cb];
-    var done = function (ok) { var list = probed[id]; probed[id] = ok; list.forEach(function (fn) { fn(ok); }); };
+    probed[src] = [cb];
+    var done = function (ok) { var list = probed[src]; probed[src] = ok; list.forEach(function (fn) { fn(ok); }); };
     if (kind === 'video') {
       var v = document.createElement('video');
       v.preload = 'metadata'; v.muted = true;
       v.onloadedmetadata = function () { done(true); };
       v.onerror = function () { done(false); };
-      v.src = BASE + encodeURIComponent(id) + '.mp4';
+      v.src = src;
     } else {
       var img = new Image();
       img.onload = function () { done(img.naturalWidth > 0); };
       img.onerror = function () { done(false); };
-      img.src = BASE + encodeURIComponent(id) + '.png';
+      img.src = src;
     }
+  }
+  /* Calls cb(src) with the first file that exists, or cb(null). */
+  function probe(id, kind, l, cb) {
+    var list = candidates(id, kind, l);
+    (function next(i) {
+      if (i >= list.length) { cb(null); return; }
+      probeOne(list[i], kind, function (ok) { if (ok) cb(list[i]); else next(i + 1); });
+    })(0);
   }
 
   /* Fill `host` with the slot. opts.tapToPlay keeps videos still until tapped. */
@@ -212,15 +237,29 @@
     opts = opts || {};
     var spec = SHOTS[id];
     if (!spec) { host.textContent = ''; return; }
+    var l = lang();
+    var same = host.dataset.shotId === id && host.classList.contains('shot-real');
     host.classList.add('shot');
     host.dataset.device = spec.device;
     host.dataset.shotId = id;
-    host.classList.remove('shot-real');
-    host.replaceChildren(placeholder(id, spec));
-    probe(id, spec.kind || 'image', function (ok) {
-      if (!ok || host.dataset.shotId !== id) return;
+    host.dataset.shotLang = l;
+    host._shotOpts = opts;
+    // Switching language on a slot that already shows a capture keeps it until the new file is ready.
+    if (!same) { host.classList.remove('shot-real'); host.replaceChildren(placeholder(id, spec)); }
+    probe(id, spec.kind || 'image', l, function (src) {
+      if (host.dataset.shotId !== id || host.dataset.shotLang !== l) return;
+      if (!src) { if (same) { host.classList.remove('shot-real'); host.replaceChildren(placeholder(id, spec)); } return; }
+      var current = host.querySelector('img,video');
+      if (current && current.getAttribute('src') === src) return;
       host.classList.add('shot-real');
-      host.replaceChildren(realMedia(id, spec, opts));
+      host.replaceChildren(realMedia(src, spec, opts));
+    });
+  }
+  /* The page language changed: show each slot's capture in the new language. */
+  function relocalize() {
+    var l = lang();
+    document.querySelectorAll('.shot[data-shot-id]').forEach(function (el) {
+      if (el.dataset.shotLang !== l) fill(el, el.dataset.shotId, el._shotOpts);
     });
   }
   function hydrate(root) {
@@ -229,7 +268,8 @@
     });
   }
 
-  window.PaseroShots = { fill: fill, hydrate: hydrate, spec: function (id) { return SHOTS[id]; }, list: SHOTS };
+  window.PaseroShots = { fill: fill, hydrate: hydrate, relocalize: relocalize, spec: function (id) { return SHOTS[id]; }, list: SHOTS };
+  document.addEventListener('pasero:language', relocalize);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { hydrate(); });
   else hydrate();
 })();

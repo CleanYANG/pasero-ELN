@@ -120,6 +120,7 @@ function closePaseroLanguageMenus(){
 }
 function setLang(next,remember){
  lang=next==='zh'||next==='ja'?next:'en';if(remember!==false)store(lang);translateAll();
+ try{document.dispatchEvent(new CustomEvent('pasero:language',{detail:lang}));}catch(e){}
  var storyButton=document.querySelector('[data-story-lang="'+lang+'"]');
  if(storyButton&&!storyButton.classList.contains('selected'))storyButton.click();
 }
