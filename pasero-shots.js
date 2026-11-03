@@ -12,6 +12,8 @@
   // id: { device: 'desktop' | 'phone', kind: 'image' | 'video', screen: [en, zh, ja], show: [en, zh, ja] }
   var SHOTS = {
     /* Desktop */
+    'd-hero-loop': { device: 'desktop', kind: 'video', screen: T('Desktop · One-click figure and lab-meeting slides', '桌面端 · 一键出图与组会 PPT', 'デスクトップ · ワンクリックの図とラボミーティング資料'),
+      show: T('Short loop: a table becomes a figure, then saved results become lab-meeting slides', '短循环：表格变成图，已保存的结果变成组会幻灯片', '短いループ：表が図になり、保存した結果がスライドになる') },
     'd-home': { device: 'desktop', screen: T('Desktop · Home', '桌面端 · 首页', 'デスクトップ · ホーム'),
       show: T('Recent notes, active cell cultures and to-dos at a glance', '最近笔记、进行中的细胞培养和待办一屏可见', '最近のノート、進行中の細胞培養、To-do を一覧') },
     'd-notes-editor': { device: 'desktop', screen: T('Lab notes · Editor', '实验笔记 · 编辑器', '実験ノート · エディター'),
