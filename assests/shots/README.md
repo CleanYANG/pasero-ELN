@@ -8,7 +8,7 @@ To publish a capture, save it in this folder under the slot name below and redep
 - Video slots: `<id>.<lang>.mp4` (H.264, muted, short) plus `<id>.<lang>.webp` as the poster; on phones the video waits on that poster until tapped.
 - Each visitor sees the file for the page language. A missing language falls back to `.en`, then to a legacy `<id>.png` / `<id>.mp4`.
 - Desktop captures (2026-11-03) were taken from the desktop app at 1440 x 900, rendered at 2x and stitched; the pipeline lives outside the repo (stitch + `publish.py`).
-- Not captured yet (still placeholders): d-analysis-wb, d-plasmid-sanger, d-db-protocol, d-ra-calc, d-sync. d-lit-search has English only (Europe PMC was down for the ja/zh runs).
+- Not captured yet (still placeholders): d-analysis-wb, d-plasmid-sanger, d-db-protocol, d-ra-calc, d-sync.
 
 ## Desktop (Windows)
 
