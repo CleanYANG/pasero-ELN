@@ -7,7 +7,7 @@ To publish a capture, save it in this folder under the slot name and redeploy. N
 - Images: `<id>.<lang>.webp` with lang = `en`, `ja` or `zh`. Desktop feature shots keep their own shape (very tall ones are capped at 74% of the window height); the hero `d-home` is framed at 1600:880 so the pen marks line up.
 - Video slots: `<id>.<lang>.mp4` (H.264, muted, short) plus `<id>.<lang>.webp` as the poster; on phones the video waits on that poster until tapped.
 - Each visitor sees the file for the page language. A missing language falls back to `.en`, then to a legacy `<id>.png` / `<id>.mp4`.
-- Desktop shots (2026-11-03) are Hong Yang's own screenshots and recordings from the desktop app, converted to webp (max 2000 px wide) and H.264 (max 1920 px wide, CRF 25). ZH shots (from 中文/) cover every slot except `d-notes-resources` and `d-plasmid-trace`, which fall back to English; JA falls back to English until 日文/ arrives.
+- Desktop shots (2026-11-03) are Hong Yang's own screenshots and recordings from the desktop app, converted to webp (max 2000 px wide) and H.264 (max 1920 px wide, CRF 25). ZH shots (from 中文/) cover every slot; JA falls back to English until 日文/ arrives.
 
 ## Slots in use on the homepage
 
