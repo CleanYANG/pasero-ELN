@@ -21,6 +21,7 @@
   }
   var bodyColor = parse(getComputedStyle(document.body).backgroundColor) || [255, 255, 255];
   function colorOf(s) { return parse(getComputedStyle(s).backgroundColor) || bodyColor; }
+  function lum(c) { return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255; }
   function css(c) { return 'rgb(' + c.map(Math.round).join(',') + ')'; }
   // Some chapters set their background with !important, so the fade is set the same way.
   function paint(el, stops) {
@@ -34,6 +35,8 @@
     for (var i = 0; i < sections.length - 1; i++) {
       var a = colors[i], b = colors[i + 1];
       if (a.join() === b.join()) continue;
+      // Dark next to light: a fade would pass through a muddy grey band, so the edge stays clean.
+      if (Math.abs(lum(a) - lum(b)) > 0.45) continue;
       var mid = css([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2]);
       edges[i].bottom = mid;
       edges[i + 1].top = mid;
