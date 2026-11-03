@@ -1,0 +1,32 @@
+/* Page flow (2026-11): one chapter rhythm, colour fades across the gap between chapters (pasero-flow.js),
+   quiet headline entrances and the scroll-linked mobile chapter on the home page. */
+
+/* ---------- Chapter rhythm ----------
+   Every chapter gets the same space above and below its content, so the gap between two chapters is always
+   the same: about 240px on a wide screen, about 150px on a phone. */
+:root{--chapter-space:clamp(72px,8.5vw,124px)}
+html body main>section:not(.hero):not(.mobile-hero){padding-top:var(--chapter-space)!important;padding-bottom:var(--chapter-space)!important}
+html body #mobile-story .mobile-kicker,html body #desktop-explorer .section-kicker{margin-top:0!important}
+html body .hero{padding-bottom:calc(var(--chapter-space) * .6)!important}
+html body .mobile-hero{padding-bottom:var(--chapter-space)!important}
+/* mobile.html: the device's pagination hangs below the stage; give it room inside the chapter. */
+@media (min-width:801px){html body #explorer .explorer-layout{margin-bottom:34px}}
+
+
+/* ---------- Chapter headlines ---------- */
+html.flow-motion .flow-reveal{opacity:0;translate:0 14px;transition:opacity .7s cubic-bezier(.2,.7,.2,1),translate .7s cubic-bezier(.2,.7,.2,1)}
+html.flow-motion .flow-reveal em{opacity:0;transition:opacity .8s cubic-bezier(.2,.7,.2,1) .2s}
+html.flow-motion .flow-reveal.is-in{opacity:1;translate:0 0}
+html.flow-motion .flow-reveal.is-in em{opacity:1}
+
+/* ---------- Home, mobile chapter: phone and desktop come together ---------- */
+@media (min-width:801px){
+  html.flow-motion #mobile-story .editorial-stage{--q:calc(1 - var(--flow-p,1))}
+  html.flow-motion #mobile-story .editorial-phone{translate:calc(var(--q) * -6vw) calc(var(--q) * 24px)}
+  html.flow-motion #mobile-story .editorial-desktop{translate:calc(var(--q) * 6vw) calc(var(--q) * 48px)}
+  html.flow-motion #mobile-story .editorial-index:not(.desktop-index){translate:calc(var(--q) * -6vw) calc(var(--q) * 24px)}
+  html.flow-motion #mobile-story .desktop-index{translate:calc(var(--q) * 6vw) calc(var(--q) * 48px)}
+  html.flow-motion #mobile-story .editorial-sync-arrow{opacity:clamp(0,(var(--flow-p,1) - .55) * 3,1);scale:calc(.7 + .3 * clamp(0,(var(--flow-p,1) - .55) * 3,1))}
+  html.flow-motion #mobile-story .editorial-thread{opacity:clamp(0,(var(--flow-p,1) - .45) * 2.5,1)}
+  html.flow-motion #mobile-story .editorial-annotation{opacity:clamp(0,(var(--flow-p,1) - .8) * 5,1);translate:0 calc(clamp(0,(1 - var(--flow-p,1)) * 5,1) * 10px)}
+}
