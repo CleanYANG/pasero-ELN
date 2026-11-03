@@ -32,3 +32,15 @@
  .ts-body{padding:20px 6px 8px}
  .ts-lead{font-size:15.5px}
 }
+/* Chinese and Japanese headings use the same faces as the other chapter titles
+   (pasero-editorial-2026.css / pasero-language.css), not the Latin display face. */
+html[lang="zh-CN"] .ts-title,html[lang="zh-CN"] .ts-body h3{font-family:'Pasero Smiley','Noto Sans SC',sans-serif!important;font-weight:400!important;letter-spacing:0!important;font-style:normal}
+html[lang="zh-CN"] .ts-title{font-size:clamp(37px,4vw,56px)!important;line-height:1.32!important;max-width:100%}
+html[lang="zh-CN"] .ts-body h3{font-size:clamp(25px,2.3vw,32px)!important;line-height:1.35!important}
+html[lang="zh-CN"] .ts-lead,html[lang="zh-CN"] .ts-body p,html[lang="zh-CN"] .ts-body li{font-family:'Noto Sans SC',sans-serif;line-height:1.85}
+html[lang="ja"] .ts-title{font-size:clamp(35px,4.2vw,59px)!important;line-height:1.45!important;font-weight:500!important;letter-spacing:0!important}
+html[lang="ja"] .ts-body h3{font-weight:500!important;letter-spacing:0!important;line-height:1.45!important}
+@media (max-width:800px){
+ html[lang="zh-CN"] .ts-title{font-size:clamp(30px,7vw,43px)!important;line-height:1.35!important}
+ html[lang="ja"] .ts-title{font-size:clamp(30px,7.4vw,42px)!important}
+}
