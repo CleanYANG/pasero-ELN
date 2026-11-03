@@ -4,9 +4,11 @@ Every product screenshot on pasero.app is a named slot. Until a file exists, the
 
 To publish a capture, save it in this folder under the slot name below and redeploy. No code change is needed.
 
-- Images: `<id>.png`. Desktop slots are shown at 16:10, phone slots at 9:19.5; other sizes are letterboxed, not cropped.
-- Video slots: `<id>.mp4` (H.264, muted, short). Add `<id>.png` as the poster frame; on phones the video waits on that poster until tapped.
-- Capture each language build if you want, but one image per slot is enough: the site uses the same file for EN / 中文 / 日本語.
+- Images: `<id>.<lang>.webp` with lang = `en`, `ja` or `zh`. Desktop slots are shown at 16:10, phone slots at 9:19.5; other sizes are letterboxed, not cropped.
+- Video slots: `<id>.<lang>.mp4` (H.264, muted, short) plus `<id>.<lang>.webp` as the poster; on phones the video waits on that poster until tapped.
+- Each visitor sees the file for the page language. A missing language falls back to `.en`, then to a legacy `<id>.png` / `<id>.mp4`.
+- Desktop captures (2026-11-03) were taken from the desktop app at 1440 x 900, rendered at 2x and stitched; the pipeline lives outside the repo (stitch + `publish.py`).
+- Not captured yet (still placeholders): d-analysis-wb, d-plasmid-sanger, d-db-protocol, d-ra-calc, d-sync. d-lit-search has English only (Europe PMC was down for the ja/zh runs).
 
 ## Desktop (Windows)
 
@@ -17,6 +19,7 @@ To publish a capture, save it in this folder under the slot name below and redep
 | `d-notes-new.png` | 实验笔记 · 新建笔记 / Lab notes · New note | 四种新建方式：空白、方案模板、酶切反应、细胞实验 |
 | `d-notes-import.png` | 实验笔记 · 批量导入 / Lab notes · Batch import | Excel、CSV 或文档批量生成笔记，并构建自己的词汇库 |
 | `d-notes-export.png` | 实验笔记 · 导出 / Lab notes · Export | 笔记导出 Word / PDF 的预览 |
+| `d-analysis-oneclick.mp4` | 数据分析 · 一键出图 / Data analysis · One-click figures | 粘贴表格 → 期刊级图表、统计结果和方法描述的短录屏 |
 | `d-analysis-overview.png` | 数据分析 · 导入与出图 / Data analysis · Import and plot | 数据表与对应的柱状图、折线图或箱型图并排 |
 | `d-analysis-stats.png` | 数据分析 · 统计与拟合 / Data analysis · Statistics and fitting | 统计检验结果和一条拟合曲线（如 IC50） |
 | `d-analysis-qpcr.png` | 数据分析 · qPCR / Data analysis · qPCR | ΔΔCt 结果表与相对表达量图 |
@@ -27,7 +30,7 @@ To publish a capture, save it in this folder under the slot name below and redep
 | `d-plasmid-restriction.png` | 质粒 · 酶切分析 / Plasmids · Restriction analysis | 切点、片段大小、电泳预览和缓冲液推荐 |
 | `d-plasmid-digest.png` | 质粒 · 酶切反应设置 / Plasmids · Digest reaction | 样品表、加样量，以及开始反应并写入笔记的按钮 |
 | `d-plasmid-primer.png` | 质粒 · 引物设计 / Plasmids · Primer design | 模板上的一对引物及其 Tm 和 GC% |
-| `d-plasmid-primer-adv.mp4` | 质粒 · 高级引物设计 / Plasmids · Advanced primer design | 高级引物设计流程的短录屏 |
+| `d-plasmid-primer-adv.png` | 质粒 · 高级引物设计 / Plasmids · Advanced primer design | 定点突变引物设计结果 |
 | `d-plasmid-sanger.png` | 质粒 · Sanger 比对 / Plasmids · Sanger alignment | AB1 峰图与参考序列比对，选中一处差异 |
 | `d-db-libraries.png` | 数据库 · 方案、试剂与细胞库 / Database · Libraries | 一条试剂或细胞记录，以及用到它的笔记 |
 | `d-db-culture.png` | 数据库 · 细胞培养追踪 / Database · Cell culture tracking | 一条培养时间线：复苏、传代、冻存、冻存支数、传代提醒 |
