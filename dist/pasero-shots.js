@@ -74,6 +74,8 @@
       show: T('Term lookup popover and citation style picker', '术语解释弹窗与引用格式选择', '用語解説のポップオーバーと引用形式の選択') },
     'd-pres-slides': { device: 'desktop', screen: T('Presentations · Slides from results', '研究汇报 · 用结果生成 PPT', '発表 · 結果からスライド'),
       show: T('Lab meeting templates built from saved results', '基于已保存结果的组会汇报模板', '保存した結果から作るラボミーティングのテンプレート') },
+    'd-pres-meeting': { device: 'desktop', kind: 'video', screen: T('Presentations · Lab meeting slides', '研究汇报 · 组会 PPT', '発表 · ラボミーティング資料'),
+      show: T('Short recording: pick notes, choose a layout and get the lab-meeting slides with every result and figure', '短录屏：选笔记、选版式，直接得到带结果和图的组会幻灯片', '短い録画：ノートとレイアウトを選ぶと、結果と図の入ったスライドができる') },
     'd-pres-ai': { device: 'desktop', screen: T('Presentations · Pasero AI', '研究汇报 · Pasero AI', '発表 · Pasero AI'),
       show: T('A journal club deck or poster drafted with Pasero AI', '用 Pasero AI 起草的组会文献汇报或海报', 'Pasero AI で作成した論文抄読会スライドやポスター') },
     'd-pres-journal': { device: 'desktop', kind: 'video', screen: T('Presentations · Journal club with Pasero AI', '研究汇报 · Pasero AI 文献汇报', '発表 · Pasero AI で論文抄読会'),
