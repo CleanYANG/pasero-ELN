@@ -55,18 +55,20 @@
   blend();
   window.addEventListener('resize', function () { requestAnimationFrame(blend); });
 
-  /* Home page, mobile chapter: phone and desktop come together as the chapter scrolls in. */
-  var stage = document.querySelector('#mobile-story .editorial-stage');
+  /* Two screens that come together as their chapter scrolls in: the home page's mobile chapter and
+     mobile.html's sync chapter (anything marked data-flow-converge). */
+  var stages = [].slice.call(document.querySelectorAll('#mobile-story .editorial-stage, [data-flow-converge]'));
   var wide = window.matchMedia('(min-width: 801px)');
   var ticking = false;
   function frame() {
     ticking = false;
-    if (!stage) return;
-    if (wide.matches && root.classList.contains('flow-motion')) {
-      var s = stage.getBoundingClientRect(), vh = window.innerHeight;
+    var on = wide.matches && root.classList.contains('flow-motion'), vh = window.innerHeight;
+    stages.forEach(function (stage) {
+      if (!on) { stage.style.removeProperty('--flow-p'); return; }
+      var s = stage.getBoundingClientRect();
       var p = Math.min(1, Math.max(0, (vh * 0.92 - s.top) / (vh * 0.62)));
       stage.style.setProperty('--flow-p', p.toFixed(3));
-    } else stage.style.removeProperty('--flow-p');
+    });
   }
   function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener('scroll', schedule, { passive: true });

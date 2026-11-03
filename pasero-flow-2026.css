@@ -5,7 +5,7 @@
    Every chapter gets the same space above and below its content, so the gap between two chapters is always
    the same: about 240px on a wide screen, about 150px on a phone. */
 :root{--chapter-space:clamp(72px,8.5vw,124px)}
-html body main>section:not(.hero):not(.mobile-hero){padding-top:var(--chapter-space)!important;padding-bottom:var(--chapter-space)!important}
+html body main>section:not(.hero):not(.mobile-hero):not(.hx){padding-top:var(--chapter-space)!important;padding-bottom:var(--chapter-space)!important}
 html body #mobile-story .mobile-kicker,html body #desktop-explorer .section-kicker{margin-top:0!important}
 html body .hero{padding-bottom:calc(var(--chapter-space) * .6)!important}
 html body .mobile-hero{padding-bottom:var(--chapter-space)!important}

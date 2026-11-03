@@ -76,8 +76,11 @@ To publish a capture, save it in this folder under the slot name below and redep
 - Mobile page explorer: all `m-notes-*`, `m-reagent-*`, `m-cell-*`, `m-plasmid-*`, `m-lit-*`, `m-discovery`, `m-seek-*`
 - Mobile page sync chapter: `d-sync`, `m-sync`
 
-## Home hero pen marks
+## Hero pen marks (home and mobile page)
 
 The hand-drawn circle, arrows and notes on the home hero sit on top of `d-home`. When the real capture lands,
 move them to the right spots: the three `<g class="ink …">` groups in `index.html` (1000 × 625 coordinates)
 and the matching `.hx-note-1/2/3` positions in `pasero-hero-2026.css` (percentages of the same box).
+
+The mobile page hero works the same way around `m-home`: the `<g class="ink …">` groups in `mobile.html`
+(1000 × 800 board, phone spans x 315–685) and the `.hx-m .hx-note-1/2/3` positions in `pasero-hero-2026.css`.
