@@ -2,13 +2,27 @@
 
 Every product screenshot on pasero.app is a named slot. Until a file exists, the site shows a labelled placeholder that names the screen.
 
-To publish a capture, save it in this folder under the slot name below and redeploy. No code change is needed.
+To publish a capture, save it in this folder under the slot name and redeploy. No code change is needed.
 
-- Images: `<id>.<lang>.webp` with lang = `en`, `ja` or `zh`. Desktop slots are shown at 16:10, phone slots at 9:19.5; other sizes are letterboxed, not cropped.
+- Images: `<id>.<lang>.webp` with lang = `en`, `ja` or `zh`. Desktop feature shots keep their own shape (very tall ones are capped at 74% of the window height); the hero `d-home` is framed at 1600:880 so the pen marks line up.
 - Video slots: `<id>.<lang>.mp4` (H.264, muted, short) plus `<id>.<lang>.webp` as the poster; on phones the video waits on that poster until tapped.
 - Each visitor sees the file for the page language. A missing language falls back to `.en`, then to a legacy `<id>.png` / `<id>.mp4`.
-- Desktop captures (2026-11-03) were taken from the desktop app at 1440 x 900, rendered at 2x and stitched; the pipeline lives outside the repo (stitch + `publish.py`).
-- Not captured yet (still placeholders): d-analysis-wb, d-plasmid-sanger, d-db-protocol, d-ra-calc, d-sync.
+- Desktop shots (2026-11-03) are Hong Yang's own screenshots and recordings from the desktop app, converted to webp (max 2000 px wide) and H.264 (max 1920 px wide, CRF 25). JA and ZH currently fall back to English.
+
+## Slots in use on the homepage
+
+| Feature | Slot | Source file (英文/) |
+|---|---|---|
+| Hero | `d-home` | 首页.png |
+| Notes | `d-notes-new`, `d-notes-cells`, `d-notes-digest`, `d-notes-resources` | notes.png, Notes+cells.png, Notes+酶切.png, 图片+资源关联.png |
+| Data analysis | `d-analysis-oneclick` (video) | data analysis.mp4 |
+| Plasmids | `d-plasmid-library`, `d-plasmid-map`, `d-plasmid-primer`, `d-plasmid-sanger` (video), `d-plasmid-trace` | Plasmid overview.png, Plasmid+sequencing overview.png, Plasmid+primer.png, plasmid+sanger.mp4, Plasmid+trace.png |
+| Database | `d-db-libraries`, `d-db-culture` | database overview.png, database+cell.png |
+| Literature | `d-lit-library` | 文献.png |
+| Presentations | `d-pres-slides`, `d-pres-journal` (video), `d-pres-poster` (video) | lab meetings.png, presentation+AI论文.mp4, presentation+poster+AI.mp4 |
+| Research assistant | `d-ra-notes`, `d-ra-search` | research assistant.png, research assistant+public search.png |
+
+The full slot catalogue below also lists slots that are defined in `pasero-shots.js` but not shown right now.
 
 ## Desktop (Windows)
 

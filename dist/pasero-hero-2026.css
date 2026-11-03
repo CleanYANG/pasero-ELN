@@ -57,7 +57,7 @@ html[lang="ja"] .hx-note,html[lang="ja"] .hx-question span{font-family:'Klee One
 .hx-note{position:absolute;z-index:2;transform:translate(-50%,-50%)}
 /* Label positions match the pen marks in the SVG (same 1000 x 550 space, as percentages). */
 .hx-note-1{left:46%;top:5.5%}
-.hx-note-2{left:78%;top:68%}
+.hx-note-2{left:76%;top:63.5%}
 .hx-note-3{left:85%;top:5%}
 .hx-question{position:absolute;left:2%;bottom:0;margin:0;display:flex;align-items:flex-end;gap:6px;transform:rotate(-2deg);transform-origin:left bottom}
 .hx-question svg{width:70px;height:47px;flex:0 0 auto;overflow:visible;order:2;margin-bottom:22px}
