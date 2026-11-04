@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.14",
   "trial": {
     "id": "pasero_public_trial_2026",
     "startsAt": "2026-11-10T00:00:00+09:00",
@@ -12,17 +12,17 @@
   },
   "files": {
     "windows": {
-      "filename": "Pasero-Windows-1.1.1-Setup.exe",
-      "bytes": 131329529,
-      "sha256": "becbf4da7fe77913d3cf32eb19b248c3bc10784d2f8112322a119355b828cdf7",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.1.1/Pasero-Windows-1.1.1-Setup.exe",
+      "filename": "Pasero-Windows-1.2.14-Setup.exe",
+      "bytes": 143276176,
+      "sha256": "b374761b70a5e0236e72b6d0fcd6fab6b7f2e4329f0a953bad98969131ad8d14",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.14/Pasero-Windows-1.2.14-Setup.exe",
       "verified": true
     },
     "android": {
-      "filename": "Pasero-Android-1.1.1.apk",
-      "bytes": 125433366,
-      "sha256": "6f127060ac31773e8d7ea39039c44ec788251b744482f64a282b8b096126f971",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.1.1/Pasero-Android-1.1.1.apk",
+      "filename": "Pasero-Android-1.2.14.apk",
+      "bytes": 151439540,
+      "sha256": "e38b9e0c081b532544ef71152ace2d38e42c90baf8a67b2681d8cbdd250c7f89",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.14/Pasero-Android-1.2.14.apk",
       "verified": true
     }
   }
