@@ -24,7 +24,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #8265b7;outline-offset:3p
 <section class="dl-hero"><div class="dl-wrap">
 <p class="dl-eyebrow"><span data-release-copy="eyebrow">Download</span> · <span data-release-version>Pasero 1.2.15</span></p>
 <h1 data-release-copy="title">Your research. On your devices.</h1>
-<p class="dl-lead" data-release-copy="intro">Download Pasero for Windows and Android.</p>
+<p class="dl-lead" data-release-copy="intro">Download Pasero for Windows, macOS and Android.</p>
 <div class="dl-trial"><strong data-release-copy="trialTitle">Full-feature free trial</strong><span data-release-copy="period">10 Nov 2026–10 Jan 2027 (Japan time)</span><span class="dl-trial-state" id="trial-state"></span></div>
 </div></section>
 <section class="dl-platforms" id="downloads"><div class="dl-wrap">
@@ -35,7 +35,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #8265b7;outline-offset:3p
 <a class="dl-btn release-download" data-release-platform="windows" aria-disabled="true" tabindex="-1"><span data-release-copy="pending">Download opening soon</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v12m-5-5 5 5 5-5M5 20h14"/></svg></a>
 <div class="dl-meta"><span data-release-meta="windows"></span><span data-release-copy="windowsRequirements">Windows 10/11 · 64-bit · Standalone installer</span></div>
 <details class="dl-hash"><summary>SHA-256</summary><code class="release-hash" data-release-hash="windows"></code></details></article>
-<article class="dl-card dl-card-soon"><h3>macOS</h3><span class="dl-soon" data-release-copy="coming">Not yet available</span></article></div>
+<article class="dl-card"><h3>macOS</h3><p data-release-copy="macosDescription">Notes, scientific analysis, plasmids, literature and presentations.</p>
+<a class="dl-btn release-download" data-release-platform="macos" aria-disabled="true" tabindex="-1"><span data-release-copy="pending">Download opening soon</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v12m-5-5 5 5 5-5M5 20h14"/></svg></a>
+<div class="dl-meta"><span data-release-meta="macos"></span><span data-release-copy="macosRequirements">macOS 12 or later · Apple silicon (M1 or newer) · Signed and notarised</span></div>
+<details class="dl-hash"><summary>SHA-256</summary><code class="release-hash" data-release-hash="macos"></code></details></article></div>
 <div id="platform-mobile" role="tabpanel" aria-labelledby="tab-mobile" class="dl-grid" hidden>
 <article class="dl-card dl-card-qr"><div><h3>Android</h3><p data-release-copy="androidDescription">Notes, Cell Track, Seek, paper reading and laboratory utilities.</p>
 <a class="dl-btn release-download" data-release-platform="android" aria-disabled="true" tabindex="-1"><span data-release-copy="pending">Download opening soon</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v12m-5-5 5 5 5-5M5 20h14"/></svg></a>
@@ -47,6 +50,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #8265b7;outline-offset:3p
 <section class="dl-info"><div class="dl-wrap dl-info-grid">
 <div><p class="dl-label" data-release-copy="installTitle">Install and activate</p><h2 data-release-copy="startTitle">Ready for your next experiment.</h2>
 <p data-release-copy="installWindows">Windows: download and run the installer. This beta installer does not yet have a Windows publisher certificate.</p>
+<p data-release-copy="installMac">macOS: open the .dmg and drag Pasero into Applications. Pasero opens in your browser; its small window stays open while you work, and closing it quits Pasero. Intel Macs are not supported yet.</p>
 <p data-release-copy="installAndroid">Android: download the APK and follow Android’s prompts to allow installation from your browser. The public-release signature differs from earlier test packages; back up your data before replacing a test installation.</p>
 <p data-release-copy="activation">In the app, open Plans &amp; upgrade → Sign in / Get trial. During the trial period, one account unlocks Pro on both Windows and Android.</p>
 <p data-release-copy="syncTip">Phone and computer sync over your local network. School and company Wi-Fi often stops devices from reaching each other; if pairing fails there, turn on Mobile hotspot on the computer (Settings → Network &amp; internet → Mobile hotspot) and connect the phone to it.</p></div>
@@ -58,4 +62,4 @@ button:focus-visible,a:focus-visible{outline:3px solid #8265b7;outline-offset:3p
 </div></section></main>
 <footer class="dl-wrap"><div class="story-end"><span>Small but mighty.</span><span>Be simple, be real, keep cool.</span><a href="#top">Back to top ↑</a></div></footer>
 <script>const buttons=[document.getElementById('tab-desktop'),document.getElementById('tab-mobile')],panels=[document.getElementById('platform-desktop'),document.getElementById('platform-mobile')];function select(i){buttons.forEach((b,j)=>{b.classList.toggle('active',i===j);b.setAttribute('aria-selected',String(i===j))});panels.forEach((p,j)=>p.hidden=i!==j)}buttons.forEach((b,i)=>b.addEventListener('click',()=>select(i)));if(location.hash==='#mobile')select(1);</script>
-<script src="pasero-ja.js?v=20261102-ux1"></script><script src="pasero-i18n.js?v=20261103-shots"></script><script src="release-downloads.js?v=1.2.15" defer></script></body></html>
+<script src="pasero-ja.js?v=20261102-ux1"></script><script src="pasero-i18n.js?v=20261103-shots"></script><script src="release-downloads.js?v=1.2.15-mac" defer></script></body></html>
