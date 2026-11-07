@@ -53,3 +53,10 @@ grant execute on function public.pasero_beta_signup(text, text, text) to anon, a
 --   view pasero_private.beta_referral_discounts lists who qualifies for the 20% referral discount.
 -- Mail-out list:
 --   select email, friends_invited, referral_discount from pasero_private.beta_referral_discounts order by created_at;
+
+-- 2026-11-08: migration "pasero_referral_rules".
+--   Sign-ups before public_beta_2026 ends get program 'beta_2026' (beta discount + referral 20% stack);
+--   later sign-ups get 'referral' (20% off the normal price only). One 20% per person.
+--   An invite counts only after the friend has signed in to Pasero with the same email (auth.users.last_sign_in_at).
+--   View columns: has_account, friends_signed_up, friends_verified, referral_20, beta_discount.
+--   select email, beta_discount, referral_20, friends_verified from pasero_private.beta_referral_discounts order by created_at;
