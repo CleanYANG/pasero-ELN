@@ -27,6 +27,7 @@ Object.assign(translations,{
   "Be simple, be real, keep cool.": "简单一点，真实一点，从容一点"
 });
 Object.assign(translations,{"One experiment.":"还记得这个细胞","So many connections.":"用在了哪个实验中？"});
+Object.assign(translations,{"Tools":"小工具"});
 Object.assign(translations,{"Subscription coming soon":"即将开放订阅","Free to use · Release pending":"免费使用 · 安装包尚未发布"});
 var KEY='coolab-language';
 var lang='en',processing=false;

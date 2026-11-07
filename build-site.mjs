@@ -16,12 +16,12 @@ for (const entry of readdirSync(root, { withFileTypes: true })) {
     cpSync(join(root, entry.name), join(output, entry.name));
   }
 }
-for (const directory of ['assets', 'assests']) {
+for (const directory of ['assets', 'assests', 'tools']) {
   if (existsSync(join(root, directory))) {
     cpSync(join(root, directory), join(output, directory), { recursive: true });
   }
 }
-for (const required of ['download.html', 'release-downloads.js', 'release-manifest.json', 'download-android-qr.svg']) {
+for (const required of ['download.html', 'release-downloads.js', 'release-manifest.json', 'download-android-qr.svg', 'tools/index.html']) {
   if (!existsSync(join(output, required))) throw new Error('Missing download asset: ' + required);
 }
 console.log('Static site built with download manifest and QR code.');

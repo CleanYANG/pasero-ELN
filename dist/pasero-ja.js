@@ -6,6 +6,7 @@ window.PaseroJapanese={
   "Pasero research workspace: connected notes, research resources and mobile workflows.": "実験ノート、研究リソース、モバイルでの作業をつなぐ Pasero の研究ワークスペース。",
   "Desktop": "デスクトップ",
   "Mobile": "モバイル",
+  "Tools": "ツール",
   "Pricing": "料金",
   "Download": "ダウンロード",
   "Download ↗": "ダウンロード ↗",
