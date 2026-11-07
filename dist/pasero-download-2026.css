@@ -158,3 +158,26 @@ body>header .navlinks .pasero-lang-trigger{
  .pasero-arrow-svg{width:16px;height:16px}
  .navlinks .btn .pasero-arrow-svg{width:13px;height:13px}
 }
+
+/* Beta-tester discount sign-up (optional e-mail) */
+.dl-beta{margin-top:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px 56px;align-items:start;
+ padding:clamp(24px,3vw,36px) clamp(26px,3vw,40px);border:1px solid #d9cfee;border-radius:22px;background:#f6f2fc}
+.dl-beta h3{font-size:clamp(20px,1.7vw,24px)}
+.dl-beta-copy p{margin-top:10px!important;font-size:var(--ps-small,14px)}
+.dl-beta-label{display:block;font-size:13px;font-weight:600;color:var(--dl-ink);margin-bottom:8px}
+.dl-beta-row{display:flex;gap:10px;flex-wrap:wrap}
+.dl-beta-row input{flex:1 1 240px;min-width:0;box-sizing:border-box;padding:13px 18px;border:1px solid #cfc3e6;border-radius:999px;background:#fff;
+ font:500 15px/1.2 'DM Sans','Noto Sans SC','Noto Sans JP',sans-serif;color:var(--dl-ink)}
+.dl-beta-row input:focus-visible{outline:2px solid #8f70b5;outline-offset:2px}
+.dl-beta-row input[aria-invalid="true"]{border-color:#b4413c}
+.dl-beta-row .dl-btn{margin-top:0;border:0;cursor:pointer}
+.dl-beta-row .dl-btn:focus-visible{outline:2px solid #8f70b5;outline-offset:2px}
+.dl-beta-row .dl-btn[disabled]{opacity:.6;cursor:default}
+.dl-beta .dl-beta-note{margin-top:10px!important;font-size:12px!important;line-height:1.6!important}
+.dl-beta-note a{color:#6f58a8;text-decoration:underline;text-underline-offset:3px}
+.dl-beta .dl-beta-status{margin-top:8px!important;font-size:13px!important;color:var(--dl-ink)!important;font-weight:600}
+.dl-beta .dl-beta-status:empty{display:none}
+.dl-beta .dl-beta-status[data-tone="error"]{color:#b4413c!important}
+.dl-beta.is-nudged{border-color:#8466bd;box-shadow:0 0 0 3px rgba(132,102,189,.18)}
+@media (prefers-reduced-motion:no-preference){.dl-beta{transition:border-color .3s,box-shadow .3s}}
+@media (max-width:800px){.dl-beta{grid-template-columns:1fr}.dl-beta-row .dl-btn{width:100%;justify-content:center}}
