@@ -181,3 +181,10 @@ body>header .navlinks .pasero-lang-trigger{
 .dl-beta.is-nudged{border-color:#8466bd;box-shadow:0 0 0 3px rgba(132,102,189,.18)}
 @media (prefers-reduced-motion:no-preference){.dl-beta{transition:border-color .3s,box-shadow .3s}}
 @media (max-width:800px){.dl-beta{grid-template-columns:1fr}.dl-beta-row .dl-btn{width:100%;justify-content:center}}
+.dl-beta .dl-beta-invited{margin-top:12px!important;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #cfc3e6;color:var(--dl-ink)!important;font-size:var(--ps-small,14px)!important;font-weight:600}
+.dl-beta-share{margin-top:18px;padding-top:18px;border-top:1px solid #ddd3ee}
+.dl-beta .dl-beta-share-title{color:var(--dl-ink)!important;font-weight:600;font-size:15px!important}
+.dl-beta .dl-beta-share-body{margin:4px 0 12px!important;font-size:13px!important}
+.dl-beta-share input[readonly]{color:var(--dl-muted);font-size:14px}
+.dl-btn.dl-btn-soft{background:#fff;color:var(--dl-ink)!important;border:1px solid #cfc3e6!important}
+.dl-btn.dl-btn-soft:hover{background:#efe9f8}

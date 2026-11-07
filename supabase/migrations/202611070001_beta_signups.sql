@@ -46,3 +46,10 @@ grant execute on function public.pasero_beta_signup(text, text, text) to anon, a
 --   select email, platforms, language, created_at from pasero_private.beta_signups order by created_at;
 -- Delete on request:
 --   delete from pasero_private.beta_signups where email = lower('someone@example.com');
+
+-- 2026-11-07 (later): invite-a-friend. Applied as migration "pasero_beta_referrals":
+--   beta_signups gains referral_code (8 hex chars, unique) and referred_by_code;
+--   pasero_beta_signup gains p_ref and returns {ok, referral_code};
+--   view pasero_private.beta_referral_discounts lists who qualifies for the 20% referral discount.
+-- Mail-out list:
+--   select email, friends_invited, referral_discount from pasero_private.beta_referral_discounts order by created_at;
