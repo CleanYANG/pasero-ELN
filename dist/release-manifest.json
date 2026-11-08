@@ -24,6 +24,13 @@
       "sha256": "727593a7a4fe0f3be4c5b4aae3513d314149264d06caeb2f0a5ae844afcffdd7",
       "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.15/Pasero-Android-1.2.15.apk",
       "verified": true
+    },
+    "macos": {
+      "filename": "Pasero-macOS-1.2.15-AppleSilicon.dmg",
+      "bytes": 222163621,
+      "sha256": "e802c43e6152e70de0c2ec08b033a80330f0c925a1c9b2da4e1eaa9b5ffbd2b8",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.15/Pasero-macOS-1.2.15-AppleSilicon.dmg",
+      "verified": true
     }
   }
 }
