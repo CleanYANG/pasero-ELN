@@ -141,3 +141,4 @@ html[lang="ja"] .tl :is(h1,h2,h3,p,li,small,span,strong){line-break:strict;word-
 .dl.tl .tl-private{margin-top:28px}
 /* Keep the coloured part of a CJK headline together ("毎日の計算に。" never splits as 毎 / 日) */
 html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}
+@media(max-width:560px){textarea.tl-paste{tab-size:11;font-size:13px}}

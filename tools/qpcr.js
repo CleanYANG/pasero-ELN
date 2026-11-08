@@ -54,20 +54,23 @@
     var adj = S.holm(test.map(function (g) { return g.p; }));
     test.forEach(function (g, i) { g.padj = adj[i]; });
 
-    var head = [T('Sample', '样品', 'サンプル'), 'n', T('Target Ct', '目的基因 Ct', '標的 Ct'), T('Reference Ct', '内参 Ct', 'リファレンス Ct'),
-      'ΔCt (± SD)', 'ΔΔCt', T('Fold change', '倍数变化', '発現倍率'), T('Range (± SD)', '范围 (± SD)', '範囲 (± SD)'), T('p (Welch t)', 'p (Welch t)', 'p (Welch t)')];
-    if (test.length > 1) head.push(T('p (Holm)', 'p (Holm 校正)', 'p (Holm 補正)'));
+    var multi = test.length > 1;
+    var head = [T('Sample', '样品', 'サンプル'), 'n', T('Fold change', '倍数变化', '発現倍率'), T('p (Welch t)', 'p (Welch t)', 'p (Welch t)')]
+      .concat(multi ? [T('p (Holm)', 'p (Holm 校正)', 'p (Holm 補正)')] : [])
+      .concat(['ΔΔCt', 'ΔCt (± SD)', T('Range (± SD)', '范围 (± SD)', '範囲 (± SD)'), T('Target Ct', '目的基因 Ct', '標的 Ct'), T('Reference Ct', '内参 Ct', 'リファレンス Ct')]);
     var tsv = [head.join('\t')];
     var trs = groups.map(function (g) {
       var fold = Math.pow(2, g.y), lo = Math.pow(2, g.y - (g.ySd || 0)), hi = Math.pow(2, g.y + (g.ySd || 0));
       var isC = g.name === ctrl;
-      var cells = [g.name + (isC && !/control|ctrl|对照|対照|コントロール/i.test(g.name) ? ' (' + T('control', '对照', '対照') + ')' : ''), g.n, P.fixed(g.t, 2), P.fixed(g.r, 2),
-        P.fixed(g.dct, 2) + (g.n > 1 ? ' ± ' + P.fixed(g.dctSd, 2) : ''), P.fixed(g.ddct, 2), P.fmt(fold, 3),
-        g.n > 1 ? P.fmt(lo, 3) + '–' + P.fmt(hi, 3) : '—',
-        isC ? '—' : (isFinite(g.p) ? S.fmtP(g.p).replace('p = ', '').replace('p < ', '< ') + ' ' + S.stars(g.p) : T('n < 2', 'n < 2', 'n < 2'))];
-      if (test.length > 1) cells.push(isC || !isFinite(g.padj) ? '—' : S.fmtP(g.padj).replace('p = ', '').replace('p < ', '< ') + ' ' + S.stars(g.padj));
+      var pTxt = function (p) { return S.fmtP(p).replace('p = ', '').replace('p < ', '< ') + ' ' + S.stars(p); };
+      var cells = [g.name + (isC && !/control|ctrl|对照|対照|コントロール/i.test(g.name) ? ' (' + T('control', '对照', '対照') + ')' : ''), g.n,
+        P.fmt(fold, 3),
+        isC ? '—' : (isFinite(g.p) ? pTxt(g.p) : T('n < 2', 'n < 2', 'n < 2'))]
+        .concat(multi ? [isC || !isFinite(g.padj) ? '—' : pTxt(g.padj)] : [])
+        .concat([P.fixed(g.ddct, 2), P.fixed(g.dct, 2) + (g.n > 1 ? ' ± ' + P.fixed(g.dctSd, 2) : ''),
+          g.n > 1 ? P.fmt(lo, 3) + '–' + P.fmt(hi, 3) : '—', P.fixed(g.t, 2), P.fixed(g.r, 2)]);
       tsv.push(cells.join('\t'));
-      return '<tr>' + cells.map(function (c, i) { return '<td>' + (i === 6 ? '<strong>' + P.esc(String(c)) + '</strong>' : P.esc(String(c))) + '</td>'; }).join('') + '</tr>';
+      return '<tr>' + cells.map(function (c, i) { return '<td>' + (i === 2 ? '<strong>' + P.esc(String(c)) + '</strong>' : P.esc(String(c))) + '</td>'; }).join('') + '</tr>';
     }).join('');
 
     var notes = [];
