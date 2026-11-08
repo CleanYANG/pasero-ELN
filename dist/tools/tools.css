@@ -123,3 +123,21 @@ table.tl-table{border-collapse:collapse;width:100%;font-size:14px;font-variant-n
 @media(max-width:560px){.tl-table th,.tl-table td{padding:8px 9px}.tl-table th{white-space:normal;vertical-align:bottom}.tl-table td:first-child input{min-width:110px}}
 .tl-table-wrap{position:relative}
 .tl-grid>.tl-card+.tl-card{margin-top:0}
+
+/* Chinese line breaking on tool pages.
+   The site-wide zh rule (word-break:keep-all + overflow-wrap:anywhere) treats a whole Chinese
+   sentence as one word, so long lines break mid-word ("qP / CR", "Engli / sh") or push a short
+   Latin word onto its own line. Here Chinese wraps between characters, Latin words stay whole,
+   and closing punctuation never starts a line. */
+html[lang="zh-CN"] .tl :is(h1,h2,h3,p,li,small,span,strong,dd,dt,label,a){
+  word-break:normal!important;overflow-wrap:break-word!important;line-break:strict;text-wrap:pretty}
+html[lang="zh-CN"] .tl :is(h1,h2){text-wrap:balance}
+html[lang="zh-CN"] .tl .dl-lead{line-height:1.8!important;max-width:30em}
+html[lang="zh-CN"] .tl-private{line-height:1.7}
+html[lang="zh-CN"] .tl-cta h2{line-height:1.3!important}
+html[lang="zh-CN"] .tl-cta p{line-height:1.8!important}
+/* Japanese: break between phrases where the browser supports it, never inside 毎日 or a katakana word */
+html[lang="ja"] .tl :is(h1,h2,h3,p,li,small,span,strong){line-break:strict;word-break:auto-phrase;text-wrap:pretty}
+.dl.tl .tl-private{margin-top:28px}
+/* Keep the coloured part of a CJK headline together ("毎日の計算に。" never splits as 毎 / 日) */
+html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}

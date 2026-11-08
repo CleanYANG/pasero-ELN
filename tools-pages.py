@@ -118,7 +118,7 @@ def page(slug, titles, desc, body, scripts=(), noindex=False):
            f'<meta http-equiv="Content-Security-Policy" content="{CSP}">'
            f'<title>{html.escape(te)}</title><meta name="description" content="{a(desc)}">{robots}'
            f'<link rel="canonical" href="https://pasero.app/tools/{"" if slug == "index" else slug + ".html"}">'
-           + styles + f'<link rel="stylesheet" href="tools.css?v={V}"></head>'
+           + styles + f'<link rel="stylesheet" href="tools.css?v={V}b"></head>'
            f'<body class="dl-page" id="top" data-title-en="{a(te)}" data-title-zh="{a(tz)}" data-title-ja="{a(tj)}">'
            + header + '<main class="dl tl" data-copy><div class="dl-wrap">' + body + '</div></main>' + footer +
            f'<script src="../pasero-ja.js?v=20261108-tools"></script><script src="../pasero-i18n.js?v=20261108-tools"></script>'
@@ -351,7 +351,7 @@ tool_page('qpcr-ddct-calculator', ('Data', '数据', 'データ'),
    '粘贴 Ct 表格，选好对照组，每个样品的 ΔCt、ΔΔCt、2^−ΔΔCt 和 t 检验都会算好。',
    'Ct の表を貼って対照を選ぶだけで、各サンプルの ΔCt・ΔΔCt・2^−ΔΔCt と t 検定を計算。'),
   body, (('In Pasero', '在 Pasero 里', 'Pasero なら'),
-         ('Ct values in, figure out, saved to the note.', 'Ct 值进去，图出来，直接存进笔记。', 'Ct 値を入れれば、図になってノートに残る。'),
+         ('Ct values in, figure out, saved to the note.', '粘贴 Ct 值，出图，存进笔记。', 'Ct 値を入れれば、図になってノートに残る。'),
          ('Pasero’s data analysis turns the same table into a publication-style relative-expression figure with statistics and a methods paragraph, and keeps it in your lab notes.',
           'Pasero 的数据分析能把同一张表直接画成期刊风格的相对表达量图，附带统计结果和方法描述，并保存在实验笔记里。',
           'Pasero のデータ解析なら、同じ表から論文スタイルの相対発現量の図を統計結果・方法の記述付きで作成し、実験ノートに保存できます。')),
@@ -422,7 +422,7 @@ for key, label in GROUPS:
 hub = ('<div class="tl-head tl-hub-hero"><p class="dl-eyebrow">' + t('Free lab tools', '免费实验工具', '無料の実験ツール') + '</p>' +
        t('Small tools for <em>everyday bench math.</em>', '实验台上的<em>日常计算。</em>', '実験台の<em>毎日の計算に。</em>', tag='h1') +
        t('Molarity, dilutions, master mixes, ligations, primers, qPCR and cell seeding. Free, no sign-up, in English, 中文 and 日本語.',
-         '摩尔浓度、稀释、预混液、连接反应、引物、qPCR 和细胞铺板。免费，不用注册，支持中文、English 和日本語。',
+         '摩尔浓度、稀释、预混液、连接反应、引物、qPCR、细胞铺板，常用的计算都在这里。免费，无需注册，支持中文、English、日本語。',
          'モル濃度、希釈、マスターミックス、ライゲーション、プライマー、qPCR、細胞播種。無料・登録不要、日本語・English・中文に対応。', tag='p', cls='dl-lead') +
        PRIVATE + '</div>' + groups_html +
        cta('d-home', ('In Pasero', '在 Pasero 里', 'Pasero なら'),
