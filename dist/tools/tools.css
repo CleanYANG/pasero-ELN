@@ -142,3 +142,18 @@ html[lang="ja"] .tl :is(h1,h2,h3,p,li,small,span,strong){line-break:strict;word-
 /* Keep the coloured part of a CJK headline together ("毎日の計算に。" never splits as 毎 / 日) */
 html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}
 @media(max-width:560px){textarea.tl-paste{tab-size:11;font-size:13px}}
+/* Paste to plot */
+.tl-plotgrid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+@media(max-width:900px){.tl-plotgrid{grid-template-columns:minmax(0,1fr)}}
+.tl-checks{display:flex;flex-wrap:wrap;gap:10px 22px}
+.tl-checks .tl-check[hidden]{display:none}
+.tl-rec{margin:0 0 12px;font-size:14px;line-height:1.55;color:var(--tl-ok);font-weight:600}
+.tl-plot{margin:0;padding:10px}
+.tl-plot svg{display:block;margin:0 auto;width:100%;max-width:520px}
+.tl-plot-result .tl-btns{margin-top:14px}
+.tl-omni td{color:var(--dl-muted)}
+.tl-row>.tl-span{grid-column:1/-1}
+.tl-plot-result .tl-table th,.tl-plot-result .tl-table td{padding:8px 10px;font-size:13px}
+#valueColBox[hidden]+.tl-field{grid-column:1/-1}
+.tl-plot-result .tl-table td:first-child{white-space:normal;min-width:120px}
+#ylab{width:100%;box-sizing:border-box}

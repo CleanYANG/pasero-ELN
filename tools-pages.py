@@ -13,6 +13,7 @@ src = open(os.path.join(ROOT, 'privacy.html'), encoding='utf8').read()
 head_open = src[:src.find('<title>')]
 styles = src[src.find('<style>'):src.find('</head>')]
 styles = styles.replace('<link rel="stylesheet" href="pasero-privacy.css?v=1">', '')
+styles = styles.replace('<script src="source-tag.js?v=1"></script>', '')
 styles = re.sub(r'href="(?!https?:|#|\.\./)([^"]+)"', r'href="../\1"', styles)
 header = src[src.find('<header'):src.find('</header>') + 9]
 header = re.sub(r'(href|src)="(?!https?:|#|mailto:|\.\./)([^"]+)"', r'\1="../\2"', header)
@@ -75,7 +76,7 @@ TOOLS = [
       blurb=('Paste Ct values, get ΔCt, ΔΔCt, fold change and p values against your control.',
              '粘贴 Ct 值，得到 ΔCt、ΔΔCt、倍数变化以及与对照组的 p 值。',
              'Ct 値を貼り付けるだけで ΔCt・ΔΔCt・発現倍率と対照群との p 値。')),
- dict(slug='plot', group='data', shot='d-analysis-oneclick', soon=True,
+ dict(slug='plot', group='data', shot='d-analysis-oneclick',
       name=('Paste to plot', '粘贴出图', '貼るだけでグラフ'),
       blurb=('Paste a table, get a bar, box or dot plot with the right statistical test.',
              '粘贴表格，自动出柱状图、箱型图或点图，并推荐合适的统计检验。',
@@ -394,25 +395,46 @@ tool_page('cell-seeding-calculator', ('Cell culture', '细胞培养', '細胞培
           'Pasero は細胞を融解から凍結まで記録します。継代数、培養日数、凍結本数と保管場所、継代のタイミングもお知らせ。')),
   ['cells.js'], 'Free cell counting and seeding calculator: hemocytometer counts to cells/mL and viability, then volumes for 96-, 24-, 12-, 6-well plates and dishes. Runs in your browser; nothing is uploaded.')
 
-# ======================= 9. Plot (placeholder) ===========================
-body = ('<section class="tl-card" id="plot-app" aria-live="polite">' +
-        t('Coming soon', '即将上线', '近日公開', tag='p', cls='dl-eyebrow') +
-        t('Paste a table and get a bar, box or dot plot, the recommended statistical test and a methods sentence — all in your browser.',
-          '粘贴表格，就能得到柱状图、箱型图或点图，以及推荐的统计检验和方法描述，全部在你的浏览器里完成。',
-          '表を貼るだけで、棒グラフ・箱ひげ図・ドットプロット、推奨される検定、方法の一文まで。すべてブラウザ内で。', tag='p') +
-        t('Until then, the same feature is free in the Pasero desktop app.', '在这之前，Pasero 桌面端里已经可以免费使用同样的功能。',
-          'それまでは、Pasero のデスクトップアプリで同じ機能を無料で使えます。', tag='p', cls='tl-note') +
-        '</section>')
+# ======================= 9. Paste to plot ================================
+PLOT_SAMPLE = ("siControl\tsiTP53 #1\tsiTP53 #2\tsiTP53 + rescue\n"
+               "1.00\t0.34\t0.41\t0.93\n0.94\t0.36\t0.38\t0.88\n1.13\t0.29\t0.46\t1.02\n1.25\t0.43\t0.35\t0.97")
+def chk(cid, label, hidden=False):
+    h = ' hidden' if hidden else ''
+    return f'<label class="tl-check" id="{cid}Box"{h}><input type="checkbox" id="{cid}"> ' + t(*label) + '</label>'
+body = '<div class="tl-grid tl-plotgrid">' + card_(None,
+  '<div class="tl-fields">' +
+  '<div class="tl-field"><label class="tl-label" for="paste">' + t('Paste your table', '粘贴表格', '表を貼り付け') + '</label>'
+  f'<textarea id="paste" class="tl-paste" spellcheck="false" autocomplete="off" translate="no">{html.escape(PLOT_SAMPLE)}</textarea>' +
+  t('Copy straight from Excel. Either one column per group (a header row with group names, replicates below), or a long table with a group column and a value column. Empty cells are fine.',
+    '可以直接从 Excel 复制。两种格式都行：每组一列（第一行写组名，下面是各个重复）；或者长表格，一列是组名、一列是数值。空格子没关系。',
+    'Excel からそのままコピーできます。1 群 1 列（1 行目に群名、その下に反復）でも、群の列と値の列からなる縦長の表でも構いません。空欄があっても大丈夫です。', tag='small') + '</div>' +
+  '<div class="tl-row">' +
+  '<div class="tl-field"><span class="tl-label">' + t('Chart', '图表', 'グラフ') + '</span>' +
+  seg('chart', [('dot', ('Dot', '点图', 'ドット')), ('bar', ('Bar', '柱状图', '棒')), ('box', ('Box', '箱型图', '箱ひげ'))], 'dot') + '</div>' +
+  '<div class="tl-field"><span class="tl-label">' + t('Error bars', '误差线', 'エラーバー') + '</span>' +
+  seg('err', [('sem', ('SEM', 'SEM', 'SEM')), ('sd', ('SD', 'SD', 'SD'))], 'sem') + '</div>' +
+  '<div class="tl-field tl-span"><span class="tl-label">' + t('Test', '检验', '検定') + '</span>' +
+  seg('test', [('param', ('Parametric', '参数检验', 'パラメトリック')), ('nonparam', ('Non-parametric', '非参数检验', 'ノンパラメトリック'))], 'param') + '</div></div>' +
+  '<div class="tl-row three">' +
+  '<div class="tl-field tl-span"><label class="tl-label" for="ctrl">' + t('Compare against', '比较方式', '比較の基準') + '</label><select id="ctrl" class="tl-select"></select></div>' +
+  '<div class="tl-field" id="valueColBox" hidden><label class="tl-label" for="valueCol">' + t('Value column', '数值列', '値の列') + '</label><select id="valueCol" class="tl-select"></select></div>' +
+  field(('Y-axis label', 'Y 轴标题', 'Y 軸ラベル'), '<input id="ylab" class="tl-text" autocomplete="off" spellcheck="false" value="">', fid='ylab') + '</div>' +
+  '<div class="tl-checks">' + chk('paired', ('Paired: the same subjects in every group', '配对：每组都是同一批对象', '対応あり：各群が同じ対象')) +
+  chk('horiz', ('Horizontal', '横向', '横向き')) + chk('exactP', ('Show exact p values', '显示具体 p 值', 'p 値を数値で表示')) + '</div>' +
+  '<div class="tl-btns"><button type="button" class="tl-btn" id="clear">' + t('Clear', '清空', 'クリア') + '</button><button type="button" class="tl-btn" id="example">' +
+  t('Load example', '载入示例', '例を読み込む') + '</button></div></div>') + \
+  card_(RESULT, '<div data-copy id="out"></div>', 'tl-plot-result') + '</div>'
 tool_page('plot', ('Data', '数据', 'データ'),
   ('Paste. <em>Plot.</em>', '粘贴，<em>就出图。</em>', '貼るだけで、<em>グラフに。</em>'),
-  ('Bar, box and dot plots with the right test, ready for a figure.', '柱状图、箱型图、点图，配好合适的检验，直接可以放进论文。',
-   '棒グラフ・箱ひげ図・ドットプロットを、適切な検定つきで。そのまま論文の図に。'),
+  ('Paste a table and get a dot, bar or box plot with the recommended test, p values and a methods sentence, ready for a figure.',
+   '粘贴表格，就能得到点图、柱状图或箱型图，配好推荐的统计检验、p 值和方法描述，直接可以放进论文。',
+   '表を貼るだけで、ドット・棒・箱ひげ図を、推奨の検定・p 値・方法の記述つきで。そのまま論文の図に。'),
   body, (('In Pasero', '在 Pasero 里', 'Pasero なら'),
-         ('Figures are free in Pasero today.', 'Pasero 里出图现在就免费。', 'Pasero なら、グラフ作成はいまも無料。'),
-         ('Paste data, get the recommended chart and test, p values and a methods paragraph. Vector export: 5 free, unlimited with Pro.',
-          '粘贴数据，自动推荐图表类型和统计检验，给出 p 值和方法描述。矢量导出免费 5 次，Pro 无限次。',
-          'データを貼ると、推奨のグラフと検定、p 値、方法の記述まで。ベクター書き出しは 5 回まで無料、Pro は無制限。')),
-  [], 'Paste a table, get a bar, box or dot plot with the right statistical test. Coming soon to Pasero free lab tools.', noindex=True)
+         ('More chart types, vector export, saved to your notes.', '更多图表类型、矢量导出，还能存进笔记。', 'もっと多くのグラフ、ベクター書き出し、ノートに保存。'),
+         ('Pasero’s data analysis also does dose–response (IC50), survival, correlation, heatmaps, volcano plots and more, exports PDF/SVG in journal styles (5 free, unlimited with Pro), and keeps every figure in your lab notes.',
+          'Pasero 的数据分析还能做剂量反应（IC50）、生存曲线、相关性、热图、火山图等，按期刊样式导出 PDF/SVG（免费 5 次，Pro 无限次），每张图都存进实验笔记。',
+          'Pasero のデータ解析なら、用量反応（IC50）、生存曲線、相関、ヒートマップ、ボルケーノプロットなども作成でき、ジャーナル形式の PDF/SVG 書き出し（5 回まで無料、Pro は無制限）や実験ノートへの保存にも対応。')),
+  ['stats.js', 'plot-stats.js', 'plot.js'], 'Free paste-to-plot tool: paste a table and get a publication-style dot, bar or box plot with the recommended statistical test (t-test, ANOVA with Dunnett or Tukey, Mann–Whitney, Kruskal–Wallis with Dunn), p values and a methods sentence. Runs in your browser; nothing is uploaded.')
 
 # ======================= Hub =============================================
 groups_html = ''
