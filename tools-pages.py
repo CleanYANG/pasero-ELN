@@ -118,7 +118,7 @@ def page(slug, titles, desc, body, scripts=(), noindex=False):
            f'<meta http-equiv="Content-Security-Policy" content="{CSP}">'
            f'<title>{html.escape(te)}</title><meta name="description" content="{a(desc)}">{robots}'
            f'<link rel="canonical" href="https://pasero.app/tools/{"" if slug == "index" else slug + ".html"}">'
-           + styles + f'<link rel="stylesheet" href="tools.css?v={V}b"></head>'
+           + styles + f'<link rel="stylesheet" href="tools.css?v={V}b"><script src="../source-tag.js?v=1"></script></head>'
            f'<body class="dl-page" id="top" data-title-en="{a(te)}" data-title-zh="{a(tz)}" data-title-ja="{a(tj)}">'
            + header + '<main class="dl tl" data-copy><div class="dl-wrap">' + body + '</div></main>' + footer +
            f'<script src="../pasero-ja.js?v=20261108-tools"></script><script src="../pasero-i18n.js?v=20261108-tools"></script>'

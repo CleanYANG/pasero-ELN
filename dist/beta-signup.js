@@ -88,7 +88,7 @@
       const response = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', apikey: KEY },
-        body: JSON.stringify({ p_email: email, p_platform: lastPlatform || guessPlatform(), p_language: lang(), p_ref: ref })
+        body: JSON.stringify({ p_email: email, p_platform: lastPlatform || guessPlatform(), p_language: lang(), p_ref: ref, p_source: (window.PaseroSource && window.PaseroSource()) || null })
       });
       const body = await response.json().catch(() => ({}));
       if (response.ok) {
