@@ -1,5 +1,5 @@
 {
-  "version": "1.2.16",
+  "version": "1.2.17",
   "trial": {
     "id": "pasero_public_trial_2026",
     "startsAt": "2026-11-10T00:00:00+09:00",
@@ -12,25 +12,24 @@
   },
   "files": {
     "windows": {
-      "filename": "Pasero-Windows-1.2.16-Setup.exe",
-      "bytes": 145237400,
-      "sha256": "b594f783ab51abf5a91c51668bc61e43fdc9e6b4afdcdd5f039524d7efb0176b",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.16/Pasero-Windows-1.2.16-Setup.exe",
+      "filename": "Pasero-Windows-1.2.17-Setup.exe",
+      "bytes": 145251027,
+      "sha256": "5c7aa3fdd041f2748622d76a6c055296ba906db467054c413034004433a9f55a",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-Windows-1.2.17-Setup.exe",
       "verified": true
     },
     "android": {
-      "filename": "Pasero-Android-1.2.15.apk",
-      "bytes": 153174950,
-      "sha256": "727593a7a4fe0f3be4c5b4aae3513d314149264d06caeb2f0a5ae844afcffdd7",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.15/Pasero-Android-1.2.15.apk",
-      "verified": true,
-      "version": "1.2.15"
+      "filename": "Pasero-Android-1.2.17.apk",
+      "bytes": 154920308,
+      "sha256": "0cfe5b878261913082d80bd64ef6e23cfd905d374e03a80b956fbfa131d7ac3e",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-Android-1.2.17.apk",
+      "verified": true
     },
     "macos": {
-      "filename": "Pasero-macOS-1.2.16-AppleSilicon.dmg",
-      "bytes": 220735751,
-      "sha256": "3f3dccda58ec6a41f79fa31010878c36556d541457e518cdc4c7d126479238d9",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.16/Pasero-macOS-1.2.16-AppleSilicon.dmg",
+      "filename": "Pasero-macOS-1.2.17-AppleSilicon.dmg",
+      "bytes": 221136450,
+      "sha256": "08815788a53cb05a96569c8ff7413fa5d3bd2bdc3527e95d1375be750c5af315",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-macOS-1.2.17-AppleSilicon.dmg",
       "verified": true
     }
   }
