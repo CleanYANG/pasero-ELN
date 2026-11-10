@@ -46,7 +46,7 @@
       },
       desktop: {
         name: { en: 'Desktop Pro', zh: '桌面 Pro', ja: 'デスクトップ Pro' },
-        covers: { en: 'Windows', zh: 'Windows', ja: 'Windows' },
+        covers: { en: 'Windows and macOS', zh: 'Windows 和 macOS', ja: 'Windows・macOS' },
         what: { en: 'qPCR, Western blot, advanced primers, vector figure export and more, unlimited.', zh: 'qPCR、WB、高级引物、矢量图导出等，全部不限次数。', ja: 'qPCR、ウェスタンブロット、高度なプライマー設計、ベクター図の書き出しなどが無制限。' }
       },
       complete: {
