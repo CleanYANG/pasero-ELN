@@ -41,7 +41,7 @@ select.small{border:1px solid var(--line);border-radius:8px;padding:4px 6px;font
 #cats{display:flex;gap:4px;flex-wrap:wrap;padding:2px 8px 6px;max-height:84px;overflow:auto}
 #cats button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 8px;font-size:11px;white-space:nowrap}
 #cats button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-#grid{flex:1;overflow:auto;padding:4px 8px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;align-content:start}
+#grid{flex:1;overflow:auto;padding:4px 8px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:max-content;gap:6px;align-content:start}
 .ic{border:1px solid transparent;border-radius:10px;padding:4px;text-align:center;font-size:10.5px;color:var(--soft);cursor:grab;background:#fff;line-height:1.2;overflow:hidden}
 .ic:hover{border-color:var(--line);background:var(--bg)}
 .ic img{width:100%;aspect-ratio:1;object-fit:contain;display:block;pointer-events:none}
