@@ -10,4 +10,8 @@ Each icon keeps the licence it was published under (listed per icon in lib_catal
   - MIT / BSD: copyright notices are kept by their authors in the Bioicons repository.
 Icons licensed CC BY-SA were not included. Icons were optimised with SVGO (no visual change intended).
 
-Icons in icons/own were drawn for Pasero.
+Icons in icons/own were drawn for Pasero and are licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/). Copyright (c) 2026 Pasero.
+Credit line: "Figure created with Pasero (pasero.app). Pasero icons are licensed under CC BY 4.0."
+The "Made with Pasero · pasero.app" mark on exported figures also gives this credit.
+Figures you make are yours; the licence only asks that the icons are credited.

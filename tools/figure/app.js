@@ -5,7 +5,7 @@
 const INK = "#14241f", ACCENT = "#8e73cf", TINT = "#e8e1f7";
 const FONT = '"Noto Sans CJK SC","Microsoft YaHei","Yu Gothic UI","Hiragino Sans","Helvetica Neue",Arial,sans-serif';
 const T = {
-  en: { title: "Untitled figure", undo: "Undo (Ctrl+Z)", redo: "Redo (Ctrl+Y)", text: "Text", arrow: "Arrow", line: "Line", rect: "Box", ellipse: "Ellipse", fit: "Fit to window",
+  en: { title: "Untitled figure", legend: "Copy figure-legend credit", legendTitle: "Credit for your figure legend", legendHelp: "Paste this into the figure legend or acknowledgements. Pasero icons are CC BY 4.0, so this line is all the credit they need.", legendCopy: "Copy", legendCopied: "Copied", undo: "Undo (Ctrl+Z)", redo: "Redo (Ctrl+Y)", text: "Text", arrow: "Arrow", line: "Line", rect: "Box", ellipse: "Ellipse", fit: "Fit to window",
         ai: "✨ AI layout", save: "Save", note: "Save to note", export: "Export", aiGo: "Lay out", aiClose: "Close", aiPh: "Describe the figure, e.g. HEK293T transfected with Flag-X, IP after 48 h, then western blot for Flag and GAPDH",
         aiInfo: "AI picks icons from the library and arranges them; you can edit everything afterwards. Uses 3 AI points.", aiAppend: "Add to the current figure",
         icons: "Icons", templates: "Templates", notes: "From notes", search: "Search icons", all: "All", own: "Pasero", more: "Show more",
@@ -16,7 +16,7 @@ const T = {
         none: "None", end: "End", both: "Both", radius: "Corners", saved: "Saved", credit: "Icon credits", exportPng: "PNG image", exportSvg: "SVG (vector)", exportPdf: "PDF",
         sizes: { "1600x900": "16:9 slide", "1200x900": "4:3 slide", "1000x1000": "Square", "1240x1754": "A4 portrait", "1754x1240": "A4 landscape" },
         replace: "Replace the current figure", canvasBg: "Background", white: "White", transparent: "Transparent", busy: "Working…", emptyHint: "Click or drag an icon from the left onto the canvas" },
-  zh: { title: "未命名图", undo: "撤销（Ctrl+Z）", redo: "重做（Ctrl+Y）", text: "文字", arrow: "箭头", line: "线", rect: "方框", ellipse: "椭圆", fit: "适合窗口",
+  zh: { title: "未命名图", legend: "复制图注推荐语", legendTitle: "图注推荐语", legendHelp: "把这段话写进图注或致谢。Pasero 图标采用 CC BY 4.0 许可，写上这一句就满足署名要求。", legendCopy: "复制", legendCopied: "已复制", undo: "撤销（Ctrl+Z）", redo: "重做（Ctrl+Y）", text: "文字", arrow: "箭头", line: "线", rect: "方框", ellipse: "椭圆", fit: "适合窗口",
         ai: "✨ AI 排版", save: "保存", note: "存到笔记", export: "导出", aiGo: "排版", aiClose: "关闭", aiPh: "描述你要的图，例如：HEK293T 转染 Flag-X，48 h 后做 IP，再用 WB 检测 Flag 和 GAPDH",
         aiInfo: "AI 从图库挑图标并排好位置，之后每一处都可以自己改。每次用 3 点 AI 点数。", aiAppend: "加到当前图里",
         icons: "图标", templates: "样图", notes: "从笔记", search: "搜索图标", all: "全部", own: "Pasero", more: "显示更多",
@@ -27,7 +27,7 @@ const T = {
         none: "无", end: "末端", both: "两端", radius: "圆角", saved: "已保存", credit: "图标来源", exportPng: "PNG 图片", exportSvg: "SVG 矢量图", exportPdf: "PDF",
         sizes: { "1600x900": "16:9 幻灯片", "1200x900": "4:3 幻灯片", "1000x1000": "正方形", "1240x1754": "A4 竖版", "1754x1240": "A4 横版" },
         replace: "替换当前的图", canvasBg: "背景", white: "白色", transparent: "透明", busy: "处理中…", emptyHint: "从左边点击或拖动图标到画布上" },
-  ja: { title: "無題の図", undo: "元に戻す（Ctrl+Z）", redo: "やり直す（Ctrl+Y）", text: "テキスト", arrow: "矢印", line: "線", rect: "四角", ellipse: "楕円", fit: "ウィンドウに合わせる",
+  ja: { title: "無題の図", legend: "図の説明用クレジットをコピー", legendTitle: "図の説明に入れるクレジット", legendHelp: "図の説明（レジェンド）か謝辞に貼り付けてください。Pasero のアイコンは CC BY 4.0 なので、この 1 文でクレジットの条件を満たします。", legendCopy: "コピー", legendCopied: "コピーしました", undo: "元に戻す（Ctrl+Z）", redo: "やり直す（Ctrl+Y）", text: "テキスト", arrow: "矢印", line: "線", rect: "四角", ellipse: "楕円", fit: "ウィンドウに合わせる",
         ai: "✨ AI レイアウト", save: "保存", note: "ノートに保存", export: "書き出し", aiGo: "レイアウト", aiClose: "閉じる", aiPh: "図の内容を書いてください。例：HEK293T に Flag-X をトランスフェクションし、48 時間後に IP、Flag と GAPDH をウェスタンで検出",
         aiInfo: "AI が図ライブラリからアイコンを選んで配置します。あとからすべて編集できます。1 回 3 ポイント。", aiAppend: "今の図に追加",
         icons: "アイコン", templates: "見本", notes: "ノートから", search: "アイコンを検索", all: "すべて", own: "Pasero", more: "さらに表示",
@@ -479,6 +479,37 @@ function withExtras(fn) {
 }
 function renderPng(scale) { return withExtras(() => canvas.toDataURL({ format: "png", multiplier: scale || 2 })); }
 function renderSvg() { return withExtras(() => canvas.toSVG({ width: S.w, height: S.h, viewBox: { x: 0, y: 0, width: S.w, height: S.h } })); }
+const LEGEND = {
+  en: { made: "Figure created with Pasero (pasero.app).", own: " Pasero icons are licensed under CC BY 4.0.", other: c => ` Other icons: ${c} via Bioicons.` },
+  zh: { made: "本图使用 Pasero（pasero.app）绘制。", own: "Pasero 图标采用 CC BY 4.0 许可。", other: c => `其他图标：${c}，来自 Bioicons。` },
+  ja: { made: "本図は Pasero（pasero.app）で作成。", own: "Pasero のアイコンは CC BY 4.0 で提供。", other: c => `その他のアイコン：${c}（Bioicons）。` },
+};
+function legendText(lang) {
+  const L = LEGEND[lang] || LEGEND.en;
+  let own = false;
+  canvas.getObjects().forEach(function walk(o) { if ((o.iconRef || "").startsWith("own:")) own = true; if (o._objects) o._objects.forEach(walk); });
+  const cr = credits();
+  return L.made + (own ? L.own : "") + (cr.length ? L.other(cr.join("; ")) : "");
+}
+function showLegend() {
+  const parts = [legendText("en")];
+  if (S.lang !== "en") parts.push(legendText(S.lang));
+  $("legendTitle").textContent = tr("legendTitle"); $("legendHelp").textContent = tr("legendHelp");
+  $("legendCopy").textContent = tr("legendCopy"); $("legendClose").textContent = tr("aiClose");
+  $("legendText").value = parts.join("\n\n");
+  $("legendBox").classList.add("show");
+  $("legendText").focus(); $("legendText").select();
+}
+$("legendClose").onclick = () => $("legendBox").classList.remove("show");
+$("legendBox").addEventListener("click", e => { if (e.target.id === "legendBox") $("legendBox").classList.remove("show"); });
+$("legendCopy").onclick = async () => {
+  const text = $("legendText").value;
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+    try { $("legendText").select(); ok = document.execCommand("copy"); } catch (e2) { ok = false; }
+  }
+  if (ok) { toast(tr("legendCopied")); $("legendBox").classList.remove("show"); } else { $("legendText").select(); }
+};
 function fileName(ext) { return ($("title").value.trim() || tr("title")).replace(/[\\/:*?"<>|]+/g, "_").slice(0, 80) + "." + ext; }
 function download(href, name) {
   const a = document.createElement("a");
@@ -532,7 +563,7 @@ $("zoomOut").onclick = () => setZoom(Math.max(0.1, S.zoom / 1.2));
 $("zoomFit").onclick = fitZoom;
 $("size").onchange = e => { const [w, h] = e.target.value.split("x").map(Number); setSize(w, h); };
 $("newBtn").onclick = e => { if (!canvas.getObjects().length) return newFigure(); showMenu(e.currentTarget, [[tr("newConfirm"), newFigure]]); };
-$("exportBtn").onclick = e => showMenu(e.currentTarget, [[tr("exportPng"), () => exportAs("png")], [tr("exportSvg"), () => exportAs("svg")]]);
+$("exportBtn").onclick = e => showMenu(e.currentTarget, [[tr("exportPng"), () => exportAs("png")], [tr("exportSvg"), () => exportAs("svg")], [tr("legend"), showLegend]]);
 $("title").addEventListener("change", persist);
 document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { S.tab = b.dataset.tab; renderTabs(); renderGrid(); });
 $("search").addEventListener("input", e => { S.query = e.target.value; S.limit = 120; renderGrid(); });

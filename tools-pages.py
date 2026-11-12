@@ -32,7 +32,7 @@ def t(en, zh, ja, tag='span', cls=None, attrs=''):
     inner = en if tag in ('h1', 'h2', 'h3') else html.escape(en)
     return f'<{tag}{c}{attrs} data-en="{a(en)}" data-zh="{a(zh)}" data-ja="{a(ja)}">{inner}</{tag}>'
 
-V = '20261112'
+V = '20261112b'
 LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'
 PRIVATE = (f'<p class="tl-private">{LOCK}' +
            t('Runs entirely in your browser. Nothing you type or paste is uploaded — it even works with Wi-Fi off.',
@@ -467,7 +467,15 @@ fig_body = ('<div class="tl-figure"><iframe id="figureFrame" class="tl-figure-fr
               ('Insert the figure straight into lab-meeting slides or a poster', '直接插进组会 PPT 或海报', 'ラボミーティングのスライドやポスターにそのまま挿入'),
               ('AI layout: describe the experiment, get it drawn with library icons', 'AI 排版：描述实验，用图库图标自动排好', 'AI レイアウト：実験を説明すると、ライブラリのアイコンで配置'),
               ('Export without the mark (Pro)', '导出不带水印（Pro）', 'マークなしで書き出し（Pro）')]) +
-            '</ul></div></section>')
+            '</ul></div></section>' +
+            '<section class="tl-figure-paper" aria-labelledby="fig-paper-h">' +
+            t('Using your figure in a paper', '把图放进论文', '論文で使うとき', tag='h2', attrs=' id="fig-paper-h"') +
+            t('The figure is yours. Pasero icons are licensed under CC BY 4.0, so all they ask is credit: keep the small “Made with Pasero” mark, or add one line to the figure legend. Export ▾ → Copy figure-legend credit writes that line for you, including credits for any Bioicons you used. This works for CC BY open-access journals too.',
+              '图归你自己。Pasero 图标采用 CC BY 4.0 许可，只需要注明出处：保留角落的 “Made with Pasero”，或者在图注里写一句。点「导出 ▾ → 复制图注推荐语」会自动生成这句话，用到的 Bioicons 图标出处也一起写好。投 CC BY 开放获取期刊也没问题。',
+              '図はあなたのものです。Pasero のアイコンは CC BY 4.0 なので、必要なのはクレジットだけ。隅の “Made with Pasero” を残すか、図の説明に 1 文入れてください。「書き出し ▾ → 図の説明用クレジットをコピー」でその 1 文を作れます（使った Bioicons のクレジットも含みます）。CC BY のオープンアクセス誌にも使えます。', tag='p') +
+            '<blockquote class="tl-figure-credit" translate="no">Figure created with Pasero (pasero.app). Pasero icons are licensed under CC BY 4.0.</blockquote>' +
+            '<p class="tl-figure-lic"><a href="figure/THIRD_PARTY_NOTICES.txt">' + t('Icon licences', '图标授权说明', 'アイコンのライセンス') + '</a></p>' +
+            '</section>')
 tool_page('figure', ('Figures', '科研作图', '作図'),
   ('Draw the experiment, <em>not the icons.</em>', '画实验，<em>不用画图标。</em>', '実験を描く。<em>アイコンは描かなくていい。</em>'),
   ('A free canvas for lab workflows and study schematics: drag in science icons, start from a template, download PNG or SVG. No sign-up.',

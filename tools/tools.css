@@ -172,3 +172,9 @@ html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}
   .tl-figure-phone{display:block}
   .tl-figure-more{grid-template-columns:minmax(0,1fr)}
 }
+.tl-figure-paper{border:1px solid #dfe5df;border-radius:16px;padding:18px 22px;background:#fff;margin:22px 0 8px}
+.tl-figure-paper h2{font-size:17px;margin:0 0 8px}
+.tl-figure-paper p{margin:0;line-height:1.7;font-size:14.5px;color:#33443d;max-width:78ch}
+.tl-figure-credit{margin:12px 0 0;padding:10px 14px;border-left:3px solid #8e73cf;background:#fbfaff;border-radius:0 10px 10px 0;font-size:14px;color:#14241f}
+.tl-figure-lic{margin-top:10px!important;font-size:13px!important}
+.tl-figure-lic a{color:#5f4786}
