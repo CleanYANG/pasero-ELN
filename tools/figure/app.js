@@ -328,6 +328,18 @@ function updateButtons() { $("undo").disabled = S.history.length < 2; $("redo").
 let snapTimer = null;
 const queueSnap = () => { if (S.restoring) return; clearTimeout(snapTimer); snapTimer = setTimeout(snapshot, 120); };
 canvas.on("object:added", queueSnap); canvas.on("object:modified", queueSnap); canvas.on("object:removed", queueSnap); canvas.on("text:changed", queueSnap);
+// A new text box starts narrow; widen it while typing so a word never breaks into one letter per line.
+canvas.on("text:changed", e => {
+  const o = e.target;
+  if (!o || o.type !== "textbox") return;
+  let need = 0;
+  String(o.text || "").split("\n").forEach(line => {
+    const m = new fabric.Text(line || " ", { fontSize: o.fontSize, fontWeight: o.fontWeight, fontFamily: o.fontFamily, fontStyle: o.fontStyle });
+    need = Math.max(need, m.width);
+  });
+  const target = Math.min(S.w * 0.9, need + o.fontSize * 0.5);
+  if (target > o.width + 1) { o.set("width", target); o.setCoords(); canvas.requestRenderAll(); }
+});
 
 /* ------------------------------------------------------------------ properties panel */
 function sel() { return canvas.getActiveObject(); }
