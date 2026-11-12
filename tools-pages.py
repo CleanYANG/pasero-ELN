@@ -32,7 +32,7 @@ def t(en, zh, ja, tag='span', cls=None, attrs=''):
     inner = en if tag in ('h1', 'h2', 'h3') else html.escape(en)
     return f'<{tag}{c}{attrs} data-en="{a(en)}" data-zh="{a(zh)}" data-ja="{a(ja)}">{inner}</{tag}>'
 
-V = '20261108'
+V = '20261112'
 LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'
 PRIVATE = (f'<p class="tl-private">{LOCK}' +
            t('Runs entirely in your browser. Nothing you type or paste is uploaded — it even works with Wi-Fi off.',
@@ -41,6 +41,11 @@ PRIVATE = (f'<p class="tl-private">{LOCK}' +
 
 # ---- tool catalogue -----------------------------------------------------
 TOOLS = [
+ dict(slug='figure', group='fig', shot='d-figure-canvas',
+      name=('Science figure canvas', '科研作图', '研究用の作図キャンバス'),
+      blurb=('Draw lab workflows and study schematics from 2,000+ free science icons and 12 ready-made templates.',
+             '用 2,000 多个免费科研图标和 12 个样图，画实验流程图和机制示意图。',
+             '2,000 点以上の無料サイエンスアイコンと 12 種類の見本で、実験の流れや模式図を作図。')),
  dict(slug='molarity-calculator', group='sol', shot='d-notes-resources',
       name=('Molarity calculator', '摩尔浓度计算器', 'モル濃度計算'),
       blurb=('How many grams for a 50 mM solution? Mass, concentration and volume from molecular weight.',
@@ -87,7 +92,8 @@ TOOLS = [
              '血球计数板读数换算成细胞/mL 和活率，再算出铺板所需体积。',
              '血球計算盤のカウントから細胞数/mL と生存率、播種量まで。')),
 ]
-GROUPS = [('data', ('Data', '数据', 'データ')),
+GROUPS = [('fig', ('Figures', '科研作图', '作図')),
+          ('data', ('Data', '数据', 'データ')),
           ('clone', ('Molecular cloning', '分子克隆', '分子クローニング')),
           ('sol', ('Solutions & reactions', '溶液与反应', '溶液と反応')),
           ('cell', ('Cell culture', '细胞培养', '細胞培養'))]
@@ -436,6 +442,51 @@ tool_page('plot', ('Data', '数据', 'データ'),
           'Pasero のデータ解析なら、用量反応（IC50）、生存曲線、相関、ヒートマップ、ボルケーノプロットなども作成でき、ジャーナル形式の PDF/SVG 書き出し（5 回まで無料、Pro は無制限）や実験ノートへの保存にも対応。')),
   ['stats.js', 'plot-stats.js', 'plot.js'], 'Free paste-to-plot tool: paste a table and get a publication-style dot, bar or box plot with the recommended statistical test (t-test, ANOVA with Dunnett or Tukey, Mann–Whitney, Kruskal–Wallis with Dunn), p values and a methods sentence. Runs in your browser; nothing is uploaded.')
 
+# ======================= Figure canvas ===================================
+FIG_PRIVATE = (f'<p class="tl-private">{LOCK}' +
+           t('Runs in your browser. Your figure stays on this computer and is never uploaded.',
+             '在你的浏览器里运行。图只保存在这台电脑上，不会上传。',
+             'ブラウザ内で動作します。図はこのパソコンにだけ保存され、送信されません。') + '</p>')
+fig_body = ('<div class="tl-figure"><iframe id="figureFrame" class="tl-figure-frame" src="figure/app.html?lang=en" '
+            'title="Pasero figure canvas" loading="eager"></iframe></div>' +
+            t('Best on a computer. On a phone the canvas works, but it is small.',
+              '在电脑上用最顺手；手机上也能用，但画布比较小。',
+              'パソコンでの利用がおすすめです。スマホでも使えますが、画面が小さくなります。', tag='p', cls='tl-figure-phone') +
+            '<section class="tl-figure-more" aria-labelledby="fig-free-h"><div>' +
+            t('Free here', '这里免费', 'ここで無料', tag='h2', attrs=' id="fig-free-h"') + '<ul>' +
+            ''.join('<li>' + t(*x) + '</li>' for x in [
+              ('2,000+ icons: lab ware, cells, organs, molecules, animals', '2,000 多个图标：实验器材、细胞、器官、分子、动物', '2,000 点以上のアイコン：実験器具、細胞、臓器、分子、動物'),
+              ('12 templates: transfection to western blot, CRISPR, cloning, ELISA, RT-qPCR and more', '12 个样图：转染到 WB、CRISPR、克隆、ELISA、RT-qPCR 等', '12 種類の見本：トランスフェクションからウェスタン、CRISPR、クローニング、ELISA、RT-qPCR など'),
+              ('Text, arrows, boxes, recolouring, alignment, undo', '文字、箭头、方框、改颜色、对齐、撤销', 'テキスト、矢印、四角、色の変更、整列、元に戻す'),
+              ('PNG and SVG download with a small “Made with Pasero” mark', '下载 PNG 和 SVG，角落带一行小字 “Made with Pasero”', 'PNG・SVG でダウンロード（隅に小さく “Made with Pasero”）')]) +
+            '</ul></div><div>' +
+            t('In Pasero', '在 Pasero 里', 'Pasero なら', tag='h2') + '<ul>' +
+            ''.join('<li>' + t(*x) + '</li>' for x in [
+              ('Keep many figures and come back to edit them', '保存多张图，随时回来修改', '複数の図を保存して、あとから編集'),
+              ('Turn the steps of a lab note, or a PCR card, into a figure in one click', '实验笔记里的步骤或 PCR 卡片，一键变成图', '実験ノートの手順や PCR カードをワンクリックで図に'),
+              ('Insert the figure straight into lab-meeting slides or a poster', '直接插进组会 PPT 或海报', 'ラボミーティングのスライドやポスターにそのまま挿入'),
+              ('AI layout: describe the experiment, get it drawn with library icons', 'AI 排版：描述实验，用图库图标自动排好', 'AI レイアウト：実験を説明すると、ライブラリのアイコンで配置'),
+              ('Export without the mark (Pro)', '导出不带水印（Pro）', 'マークなしで書き出し（Pro）')]) +
+            '</ul></div></section>')
+tool_page('figure', ('Figures', '科研作图', '作図'),
+  ('Draw the experiment, <em>not the icons.</em>', '画实验，<em>不用画图标。</em>', '実験を描く。<em>アイコンは描かなくていい。</em>'),
+  ('A free canvas for lab workflows and study schematics: drag in science icons, start from a template, download PNG or SVG. No sign-up.',
+   '免费的科研作图画布：拖入科研图标，或者从样图开始，画实验流程和机制示意图，下载 PNG 或 SVG。无需注册。',
+   '実験の流れや模式図のための無料キャンバス。サイエンスアイコンをドラッグするか見本から始めて、PNG・SVG でダウンロード。登録不要。'),
+  fig_body, (('In Pasero', '在 Pasero 里', 'Pasero なら'),
+             ('Your figures, connected to your notes and slides.', '你的图，和笔记、组会 PPT 连在一起。', '図が、ノートとスライドにつながる。'),
+             ('The same canvas is built into Pasero, the lab notebook for molecular biology. Draw from the steps you already recorded, keep every figure, and drop it into your next lab meeting.',
+              '同一块画布也在 Pasero 里。Pasero 是为分子生物学做的实验记录软件：用已经记下的实验步骤直接出图，所有图都保存好，下次组会直接插进 PPT。',
+              '同じキャンバスが、分子生物学のための実験ノート Pasero にも入っています。記録済みの手順から図を作り、すべての図を保存し、次のラボミーティングのスライドにそのまま使えます。')),
+  ['figure-page.js'],
+  'Free science figure canvas: draw lab workflows and study schematics with 2,000+ free science icons (Bioicons and Pasero) and 12 templates such as transfection to western blot, CRISPR and RT-qPCR. Download PNG or SVG. Runs in your browser, no sign-up.')
+# the figure page says what it keeps instead of the calculator wording
+with open(os.path.join(OUT, 'figure.html'), encoding='utf8') as f:
+    _doc = f.read()
+assert _doc.count(PRIVATE) == 1
+with open(os.path.join(OUT, 'figure.html'), 'w', encoding='utf8') as f:
+    f.write(_doc.replace(PRIVATE, FIG_PRIVATE))
+
 # ======================= Hub =============================================
 groups_html = ''
 for key, label in GROUPS:
@@ -443,9 +494,9 @@ for key, label in GROUPS:
     groups_html += '<div class="tl-group">' + t(*label, tag='h3') + f'<div class="tl-cards">{cards}</div></div>'
 hub = ('<div class="tl-head tl-hub-hero"><p class="dl-eyebrow">' + t('Free lab tools', '免费实验工具', '無料の実験ツール') + '</p>' +
        t('Small tools for <em>everyday bench math.</em>', '实验台上的<em>日常计算。</em>', '実験台の<em>毎日の計算に。</em>', tag='h1') +
-       t('Molarity, dilutions, master mixes, ligations, primers, qPCR and cell seeding. Free, no sign-up, in English, 中文 and 日本語.',
-         '摩尔浓度、稀释、预混液、连接反应、引物、qPCR、细胞铺板，常用的计算都在这里。免费，无需注册，支持中文、English、日本語。',
-         'モル濃度、希釈、マスターミックス、ライゲーション、プライマー、qPCR、細胞播種。無料・登録不要、日本語・English・中文に対応。', tag='p', cls='dl-lead') +
+       t('Science figures, molarity, dilutions, master mixes, ligations, primers, qPCR and cell seeding. Free, no sign-up, in English, 中文 and 日本語.',
+         '科研作图、摩尔浓度、稀释、预混液、连接反应、引物、qPCR、细胞铺板，常用的都在这里。免费，无需注册，支持中文、English、日本語。',
+         '作図、モル濃度、希釈、マスターミックス、ライゲーション、プライマー、qPCR、細胞播種。無料・登録不要、日本語・English・中文に対応。', tag='p', cls='dl-lead') +
        PRIVATE + '</div>' + groups_html +
        cta('d-home', ('In Pasero', '在 Pasero 里', 'Pasero なら'),
            ('These tools, connected to your notes.', '这些工具，和你的笔记连在一起。', 'これらのツールが、ノートとつながる。'),

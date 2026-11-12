@@ -1,0 +1,1055 @@
+[
+{
+"id": "tube_1_5",
+"category": "lab",
+"names": {
+"en": "Microcentrifuge tube",
+"zh": "离心管 1.5 mL",
+"ja": "マイクロチューブ"
+}
+},
+{
+"id": "tube_falcon",
+"category": "lab",
+"names": {
+"en": "Conical tube 15/50 mL",
+"zh": "离心管 15/50 mL",
+"ja": "コニカルチューブ"
+}
+},
+{
+"id": "cryovial",
+"category": "lab",
+"names": {
+"en": "Cryovial",
+"zh": "冻存管",
+"ja": "凍結チューブ"
+}
+},
+{
+"id": "pipette",
+"category": "lab",
+"names": {
+"en": "Pipette",
+"zh": "移液枪",
+"ja": "ピペット"
+}
+},
+{
+"id": "pipette_tip",
+"category": "lab",
+"names": {
+"en": "Pipette tip",
+"zh": "枪头",
+"ja": "チップ"
+}
+},
+{
+"id": "multichannel",
+"category": "lab",
+"names": {
+"en": "Multichannel pipette",
+"zh": "排枪",
+"ja": "マルチチャンネルピペット"
+}
+},
+{
+"id": "beaker",
+"category": "lab",
+"names": {
+"en": "Beaker",
+"zh": "烧杯",
+"ja": "ビーカー"
+}
+},
+{
+"id": "flask_erlenmeyer",
+"category": "lab",
+"names": {
+"en": "Erlenmeyer flask",
+"zh": "锥形瓶",
+"ja": "三角フラスコ"
+}
+},
+{
+"id": "bottle_media",
+"category": "lab",
+"names": {
+"en": "Media bottle",
+"zh": "培养基瓶",
+"ja": "培地ボトル"
+}
+},
+{
+"id": "petri_dish",
+"category": "lab",
+"names": {
+"en": "Petri dish",
+"zh": "培养皿",
+"ja": "シャーレ"
+}
+},
+{
+"id": "dish_cells",
+"category": "lab",
+"names": {
+"en": "Dish with cells",
+"zh": "细胞培养皿",
+"ja": "細胞ディッシュ"
+}
+},
+{
+"id": "plate_6",
+"category": "lab",
+"names": {
+"en": "6-well plate",
+"zh": "6 孔板",
+"ja": "6 ウェルプレート"
+}
+},
+{
+"id": "plate_24",
+"category": "lab",
+"names": {
+"en": "24-well plate",
+"zh": "24 孔板",
+"ja": "24 ウェルプレート"
+}
+},
+{
+"id": "plate_96",
+"category": "lab",
+"names": {
+"en": "96-well plate",
+"zh": "96 孔板",
+"ja": "96 ウェルプレート"
+}
+},
+{
+"id": "flask_culture",
+"category": "lab",
+"names": {
+"en": "Cell culture flask",
+"zh": "细胞培养瓶",
+"ja": "培養フラスコ"
+}
+},
+{
+"id": "rack",
+"category": "lab",
+"names": {
+"en": "Tube rack",
+"zh": "试管架",
+"ja": "チューブラック"
+}
+},
+{
+"id": "syringe",
+"category": "lab",
+"names": {
+"en": "Syringe",
+"zh": "注射器",
+"ja": "シリンジ"
+}
+},
+{
+"id": "ice_bucket",
+"category": "lab",
+"names": {
+"en": "Ice bucket",
+"zh": "冰盒",
+"ja": "氷バケツ"
+}
+},
+{
+"id": "scissors",
+"category": "lab",
+"names": {
+"en": "Scissors",
+"zh": "剪刀",
+"ja": "はさみ"
+}
+},
+{
+"id": "timer",
+"category": "lab",
+"names": {
+"en": "Timer",
+"zh": "计时",
+"ja": "タイマー"
+}
+},
+{
+"id": "thermometer",
+"category": "lab",
+"names": {
+"en": "Temperature",
+"zh": "温度",
+"ja": "温度"
+}
+},
+{
+"id": "ln2_tank",
+"category": "lab",
+"names": {
+"en": "Liquid nitrogen tank",
+"zh": "液氮罐",
+"ja": "液体窒素タンク"
+}
+},
+{
+"id": "freezer",
+"category": "lab",
+"names": {
+"en": "Freezer −80 °C",
+"zh": "−80 冰箱",
+"ja": "−80 冷凍庫"
+}
+},
+{
+"id": "notebook",
+"category": "lab",
+"names": {
+"en": "Lab notebook",
+"zh": "实验记录本",
+"ja": "実験ノート"
+}
+},
+{
+"id": "centrifuge",
+"category": "instrument",
+"names": {
+"en": "Centrifuge",
+"zh": "离心机",
+"ja": "遠心機"
+}
+},
+{
+"id": "microcentrifuge",
+"category": "instrument",
+"names": {
+"en": "Mini centrifuge",
+"zh": "掌上离心机",
+"ja": "卓上遠心機"
+}
+},
+{
+"id": "pcr_machine",
+"category": "instrument",
+"names": {
+"en": "Thermal cycler",
+"zh": "PCR 仪",
+"ja": "サーマルサイクラー"
+}
+},
+{
+"id": "qpcr_machine",
+"category": "instrument",
+"names": {
+"en": "qPCR machine",
+"zh": "荧光定量 PCR 仪",
+"ja": "リアルタイム PCR"
+}
+},
+{
+"id": "gel_box",
+"category": "instrument",
+"names": {
+"en": "Gel electrophoresis",
+"zh": "电泳槽",
+"ja": "電気泳動槽"
+}
+},
+{
+"id": "power_supply",
+"category": "instrument",
+"names": {
+"en": "Power supply",
+"zh": "电泳仪",
+"ja": "電源装置"
+}
+},
+{
+"id": "gel_image",
+"category": "instrument",
+"names": {
+"en": "Agarose gel",
+"zh": "琼脂糖凝胶",
+"ja": "アガロースゲル"
+}
+},
+{
+"id": "western_blot",
+"category": "instrument",
+"names": {
+"en": "Western blot membrane",
+"zh": "WB 膜",
+"ja": "ウェスタンブロット膜"
+}
+},
+{
+"id": "microscope",
+"category": "instrument",
+"names": {
+"en": "Microscope",
+"zh": "显微镜",
+"ja": "顕微鏡"
+}
+},
+{
+"id": "fluorescence_microscope",
+"category": "instrument",
+"names": {
+"en": "Fluorescence microscope",
+"zh": "荧光显微镜",
+"ja": "蛍光顕微鏡"
+}
+},
+{
+"id": "plate_reader",
+"category": "instrument",
+"names": {
+"en": "Plate reader",
+"zh": "酶标仪",
+"ja": "プレートリーダー"
+}
+},
+{
+"id": "flow_cytometer",
+"category": "instrument",
+"names": {
+"en": "Flow cytometer",
+"zh": "流式细胞仪",
+"ja": "フローサイトメーター"
+}
+},
+{
+"id": "sequencer",
+"category": "instrument",
+"names": {
+"en": "Sequencer",
+"zh": "测序仪",
+"ja": "シーケンサー"
+}
+},
+{
+"id": "incubator",
+"category": "instrument",
+"names": {
+"en": "CO₂ incubator",
+"zh": "CO₂ 培养箱",
+"ja": "CO₂ インキュベーター"
+}
+},
+{
+"id": "biosafety_cabinet",
+"category": "instrument",
+"names": {
+"en": "Biosafety cabinet",
+"zh": "生物安全柜",
+"ja": "安全キャビネット"
+}
+},
+{
+"id": "water_bath",
+"category": "instrument",
+"names": {
+"en": "Water bath",
+"zh": "水浴锅",
+"ja": "ウォーターバス"
+}
+},
+{
+"id": "vortex",
+"category": "instrument",
+"names": {
+"en": "Vortex mixer",
+"zh": "涡旋振荡器",
+"ja": "ボルテックス"
+}
+},
+{
+"id": "heat_block",
+"category": "instrument",
+"names": {
+"en": "Heat block",
+"zh": "金属浴",
+"ja": "ヒートブロック"
+}
+},
+{
+"id": "balance",
+"category": "instrument",
+"names": {
+"en": "Balance",
+"zh": "天平",
+"ja": "天秤"
+}
+},
+{
+"id": "computer",
+"category": "instrument",
+"names": {
+"en": "Computer",
+"zh": "电脑",
+"ja": "コンピューター"
+}
+},
+{
+"id": "cell",
+"category": "cell",
+"names": {
+"en": "Cell",
+"zh": "细胞",
+"ja": "細胞"
+}
+},
+{
+"id": "cell_adherent",
+"category": "cell",
+"names": {
+"en": "Adherent cell",
+"zh": "贴壁细胞",
+"ja": "接着細胞"
+}
+},
+{
+"id": "cell_round",
+"category": "cell",
+"names": {
+"en": "Suspension cell",
+"zh": "悬浮细胞",
+"ja": "浮遊細胞"
+}
+},
+{
+"id": "cell_dividing",
+"category": "cell",
+"names": {
+"en": "Dividing cell",
+"zh": "分裂细胞",
+"ja": "分裂細胞"
+}
+},
+{
+"id": "neuron",
+"category": "cell",
+"names": {
+"en": "Neuron",
+"zh": "神经元",
+"ja": "ニューロン"
+}
+},
+{
+"id": "rbc",
+"category": "cell",
+"names": {
+"en": "Red blood cell",
+"zh": "红细胞",
+"ja": "赤血球"
+}
+},
+{
+"id": "bacterium",
+"category": "cell",
+"names": {
+"en": "Bacterium",
+"zh": "细菌",
+"ja": "細菌"
+}
+},
+{
+"id": "bacteria_colony",
+"category": "cell",
+"names": {
+"en": "Bacterial colonies",
+"zh": "细菌菌落",
+"ja": "細菌コロニー"
+}
+},
+{
+"id": "virus",
+"category": "cell",
+"names": {
+"en": "Virus",
+"zh": "病毒",
+"ja": "ウイルス"
+}
+},
+{
+"id": "phage",
+"category": "cell",
+"names": {
+"en": "Bacteriophage",
+"zh": "噬菌体",
+"ja": "バクテリオファージ"
+}
+},
+{
+"id": "yeast",
+"category": "cell",
+"names": {
+"en": "Yeast",
+"zh": "酵母",
+"ja": "酵母"
+}
+},
+{
+"id": "mitochondrion",
+"category": "cell",
+"names": {
+"en": "Mitochondrion",
+"zh": "线粒体",
+"ja": "ミトコンドリア"
+}
+},
+{
+"id": "nucleus",
+"category": "cell",
+"names": {
+"en": "Nucleus",
+"zh": "细胞核",
+"ja": "核"
+}
+},
+{
+"id": "er_golgi",
+"category": "cell",
+"names": {
+"en": "Golgi apparatus",
+"zh": "高尔基体",
+"ja": "ゴルジ体"
+}
+},
+{
+"id": "vesicle",
+"category": "cell",
+"names": {
+"en": "Vesicle / exosome",
+"zh": "囊泡 / 外泌体",
+"ja": "小胞 / エクソソーム"
+}
+},
+{
+"id": "organoid",
+"category": "cell",
+"names": {
+"en": "Organoid / spheroid",
+"zh": "类器官 / 细胞球",
+"ja": "オルガノイド"
+}
+},
+{
+"id": "stem_cell",
+"category": "cell",
+"names": {
+"en": "Stem cell",
+"zh": "干细胞",
+"ja": "幹細胞"
+}
+},
+{
+"id": "tissue",
+"category": "cell",
+"names": {
+"en": "Tissue",
+"zh": "组织",
+"ja": "組織"
+}
+},
+{
+"id": "dna",
+"category": "molecule",
+"names": {
+"en": "DNA",
+"zh": "DNA",
+"ja": "DNA"
+}
+},
+{
+"id": "plasmid",
+"category": "molecule",
+"names": {
+"en": "Plasmid",
+"zh": "质粒",
+"ja": "プラスミド"
+}
+},
+{
+"id": "rna",
+"category": "molecule",
+"names": {
+"en": "RNA",
+"zh": "RNA",
+"ja": "RNA"
+}
+},
+{
+"id": "mrna",
+"category": "molecule",
+"names": {
+"en": "mRNA",
+"zh": "mRNA",
+"ja": "mRNA"
+}
+},
+{
+"id": "sirna",
+"category": "molecule",
+"names": {
+"en": "siRNA / shRNA",
+"zh": "siRNA / shRNA",
+"ja": "siRNA / shRNA"
+}
+},
+{
+"id": "primer_pair",
+"category": "molecule",
+"names": {
+"en": "Primers",
+"zh": "引物",
+"ja": "プライマー"
+}
+},
+{
+"id": "gene",
+"category": "molecule",
+"names": {
+"en": "Gene (exons)",
+"zh": "基因（外显子）",
+"ja": "遺伝子（エキソン）"
+}
+},
+{
+"id": "promoter",
+"category": "molecule",
+"names": {
+"en": "Promoter",
+"zh": "启动子",
+"ja": "プロモーター"
+}
+},
+{
+"id": "chromosome",
+"category": "molecule",
+"names": {
+"en": "Chromosome",
+"zh": "染色体",
+"ja": "染色体"
+}
+},
+{
+"id": "protein",
+"category": "molecule",
+"names": {
+"en": "Protein",
+"zh": "蛋白",
+"ja": "タンパク質"
+}
+},
+{
+"id": "enzyme",
+"category": "molecule",
+"names": {
+"en": "Enzyme",
+"zh": "酶",
+"ja": "酵素"
+}
+},
+{
+"id": "antibody",
+"category": "molecule",
+"names": {
+"en": "Antibody",
+"zh": "抗体",
+"ja": "抗体"
+}
+},
+{
+"id": "antibody_labeled",
+"category": "molecule",
+"names": {
+"en": "Labelled antibody",
+"zh": "标记抗体",
+"ja": "標識抗体"
+}
+},
+{
+"id": "receptor",
+"category": "molecule",
+"names": {
+"en": "Membrane receptor",
+"zh": "膜受体",
+"ja": "膜受容体"
+}
+},
+{
+"id": "ligand",
+"category": "molecule",
+"names": {
+"en": "Ligand",
+"zh": "配体",
+"ja": "リガンド"
+}
+},
+{
+"id": "membrane",
+"category": "molecule",
+"names": {
+"en": "Lipid bilayer",
+"zh": "脂质双层",
+"ja": "脂質二重層"
+}
+},
+{
+"id": "channel",
+"category": "molecule",
+"names": {
+"en": "Ion channel",
+"zh": "离子通道",
+"ja": "イオンチャネル"
+}
+},
+{
+"id": "ribosome",
+"category": "molecule",
+"names": {
+"en": "Ribosome",
+"zh": "核糖体",
+"ja": "リボソーム"
+}
+},
+{
+"id": "small_molecule",
+"category": "molecule",
+"names": {
+"en": "Small molecule / drug",
+"zh": "小分子 / 药物",
+"ja": "低分子 / 薬剤"
+}
+},
+{
+"id": "pill",
+"category": "molecule",
+"names": {
+"en": "Drug treatment",
+"zh": "药物处理",
+"ja": "薬剤処理"
+}
+},
+{
+"id": "crispr",
+"category": "molecule",
+"names": {
+"en": "CRISPR–Cas9",
+"zh": "CRISPR–Cas9",
+"ja": "CRISPR–Cas9"
+}
+},
+{
+"id": "fluorophore",
+"category": "molecule",
+"names": {
+"en": "Fluorescent protein (GFP)",
+"zh": "荧光蛋白（GFP）",
+"ja": "蛍光タンパク質（GFP）"
+}
+},
+{
+"id": "mouse",
+"category": "organism",
+"names": {
+"en": "Mouse",
+"zh": "小鼠",
+"ja": "マウス"
+}
+},
+{
+"id": "rat",
+"category": "organism",
+"names": {
+"en": "Rat",
+"zh": "大鼠",
+"ja": "ラット"
+}
+},
+{
+"id": "zebrafish",
+"category": "organism",
+"names": {
+"en": "Zebrafish",
+"zh": "斑马鱼",
+"ja": "ゼブラフィッシュ"
+}
+},
+{
+"id": "drosophila",
+"category": "organism",
+"names": {
+"en": "Fruit fly",
+"zh": "果蝇",
+"ja": "ショウジョウバエ"
+}
+},
+{
+"id": "worm",
+"category": "organism",
+"names": {
+"en": "C. elegans",
+"zh": "线虫",
+"ja": "線虫"
+}
+},
+{
+"id": "plant",
+"category": "organism",
+"names": {
+"en": "Plant (Arabidopsis)",
+"zh": "植物（拟南芥）",
+"ja": "植物（シロイヌナズナ）"
+}
+},
+{
+"id": "human",
+"category": "organism",
+"names": {
+"en": "Human / patient",
+"zh": "人 / 患者",
+"ja": "ヒト / 患者"
+}
+},
+{
+"id": "heart",
+"category": "organ",
+"names": {
+"en": "Heart",
+"zh": "心脏",
+"ja": "心臓"
+}
+},
+{
+"id": "liver",
+"category": "organ",
+"names": {
+"en": "Liver",
+"zh": "肝脏",
+"ja": "肝臓"
+}
+},
+{
+"id": "brain",
+"category": "organ",
+"names": {
+"en": "Brain",
+"zh": "大脑",
+"ja": "脳"
+}
+},
+{
+"id": "lung",
+"category": "organ",
+"names": {
+"en": "Lungs",
+"zh": "肺",
+"ja": "肺"
+}
+},
+{
+"id": "kidney",
+"category": "organ",
+"names": {
+"en": "Kidney",
+"zh": "肾脏",
+"ja": "腎臓"
+}
+},
+{
+"id": "intestine",
+"category": "organ",
+"names": {
+"en": "Intestine",
+"zh": "肠",
+"ja": "腸"
+}
+},
+{
+"id": "tumor",
+"category": "organ",
+"names": {
+"en": "Tumour",
+"zh": "肿瘤",
+"ja": "腫瘍"
+}
+},
+{
+"id": "blood_vessel",
+"category": "organ",
+"names": {
+"en": "Blood vessel",
+"zh": "血管",
+"ja": "血管"
+}
+},
+{
+"id": "arrow_right",
+"category": "symbol",
+"names": {
+"en": "Arrow",
+"zh": "箭头",
+"ja": "矢印"
+}
+},
+{
+"id": "arrow_curved",
+"category": "symbol",
+"names": {
+"en": "Curved arrow",
+"zh": "弯箭头",
+"ja": "曲がった矢印"
+}
+},
+{
+"id": "arrow_cycle",
+"category": "symbol",
+"names": {
+"en": "Cycle",
+"zh": "循环",
+"ja": "サイクル"
+}
+},
+{
+"id": "inhibit",
+"category": "symbol",
+"names": {
+"en": "Inhibition",
+"zh": "抑制",
+"ja": "阻害"
+}
+},
+{
+"id": "plus",
+"category": "symbol",
+"names": {
+"en": "Plus",
+"zh": "加号",
+"ja": "プラス"
+}
+},
+{
+"id": "minus",
+"category": "symbol",
+"names": {
+"en": "Minus",
+"zh": "减号",
+"ja": "マイナス"
+}
+},
+{
+"id": "check",
+"category": "symbol",
+"names": {
+"en": "Check",
+"zh": "对勾",
+"ja": "チェック"
+}
+},
+{
+"id": "cross",
+"category": "symbol",
+"names": {
+"en": "Cross",
+"zh": "叉",
+"ja": "バツ"
+}
+},
+{
+"id": "lightning",
+"category": "symbol",
+"names": {
+"en": "Activation / stimulus",
+"zh": "激活 / 刺激",
+"ja": "活性化 / 刺激"
+}
+},
+{
+"id": "magnifier",
+"category": "symbol",
+"names": {
+"en": "Analysis / zoom",
+"zh": "分析 / 放大",
+"ja": "解析 / 拡大"
+}
+},
+{
+"id": "clock",
+"category": "symbol",
+"names": {
+"en": "Time point",
+"zh": "时间点",
+"ja": "時点"
+}
+},
+{
+"id": "calendar",
+"category": "symbol",
+"names": {
+"en": "Day",
+"zh": "天数",
+"ja": "日数"
+}
+},
+{
+"id": "warning",
+"category": "symbol",
+"names": {
+"en": "Caution",
+"zh": "注意",
+"ja": "注意"
+}
+},
+{
+"id": "biohazard",
+"category": "symbol",
+"names": {
+"en": "Biohazard",
+"zh": "生物危害",
+"ja": "バイオハザード"
+}
+},
+{
+"id": "label_box",
+"category": "symbol",
+"names": {
+"en": "Label box",
+"zh": "标签框",
+"ja": "ラベル枠"
+}
+},
+{
+"id": "bar_chart",
+"category": "symbol",
+"names": {
+"en": "Bar chart",
+"zh": "柱状图",
+"ja": "棒グラフ"
+}
+},
+{
+"id": "line_chart",
+"category": "symbol",
+"names": {
+"en": "Line chart",
+"zh": "折线图",
+"ja": "折れ線グラフ"
+}
+},
+{
+"id": "injection_mouse",
+"category": "organism",
+"names": {
+"en": "Injection",
+"zh": "注射",
+"ja": "注射"
+}
+}
+]

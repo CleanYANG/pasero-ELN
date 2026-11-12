@@ -157,3 +157,18 @@ html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}
 #valueColBox[hidden]+.tl-field{grid-column:1/-1}
 .tl-plot-result .tl-table td:first-child{white-space:normal;min-width:120px}
 #ylab{width:100%;box-sizing:border-box}
+
+/* Figure canvas page */
+.tl-figure{border:1px solid #dfe5df;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(20,36,31,.08),0 14px 40px rgba(20,36,31,.06)}
+.tl-figure-frame{display:block;width:100%;height:min(820px,calc(100vh - 90px));min-height:600px;border:0}
+.tl-figure-phone{display:none;color:#5d6e66;font-size:13px;margin:10px 2px 0}
+.tl-figure-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:28px 0 8px}
+.tl-figure-more>div{border:1px solid #dfe5df;border-radius:16px;padding:18px 22px;background:#fff}
+.tl-figure-more>div+div{border-color:#cdbdf0;background:#fbfaff}
+.tl-figure-more h2{font-size:17px;margin:0 0 8px}
+.tl-figure-more ul{margin:0;padding-left:1.15em;line-height:1.75;font-size:14.5px;color:#33443d}
+@media(max-width:760px){
+  .tl-figure-frame{height:calc(100vh - 70px);min-height:560px}
+  .tl-figure-phone{display:block}
+  .tl-figure-more{grid-template-columns:minmax(0,1fr)}
+}

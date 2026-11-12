@@ -1,0 +1,13 @@
+Figure canvas third-party material
+
+Fabric.js 5.3.0 — MIT License, Copyright (c) 2008-2015 Printio (Juriy Zaytsev, Maxim Chernyak).
+
+Icons in icons/lib come from Bioicons (https://bioicons.com, https://github.com/duerrsimon/bioicons).
+Each icon keeps the licence it was published under (listed per icon in lib_catalog.json):
+  - CC0 1.0: no attribution required.
+  - CC BY 3.0 / CC BY 4.0 (including Servier Medical Art and DBCLS TogoTV): attribution required;
+    Pasero adds the credit line to every exported figure that uses such an icon.
+  - MIT / BSD: copyright notices are kept by their authors in the Bioicons repository.
+Icons licensed CC BY-SA were not included. Icons were optimised with SVGO (no visual change intended).
+
+Icons in icons/own were drawn for Pasero.
