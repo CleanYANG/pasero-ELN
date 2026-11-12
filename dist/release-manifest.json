@@ -1,5 +1,5 @@
 {
-  "version": "1.2.17",
+  "version": "1.2.19",
   "trial": {
     "id": "pasero_public_trial_2026",
     "startsAt": "2026-11-10T00:00:00+09:00",
@@ -12,10 +12,10 @@
   },
   "files": {
     "windows": {
-      "filename": "Pasero-Windows-1.2.17-Setup.exe",
-      "bytes": 145251027,
-      "sha256": "5c7aa3fdd041f2748622d76a6c055296ba906db467054c413034004433a9f55a",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-Windows-1.2.17-Setup.exe",
+      "filename": "Pasero-Windows-1.2.19-Setup.exe",
+      "bytes": 145335797,
+      "sha256": "e3ff82e0f276f7c56aa13d56dd96ce793a1db789a4a70a9558769ac6fee9a084",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.19/Pasero-Windows-1.2.19-Setup.exe",
       "verified": true
     },
     "android": {
@@ -23,13 +23,14 @@
       "bytes": 154920308,
       "sha256": "0cfe5b878261913082d80bd64ef6e23cfd905d374e03a80b956fbfa131d7ac3e",
       "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-Android-1.2.17.apk",
-      "verified": true
+      "verified": true,
+      "version": "1.2.17"
     },
     "macos": {
-      "filename": "Pasero-macOS-1.2.17-AppleSilicon.dmg",
-      "bytes": 221136450,
-      "sha256": "08815788a53cb05a96569c8ff7413fa5d3bd2bdc3527e95d1375be750c5af315",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.17/Pasero-macOS-1.2.17-AppleSilicon.dmg",
+      "filename": "Pasero-macOS-1.2.19-AppleSilicon.dmg",
+      "bytes": 221506064,
+      "sha256": "c05e381451e7a3830308a173752520d0c21953d4b49c11ff810841b2694914d7",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.19/Pasero-macOS-1.2.19-AppleSilicon.dmg",
       "verified": true
     }
   }
