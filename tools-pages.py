@@ -511,38 +511,45 @@ PROTO_PRIVATE = ('<p class="tl-private">' + LOCK +
 POINTS = ('Points (when purchasing opens): organise 5 (long document 8), question 1, rewrite 3. During the beta it is free with a limited number of uses.',
           '点数（开放购买后）：整理 5 点（长文档 8 点）、提问 1 点、改写 3 点。测试期免费，有次数限制。',
           'ポイント（購入開始後）：整理 5（長い文書 8）、質問 1、書き直し 3。テスト期間中は回数制限つきで無料です。')
-proto_body = ('<div class="tl-grid tl-proto">' +
-  card_(('Find a protocol', '找方案', 'プロトコルを探す'),
-    '<form class="tl-proto-search" id="pSearch" autocomplete="off">'
-    '<span class="tl-in"><input id="pQuery" inputmode="search" spellcheck="false" placeholder="plasmid miniprep, western blot, lentivirus…"></span>'
-    '<button type="submit" class="tl-btn primary" id="pGo">' + t('Search', '搜索', '検索') + '</button></form>' +
-    t('Bio-protocol, STAR Protocols, Nature Protocols, JoVE, MethodsX and more (Europe PMC). AI organise works on CC BY / CC0 articles, or on text you paste.',
-      'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX 等（Europe PMC）。AI 整理支持 CC BY / CC0 的文章，或者你粘贴的文字。',
-      'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX など（Europe PMC）。AI 整理は CC BY / CC0 の論文か、貼り付けた文章に使えます。', tag='small', cls='tl-note') +
-    '<div id="pResults" class="tl-proto-results" aria-live="polite"></div>' +
-    '<details class="tl-proto-paste"><summary>' + t('Or paste protocol text', '或者粘贴方案文字', 'またはプロトコルの文章を貼り付け') + '</summary>'
-    '<textarea id="pPaste" class="tl-paste" spellcheck="false" placeholder="1. …"></textarea>'
-    '<button type="button" class="tl-btn" id="pPasteGo">' + t('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt') + '</button></details>') +
-  card_(('Organised protocol', '整理好的方案', '整理したプロトコル'),
-    '<div id="pAccount" class="tl-proto-account"></div>'
-    '<div id="pEmpty" class="tl-proto-empty">' + t('Pick AI organise on a search result, or paste text on the left.', '在左边的搜索结果上点「AI 整理」，或者粘贴文字。', '左の検索結果で「AI 整理」を押すか、文章を貼り付けてください。') + '</div>'
-    '<div id="pBusy" class="tl-proto-busy" hidden>' + t('Pasero AI is organising the protocol…', 'Pasero AI 正在整理方案…', 'Pasero AI がプロトコルを整理しています…') + '</div>'
-    '<div id="pDoc" hidden>'
-    '<p class="tl-proto-src" id="pSrc"></p>'
-    '<input id="pTitle" class="tl-text tl-proto-title" spellcheck="false">'
-    '<input id="pCat" class="tl-text" spellcheck="false">'
-    '<textarea id="pBody" class="tl-paste tl-proto-body" spellcheck="false"></textarea>'
-    '<div class="tl-btns">'
-    '<button type="button" class="tl-btn primary" id="pPdf">' + t('Save as PDF', '存为 PDF', 'PDF で保存') + '</button>'
-    '<button type="button" class="tl-btn" id="pWord">' + t('Download Word', '下载 Word', 'Word をダウンロード') + '</button>'
-    '<button type="button" class="tl-btn" id="pCopy">' + t('Copy', '复制', 'コピー') + '</button></div>'
-    '<div class="tl-proto-chat"><h3>' + t('Ask Pasero AI', '问 Pasero AI', 'Pasero AI に質問') + '</h3>'
-    '<div id="pHistory"></div>'
-    '<textarea id="pQ" class="tl-paste tl-proto-q" placeholder=""></textarea>'
-    '<div class="tl-btns"><button type="button" class="tl-btn" id="pAsk">' + t('Ask · 1 pt', '提问 · 1 点', '質問 · 1 pt') + '</button>'
-    '<button type="button" class="tl-btn" id="pRewrite">' + t('Rewrite · 3 pts', '按要求改写 · 3 点', '書き直す · 3 pt') + '</button></div></div>'
-    '<p class="tl-note" id="pLeft"></p></div>' +
-    t(*POINTS, tag='p', cls='tl-note'), 'tl-proto-out') + '</div>')
+proto_body = (
+  # 1) find: one search box, results tiled below
+  '<section id="pFind" class="tl-card tl-proto-find">'
+  '<form class="tl-proto-search" id="pSearch" autocomplete="off">'
+  '<span class="tl-in"><input id="pQuery" inputmode="search" spellcheck="false" placeholder="plasmid miniprep, western blot, lentivirus…"></span>'
+  '<button type="submit" class="tl-btn primary" id="pGo">' + t('Search', '搜索', '検索') + '</button></form>' +
+  t('Bio-protocol, STAR Protocols, Nature Protocols, JoVE, MethodsX and more (Europe PMC). Articles marked AI can be organised (CC BY / CC0).',
+    'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX 等（Europe PMC）。标着 AI 的文章可以 AI 整理（CC BY / CC0）。',
+    'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX など（Europe PMC）。AI マークの論文は AI 整理できます（CC BY / CC0）。', tag='small', cls='tl-note') +
+  '<div id="pResults" class="tl-proto-results" aria-live="polite"></div>' +
+  '<details class="tl-proto-paste"><summary>' + t('Or paste protocol text', '或者粘贴方案文字', 'またはプロトコルの文章を貼り付け') + '</summary>'
+  '<textarea id="pPaste" class="tl-paste" spellcheck="false" placeholder="1. …"></textarea>'
+  '<button type="button" class="tl-btn primary" id="pPasteGo">' + t('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt') + '</button></details>'
+  '</section>' +
+  # 2) organise: its own view
+  '<section id="pView" class="tl-proto-view" hidden>'
+  '<div class="tl-proto-bar"><button type="button" class="tl-btn" id="pBack">' + t('← Back to results', '← 返回搜索结果', '← 検索結果に戻る') + '</button>'
+  '<p class="tl-proto-src" id="pSrc"></p></div>'
+  '<div class="tl-grid tl-proto">'
+  '<div class="tl-card">'
+  '<div id="pBusy" class="tl-proto-busy" hidden>' + t('Pasero AI is organising the protocol…', 'Pasero AI 正在整理方案…', 'Pasero AI がプロトコルを整理しています…') + '</div>'
+  '<div id="pEmpty" class="tl-proto-empty" hidden></div>'
+  '<div id="pDoc" hidden>'
+  '<input id="pTitle" class="tl-text tl-proto-title" spellcheck="false">'
+  '<input id="pCat" class="tl-text" spellcheck="false">'
+  '<textarea id="pBody" class="tl-paste tl-proto-body" spellcheck="false"></textarea>'
+  '<div class="tl-btns">'
+  '<button type="button" class="tl-btn primary" id="pPdf">' + t('Save as PDF', '存为 PDF', 'PDF で保存') + '</button>'
+  '<button type="button" class="tl-btn" id="pWord">' + t('Download Word', '下载 Word', 'Word をダウンロード') + '</button>'
+  '<button type="button" class="tl-btn" id="pCopy">' + t('Copy', '复制', 'コピー') + '</button></div></div></div>'
+  '<div class="tl-card tl-proto-chat">'
+  '<h2>' + t('Ask Pasero AI', '问 Pasero AI', 'Pasero AI に質問') + '</h2>'
+  '<div id="pAccount" class="tl-proto-account"></div>'
+  '<div id="pHistory" class="tl-proto-history"></div>'
+  '<textarea id="pQ" class="tl-paste tl-proto-q"></textarea>'
+  '<div class="tl-btns"><button type="button" class="tl-btn" id="pAsk">' + t('Ask · 1 pt', '提问 · 1 点', '質問 · 1 pt') + '</button>'
+  '<button type="button" class="tl-btn" id="pRewrite">' + t('Rewrite · 3 pts', '按要求改写 · 3 点', '書き直す · 3 pt') + '</button></div>'
+  '<p class="tl-note" id="pLeft"></p>' + t(*POINTS, tag='p', cls='tl-note') + '</div>'
+  '</div></section>')
 tool_page('protocol-organizer', ('Protocols', '实验方案', 'プロトコル'),
   ('Find a protocol. <em>Get clear steps.</em>', '找到方案，<em>整理成清楚的步骤。</em>', 'プロトコルを探して、<em>わかりやすい手順に。</em>'),
   ('Search the protocol journals, download the PDF, and let Pasero AI organise a protocol into purpose, materials, steps and critical points. Then ask about it or have it rewritten for your setup.',

@@ -34,7 +34,7 @@
       .catch(function () { session = null; saveSession(null); renderAccount(); return null; });
   }
 
-  var pendingEmail = '';
+  var pendingEmail = '', pending = null;
   function renderAccount(message) {
     var box = $('pAccount');
     if (session) {
@@ -56,7 +56,7 @@
       $('pVerify').onclick = function () {
         var code = ($('pCode').value || '').trim();
         if (!code) return;
-        authPost('verify', { type: 'email', email: pendingEmail, token: code }).then(function (j) { keep(j); pendingEmail = ''; renderAccount(); })
+        authPost('verify', { type: 'email', email: pendingEmail, token: code }).then(function (j) { keep(j); pendingEmail = ''; renderAccount(); if (pending) { var go = pending; pending = null; go(); } })
           .catch(function () { renderAccount(T('That code did not work. Check it, or send a new one.', '验证码不对，请检查或重新发送。', 'コードが正しくありません。確認するか、もう一度送信してください。')); });
       };
     } else {
@@ -77,11 +77,13 @@
     RATE_LIMIT: ['Too many requests. Wait a minute.', '请求太频繁，请稍等一分钟。', 'リクエストが多すぎます。1 分お待ちください。'],
     BETA_INACTIVE: ['Pasero AI is not available right now.', 'Pasero AI 暂时不可用。', 'Pasero AI は現在利用できません。']
   };
+  ERR.NETWORK = ['Pasero AI could not be reached. Check the connection and try again.', '连不上 Pasero AI，请检查网络后重试。', 'Pasero AI に接続できません。接続を確認してもう一度お試しください。'];
   function aiError(code) { var e = ERR[code]; return e ? T(e[0], e[1], e[2]) : T('Pasero AI could not finish. Try again.', 'Pasero AI 没有完成，请重试。', 'Pasero AI が完了できませんでした。再試行してください。'); }
   function ai(body) {
     return token().then(function (tk) {
       if (!tk) { renderAccount(); throw new Error('AUTH_REQUIRED'); }
-      return fetch(AI, { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + tk, 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ client: 'web', lang: P.lang() }, body)) });
+      return fetch(AI, { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + tk, 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ client: 'web', lang: P.lang() }, body)) })
+        .catch(function () { throw new Error('NETWORK'); });
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) {
         if (j.quota) quota = j.quota;
@@ -140,7 +142,7 @@
     if (msg) { box.innerHTML = '<p class="tl-note">' + esc(msg) + '</p>'; return; }
     box.innerHTML = results.map(function (it, i) {
       var meta = [it.journal, it.year, (it.licence || '').toUpperCase() || T('licence not stated', '未注明许可', 'ライセンス不明')].filter(Boolean).join(' · ');
-      return '<article class="tl-proto-item"><strong>' + esc(it.title) + '</strong><small>' + esc(meta) + '</small>' +
+      return '<article class="tl-proto-item' + (it.reusable ? ' ai' : '') + '">' + (it.reusable ? '<em class="tl-proto-badge">AI</em>' : '') + '<strong>' + esc(it.title) + '</strong><small>' + esc(meta) + '</small>' +
         (it.abstract ? '<details><summary>' + esc(T('Abstract', '摘要', '要旨')) + '</summary><p>' + esc(it.abstract) + '</p></details>' : '') +
         '<div class="tl-btns">' +
         (it.reusable ? '<button type="button" class="tl-btn primary" data-ai="' + i + '">' + esc(T('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt')) + '</button>' : '') +
@@ -206,11 +208,27 @@
     $('pBusy').hidden = !on;
     ['pAsk', 'pRewrite', 'pPasteGo'].forEach(function (id) { $(id).disabled = on; });
   }
+  var findScroll = 0;
+  function showView(on) {
+    if (on) findScroll = window.scrollY;
+    $('pFind').hidden = on; $('pView').hidden = !on;
+    var head = document.querySelector('.tl-head'); if (head) head.hidden = on;
+    window.scrollTo(0, on ? Math.max(0, $('pView').getBoundingClientRect().top + window.scrollY - 90) : findScroll);
+  }
+  $('pBack').addEventListener('click', function () { pending = null; showView(false); });
   function organise(source, text, pmcid) {
-    if (!session) { renderAccount(T('Sign in first; then press AI organise again.', '请先登录，再点一次「AI 整理」。', '先にログインしてから、もう一度「AI 整理」を押してください。')); $('pAccount').scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
-    draft = { source: source, text: text || '', history: [] };
-    $('pEmpty').hidden = true; $('pDoc').hidden = true; busy(true);
     $('pSrc').textContent = [source.title, source.journal, source.year, (source.licence || '').toUpperCase()].filter(Boolean).join(' · ');
+    $('pDoc').hidden = true; $('pHistory').innerHTML = '';
+    showView(true);
+    if (!session) {
+      pending = function () { organise(source, text, pmcid); };
+      $('pEmpty').hidden = false;
+      $('pEmpty').textContent = T('Sign in on the right; organising starts as soon as you are signed in.', '在右边登录后，会自动开始整理。', '右側でログインすると、すぐに整理が始まります。');
+      renderAccount();
+      return;
+    }
+    draft = { source: source, text: text || '', history: [] };
+    $('pEmpty').hidden = true; busy(true);
     (pmcid ? fetch(EPMC + '/' + encodeURIComponent(pmcid) + '/fullTextXML').then(function (r) { if (!r.ok) throw new Error('epmc'); return r.text(); }).then(fullText) : Promise.resolve(text))
       .then(function (t) { draft.text = t; return ai({ action: 'protocol', text: t.slice(0, 120000), source: source }); })
       .then(function (j) { apply(j.protocol || {}); if (j.reply) draft.history.push({ role: 'assistant', content: j.reply }); $('pDoc').hidden = false; history(); refreshLeft(); })
