@@ -517,9 +517,9 @@ proto_body = (
   '<form class="tl-proto-search" id="pSearch" autocomplete="off">'
   '<span class="tl-in"><input id="pQuery" inputmode="search" spellcheck="false" placeholder="plasmid miniprep, western blot, lentivirus…"></span>'
   '<button type="submit" class="tl-btn primary" id="pGo">' + t('Search', '搜索', '検索') + '</button></form>' +
-  t('Bio-protocol, STAR Protocols, Nature Protocols, JoVE, MethodsX and more (Europe PMC). Articles marked AI can be organised (CC BY / CC0).',
-    'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX 等（Europe PMC）。标着 AI 的文章可以 AI 整理（CC BY / CC0）。',
-    'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX など（Europe PMC）。AI マークの論文は AI 整理できます（CC BY / CC0）。', tag='small', cls='tl-note') +
+  t('Pasero basic protocols first, then Bio-protocol, STAR Protocols, Nature Protocols, JoVE and other journals (Europe PMC). Chinese and Japanese terms and small typos are understood. Articles marked AI can be organised (CC BY / CC0).',
+    '先列出 Pasero 整理的基础方案，再搜 Bio-protocol、STAR Protocols、Nature Protocols、JoVE 等期刊（Europe PMC）。可以用中文、日文搜，拼错一点也没关系。标着 AI 的文章可以 AI 整理（CC BY / CC0）。',
+    'まず Pasero が整理した基本プロトコル、次に Bio-protocol、STAR Protocols、Nature Protocols、JoVE などの論文（Europe PMC）。日本語・中国語や多少のスペルミスでも検索できます。AI マークの論文は AI 整理できます（CC BY / CC0）。', tag='small', cls='tl-note') +
   '<div id="pResults" class="tl-proto-results" aria-live="polite"></div>' +
   '<details class="tl-proto-paste"><summary>' + t('Or paste protocol text', '或者粘贴方案文字', 'またはプロトコルの文章を貼り付け') + '</summary>'
   '<textarea id="pPaste" class="tl-paste" spellcheck="false" placeholder="1. …"></textarea>'
@@ -560,7 +560,7 @@ tool_page('protocol-organizer', ('Protocols', '实验方案', 'プロトコル')
                ('In the Pasero app, Add to my protocols keeps the result, syncs it to your phone, and lets you insert it into lab notes with one click.',
                 '在 Pasero 里点「加入方案库」，方案会保存下来、同步到手机，写实验笔记时一键插入。',
                 'Pasero アプリでは「マイプロトコルに追加」で保存され、スマホにも同期し、実験ノートにワンクリックで挿入できます。')),
-  ['protocol.js'],
+  ['protocol-terms.js', 'protocol-basic.js', 'protocol.js'],
   'Free protocol finder: search Bio-protocol, STAR Protocols, Nature Protocols, JoVE and other protocol journals through Europe PMC, download open-access PDFs, and organise a protocol into clear steps with Pasero AI (sign in, beta free).',
   csp=PROTO_CSP)
 with open(os.path.join(OUT, 'protocol-organizer.html'), encoding='utf8') as f:

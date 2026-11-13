@@ -138,34 +138,132 @@
       .replace(/[ \t]+/g, ' ').split('\n').map(function (l) { return l.trim(); }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
-  var results = [];
+  /* ---------------- query help: spelling, synonyms, Chinese / Japanese ---------------- */
+  var GROUPS = window.PaseroProtocolTerms || [];
+  var BASICS = window.PaseroBasicProtocols || [];
+  var VOCAB = {};
+  GROUPS.forEach(function (g) { g.w.forEach(function (w) { w.split(/[\s-]+/).forEach(function (t) { if (/^[a-z0-9]{3,}$/.test(t)) VOCAB[t] = 1; }); }); });
+  ['protocol', 'method', 'methods', 'cells', 'cell', 'mouse', 'human', 'tissue', 'yeast', 'bacteria', 'coli', 'plant', 'primary', 'stem', 'neuron', 'blood',
+   'serum', 'plasma', 'antibody', 'staining', 'assay', 'kit', 'protein', 'buffer', 'extraction', 'isolation', 'purification', 'preparation'].forEach(function (t) { VOCAB[t] = 1; });
+  function dist(a, b) {  // Damerau–Levenshtein (optimal string alignment)
+    var d = [], i, j;
+    for (i = 0; i <= a.length; i++) { d[i] = [i]; }
+    for (j = 0; j <= b.length; j++) { d[0][j] = j; }
+    for (i = 1; i <= a.length; i++) for (j = 1; j <= b.length; j++) {
+      var c = a[i - 1] === b[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + c);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+    }
+    return d[a.length][b.length];
+  }
+  function correctWord(t) {
+    if (!/^[a-z]{4,}$/.test(t) || VOCAB[t]) return t;
+    var best = t, bestD = t.length >= 8 ? 3 : t.length >= 5 ? 2 : 1;
+    Object.keys(VOCAB).forEach(function (v) { if (Math.abs(v.length - t.length) > 2) return; var dd = dist(t, v); if (dd < bestD || (dd === bestD && best === t && dd <= (t.length >= 8 ? 2 : 1))) { bestD = dd; best = v; } });
+    return best;
+  }
+  var STOP = ['method', 'methods', 'protocol', 'protocols', 'procedure', 'how', 'to', 'the', 'of', 'for', 'in', 'a', 'an', 'and', 'with', 'by', 'using', 'step', 'steps', '方法', '方案', '步骤', '实验', '方法論', 'プロトコル', '方法'];
+  function understand(raw) {
+    var low = raw.toLowerCase().replace(/[，、。,;；]+/g, ' ').replace(/\s+/g, ' ').trim();
+    var fixed = low.split(' ').map(correctWord).join(' ');
+    var has = function (text, w) {  // whole words for Latin terms ("pcr" is not inside "qpcr"), plain substring for Chinese / Japanese
+      if (/[\u3040-\u30ff\u3400-\u9fff]/.test(w)) return text.indexOf(w) >= 0;
+      return new RegExp('(^|[^a-z0-9])' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[^a-z0-9])').test(text);
+    };
+    var groups = GROUPS.filter(function (g) { return g.w.some(function (w) { return has(fixed, w); }); });
+    var rest = ' ' + fixed + ' ';
+    groups.forEach(function (g) { g.w.slice().sort(function (a, b) { return b.length - a.length; }).forEach(function (w) { if (has(rest.trim(), w)) rest = rest.split(w).join(' '); }); });
+    rest = rest.split(' ').filter(function (t) { return t && STOP.indexOf(t) < 0; }).join(' ');
+    rest = rest.replace(/[぀-ヿ㐀-鿿]+/g, ' ').replace(/\s+/g, ' ').trim();  // CJK words without a mapping cannot go to Europe PMC
+    var expr = groups.map(function (g) { return '(' + g.q.join(' OR ') + ')'; }).join(' AND ');
+    var restExpr = rest ? rest.split(' ').filter(function (t) { return t.length > 1; }).join(' ') : '';
+    var q = [expr, restExpr].filter(Boolean).join(' AND ') || fixed;
+    var titleQ = groups.length ? groups.map(function (g) { return 'TITLE:(' + g.q.join(' OR ') + ')'; }).join(' AND ') + (restExpr ? ' AND ' + restExpr : '') : 'TITLE:(' + fixed + ')';
+    return { raw: raw, fixed: fixed, changed: fixed !== low, groups: groups, q: q, titleQ: titleQ };
+  }
+  function basicsFor(u) {
+    var ids = u.groups.map(function (g) { return g.id; });
+    var words = u.fixed.split(' ').filter(function (t) { return t.length > 2; });
+    return BASICS.map(function (b) {
+      var hay = (b.title + ' ' + b.summary).toLowerCase(), score = 0;
+      b.tags.forEach(function (t) { if (ids.indexOf(t) >= 0) score += t === b.tags[0] ? 3 : 1; });
+      words.forEach(function (w) { if (hay.indexOf(w) >= 0) score += 1; });
+      if (hay.indexOf(u.fixed) >= 0) score += 2;
+      return { b: b, score: score };
+    }).filter(function (x) { return x.score > 0 && (!ids.length || x.b.tags.some(function (t) { return ids.indexOf(t) >= 0; })); }).sort(function (a, b) { return b.score - a.score; }).slice(0, 6).map(function (x) { return x.b; });
+  }
+
+  /* ---------------- search: Pasero basics + three Europe PMC tiers ---------------- */
+  var results = [], basics = [], tiers = { journal: [], oa: [], classic: [] }, lastU = null;
+  function epmc(query, size, sort) {
+    var params = new URLSearchParams({ query: query, format: 'json', resultType: 'core', pageSize: String(size) });
+    if (sort) params.set('sort', sort);
+    return fetch(EPMC + '/search?' + params.toString(), { headers: { Accept: 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error('epmc'); return r.json(); })
+      .then(function (j) { return parse(j).map(function (it, k) { it.cited = Number((((j.resultList || {}).result || [])[k] || {}).citedByCount || 0); return it; }); });
+  }
+  function card(it, i) {
+    var meta = [it.journal, it.year, (it.licence || '').toUpperCase() || T('licence not stated', '未注明许可', 'ライセンス不明')].filter(Boolean).join(' · ');
+    if (it.cited) meta += ' · ' + T('cited ', '被引 ', '被引用 ') + it.cited;
+    return '<article class="tl-proto-item' + (it.reusable ? ' ai' : '') + '">' + (it.reusable ? '<em class="tl-proto-badge">AI</em>' : '') + '<strong>' + esc(it.title) + '</strong><small>' + esc(meta) + '</small>' +
+      (it.abstract ? '<details><summary>' + esc(T('Abstract', '摘要', '要旨')) + '</summary><p>' + esc(it.abstract) + '</p></details>' : '') +
+      '<div class="tl-btns">' +
+      (it.reusable ? '<button type="button" class="tl-btn primary" data-ai="' + i + '">' + esc(T('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt')) + '</button>' : '') +
+      (it.pdf ? '<a class="tl-btn" href="' + esc(it.pdf) + '" target="_blank" rel="noopener" download>' + esc(T('Download PDF', '下载 PDF', 'PDF をダウンロード')) + '</a>' : '') +
+      (it.url ? '<a class="tl-btn" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(T('Open article', '打开原文', '原文を開く')) + '</a>' : '') +
+      '</div></article>';
+  }
+  function basicCard(b, i) {
+    return '<article class="tl-proto-item basic"><em class="tl-proto-badge basic">Pasero</em><strong>' + esc(b.title) + '</strong>' +
+      '<small>' + esc(T('Source: organised by Pasero · generic template', '来源：Pasero 整理 · 通用模板', '出典：Pasero が整理 · 汎用テンプレート')) + '</small>' +
+      '<p class="tl-proto-sum">' + esc(b.summary) + '</p>' +
+      '<div class="tl-btns"><button type="button" class="tl-btn primary" data-basic="' + i + '">' + esc(T('Open', '查看', '開く')) + '</button></div></article>';
+  }
+  function section(title, note, html) {
+    return html ? '<section class="tl-proto-tier"><h3>' + esc(title) + (note ? ' <small>' + esc(note) + '</small>' : '') + '</h3><div class="tl-proto-grid">' + html + '</div></section>' : '';
+  }
   function renderResults(msg) {
     var box = $('pResults');
     if (msg) { box.innerHTML = '<p class="tl-note">' + esc(msg) + '</p>'; return; }
-    box.innerHTML = results.map(function (it, i) {
-      var meta = [it.journal, it.year, (it.licence || '').toUpperCase() || T('licence not stated', '未注明许可', 'ライセンス不明')].filter(Boolean).join(' · ');
-      return '<article class="tl-proto-item' + (it.reusable ? ' ai' : '') + '">' + (it.reusable ? '<em class="tl-proto-badge">AI</em>' : '') + '<strong>' + esc(it.title) + '</strong><small>' + esc(meta) + '</small>' +
-        (it.abstract ? '<details><summary>' + esc(T('Abstract', '摘要', '要旨')) + '</summary><p>' + esc(it.abstract) + '</p></details>' : '') +
-        '<div class="tl-btns">' +
-        (it.reusable ? '<button type="button" class="tl-btn primary" data-ai="' + i + '">' + esc(T('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt')) + '</button>' : '') +
-        (it.pdf ? '<a class="tl-btn" href="' + esc(it.pdf) + '" target="_blank" rel="noopener" download>' + esc(T('Download PDF', '下载 PDF', 'PDF をダウンロード')) + '</a>' : '') +
-        (it.url ? '<a class="tl-btn" href="' + esc(it.url) + '" target="_blank" rel="noopener">' + esc(T('Open article', '打开原文', '原文を開く')) + '</a>' : '') +
-        '</div></article>';
-    }).join('');
+    var u = lastU, notice = '';
+    if (u && (u.changed || u.groups.length)) {
+      var shown = u.groups.length ? u.groups.map(function (g) { return g.q.map(function (x) { return x.replace(/"/g, ''); }).join(' / '); }).join(' + ') : u.fixed;
+      notice = '<p class="tl-proto-notice">' + esc(T('Searched for: ', '已按以下关键词搜索：', '次の語で検索しました：') + shown) + (u.changed ? ' · <span>' + esc(T('spelling corrected', '已纠正拼写', 'スペルを修正')) + '</span>' : '') + '</p>';
+    }
+    results = [];
+    var tierHtml = function (list) { return list.map(function (it) { results.push(it); return card(it, results.length - 1); }).join(''); };
+    var html = notice +
+      section(T('Pasero basic protocols', 'Pasero 基础方案', 'Pasero 基本プロトコル'), T('organised by Pasero', 'Pasero 整理', 'Pasero が整理'), basics.map(basicCard).join('')) +
+      section(T('Protocol journals', '方案期刊', 'プロトコル誌'), 'Europe PMC', tierHtml(tiers.journal)) +
+      section(T('Other open-access methods', '其他开放获取的方法文章', 'その他のオープンアクセスの方法論文'), 'Europe PMC', tierHtml(tiers.oa)) +
+      section(T('Classic papers', '经典文献', '定番の論文'), T('most cited', '按被引次数', '被引用数順'), tierHtml(tiers.classic));
+    box.innerHTML = html || '<p class="tl-note">' + esc(T('No protocols found. Try another word, or English terms.', '没有找到方案。换个说法，或者用英文关键词试试。', '見つかりませんでした。別の言い方や英語で試してください。')) + '</p>';
   }
   $('pSearch').addEventListener('submit', function (ev) {
     ev.preventDefault();
     var q = ($('pQuery').value || '').trim();
     if (!q) return;
-    renderResults(T('Searching…', '正在搜索…', '検索中…'));
-    var query = '(' + q + ') AND (' + JOURNALS.map(function (j) { return 'JOURNAL:"' + j + '"'; }).join(' OR ') + ')';
-    var params = new URLSearchParams({ query: query, format: 'json', resultType: 'core', pageSize: '20' });
-    fetch(EPMC + '/search?' + params.toString(), { headers: { Accept: 'application/json' } })
-      .then(function (r) { if (!r.ok) throw new Error('epmc'); return r.json(); })
-      .then(function (j) { results = parse(j); results.length ? renderResults() : renderResults(T('No protocols found.', '没有找到方案。', '見つかりませんでした。')); })
-      .catch(function () { renderResults(T('Europe PMC could not be reached. Check the connection.', '连不上 Europe PMC，请检查网络。', 'Europe PMC に接続できません。')); });
+    var u = lastU = understand(q);
+    basics = basicsFor(u);
+    tiers = { journal: [], oa: [], classic: [] };
+    renderResults();
+    $('pResults').insertAdjacentHTML('beforeend', '<p class="tl-note" id="pSearching">' + esc(T('Searching Europe PMC…', '正在搜索 Europe PMC…', 'Europe PMC を検索中…')) + '</p>');
+    var J = '(' + JOURNALS.map(function (j) { return 'JOURNAL:"' + j + '"'; }).join(' OR ') + ')';
+    var seen = {};
+    var keep = function (list) { return list.filter(function (it) { var k = it.pmcid || it.doi || it.title; if (seen[k]) return false; seen[k] = 1; return true; }); };
+    Promise.all([
+      epmc('(' + u.q + ') AND ' + J, 12).catch(function () { return null; }),
+      epmc(u.titleQ + ' AND OPEN_ACCESS:y NOT ' + J, 9).catch(function () { return null; }),
+      epmc(u.titleQ, 6, 'CITED desc').catch(function () { return null; })
+    ]).then(function (all) {
+      if (all.every(function (x) { return x === null; }) && !basics.length) { renderResults(T('Europe PMC could not be reached. Check the connection.', '连不上 Europe PMC，请检查网络。', 'Europe PMC に接続できません。')); return; }
+      tiers = { journal: keep(all[0] || []), oa: keep(all[1] || []), classic: keep(all[2] || []) };
+      renderResults();
+    });
   });
   $('pResults').addEventListener('click', function (ev) {
+    var bb = ev.target.closest('button[data-basic]');
+    if (bb) { openBasic(basics[+bb.getAttribute('data-basic')]); return; }
     var b = ev.target.closest('button[data-ai]'); if (!b) return;
     var it = results[+b.getAttribute('data-ai')];
     organise({ kind: 'europepmc', title: it.title, journal: it.journal, year: it.year, doi: it.doi, licence: it.licence, url: it.url, authors: it.authors }, null, it.pmcid);
@@ -191,7 +289,9 @@
     var steps = (p.steps || []).map(function (s, i) { s = typeof s === 'object' && s ? s : { title: '', detail: String(s || '') };
       return ((i + 1) + '. ' + (s.title || '')).trim() + (s.detail ? '\n   ' + String(s.detail).replace(/\n/g, '\n   ') : ''); }).join('\n');
     var srcLines = [lab('organised') + new Date().toISOString().slice(0, 10)];
-    if (src.kind !== 'upload') {
+    if (src.kind === 'pasero') {
+      srcLines.push(lab('source') + T('organised by Pasero (generic template)', 'Pasero 整理（通用模板）', 'Pasero が整理（汎用テンプレート）'));
+    } else if (src.kind !== 'upload') {
       srcLines.push(lab('source') + [src.authors, src.title, src.journal, src.year].filter(Boolean).join(' '));
       if (src.doi) srcLines.push('DOI: ' + src.doi);
       if (src.url) srcLines.push(src.url);
@@ -236,6 +336,21 @@
       .then(function (j) { apply(j.protocol || {}); if (j.reply) draft.history.push({ role: 'assistant', content: j.reply }); $('pDoc').hidden = false; history(); refreshLeft(); })
       .catch(function (e) { $('pEmpty').hidden = false; $('pEmpty').innerHTML = '<p class="tl-warn">' + esc(aiError(e.message)) + '</p>'; })
       .then(function () { busy(false); });
+  }
+  function basicText(b) {
+    return [T('Summary', '概要', '概要') + '\n' + b.summary, b.vars ? T('Variable fields', '可变参数', '変数フィールド') + '\n' + b.vars : '',
+      T('Steps', '步骤', '手順') + '\n' + b.steps, T('Notes', '备注', 'メモ') + '\n' + [b.notes, T('Source: organised by Pasero (generic template; adjust to your kit and lab SOPs).', '来源：Pasero 整理（通用模板，请按试剂盒说明书和本实验室规范调整）。', '出典：Pasero が整理（汎用テンプレート。キットの説明書と研究室の規定に合わせて調整してください）。')].filter(Boolean).join('\n\n')]
+      .filter(Boolean).join('\n\n');
+  }
+  function openBasic(b) {
+    $('pSrc').textContent = T('Source: organised by Pasero · generic template', '来源：Pasero 整理 · 通用模板', '出典：Pasero が整理 · 汎用テンプレート');
+    showView(true);
+    $('pWork').style.display = '';
+    pending = null;
+    draft = { source: { kind: 'pasero', title: b.title }, text: basicText(b), history: [] };
+    $('pTitle').value = b.title; $('pCat').value = 'Pasero'; $('pBody').value = draft.text;
+    $('pEmpty').hidden = true; $('pBusy').hidden = true; $('pDoc').hidden = false;
+    history(); renderAccount();
   }
   function history() {
     $('pHistory').innerHTML = draft.history.map(function (m) {
