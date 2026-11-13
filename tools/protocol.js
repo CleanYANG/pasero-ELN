@@ -179,7 +179,10 @@
     var restExpr = rest ? rest.split(' ').filter(function (t) { return t.length > 1; }).join(' ') : '';
     var q = [expr, restExpr].filter(Boolean).join(' AND ') || fixed;
     var titleQ = groups.length ? groups.map(function (g) { return 'TITLE:(' + g.q.join(' OR ') + ')'; }).join(' AND ') + (restExpr ? ' AND ' + restExpr : '') : 'TITLE:(' + fixed + ')';
-    return { raw: raw, fixed: fixed, changed: fixed !== low, groups: groups, q: q, titleQ: titleQ };
+    // protocol journals: the method has to be in the title or abstract, not just mentioned somewhere in the full text
+    var ta = function (terms) { return '(TITLE:(' + terms + ') OR ABSTRACT:(' + terms + '))'; };
+    var taQ = groups.length ? groups.map(function (g) { return ta(g.q.join(' OR ')); }).join(' AND ') + (restExpr ? ' AND ' + restExpr : '') : ta(fixed);
+    return { raw: raw, fixed: fixed, changed: fixed !== low, groups: groups, q: q, titleQ: titleQ, taQ: taQ };
   }
   function basicsFor(u) {
     var ids = u.groups.map(function (g) { return g.id; });
@@ -252,7 +255,7 @@
     var seen = {};
     var keep = function (list) { return list.filter(function (it) { var k = it.pmcid || it.doi || it.title; if (seen[k]) return false; seen[k] = 1; return true; }); };
     Promise.all([
-      epmc('(' + u.q + ') AND ' + J, 12).catch(function () { return null; }),
+      epmc('(' + u.taQ + ') AND ' + J, 12).catch(function () { return null; }),
       epmc(u.titleQ + ' AND OPEN_ACCESS:y NOT ' + J, 9).catch(function () { return null; }),
       epmc(u.titleQ, 6, 'CITED desc').catch(function () { return null; })
     ]).then(function (all) {

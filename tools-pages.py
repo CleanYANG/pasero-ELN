@@ -32,7 +32,7 @@ def t(en, zh, ja, tag='span', cls=None, attrs=''):
     inner = en if tag in ('h1', 'h2', 'h3') else html.escape(en)
     return f'<{tag}{c}{attrs} data-en="{a(en)}" data-zh="{a(zh)}" data-ja="{a(ja)}">{inner}</{tag}>'
 
-V = '20261112b'
+V = '20261113'
 LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>'
 PRIVATE = (f'<p class="tl-private">{LOCK}' +
            t('Runs entirely in your browser. Nothing you type or paste is uploaded — it even works with Wi-Fi off.',
