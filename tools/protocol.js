@@ -38,12 +38,14 @@
   function renderAccount(message) {
     var box = $('pAccount');
     if (session) {
+      box.classList.add('in');
       box.innerHTML = '<span>' + esc(T('Signed in as ', '已登录：', 'ログイン中：') + session.email) + '</span> <button type="button" class="tl-btn" id="pOut">' +
         esc(T('Sign out', '退出', 'ログアウト')) + '</button>';
       $('pOut').onclick = function () { session = null; saveSession(null); renderAccount(); };
       refreshLeft();
       return;
     }
+    box.classList.remove('in');
     box.innerHTML = '<p class="tl-note">' + esc(T('Sign in with your Pasero account to use AI (the same account as the app; new e-mails get one automatically).',
       '用 Pasero 账号登录后才能用 AI（和 App 是同一个账号；新邮箱会自动注册）。', 'AI を使うには Pasero アカウントでログインしてください（アプリと同じアカウント。新しいメールアドレスは自動で登録されます）。')) + '</p>' +
       '<div class="tl-proto-signin">' + (pendingEmail
@@ -222,11 +224,11 @@
     showView(true);
     if (!session) {
       pending = function () { organise(source, text, pmcid); };
-      $('pEmpty').hidden = false;
-      $('pEmpty').textContent = T('Sign in on the right; organising starts as soon as you are signed in.', '在右边登录后，会自动开始整理。', '右側でログインすると、すぐに整理が始まります。');
-      renderAccount();
+      $('pWork').style.display = 'none';
+      renderAccount(T('Sign in first; organising starts as soon as you are signed in.', '请先登录，登录后会自动开始整理。', '先にログインしてください。ログインするとすぐに整理が始まります。'));
       return;
     }
+    $('pWork').style.display = '';
     draft = { source: source, text: text || '', history: [] };
     $('pEmpty').hidden = true; busy(true);
     (pmcid ? fetch(EPMC + '/' + encodeURIComponent(pmcid) + '/fullTextXML').then(function (r) { if (!r.ok) throw new Error('epmc'); return r.text(); }).then(fullText) : Promise.resolve(text))

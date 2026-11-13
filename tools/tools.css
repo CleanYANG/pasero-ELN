@@ -203,7 +203,8 @@ a.tl-btn{display:inline-flex;align-items:center;text-decoration:none}
 .tl-proto{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
 .tl-proto .tl-card+.tl-card{margin-top:0}
 .tl-proto .tl-btns{margin:10px 0 4px}
-.tl-proto-account{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px;color:var(--dl-muted);margin-bottom:12px}
+.tl-proto-account{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13.5px;color:var(--dl-muted);margin-bottom:18px;max-width:640px}
+.tl-proto-account.in{background:none;border:0;padding:0;margin-bottom:12px;max-width:none}
 .tl-proto-account p{margin:0;width:100%}
 .tl-proto-signin{display:flex;gap:8px;width:100%}
 .tl-proto-signin .tl-in{flex:1}
@@ -219,5 +220,5 @@ textarea.tl-proto-q{min-height:80px;font-family:'DM Sans','Noto Sans SC','Noto S
 .tl-proto-msg{font-size:14px;line-height:1.6;margin:8px 0;padding:9px 12px;border-radius:12px}
 .tl-proto-msg.ai{background:var(--tl-soft)}
 .tl-proto-msg.me{background:#f4eefb;margin-left:14%}
-@media(max-width:900px){.tl-proto-chat{position:static}}
+@media(max-width:900px){.tl-proto{grid-template-columns:minmax(0,1fr)}.tl-proto-chat{position:static}textarea.tl-proto-body{min-height:420px}}
 @media(max-width:560px){.tl-proto-search,.tl-proto-signin{flex-direction:column}}
