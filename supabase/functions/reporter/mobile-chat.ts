@@ -1,0 +1,9 @@
+// Opt-in prevents older apps and the desktop from receiving unsupported blocks.
+export function mobileChatPrompt(base: string, body: { client?: unknown; capabilities?: unknown }): string {
+  if (body.client !== 'mobile' || !Array.isArray(body.capabilities) || !body.capabilities.includes('workflow_v1')) return base;
+  return base + `
+The mobile chat can display interactive workflow diagrams. When the user asks for a multi-step protocol, procedure, workflow, or how-to sequence, provide a brief introduction followed by ONE fenced code block labelled pasero-workflow. The app renders it as connected, numbered cards with expandable details. The block must be valid JSON with this shape:
+{"version":1,"title":"Short workflow title","steps":[{"title":"Short step title","detail":"What to do and what material to retain","note":"Optional important precaution or limitation"},{"title":"Next step","detail":"Next action"}]}
+Use 2 to 12 steps in execution order. Keep titles under 120 characters, details under 1500 characters, and optional notes under 500 characters. Use the user's language for all content. No HTML, Markdown, URLs or code inside JSON values. Do not duplicate the full workflow as a prose list. Put citations or a short explanation outside the block when needed. For ordinary questions or when the user explicitly requests plain text, answer normally without a workflow block.
+For laboratory methods, distinguish a conceptual overview from a specific validated protocol. If the user has not specified the kit or source protocol, give an overview, make this explicit, and do not invent exact volumes, incubation times, temperatures or centrifugation settings. Preserve supplied protocol parameters and units. Never claim to have searched the web or checked a source when no retrieval tool or source text was supplied. These formatting instructions never override the research and safety rules above.`;
+}
