@@ -46,6 +46,11 @@ TOOLS = [
       blurb=('Draw lab workflows and study schematics from 2,000+ free science icons and 12 ready-made templates.',
              '用 2,000 多个免费科研图标和 12 个样图，画实验流程图和机制示意图。',
              '2,000 点以上の無料サイエンスアイコンと 12 種類の見本で、実験の流れや模式図を作図。')),
+ dict(slug='protocol-organizer', group='proto', shot='d-db-libraries',
+      name=('Protocol finder & AI organiser', '方案搜索与 AI 整理', 'プロトコル検索と AI 整理'),
+      blurb=('Search Bio-protocol, STAR Protocols and other protocol journals, download the PDF, and let AI turn a protocol into clear steps.',
+             '搜索 Bio-protocol、STAR Protocols 等方案期刊，下载 PDF，用 AI 把方案整理成清楚的步骤。',
+             'Bio-protocol や STAR Protocols などを検索して PDF をダウンロード。AI がプロトコルをわかりやすい手順に整理。')),
  dict(slug='molarity-calculator', group='sol', shot='d-notes-resources',
       name=('Molarity calculator', '摩尔浓度计算器', 'モル濃度計算'),
       blurb=('How many grams for a 50 mM solution? Mass, concentration and volume from molecular weight.',
@@ -93,6 +98,7 @@ TOOLS = [
              '血球計算盤のカウントから細胞数/mL と生存率、播種量まで。')),
 ]
 GROUPS = [('fig', ('Figures', '科研作图', '作図')),
+          ('proto', ('Protocols', '实验方案', 'プロトコル')),
           ('data', ('Data', '数据', 'データ')),
           ('clone', ('Molecular cloning', '分子克隆', '分子クローニング')),
           ('sol', ('Solutions & reactions', '溶液与反应', '溶液と反応')),
@@ -117,12 +123,12 @@ def cta(shot, eyebrow, h2, p):
             ' <span aria-hidden="true">↗︎</span></a></div>'
             f'<img data-shot="{shot}" src="../assests/shots/{shot}.en.webp" alt="" loading="lazy" decoding="async"></aside>')
 
-def page(slug, titles, desc, body, scripts=(), noindex=False):
+def page(slug, titles, desc, body, scripts=(), noindex=False, csp=None):
     te, tz, tj = titles
     robots = '<meta name="robots" content="noindex">' if noindex else ''
     sc = ''.join(f'<script src="{s}?v={V}"></script>' for s in scripts)
     doc = (head_open +
-           f'<meta http-equiv="Content-Security-Policy" content="{CSP}">'
+           f'<meta http-equiv="Content-Security-Policy" content="{csp or CSP}">'
            f'<title>{html.escape(te)}</title><meta name="description" content="{a(desc)}">{robots}'
            f'<link rel="canonical" href="https://pasero.app/tools/{"" if slug == "index" else slug + ".html"}">'
            + styles + f'<link rel="stylesheet" href="tools.css?v={V}b"><script src="../source-tag.js?v=1"></script></head>'
@@ -133,14 +139,14 @@ def page(slug, titles, desc, body, scripts=(), noindex=False):
     with open(os.path.join(OUT, slug + '.html'), 'w', encoding='utf8') as f:
         f.write(doc)
 
-def tool_page(slug, eyebrow, h1, lead, body, cta_args, scripts, desc, noindex=False):
+def tool_page(slug, eyebrow, h1, lead, body, cta_args, scripts, desc, noindex=False, csp=None):
     x = BY[slug]; n = x['name']
     crumb = ('<nav class="tl-crumb" aria-label="Breadcrumb"><a href="index.html">' +
              t('Free lab tools', '免费实验工具', '無料の実験ツール') + '</a> / ' + t(*n) + '</nav>')
     head = ('<div class="tl-head"><p class="dl-eyebrow">' + t(*eyebrow) + '</p>' + t(*h1, tag='h1') +
             t(*lead, tag='p', cls='dl-lead') + PRIVATE + '</div>')
     titles = tuple(f'{nm} — {sfx}' for nm, sfx in zip(n, ('Free lab tools · Pasero', '免费实验工具 · 雀角 Pasero', '無料の実験ツール · 雀角 Pasero')))
-    page(slug, titles, desc, crumb + head + body + cta(x['shot'], *cta_args) + more(slug), scripts, noindex)
+    page(slug, titles, desc, crumb + head + body + cta(x['shot'], *cta_args) + more(slug), scripts, noindex, csp)
 
 # ---- small builders -----------------------------------------------------
 def field(label, inner, hint=None, fid=None):
@@ -495,17 +501,82 @@ assert _doc.count(PRIVATE) == 1
 with open(os.path.join(OUT, 'figure.html'), 'w', encoding='utf8') as f:
     f.write(_doc.replace(PRIVATE, FIG_PRIVATE))
 
+
+# ======================= Protocol finder & AI organiser ===================
+PROTO_CSP = CSP.replace("connect-src 'none'", "connect-src https://www.ebi.ac.uk https://gnfxemlrgjwcqxqruzev.supabase.co")
+PROTO_PRIVATE = ('<p class="tl-private">' + LOCK +
+  t('Search and PDF download go straight to Europe PMC. Only when you press AI organise, ask or rewrite is the protocol text sent to Pasero AI; it is not stored.',
+    '搜索和下载 PDF 直接连 Europe PMC。只有点「AI 整理」「提问」「改写」时，方案文字才会发给 Pasero AI 处理，不会保存。',
+    '検索と PDF のダウンロードは Europe PMC に直接つながります。「AI 整理」「質問」「書き直し」を押したときだけ、プロトコルの文章が Pasero AI に送られます（保存はされません）。') + '</p>')
+POINTS = ('Points (when purchasing opens): organise 5 (long document 8), question 1, rewrite 3. During the beta it is free with a limited number of uses.',
+          '点数（开放购买后）：整理 5 点（长文档 8 点）、提问 1 点、改写 3 点。测试期免费，有次数限制。',
+          'ポイント（購入開始後）：整理 5（長い文書 8）、質問 1、書き直し 3。テスト期間中は回数制限つきで無料です。')
+proto_body = ('<div class="tl-grid tl-proto">' +
+  card_(('Find a protocol', '找方案', 'プロトコルを探す'),
+    '<form class="tl-proto-search" id="pSearch" autocomplete="off">'
+    '<span class="tl-in"><input id="pQuery" inputmode="search" spellcheck="false" placeholder="plasmid miniprep, western blot, lentivirus…"></span>'
+    '<button type="submit" class="tl-btn primary" id="pGo">' + t('Search', '搜索', '検索') + '</button></form>' +
+    t('Bio-protocol, STAR Protocols, Nature Protocols, JoVE, MethodsX and more (Europe PMC). AI organise works on CC BY / CC0 articles, or on text you paste.',
+      'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX 等（Europe PMC）。AI 整理支持 CC BY / CC0 的文章，或者你粘贴的文字。',
+      'Bio-protocol、STAR Protocols、Nature Protocols、JoVE、MethodsX など（Europe PMC）。AI 整理は CC BY / CC0 の論文か、貼り付けた文章に使えます。', tag='small', cls='tl-note') +
+    '<div id="pResults" class="tl-proto-results" aria-live="polite"></div>' +
+    '<details class="tl-proto-paste"><summary>' + t('Or paste protocol text', '或者粘贴方案文字', 'またはプロトコルの文章を貼り付け') + '</summary>'
+    '<textarea id="pPaste" class="tl-paste" spellcheck="false" placeholder="1. …"></textarea>'
+    '<button type="button" class="tl-btn" id="pPasteGo">' + t('AI organise · 5 pts', 'AI 整理 · 5 点', 'AI 整理 · 5 pt') + '</button></details>') +
+  card_(('Organised protocol', '整理好的方案', '整理したプロトコル'),
+    '<div id="pAccount" class="tl-proto-account"></div>'
+    '<div id="pEmpty" class="tl-proto-empty">' + t('Pick AI organise on a search result, or paste text on the left.', '在左边的搜索结果上点「AI 整理」，或者粘贴文字。', '左の検索結果で「AI 整理」を押すか、文章を貼り付けてください。') + '</div>'
+    '<div id="pBusy" class="tl-proto-busy" hidden>' + t('Pasero AI is organising the protocol…', 'Pasero AI 正在整理方案…', 'Pasero AI がプロトコルを整理しています…') + '</div>'
+    '<div id="pDoc" hidden>'
+    '<p class="tl-proto-src" id="pSrc"></p>'
+    '<input id="pTitle" class="tl-text tl-proto-title" spellcheck="false">'
+    '<input id="pCat" class="tl-text" spellcheck="false">'
+    '<textarea id="pBody" class="tl-paste tl-proto-body" spellcheck="false"></textarea>'
+    '<div class="tl-btns">'
+    '<button type="button" class="tl-btn primary" id="pPdf">' + t('Save as PDF', '存为 PDF', 'PDF で保存') + '</button>'
+    '<button type="button" class="tl-btn" id="pWord">' + t('Download Word', '下载 Word', 'Word をダウンロード') + '</button>'
+    '<button type="button" class="tl-btn" id="pCopy">' + t('Copy', '复制', 'コピー') + '</button></div>'
+    '<div class="tl-proto-chat"><h3>' + t('Ask Pasero AI', '问 Pasero AI', 'Pasero AI に質問') + '</h3>'
+    '<div id="pHistory"></div>'
+    '<textarea id="pQ" class="tl-paste tl-proto-q" placeholder=""></textarea>'
+    '<div class="tl-btns"><button type="button" class="tl-btn" id="pAsk">' + t('Ask · 1 pt', '提问 · 1 点', '質問 · 1 pt') + '</button>'
+    '<button type="button" class="tl-btn" id="pRewrite">' + t('Rewrite · 3 pts', '按要求改写 · 3 点', '書き直す · 3 pt') + '</button></div></div>'
+    '<p class="tl-note" id="pLeft"></p></div>' +
+    t(*POINTS, tag='p', cls='tl-note'), 'tl-proto-out') + '</div>')
+tool_page('protocol-organizer', ('Protocols', '实验方案', 'プロトコル'),
+  ('Find a protocol. <em>Get clear steps.</em>', '找到方案，<em>整理成清楚的步骤。</em>', 'プロトコルを探して、<em>わかりやすい手順に。</em>'),
+  ('Search the protocol journals, download the PDF, and let Pasero AI organise a protocol into purpose, materials, steps and critical points. Then ask about it or have it rewritten for your setup.',
+   '搜索方案期刊、下载 PDF，再让 Pasero AI 把方案整理成目的、材料、步骤和注意事项。还可以追问，或者让它按你的条件改写。',
+   'プロトコル誌を検索して PDF をダウンロード。Pasero AI が目的・材料・手順・注意点に整理します。質問したり、条件に合わせて書き直したりもできます。'),
+  proto_body, (('In Pasero', '在 Pasero 里', 'Pasero なら'),
+               ('Organised protocols go straight into your library.', '整理好的方案直接进方案库。', '整理したプロトコルはそのままライブラリへ。'),
+               ('In the Pasero app, Add to my protocols keeps the result, syncs it to your phone, and lets you insert it into lab notes with one click.',
+                '在 Pasero 里点「加入方案库」，方案会保存下来、同步到手机，写实验笔记时一键插入。',
+                'Pasero アプリでは「マイプロトコルに追加」で保存され、スマホにも同期し、実験ノートにワンクリックで挿入できます。')),
+  ['protocol.js'],
+  'Free protocol finder: search Bio-protocol, STAR Protocols, Nature Protocols, JoVE and other protocol journals through Europe PMC, download open-access PDFs, and organise a protocol into clear steps with Pasero AI (sign in, beta free).',
+  csp=PROTO_CSP)
+with open(os.path.join(OUT, 'protocol-organizer.html'), encoding='utf8') as f:
+    _doc = f.read()
+assert _doc.count(PRIVATE) == 1
+with open(os.path.join(OUT, 'protocol-organizer.html'), 'w', encoding='utf8') as f:
+    f.write(_doc.replace(PRIVATE, PROTO_PRIVATE))
+
 # ======================= Hub =============================================
+HUB_PRIVATE = ('<p class="tl-private">' + LOCK +
+  t('The calculators and the figure canvas run entirely in your browser; nothing you type is uploaded. Only the protocol AI organiser sends text, when you sign in and ask it to.',
+    '计算器和作图画布全部在你的浏览器里运行，输入的内容不会上传。只有方案的 AI 整理，在你登录并点按钮时才会发送文字。',
+    '計算ツールと作図キャンバスはすべてブラウザ内で動作し、入力内容は送信されません。プロトコルの AI 整理だけは、ログインしてボタンを押したときに文章を送ります。') + '</p>')
 groups_html = ''
 for key, label in GROUPS:
     cards = ''.join(card(x) for x in TOOLS if x['group'] == key)
     groups_html += '<div class="tl-group">' + t(*label, tag='h3') + f'<div class="tl-cards">{cards}</div></div>'
 hub = ('<div class="tl-head tl-hub-hero"><p class="dl-eyebrow">' + t('Free lab tools', '免费实验工具', '無料の実験ツール') + '</p>' +
        t('Small tools for <em>everyday bench math.</em>', '实验台上的<em>日常计算。</em>', '実験台の<em>毎日の計算に。</em>', tag='h1') +
-       t('Science figures, molarity, dilutions, master mixes, ligations, primers, qPCR and cell seeding. Free, no sign-up, in English, 中文 and 日本語.',
-         '科研作图、摩尔浓度、稀释、预混液、连接反应、引物、qPCR、细胞铺板，常用的都在这里。免费，无需注册，支持中文、English、日本語。',
-         '作図、モル濃度、希釈、マスターミックス、ライゲーション、プライマー、qPCR、細胞播種。無料・登録不要、日本語・English・中文に対応。', tag='p', cls='dl-lead') +
-       PRIVATE + '</div>' + groups_html +
+       t('Science figures, protocol search, molarity, dilutions, master mixes, ligations, primers, qPCR and cell seeding. Free, no sign-up, in English, 中文 and 日本語.',
+         '科研作图、方案搜索、摩尔浓度、稀释、预混液、连接反应、引物、qPCR、细胞铺板，常用的都在这里。免费，无需注册，支持中文、English、日本語。',
+         '作図、プロトコル検索、モル濃度、希釈、マスターミックス、ライゲーション、プライマー、qPCR、細胞播種。無料・登録不要、日本語・English・中文に対応。', tag='p', cls='dl-lead') +
+       HUB_PRIVATE + '</div>' + groups_html +
        cta('d-home', ('In Pasero', '在 Pasero 里', 'Pasero なら'),
            ('These tools, connected to your notes.', '这些工具，和你的笔记连在一起。', 'これらのツールが、ノートとつながる。'),
            ('Pasero is a lab notebook for molecular biology: notes, plasmids, cells, data analysis and lab-meeting slides in one place, on your desktop and phone.',

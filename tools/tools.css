@@ -178,3 +178,36 @@ html[lang="ja"] .tl h1 em,html[lang="zh-CN"] .tl h1 em{display:inline-block}
 .tl-figure-credit{margin:12px 0 0;padding:10px 14px;border-left:3px solid #8e73cf;background:#fbfaff;border-radius:0 10px 10px 0;font-size:14px;color:#14241f}
 .tl-figure-lic{margin-top:10px!important;font-size:13px!important}
 .tl-figure-lic a{color:#5f4786}
+
+/* Protocol finder & AI organiser */
+.tl-proto{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}
+.tl-proto-search{display:flex;gap:10px;margin-bottom:8px}
+.tl-proto-search .tl-in{flex:1}
+.tl-proto-results{display:grid;gap:12px;margin-top:16px}
+.tl-proto-item{border:1px solid var(--dl-line);border-radius:14px;padding:14px 16px;display:grid;gap:6px}
+.tl-proto-item strong{font:600 15.5px/1.4 'DM Sans','Noto Sans SC','Noto Sans JP',sans-serif;color:var(--dl-ink)}
+.tl-proto-item small{font-size:12.5px;color:var(--dl-muted)}
+.tl-proto-item details summary{cursor:pointer;font-size:13px;color:var(--dl-muted)}
+.tl-proto-item details p{font-size:13.5px;line-height:1.6;color:var(--dl-muted);margin:6px 0 0}
+.tl-proto-item .tl-btns{margin-top:4px}
+a.tl-btn{display:inline-flex;align-items:center;text-decoration:none}
+.tl-proto-paste{margin-top:18px}
+.tl-proto-paste summary{cursor:pointer;font:600 13.5px/1.4 'DM Sans','Noto Sans SC','Noto Sans JP',sans-serif;color:var(--dl-accent)}
+.tl-proto-paste textarea{margin:10px 0}
+.tl-proto-out .tl-btns{margin:10px 0 4px}
+.tl-proto-account{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px;color:var(--dl-muted);margin-bottom:12px}
+.tl-proto-account p{margin:0;width:100%}
+.tl-proto-signin{display:flex;gap:8px;width:100%}
+.tl-proto-signin .tl-in{flex:1}
+.tl-proto-empty{padding:26px 4px;color:var(--dl-muted);font-size:14.5px}
+.tl-proto-busy{padding:26px 4px;color:var(--dl-accent);font-weight:600;font-size:14.5px}
+.tl-proto-src{font-size:13px;color:var(--dl-muted);margin:0 0 10px}
+#pDoc input.tl-text{margin-bottom:8px}
+.tl-proto-title{font-size:17px!important;font-weight:700!important}
+textarea.tl-proto-body{min-height:420px;font-family:'DM Sans','Noto Sans SC','Noto Sans JP',sans-serif;font-size:14.5px}
+textarea.tl-proto-q{min-height:70px;font-family:'DM Sans','Noto Sans SC','Noto Sans JP',sans-serif}
+.tl-proto-chat{border-top:1px solid var(--dl-line);margin-top:16px;padding-top:4px}
+.tl-proto-msg{font-size:14px;line-height:1.6;margin:8px 0;padding:9px 12px;border-radius:12px}
+.tl-proto-msg.ai{background:var(--tl-soft)}
+.tl-proto-msg.me{background:#f4eefb;margin-left:18%}
+@media(max-width:560px){.tl-proto-search,.tl-proto-signin{flex-direction:column}}
