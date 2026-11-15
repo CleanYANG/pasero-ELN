@@ -474,7 +474,7 @@
     var sh = [T('Group', '组', '群'), 'n', T('Mean', '平均值', '平均'), 'SD', 'SEM', T('Median', '中位数', '中央値')];
     var stsv = [sh.join('\t')];
     var srows = groups.map(function (g, i) {
-      var s = sums[i], cells = [g.name + (i === control ? ' (' + T('control', '对照', '対照') + ')' : ''), s.n, P.fmt(s.mean, 4), P.fmt(s.sd, 3), P.fmt(s.sem, 3), P.fmt(s.median, 4)];
+      var s = sums[i], cells = [g.name + (i === control && !/control|对照|対照|コントロール/i.test(g.name) ? ' (' + T('control', '对照', '対照') + ')' : ''), s.n, P.fmt(s.mean, 4), P.fmt(s.sd, 3), P.fmt(s.sem, 3), P.fmt(s.median, 4)];
       stsv.push(cells.join('\t'));
       return '<tr>' + cells.map(function (c) { return '<td>' + esc(c) + '</td>'; }).join('') + '</tr>';
     }).join('');
