@@ -113,7 +113,7 @@
         '5 uses: each account gets 5 free uses on desktop and 5 on mobile for each of these features; after that it needs the matching Pro.',
         'Your notes, resources and results can always be viewed, edited and synced. When Pro ends, only new Pro actions are locked.',
         'Pasero AI uses points. Free accounts get 30 points once, every Pro plan includes 30 points a month and Pro + AI includes 200. Points packs are one-time purchases valid for 12 months. During the beta, accounts outside mainland China use AI free; AI is not yet available in mainland China.',
-        'All plans are sold on this website; in mainland China you can pay with WeChat Pay or Alipay. Plans are not sold inside the iPhone and iPad apps. Upgrading from one platform to Complete costs only the difference.',
+        'All plans are sold on this website; in mainland China you can pay with WeChat Pay or Alipay. Plans are not yet sold inside the iPhone and iPad apps. Upgrading from one platform to Complete costs only the difference.',
         'Students get 30% off yearly plans after verifying a school email address.',
         'Yen prices include consumption tax. Prices are final when purchasing opens.'
       ],
@@ -121,7 +121,7 @@
         '“5 次”：每个账号的这些功能在桌面端、移动端各有 5 次免费，用完后需要对应的 Pro。',
         '已有笔记、资源和结果永远可以查看、编辑和同步；Pro 到期只会锁住新的 Pro 操作。',
         'Pasero AI 按点数计费：免费账号一次性 30 点，各档 Pro 每月含 30 点，Pro + AI 每月含 200 点；点数包一次性购买，12 个月内有效。内测期间中国大陆以外的账号可免费使用 AI；中国大陆暂未开放 AI。',
-        '全部套餐在官网购买，中国大陆可用微信支付或支付宝付款；iPhone 和 iPad App 内不出售。从单端 Pro 升级到 Complete 只需补差价。',
+        '全部套餐在官网购买，中国大陆可用微信支付或支付宝付款；iPhone 和 iPad App 内暂不出售。从单端 Pro 升级到 Complete 只需补差价。',
         '学生年付享 7 折：海外用学校邮箱认证，中国大陆用学信网认证。',
         '日元价格含消费税。价格以正式开放购买时为准。'
       ],
@@ -129,7 +129,7 @@
         '「5 回」：各アカウントは、これらの機能をデスクトップとモバイルでそれぞれ 5 回まで無料で使えます。それ以降は対応する Pro が必要です。',
         'ノート、リソース、結果はいつでも閲覧・編集・同期できます。Pro が終了しても、ロックされるのは新しい Pro の操作だけです。',
         'Pasero AI はポイント制です。無料アカウントは初回 30 ポイント、各 Pro は毎月 30 ポイント、Pro + AI は毎月 200 ポイント付き。ポイントパックは買い切りで 12 か月有効です。ベータ期間中は中国本土以外のアカウントで AI を無料で使えます。中国本土では AI はまだ提供していません。',
-        'すべてのプランはこのサイトで購入できます（中国本土では WeChat Pay・Alipay に対応）。iPhone・iPad アプリ内では販売していません。片方の Pro から Complete へのアップグレードは差額のみです。',
+        'すべてのプランはこのサイトで購入できます（中国本土では WeChat Pay・Alipay に対応）。iPhone・iPad アプリ内では現在販売していません。片方の Pro から Complete へのアップグレードは差額のみです。',
         '学生は年払いが 30% オフになります（大学のメールアドレスで認証）。',
         '円の価格は税込です。価格は購入受付の開始時に確定します。'
       ]
