@@ -26,7 +26,7 @@
       const file=release.files[platform],button=document.querySelector('[data-release-platform="'+platform+'"]');
       if(!file||!button)continue;
       document.querySelector('[data-release-meta="'+platform+'"]').textContent='v'+(file.version||release.version)+' · '+(file.bytes/1000000).toFixed(1)+' MB';
-      document.querySelector('[data-release-hash="'+platform+'"]').textContent=file.sha256;
+      document.querySelector('[data-release-hash="'+platform+'"]').textContent=file.sha256||file.sha256Published||'';
       if(file.verified && file.url && new URL(file.url).protocol==='https:') {
         button.href=file.url;button.removeAttribute('aria-disabled');button.removeAttribute('tabindex');(button.querySelector('span')||button).textContent=text.download+' '+names[platform];
       }

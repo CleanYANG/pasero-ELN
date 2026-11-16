@@ -1,5 +1,5 @@
 {
-  "version": "1.2.22",
+  "version": "1.2.23",
   "trial": {
     "id": "pasero_public_trial_2026",
     "startsAt": "2026-11-10T00:00:00+09:00",
@@ -12,26 +12,28 @@
   },
   "files": {
     "windows": {
-      "filename": "Pasero-Windows-1.2.22-Setup.exe",
-      "bytes": 154400117,
-      "sha256": "844493d71e939997212ba0905c821fc5078ed5b28448f28cf78d6a3617205e34",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.22/Pasero-Windows-1.2.22-Setup.exe",
+      "filename": "Pasero-Windows-1.2.23-Setup.exe",
+      "bytes": 154464678,
+      "sha256": "20803aa3b7783539afc025150da4f51b8ce2d1c24a8ef8a1d88965b386c4817f",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.23/Pasero-Windows-1.2.23-Setup.exe",
       "verified": true
     },
     "android": {
-      "filename": "Pasero-Android-1.2.19.apk",
-      "bytes": 158430656,
-      "sha256": "c6f362d4aa9c9348b72e4c178107ef79873b4b7891cb076b46ab0035224e406e",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.22/Pasero-Android-1.2.19.apk",
+      "filename": "Pasero-Android-1.2.20.apk",
+      "bytes": 120027088,
+      "sha256": "452b4a7d6e48813eae0d12aaf1338e0346e95cdd41d2984c3294091d0eecb5e8",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.23/Pasero-Android-1.2.20.apk",
       "verified": true,
-      "version": "1.2.19"
+      "version": "1.2.20"
     },
     "macos": {
       "filename": "Pasero-macOS-1.2.22-AppleSilicon.dmg",
       "bytes": 245384402,
-      "sha256": "821658910f8086650dbf60b1b9258b8e441084e590e97f7b12b41839ee849615",
+      "sha256": "",
       "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.22/Pasero-macOS-1.2.22-AppleSilicon.dmg",
-      "verified": true
+      "verified": true,
+      "version": "1.2.22",
+      "sha256Published": "821658910f8086650dbf60b1b9258b8e441084e590e97f7b12b41839ee849615"
     }
   }
 }
