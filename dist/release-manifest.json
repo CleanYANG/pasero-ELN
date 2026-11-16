@@ -27,13 +27,11 @@
       "version": "1.2.20"
     },
     "macos": {
-      "filename": "Pasero-macOS-1.2.22-AppleSilicon.dmg",
-      "bytes": 245384402,
-      "sha256": "",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.22/Pasero-macOS-1.2.22-AppleSilicon.dmg",
-      "verified": true,
-      "version": "1.2.22",
-      "sha256Published": "821658910f8086650dbf60b1b9258b8e441084e590e97f7b12b41839ee849615"
+      "filename": "Pasero-macOS-1.2.23-AppleSilicon.dmg",
+      "bytes": 255250025,
+      "sha256": "1ee0a71bedc676b94a455b9ca3700dda40c7e24ce3b26fa797acdd118cf971c6",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.23/Pasero-macOS-1.2.23-AppleSilicon.dmg",
+      "verified": true
     }
   }
 }
