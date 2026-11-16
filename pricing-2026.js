@@ -5,12 +5,12 @@
   'use strict';
 
   var PRICES = {
-    USD: { sym: '$', dec: 2, free: [0, 0], mobile: [24.99, 2.99], desktop: [39.99, 4.99], complete: [49.99, 5.99], proai: [99.99, 9.99], packs: [4.99, 13.99, 44.99] },
-    JPY: { sym: '¥', dec: 0, free: [0, 0], mobile: [3800, 480], desktop: [6000, 780], complete: [7800, 980], proai: [15800, 1580], packs: [780, 2180, 6980] },
-    CNY: { sym: '¥', dec: 0, free: [0, 0], mobile: [98, 12], desktop: [148, 18], complete: [198, 25], proai: [398, 40], packs: [20, 56, 180] }
+    USD: { sym: '$', dec: 2, free: [0, 0], mobile: [29.99, 3.99], desktop: [44.99, 5.99], complete: [59.99, 7.99], proai: [119.99, 14.99], packs: [4.99, 12.99, 39.99] },
+    JPY: { sym: '¥', dec: 0, free: [0, 0], mobile: [4500, 600], desktop: [6800, 900], complete: [9000, 1200], proai: [18000, 2300], packs: [780, 1980, 6200] },
+    CNY: { sym: '¥', dec: 0, free: [0, 0], mobile: [108, 15], desktop: [188, 25], complete: [258, 35], proai: [438, 59], packs: [20, 52, 160] }
   };
   // Pasero AI points (same table as shared/access-policy.json in the desktop app).
-  var POINTS = { cost: [['chat', 1], ['image', 1], ['layout', 3], ['revise', 5], ['paper', 10], ['ppt', 10], ['poster', 10]], packs: [100, 300, 1000], proai: 150 };
+  var POINTS = { cost: [['chat', 1], ['image', 2], ['ask', 2], ['layout', 5], ['rewrite', 5], ['protocol', 8], ['revise', 10], ['protocolLong', 12], ['paper', 20], ['ppt', 20], ['poster', 20]], packs: [100, 300, 1000], proai: 200 };
   var DEFAULT_CURRENCY = { en: 'USD', ja: 'JPY', zh: 'CNY' };
 
   var T = {
@@ -62,12 +62,16 @@
       lead: { en: 'Every AI action uses points, shared between desktop and mobile. Every plan includes some; Pro + AI includes the most.', zh: '每次使用 AI 扣点数，桌面端和手机端共用。每个方案都含一些点数，Pro + AI 最多。', ja: 'AI を使うたびにポイントを消費します。デスクトップとモバイルで共通です。どのプランにもポイントが付き、Pro + AI が最も多く含みます。' },
       proName: { en: 'Pro + AI', zh: 'Pro + AI', ja: 'Pro + AI' },
       proCovers: { en: 'Desktop + mobile', zh: '桌面 + 手机', ja: 'デスクトップ + モバイル' },
-      proWhat: { en: 'Everything in Complete Pro, plus 150 AI points every month.', zh: 'Complete Pro 的全部功能，另外每月 150 点 AI 点数。', ja: 'Complete Pro のすべてに加えて、毎月 150 AI ポイント。' },
+      proWhat: { en: 'Everything in Complete Pro, plus 200 AI points every month.', zh: 'Complete Pro 的全部功能，另外每月 200 点 AI 点数。', ja: 'Complete Pro のすべてに加えて、毎月 200 AI ポイント。' },
       costTitle: { en: 'Points per use', zh: '每次用多少点', ja: '1 回あたりのポイント' },
       pts: { en: '{n} pts', zh: '{n} 点', ja: '{n} pt' },
       labels: {
         chat: { en: 'AI chat message (mobile)', zh: 'AI 对话（手机，每条）', ja: 'AI チャット（モバイル、1 件）' },
         image: { en: 'AI image or schematic', zh: 'AI 生图 / 示意图', ja: 'AI 画像・模式図' },
+        ask: { en: 'Ask about a protocol', zh: '方案提问', ja: 'プロトコルへの質問' },
+        rewrite: { en: 'Rewrite a protocol', zh: '方案改写', ja: 'プロトコルの書き換え' },
+        protocol: { en: 'Organize a protocol with AI', zh: 'AI 方案整理', ja: 'AI でプロトコルを整理' },
+        protocolLong: { en: 'Organize a protocol (long document)', zh: 'AI 方案整理（长文档）', ja: 'AI でプロトコルを整理（長い文書）' },
         layout: { en: 'AI figure layout', zh: 'AI 作图排版', ja: 'AI で図のレイアウト' },
         revise: { en: 'AI edit to slides or a poster', zh: 'AI 修改幻灯片或海报', ja: 'スライド・ポスターの AI 修正' },
         paper: { en: 'Journal club slides', zh: '论文分享幻灯片', ja: '論文紹介スライド' },
@@ -76,9 +80,9 @@
       },
       inclTitle: { en: 'Points included', zh: '方案内含点数', ja: 'プランに含まれるポイント' },
       incl: [
-        { en: 'Free · 20 points once', zh: '免费版 · 一次性 20 点', ja: '無料版 · 初回 20 ポイント' },
-        { en: 'Mobile, Desktop or Complete Pro · 20 points a month', zh: '移动 / 桌面 / Complete Pro · 每月 20 点', ja: 'モバイル・デスクトップ・Complete Pro · 毎月 20 ポイント' },
-        { en: 'Pro + AI · 150 points a month', zh: 'Pro + AI · 每月 150 点', ja: 'Pro + AI · 毎月 150 ポイント' }
+        { en: 'Free · 30 points once', zh: '免费版 · 一次性 30 点', ja: '無料版 · 初回 30 ポイント' },
+        { en: 'Mobile, Desktop or Complete Pro · 30 points a month', zh: '移动 / 桌面 / Complete Pro · 每月 30 点', ja: 'モバイル・デスクトップ・Complete Pro · 毎月 30 ポイント' },
+        { en: 'Pro + AI · 200 points a month', zh: 'Pro + AI · 每月 200 点', ja: 'Pro + AI · 毎月 200 ポイント' }
       ],
       packTitle: { en: 'Points packs', zh: '点数包', ja: 'ポイントパック' },
       pack: { en: '{n} points', zh: '{n} 点', ja: '{n} ポイント' },
@@ -108,22 +112,25 @@
       en: [
         '5 uses: each account gets 5 free uses on desktop and 5 on mobile for each of these features; after that it needs the matching Pro.',
         'Your notes, resources and results can always be viewed, edited and synced. When Pro ends, only new Pro actions are locked.',
-        'Pasero AI uses points. Free accounts get 20 points once, every Pro plan includes 20 points a month and Pro + AI includes 150. Points packs are one-time purchases valid for 12 months. During the beta, accounts outside mainland China use AI free; AI is not yet available in mainland China.',
-        'All plans are sold on this website. Inside the iPhone, iPad and Android apps you can buy Mobile Pro and Complete Pro. Upgrading from one platform to Complete costs only the difference.',
+        'Pasero AI uses points. Free accounts get 30 points once, every Pro plan includes 30 points a month and Pro + AI includes 200. Points packs are one-time purchases valid for 12 months. During the beta, accounts outside mainland China use AI free; AI is not yet available in mainland China.',
+        'All plans are sold on this website; in mainland China you can pay with WeChat Pay or Alipay. Plans are not sold inside the iPhone and iPad apps. Upgrading from one platform to Complete costs only the difference.',
+        'Students get 30% off yearly plans after verifying a school email address.',
         'Yen prices include consumption tax. Prices are final when purchasing opens.'
       ],
       zh: [
         '“5 次”：每个账号的这些功能在桌面端、移动端各有 5 次免费，用完后需要对应的 Pro。',
         '已有笔记、资源和结果永远可以查看、编辑和同步；Pro 到期只会锁住新的 Pro 操作。',
-        'Pasero AI 按点数计费：免费账号一次性 20 点，各档 Pro 每月含 20 点，Pro + AI 每月含 150 点；点数包一次性购买，12 个月内有效。内测期间中国大陆以外的账号可免费使用 AI；中国大陆暂未开放 AI。',
-        '官网可购买全部套餐；iPhone、iPad 和 Android App 内可购买移动 Pro 与 Complete Pro。从单端 Pro 升级到 Complete 只需补差价。',
+        'Pasero AI 按点数计费：免费账号一次性 30 点，各档 Pro 每月含 30 点，Pro + AI 每月含 200 点；点数包一次性购买，12 个月内有效。内测期间中国大陆以外的账号可免费使用 AI；中国大陆暂未开放 AI。',
+        '全部套餐在官网购买，中国大陆可用微信支付或支付宝付款；iPhone 和 iPad App 内不出售。从单端 Pro 升级到 Complete 只需补差价。',
+        '学生年付享 7 折：海外用学校邮箱认证，中国大陆用学信网认证。',
         '日元价格含消费税。价格以正式开放购买时为准。'
       ],
       ja: [
         '「5 回」：各アカウントは、これらの機能をデスクトップとモバイルでそれぞれ 5 回まで無料で使えます。それ以降は対応する Pro が必要です。',
         'ノート、リソース、結果はいつでも閲覧・編集・同期できます。Pro が終了しても、ロックされるのは新しい Pro の操作だけです。',
-        'Pasero AI はポイント制です。無料アカウントは初回 20 ポイント、各 Pro は毎月 20 ポイント、Pro + AI は毎月 150 ポイント付き。ポイントパックは買い切りで 12 か月有効です。ベータ期間中は中国本土以外のアカウントで AI を無料で使えます。中国本土では AI はまだ提供していません。',
-        'すべてのプランはこのサイトで購入できます。iPhone・iPad・Android アプリ内ではモバイル Pro と Complete Pro を購入できます。片方の Pro から Complete へのアップグレードは差額のみです。',
+        'Pasero AI はポイント制です。無料アカウントは初回 30 ポイント、各 Pro は毎月 30 ポイント、Pro + AI は毎月 200 ポイント付き。ポイントパックは買い切りで 12 か月有効です。ベータ期間中は中国本土以外のアカウントで AI を無料で使えます。中国本土では AI はまだ提供していません。',
+        'すべてのプランはこのサイトで購入できます（中国本土では WeChat Pay・Alipay に対応）。iPhone・iPad アプリ内では販売していません。片方の Pro から Complete へのアップグレードは差額のみです。',
+        '学生は年払いが 30% オフになります（大学のメールアドレスで認証）。',
         '円の価格は税込です。価格は購入受付の開始時に確定します。'
       ]
     }
