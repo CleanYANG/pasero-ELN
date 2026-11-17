@@ -282,15 +282,33 @@
   function lab(k) {
     return ({ time: T('Time: ', '用时：', '所要時間：'), materials: T('Materials and reagents:', '材料与试剂：', '材料・試薬：'), equipment: T('Equipment:', '仪器：', '機器：'),
       critical: T('Critical points:', '注意事项：', '注意点：'), organised: T('Organised by Pasero AI on ', '由 Pasero AI 整理于 ', 'Pasero AI で整理：'), source: T('Source: ', '来源：', '出典：'),
-      licence: T('Licence: ', '许可：', 'ライセンス：') })[k];
+      licence: T('Licence: ', '许可：', 'ライセンス：'), findings: T('What the authors found:', '文献结论：', '著者らの結果：') })[k];
   }
-  function list(v) { return (Array.isArray(v) ? v : String(v || '').split('\n')).map(function (x) { return String(x || '').replace(/^\s*(?:[-•*]|\d+[.)])\s*/, '').trim(); }).filter(Boolean); }
+  // Placeholders older answers used for missing values; a missing value is simply left out.
+  var NOT_STATED = /^(?:not stated(?: in the source)?|未说明|原文未(?:说明|注明|提及)|記載なし)[.。]?$/i;
+  function clean(x) { return String(x || '').replace(/[:：]\s*not stated in the source\.?$/i, '').trim(); }
+  function list(v) { return (Array.isArray(v) ? v : String(v || '').split('\n')).map(function (x) { return clean(String(x || '').replace(/^\s*(?:[-•*]|\d+[.)])\s*/, '')); })
+    .filter(function (x) { return x && !NOT_STATED.test(x) && !/not stated in the source/i.test(x); }); }
   function content(p, src) {
     var bul = function (a) { return a.map(function (x) { return '- ' + x; }).join('\n'); };
-    var mats = list(p.materials), eq = list(p.equipment), crit = list(p.critical), vars = list(p.variable_fields);
-    var summary = [p.purpose || '', p.timing ? lab('time') + p.timing : '', mats.length ? lab('materials') + '\n' + bul(mats) : '', eq.length ? lab('equipment') + '\n' + bul(eq) : ''].filter(Boolean).join('\n\n');
-    var steps = (p.steps || []).map(function (s, i) { s = typeof s === 'object' && s ? s : { title: '', detail: String(s || '') };
-      return ((i + 1) + '. ' + (s.title || '')).trim() + (s.detail ? '\n   ' + String(s.detail).replace(/\n/g, '\n   ') : ''); }).join('\n');
+    var mats = list(p.materials), eq = list(p.equipment), crit = list(p.critical), vars = list(p.variable_fields), finds = list(p.findings);
+    var timing = clean(p.timing); if (NOT_STATED.test(timing) || /not stated/i.test(timing)) timing = '';
+    var summary = [p.purpose || '', timing ? lab('time') + timing : '', mats.length ? lab('materials') + '\n' + bul(mats) : '', eq.length ? lab('equipment') + '\n' + bul(eq) : ''].filter(Boolean).join('\n\n');
+    // Steps of one variant (approach / method) are grouped under its name and numbered from 1 again.
+    // Shared steps get their own heading only when the protocol has variants.
+    var n = 0, group = null, out = [], all = (p.steps || []).map(function (s) { return typeof s === 'object' && s ? s : { title: '', detail: String(s || '') }; });
+    var grouped = all.some(function (s) { return String(s.section || '').trim(); });
+    all.forEach(function (s) {
+      var sec = String(s.section || '').trim();
+      if (group === null || sec !== group) {
+        if (out.length) out.push('');
+        if (grouped) out.push('【' + (sec || T('All approaches', '各方法通用', '全方法共通')) + '】');
+        group = sec; n = 0;
+      }
+      n += 1;
+      out.push((n + '. ' + (s.title || '')).trim() + (s.detail ? '\n   ' + String(s.detail).replace(/\n/g, '\n   ') : ''));
+    });
+    var steps = out.join('\n');
     var srcLines = [lab('organised') + new Date().toISOString().slice(0, 10)];
     if (src.kind === 'pasero') {
       srcLines.push(lab('source') + T('organised by Pasero (generic template)', 'Pasero 整理（通用模板）', 'Pasero が整理（汎用テンプレート）'));
@@ -302,7 +320,7 @@
     }
     return [T('Summary', '概要', '概要') + '\n' + summary, T('Steps', '步骤', '手順') + '\n' + steps,
       vars.length ? T('Variable fields', '可变参数', '変数フィールド') + '\n' + vars.join('\n') : '',
-      T('Notes', '备注', 'メモ') + '\n' + [crit.length ? lab('critical') + '\n' + bul(crit) : '', srcLines.join('\n')].filter(Boolean).join('\n\n')].filter(Boolean).join('\n\n');
+      T('Notes', '备注', 'メモ') + '\n' + [crit.length ? lab('critical') + '\n' + bul(crit) : '', finds.length ? lab('findings') + '\n' + bul(finds) : '', srcLines.join('\n')].filter(Boolean).join('\n\n')].filter(Boolean).join('\n\n');
   }
   function apply(p) {
     $('pTitle').value = String(p.name || draft.source.title || '').slice(0, 150);
