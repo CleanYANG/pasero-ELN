@@ -218,6 +218,7 @@ a.tl-btn{display:inline-flex;align-items:center;text-decoration:none}
 .tl-proto-signin .tl-in{flex:1}
 .tl-proto-empty{padding:26px 4px;color:var(--dl-muted);font-size:14.5px}
 .tl-proto-busy{padding:26px 4px;color:var(--dl-accent);font-weight:600;font-size:14.5px}
+.tl-proto-busy small{display:block;margin-top:6px;color:var(--dl-muted);font-weight:400;font-size:13px}
 .tl-proto-src{font-size:13.5px;color:var(--dl-muted)}
 #pDoc input.tl-text{margin-bottom:8px}
 .tl-proto-title{font-size:17px!important;font-weight:700!important}

@@ -309,7 +309,9 @@
     $('pCat').value = String(p.category || draft.source.journal || '');
     $('pBody').value = content(p, draft.source);
   }
+  var working = 0;
   function busy(on) {
+    working = Math.max(0, working + (on ? 1 : -1));
     $('pBusy').hidden = !on;
     ['pAsk', 'pRewrite', 'pPasteGo'].forEach(function (id) { $(id).disabled = on; });
   }
@@ -320,6 +322,8 @@
     var head = document.querySelector('.tl-head'); if (head) head.hidden = on;
     window.scrollTo(0, on ? Math.max(0, $('pView').getBoundingClientRect().top + window.scrollY - 90) : findScroll);
   }
+  // A request runs only while this page is open: ask before the browser closes or leaves the page.
+  window.addEventListener('beforeunload', function (e) { if (working > 0) { e.preventDefault(); e.returnValue = ''; } });
   $('pBack').addEventListener('click', function () { pending = null; showView(false); });
   function organise(source, text, pmcid) {
     $('pSrc').textContent = [source.title, source.journal, source.year, (source.licence || '').toUpperCase()].filter(Boolean).join(' · ');
