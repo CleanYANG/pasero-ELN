@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src https://gnfxemlrgjwcqxqruzev.supabase.co; base-uri 'none'; object-src 'none'">
+<title>纸质笔记识别测试</title>
+<style>
+:root{--ink:#14241f;--muted:#5d6e66;--line:#dfe6df;--bg:#f4f7f3;--accent:#5f4786;--warn:#b54708}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Noto Sans SC",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:22px;font-weight:600;margin:0 0 4px}
+p.lead{color:var(--muted);margin:0 0 20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+button{font:inherit;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;cursor:pointer}
+button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+button:disabled{opacity:.5;cursor:default}
+input[type=email],input[type=text],select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px}
+@media(max-width:760px){.page{grid-template-columns:1fr}}
+.page img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.meta{color:var(--muted);font-size:13px}
+.b{margin:6px 0}.b.note{color:var(--muted);border-left:3px solid var(--line);padding-left:8px}
+.b.figure{background:#f1ecfb;border-radius:6px;padding:4px 8px;font-size:14px}
+.b.heading{font-weight:600}
+table{border-collapse:collapse;font-size:13px;margin:6px 0}td{border:1px solid var(--line);padding:3px 6px}
+mark{background:#fde7c8;color:var(--warn)}
+#sum{font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<h1>纸质笔记识别测试</h1>
+<p class="lead">临时测试页，只对你的账号开放。照片只在识别时发给 Pasero AI，不保存。</p>
+<section class="card" id="acc"></section>
+<section class="card">
+  <div class="row">
+    <input type="file" id="files" accept="image/*" multiple>
+    <label>细节 <select id="detail"><option value="high">高</option><option value="low">低</option></select></label>
+    <label>推理 <select id="effort"><option value="low">low</option><option value="medium">medium</option></select></label>
+    <button class="primary" id="go" disabled>开始识别</button>
+  </div>
+  <p class="meta">每页单独识别，一页大约 20–60 秒。</p>
+  <div id="sum"></div>
+</section>
+<div id="out"></div>
+</main>
+<script src="note-scan-test.js?v=1"></script>
+</body>
+</html>
