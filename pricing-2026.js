@@ -1,38 +1,39 @@
-/* Pasero pricing (2026-11): plans, prices and the Free / Pro comparison.
-   Source of truth: "Pasero 功能清单与定价方案" (final pricing doc).
+/* Pasero pricing (2026-11-19): free trial, then a one-time purchase; AI is sold separately as points.
+   Source of truth: project doc "付费与定价方案" (2026-11-19).
    Renders its own EN / ZH / JA copy; the container carries data-copy so the site translator skips it. */
 (function () {
   'use strict';
 
+  // One-time purchase: [early bird (first 200), regular]. Includes one year of updates.
   var PRICES = {
-    USD: { sym: '$', dec: 2, free: [0, 0], mobile: [29.99, 3.99], desktop: [44.99, 5.99], complete: [59.99, 7.99], proai: [119.99, 14.99], packs: [4.99, 12.99, 39.99] },
-    JPY: { sym: '¥', dec: 0, free: [0, 0], mobile: [4500, 600], desktop: [6800, 900], complete: [9000, 1200], proai: [18000, 2300], packs: [780, 1980, 6200] },
-    CNY: { sym: '¥', dec: 0, free: [0, 0], mobile: [108, 15], desktop: [188, 25], complete: [258, 35], proai: [438, 59], packs: [20, 52, 160] }
+    USD: { sym: '$', dec: 0, free: [0, 0], mobile: [10, 15], desktop: [29, 39], complete: [35, 49], packs: [10, 25, 60] },
+    JPY: { sym: '¥', dec: 0, free: [0, 0], mobile: [1500, 2300], desktop: [4400, 5800], complete: [5300, 7400], packs: [1500, 3800, 9000] },
+    CNY: { sym: '¥', dec: 0, free: [0, 0], mobile: [48, 68], desktop: [128, 168], complete: [158, 228], packs: [68, 168, 398] }
   };
-  // Pasero AI points (same table as shared/access-policy.json in the desktop app).
-  var POINTS = { cost: [['chat', 1], ['image', 2], ['ask', 2], ['layout', 5], ['rewrite', 5], ['protocol', 8], ['revise', 10], ['protocolLong', 12], ['paper', 20], ['ppt', 20], ['poster', 20]], packs: [100, 300, 1000], proai: 200 };
+  // Pasero AI points (same table as the reporter function's quota-policy.ts).
+  var POINTS = { cost: [['chat', 1], ['image', 2], ['ask', 2], ['layout', 5], ['rewrite', 5], ['protocol', 8], ['revise', 10], ['protocolLong', 12], ['paper', 20], ['ppt', 20], ['poster', 20]], packs: [200, 550, 1500], beta: 100 };
   var DEFAULT_CURRENCY = { en: 'USD', ja: 'JPY', zh: 'CNY' };
 
   var T = {
     lead: {
-      en: 'Free covers everyday research. Pro adds advanced analysis, unlimited tracking and more ways to present your work. Your existing data is never locked.',
-      zh: '免费版覆盖日常科研；Pro 增加高级分析、不限次数的追踪和更多成果输出。已有数据永远不会被锁住。',
-      ja: '無料版で日々の研究をカバー。Pro では高度な解析、回数無制限のトラッキング、成果のまとめ機能が加わります。既存のデータがロックされることはありません。'
+      en: 'Try every Pro feature free. If Pasero works for you, buy it once — no subscription. Free covers everyday research, and your data is never locked.',
+      zh: '先免费试用全部 Pro 功能，觉得好用再一次买断，不用订阅。免费版覆盖日常科研，已有数据永远不会被锁住。',
+      ja: 'Pro の全機能をまず無料で試せます。気に入ったら一度買うだけ、サブスクリプションはありません。無料版で日々の研究をカバーし、データがロックされることはありません。'
     },
     beta: {
-      en: 'Public beta: every Pro feature is free and purchasing is not open yet. Beta users get 50% off their first paid year.',
-      zh: '内测中：Pro 功能全部免费开放，暂不收费。内测用户在正式版首年享半价。',
-      ja: 'ベータ版公開中：Pro の全機能を無料で使えます。購入はまだ受け付けていません。ベータ参加者は正式版の初年度が半額になります。'
+      en: 'Public trial until 10 Jan 2027 (Japan time): every Pro feature is free and purchasing is not open yet. The first 200 licences sell at the early-bird price.',
+      zh: '公开试用至 2027/1/10（日本时间）：Pro 功能全部免费，暂不收费。正式开售后前 200 份为早鸟价。',
+      ja: '公開トライアルは 2027/1/10（日本時間）まで：Pro の全機能を無料で使えます。購入はまだ受け付けていません。販売開始後、最初の 200 本は早割価格です。'
     },
-    annual: { en: 'Yearly', zh: '年付', ja: '年払い' },
-    monthly: { en: 'Monthly', zh: '月付', ja: '月払い' },
-    billingLabel: { en: 'Billing period', zh: '付费周期', ja: 'お支払い周期' },
+    annual: { en: 'Early bird', zh: '早鸟价', ja: '早割' },
+    monthly: { en: 'Regular', zh: '正式价', ja: '通常価格' },
+    billingLabel: { en: 'Price', zh: '价格', ja: '価格' },
     currencyLabel: { en: 'Currency', zh: '货币', ja: '通貨' },
-    perYear: { en: '/ year', zh: '/ 年', ja: '/ 年' },
-    perMonth: { en: '/ month', zh: '/ 月', ja: '/ 月' },
+    once: { en: 'one-time', zh: '一次买断', ja: '買い切り' },
     forever: { en: 'Free forever', zh: '永久免费', ja: 'ずっと無料' },
-    equiv: { en: 'About {p} a month', zh: '约合 {p} / 月', ja: '月あたり約 {p}' },
-    billedMonthly: { en: 'Billed monthly', zh: '按月付费', ja: '毎月のお支払い' },
+    earlySub: { en: 'First 200 licences · regular {p}', zh: '前 200 份 · 正式价 {p}', ja: '最初の 200 本 · 通常 {p}' },
+    regularSub: { en: 'Early bird {p} for the first 200', zh: '前 200 份早鸟价 {p}', ja: '最初の 200 本は早割 {p}' },
+    updates: { en: 'Keep it forever · 1 year of updates included', zh: '永久使用 · 含 1 年更新', ja: 'ずっと使えます · 1 年間のアップデート込み' },
     taxIncl: { en: 'Tax included', zh: '含消费税', ja: '税込' },
     saveBoth: { en: 'Save {p} vs buying both', zh: '比分开买两档省 {p}', ja: '2 つ別々に買うより {p} お得' },
     plans: {
@@ -43,26 +44,28 @@
       },
       mobile: {
         name: { en: 'Mobile Pro', zh: '移动 Pro', ja: 'モバイル Pro' },
-        covers: { en: 'Phone and tablet', zh: '手机和平板', ja: 'スマートフォン・タブレット' },
-        what: { en: 'Unlimited digest setups and cell tracking, multi-note PDF.', zh: '酶切反应和细胞追踪不限次数，多条笔记合并 PDF。', ja: '制限酵素反応と細胞トラッキングが無制限、複数ノートの PDF 化。' }
+        covers: { en: 'Android', zh: 'Android', ja: 'Android' },
+        what: { en: 'Unlimited digest setups and cell tracking, multi-note PDF. 20 AI points included.', zh: '酶切反应和细胞追踪不限次数，多条笔记合并 PDF。送 20 点 AI。', ja: '制限酵素反応と細胞トラッキングが無制限、複数ノートの PDF 化。AI 20 ポイント付き。' }
       },
       desktop: {
         name: { en: 'Desktop Pro', zh: '桌面 Pro', ja: 'デスクトップ Pro' },
         covers: { en: 'Windows and macOS', zh: 'Windows 和 macOS', ja: 'Windows・macOS' },
-        what: { en: 'qPCR, Western blot, advanced primers, vector figure export and more, unlimited.', zh: 'qPCR、WB、高级引物、矢量图导出等，全部不限次数。', ja: 'qPCR、ウェスタンブロット、高度なプライマー設計、ベクター図の書き出しなどが無制限。' }
+        what: { en: 'qPCR, Western blot, Sanger, advanced primers, clean and vector figure export, weekly review and plasmid lineage. 50 AI points included.', zh: 'qPCR、WB、Sanger、高级引物、无水印和矢量图导出、周回顾与质粒来源谱系。送 50 点 AI。', ja: 'qPCR、ウェスタンブロット、サンガー、高度なプライマー設計、透かしなし・ベクター図の書き出し、週の振り返り、プラスミドの由来。AI 50 ポイント付き。' }
       },
       complete: {
-        name: { en: 'Complete Pro', zh: 'Complete Pro', ja: 'Complete Pro' },
+        name: { en: 'Complete', zh: '完整版', ja: 'コンプリート' },
         covers: { en: 'Desktop + mobile', zh: '桌面 + 手机', ja: 'デスクトップ + モバイル' },
-        what: { en: 'Everything in Desktop Pro and Mobile Pro, on one account.', zh: '桌面 Pro 和移动 Pro 的全部功能，一个账号通用。', ja: 'デスクトップ Pro とモバイル Pro のすべてを 1 つのアカウントで。' }
+        what: { en: 'Everything in Desktop Pro and Mobile Pro, on one account. 50 AI points included.', zh: '桌面 Pro 和移动 Pro 的全部功能，一个账号通用。送 50 点 AI。', ja: 'デスクトップ Pro とモバイル Pro のすべてを 1 つのアカウントで。AI 50 ポイント付き。' }
       }
     },
     ai: {
       title: { en: 'Pasero AI points', zh: 'Pasero AI 点数', ja: 'Pasero AI ポイント' },
-      lead: { en: 'Every AI action uses points, shared between desktop and mobile. Every plan includes some; Pro + AI includes the most.', zh: '每次使用 AI 扣点数，桌面端和手机端共用。每个方案都含一些点数，Pro + AI 最多。', ja: 'AI を使うたびにポイントを消費します。デスクトップとモバイルで共通です。どのプランにもポイントが付き、Pro + AI が最も多く含みます。' },
-      proName: { en: 'Pro + AI', zh: 'Pro + AI', ja: 'Pro + AI' },
-      proCovers: { en: 'Desktop + mobile', zh: '桌面 + 手机', ja: 'デスクトップ + モバイル' },
-      proWhat: { en: 'Everything in Complete Pro, plus 200 AI points every month.', zh: 'Complete Pro 的全部功能，另外每月 200 点 AI 点数。', ja: 'Complete Pro のすべてに加えて、毎月 200 AI ポイント。' },
+      lead: { en: 'AI is sold separately from the app: every AI action uses points, shared between desktop and mobile. Buy points only if you use AI.', zh: 'AI 和软件分开卖：每次使用 AI 扣点数，桌面端和手机端共用。用 AI 才需要买点数。', ja: 'AI はアプリとは別売りです。AI を使うたびにポイントを消費し、デスクトップとモバイルで共通です。AI を使う人だけポイントを購入します。' },
+      proName: { en: 'Trial gift', zh: '试用期赠点', ja: 'トライアル特典' },
+      proCovers: { en: 'Every account', zh: '每个账号', ja: '全アカウント' },
+      ptsBig: { en: '{n} pts', zh: '{n} 点', ja: '{n} pt' },
+      proSub: { en: 'Free during the public trial', zh: '公开试用期间免费', ja: '公開トライアル期間中は無料' },
+      proWhat: { en: 'Try journal-club slides, posters, protocol organising and chat. Pasero AI is not yet available in mainland China.', zh: '可以试文献汇报、海报、Protocol 整理和聊天。中国大陆暂不提供 Pasero AI。', ja: '論文紹介スライド、ポスター、プロトコル整理、チャットを試せます。中国本土では Pasero AI はまだ提供していません。' },
       costTitle: { en: 'Points per use', zh: '每次用多少点', ja: '1 回あたりのポイント' },
       pts: { en: '{n} pts', zh: '{n} 点', ja: '{n} pt' },
       labels: {
@@ -80,9 +83,9 @@
       },
       inclTitle: { en: 'Points included', zh: '方案内含点数', ja: 'プランに含まれるポイント' },
       incl: [
-        { en: 'Free · 30 points once', zh: '免费版 · 一次性 30 点', ja: '無料版 · 初回 30 ポイント' },
-        { en: 'Mobile, Desktop or Complete Pro · 30 points a month', zh: '移动 / 桌面 / Complete Pro · 每月 30 点', ja: 'モバイル・デスクトップ・Complete Pro · 毎月 30 ポイント' },
-        { en: 'Pro + AI · 200 points a month', zh: 'Pro + AI · 每月 200 点', ja: 'Pro + AI · 毎月 200 ポイント' }
+        { en: 'Free account · 20 points once', zh: '免费账号 · 一次性 20 点', ja: '無料アカウント · 初回 20 ポイント' },
+        { en: 'Mobile Pro · 20 points once', zh: '移动 Pro · 一次性 20 点', ja: 'モバイル Pro · 初回 20 ポイント' },
+        { en: 'Desktop Pro or Complete · 50 points once', zh: '桌面 Pro 或完整版 · 一次性 50 点', ja: 'デスクトップ Pro・コンプリート · 初回 50 ポイント' }
       ],
       packTitle: { en: 'Points packs', zh: '点数包', ja: 'ポイントパック' },
       pack: { en: '{n} points', zh: '{n} 点', ja: '{n} ポイント' },
@@ -97,8 +100,8 @@
     colFeature: { en: 'Feature', zh: '功能', ja: '機能' },
     colFree: { en: 'Free', zh: '免费', ja: '無料' },
     colPro: { en: 'Pro', zh: 'Pro', ja: 'Pro' },
-    colProDesktop: { en: 'Desktop Pro or Complete', zh: '桌面 Pro 或 Complete', ja: 'デスクトップ Pro / Complete' },
-    colProMobile: { en: 'Mobile Pro or Complete', zh: '移动 Pro 或 Complete', ja: 'モバイル Pro / Complete' },
+    colProDesktop: { en: 'Desktop Pro or Complete', zh: '桌面 Pro 或完整版', ja: 'デスクトップ Pro / コンプリート' },
+    colProMobile: { en: 'Mobile Pro or Complete', zh: '移动 Pro 或完整版', ja: 'モバイル Pro / コンプリート' },
     v: {
       yes: { en: 'Included', zh: '包含', ja: '含まれる' },
       no: { en: 'Not included', zh: '不包含', ja: '含まれない' },
@@ -110,27 +113,27 @@
     },
     notes: {
       en: [
+        'Free trial: every Pro feature is free during the public trial (until 10 Jan 2027, Japan time). After that, new accounts get a 30-day trial.',
         '5 uses: each account gets 5 free uses on desktop and 5 on mobile for each of these features; after that it needs the matching Pro.',
-        'Your notes, resources and results can always be viewed, edited and synced. When Pro ends, only new Pro actions are locked.',
-        'Pasero AI uses points. Free accounts get 30 points once, every Pro plan includes 30 points a month and Pro + AI includes 200. Points packs are one-time purchases valid for 12 months. During the beta, accounts outside mainland China use AI free; AI is not yet available in mainland China.',
-        'All plans are sold on this website; in mainland China you can pay with WeChat Pay or Alipay. Plans are not yet sold inside the iPhone and iPad apps. Upgrading from one platform to Complete costs only the difference.',
-        'Students get 30% off yearly plans after verifying a school email address.',
+        'A licence is yours to keep and includes one year of updates. After that you can keep using the last version you have, or buy another year of updates. Your notes, resources and results can always be viewed, edited and synced.',
+        'Pasero AI uses points and is sold separately from the app. Points packs are one-time purchases valid for 12 months. Pasero AI is not yet available in mainland China; the app itself works the same there.',
+        'Licences are sold on this website (payments handled by Paddle). Mobile Pro is for the Android app; Pro is not yet sold inside the iPhone and iPad apps.',
         'Yen prices include consumption tax. Prices are final when purchasing opens.'
       ],
       zh: [
+        '免费试用：公开试用期内（至 2027/1/10，日本时间）Pro 功能全部免费；之后的新账号有 30 天试用。',
         '“5 次”：每个账号的这些功能在桌面端、移动端各有 5 次免费，用完后需要对应的 Pro。',
-        '已有笔记、资源和结果永远可以查看、编辑和同步；Pro 到期只会锁住新的 Pro 操作。',
-        'Pasero AI 按点数计费：免费账号一次性 30 点，各档 Pro 每月含 30 点，Pro + AI 每月含 200 点；点数包一次性购买，12 个月内有效。内测期间中国大陆以外的账号可免费使用 AI；中国大陆暂未开放 AI。',
-        '全部套餐在官网购买，中国大陆可用微信支付或支付宝付款；iPhone 和 iPad App 内暂不出售。从单端 Pro 升级到 Complete 只需补差价。',
-        '学生年付享 7 折：海外用学校邮箱认证，中国大陆用学信网认证。',
+        '买断后永久使用，含 1 年更新；之后可以继续用手上最后一个版本，也可以另购一年更新。已有笔记、资源和结果永远可以查看、编辑和同步。',
+        'Pasero AI 按点数计费，和软件分开卖；点数包一次性购买，12 个月内有效。中国大陆暂不提供 Pasero AI，软件其他功能不受影响。',
+        '在官网购买（由 Paddle 处理付款）。移动 Pro 适用于 Android App；iPhone 和 iPad App 内暂不出售 Pro。',
         '日元价格含消费税。价格以正式开放购买时为准。'
       ],
       ja: [
+        '無料トライアル：公開トライアル期間中（2027/1/10、日本時間まで）は Pro の全機能が無料です。その後の新規アカウントには 30 日間のトライアルがあります。',
         '「5 回」：各アカウントは、これらの機能をデスクトップとモバイルでそれぞれ 5 回まで無料で使えます。それ以降は対応する Pro が必要です。',
-        'ノート、リソース、結果はいつでも閲覧・編集・同期できます。Pro が終了しても、ロックされるのは新しい Pro の操作だけです。',
-        'Pasero AI はポイント制です。無料アカウントは初回 30 ポイント、各 Pro は毎月 30 ポイント、Pro + AI は毎月 200 ポイント付き。ポイントパックは買い切りで 12 か月有効です。ベータ期間中は中国本土以外のアカウントで AI を無料で使えます。中国本土では AI はまだ提供していません。',
-        'すべてのプランはこのサイトで購入できます（中国本土では WeChat Pay・Alipay に対応）。iPhone・iPad アプリ内では現在販売していません。片方の Pro から Complete へのアップグレードは差額のみです。',
-        '学生は年払いが 30% オフになります（大学のメールアドレスで認証）。',
+        'ライセンスは買い切りで、1 年間のアップデートが含まれます。その後も手元の最新版をずっと使えるほか、アップデートを 1 年分追加購入することもできます。ノート、リソース、結果はいつでも閲覧・編集・同期できます。',
+        'Pasero AI はポイント制で、アプリとは別売りです。ポイントパックは買い切りで 12 か月有効です。中国本土では Pasero AI はまだ提供していませんが、アプリ自体は同じように使えます。',
+        'ライセンスはこのサイトで購入できます（決済は Paddle）。モバイル Pro は Android アプリ用です。iPhone・iPad アプリ内では Pro を販売していません。',
         '円の価格は税込です。価格は購入受付の開始時に確定します。'
       ]
     }
@@ -154,6 +157,7 @@
         [{ en: 'Plasmid library and maps', zh: '质粒库与图谱', ja: 'プラスミドライブラリとマップ' }, { en: 'GenBank import, auto-annotation, sequence editing, publication map export', zh: 'GenBank 导入、自动注释、序列编辑、出版用图谱导出', ja: 'GenBank 取り込み、自動アノテーション、配列編集、論文用マップ書き出し' }, 'yes', 'yes'],
         [{ en: 'Restriction analysis', zh: '酶切分析', ja: '制限酵素解析' }, { en: '272 enzymes, cut sites, fragment sizes, gel preview, buffer advice', zh: '272 种酶、切点、片段大小、电泳预览、缓冲液推荐', ja: '272 種類の酵素、切断部位、断片サイズ、泳動プレビュー、バッファー提案' }, 'yes', 'yes'],
         [{ en: 'Digest reaction setup', zh: '酶切反应设置', ja: '制限酵素反応の設定' }, { en: 'Sample table, volumes, start the reaction and log it to a note', zh: '样品表、加样量、开始反应并写入笔记', ja: 'サンプル表、添加量の計算、反応開始とノートへの記録' }, 'five', 'unlimited'],
+        [{ en: 'Plasmid source and derived plasmids', zh: '质粒来源与衍生谱系', ja: 'プラスミドの由来と派生' }, { en: 'Chain back to the public source and every plasmid made from it', zh: '追溯到公开来源，以及由它构建的全部质粒', ja: '公開元までの系譜と、そこから作ったすべてのプラスミド' }, 'no', 'yes'],
         [{ en: 'Basic primer design', zh: '基础引物设计', ja: '基本的なプライマー設計' }, null, 'yes', 'yes'],
         [{ en: 'Advanced primer design', zh: '高级引物设计', ja: '高度なプライマー設計' }, null, 'no', 'yes'],
         [{ en: 'Sanger alignment', zh: 'Sanger 测序比对', ja: 'サンガー配列アラインメント' }, { en: 'AB1 files', zh: 'AB1 文件', ja: 'AB1 ファイル' }, 'five', 'unlimited']
@@ -161,13 +165,17 @@
       { group: { en: 'Cells and resources', zh: '细胞与资源库', ja: '細胞とリソース' }, rows: [
         [{ en: 'Start a cell culture track', zh: '新建细胞培养追踪', ja: '細胞培養トラッキングの開始' }, { en: 'Thaw or start a new culture', zh: '复苏或开始新培养', ja: '起眠または新しい培養の開始' }, 'five', 'unlimited'],
         [{ en: 'Keep recording existing cultures', zh: '已有培养继续记录', ja: '既存の培養の記録' }, { en: 'Passages, freezing, vial counts, passage reminders', zh: '传代、冻存、冻存支数、传代提醒', ja: '継代、凍結、ストック本数、継代リマインダー' }, 'yes', 'yes'],
-        [{ en: 'Protocol, reagent and cell libraries', zh: '方案、试剂和细胞库', ja: 'プロトコル・試薬・細胞ライブラリ' }, null, 'yes', 'yes'],
+        [{ en: 'Protocol, reagent and cell libraries', zh: '方案、试剂和细胞库', ja: 'プロトコル・試薬・細胞ライブラリ' }, { en: 'Public search: Europe PMC protocols, PubChem, NCBI plasmids, Cellosaurus', zh: '公开检索：Europe PMC 方案、PubChem、NCBI 质粒、Cellosaurus', ja: '公開データ検索：Europe PMC のプロトコル、PubChem、NCBI プラスミド、Cellosaurus' }, 'yes', 'yes'],
         [{ en: 'Build protocols from your records', zh: '从实验记录整理方案', ja: '記録からプロトコルを作成' }, null, 'five', 'unlimited']
       ] },
       { group: { en: 'Literature and presenting', zh: '文献与汇报', ja: '文献と発表' }, rows: [
         [{ en: 'Literature library', zh: '文献管理', ja: '文献管理' }, { en: 'PDF reading and notes, term lookup, citation styles, open-access PDFs', zh: 'PDF 阅读与标注、术语解释、引用格式、开放获取 PDF', ja: 'PDF の閲覧と注釈、用語解説、引用形式、オープンアクセス PDF' }, 'yes', 'yes'],
         [{ en: 'Slides from your results', zh: '用实验结果生成 PPT', ja: '結果からスライド作成' }, null, 'five', 'unlimited'],
         [{ en: 'Pasero AI', zh: 'Pasero AI', ja: 'Pasero AI' }, { en: 'Journal club, conference talks, posters, schematics', zh: '组会读文献、学会报告、海报、示意图', ja: '論文抄読会、学会発表、ポスター、模式図' }, 'ai', 'ai']
+      ] },
+      { group: { en: 'Overview', zh: '实验总览', ja: '実験の概要' }, rows: [
+        [{ en: 'Today', zh: '今天', ja: '今日' }, { en: 'Work in progress, to-dos and notes written today', zh: '进行中、待办和今天写的笔记', ja: '進行中の作業、To-do、今日のノート' }, 'yes', 'yes'],
+        [{ en: 'Week and custom-range review, material tracking', zh: '本周 / 自定义时段回顾、材料追踪图', ja: '週・期間の振り返り、材料トラッキング' }, { en: 'What you did, and every plasmid, cell and primer across your notes', zh: '做了什么，以及各笔记里用到的质粒、细胞和引物', ja: '行った作業と、ノート全体のプラスミド・細胞・プライマー' }, 'no', 'yes']
       ] },
       { group: { en: 'Sync', zh: '同步', ja: '同期' }, rows: [
         [{ en: 'LAN sync with your phone', zh: '局域网同步手机', ja: 'スマートフォンと LAN 同期' }, { en: 'Pair by QR code, two-way manual sync', zh: '扫码配对，双向手动同步', ja: 'QR コードでペアリング、双方向の手動同期' }, 'yes', 'yes']
@@ -201,7 +209,7 @@
 
   var root = document.querySelector('[data-pricing-2026]');
   if (!root) return;
-  var state = { billing: 'annual', currency: null, platform: 'desktop', currencyChosen: false, diffOnly: true };
+  var state = { billing: 'early', currency: null, platform: 'desktop', currencyChosen: false, diffOnly: true };
 
   function lang() {
     var l = window.PaseroI18n && window.PaseroI18n.getLanguage ? window.PaseroI18n.getLanguage() : 'en';
@@ -213,10 +221,6 @@
     if (!value) return c.sym + '0';
     var n = c.dec ? value.toFixed(c.dec) : Math.round(value).toLocaleString('en-US');
     return c.sym + n;
-  }
-  function perMonth(cur, value) {
-    if (cur === 'CNY') return '¥' + String(Math.round(value * 10) / 10);
-    return money(cur, value);
   }
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -240,8 +244,8 @@
     root.querySelector('[data-px-compare-title]').textContent = tr(T.compareTitle);
     var billing = root.querySelector('[data-px-billing]');
     billing.setAttribute('aria-label', tr(T.billingLabel));
-    billing.querySelector('[data-value="annual"]').textContent = tr(T.annual);
-    billing.querySelector('[data-value="monthly"]').textContent = tr(T.monthly);
+    billing.querySelector('[data-value="early"]').textContent = tr(T.annual);
+    billing.querySelector('[data-value="regular"]').textContent = tr(T.monthly);
     root.querySelector('[data-px-currency]').setAttribute('aria-label', tr(T.currencyLabel));
     root.querySelector('[data-px-tab="desktop"]').textContent = tr(T.tabDesktop);
     root.querySelector('[data-px-tab="mobile"]').textContent = tr(T.tabMobile);
@@ -264,7 +268,7 @@
   function renderPlans() {
     var grid = root.querySelector('[data-px-plans]');
     grid.replaceChildren();
-    var cur = state.currency, idx = state.billing === 'annual' ? 0 : 1, c = PRICES[cur];
+    var cur = state.currency, idx = state.billing === 'early' ? 0 : 1, c = PRICES[cur];
     ['free', 'mobile', 'desktop', 'complete'].forEach(function (key) {
       var p = T.plans[key], card = el('article', 'px-plan px-plan-' + key);
       var head = el('div', 'px-plan-head');
@@ -274,14 +278,15 @@
       var price = el('p', 'px-price');
       var value = c[key][idx];
       price.appendChild(el('span', 'px-amount', money(cur, value)));
-      if (key !== 'free') price.appendChild(el('span', 'px-per', tr(state.billing === 'annual' ? T.perYear : T.perMonth)));
+      if (key !== 'free') price.appendChild(el('span', 'px-per', tr(T.once)));
       card.appendChild(price);
       var sub;
       if (key === 'free') sub = tr(T.forever);
-      else if (state.billing === 'annual') sub = tr(T.equiv).replace('{p}', perMonth(cur, value / 12));
-      else sub = tr(T.billedMonthly);
+      else if (idx === 0) sub = tr(T.earlySub).replace('{p}', money(cur, c[key][1]));
+      else sub = tr(T.regularSub).replace('{p}', money(cur, c[key][0]));
       if (cur === 'JPY' && key !== 'free') sub += ' · ' + tr(T.taxIncl);
       card.appendChild(el('p', 'px-sub', sub));
+      if (key !== 'free') card.appendChild(el('p', 'px-sub', tr(T.updates)));
       card.appendChild(el('p', 'px-what', tr(p.what)));
       if (key === 'complete') {
         var saving = c.mobile[idx] + c.desktop[idx] - c.complete[idx];
@@ -295,7 +300,7 @@
     var box = root.querySelector('[data-px-ai]');
     if (!box) return;
     box.replaceChildren();
-    var A = T.ai, cur = state.currency, c = PRICES[cur], idx = state.billing === 'annual' ? 0 : 1;
+    var A = T.ai, cur = state.currency, c = PRICES[cur];
     var head = el('div', 'px-ai-head');
     head.appendChild(el('h3', 'px-ai-title', tr(A.title)));
     head.appendChild(el('p', 'px-ai-lead', tr(A.lead)));
@@ -307,12 +312,9 @@
     oh.appendChild(el('span', 'px-plan-covers', tr(A.proCovers)));
     offer.appendChild(oh);
     var price = el('p', 'px-price');
-    price.appendChild(el('span', 'px-amount', money(cur, c.proai[idx])));
-    price.appendChild(el('span', 'px-per', tr(state.billing === 'annual' ? T.perYear : T.perMonth)));
+    price.appendChild(el('span', 'px-amount', tr(A.ptsBig).replace('{n}', POINTS.beta)));
     offer.appendChild(price);
-    var sub = state.billing === 'annual' ? tr(T.equiv).replace('{p}', perMonth(cur, c.proai[0] / 12)) : tr(T.billedMonthly);
-    if (cur === 'JPY') sub += ' · ' + tr(T.taxIncl);
-    offer.appendChild(el('p', 'px-sub', sub));
+    offer.appendChild(el('p', 'px-sub', tr(A.proSub)));
     offer.appendChild(el('p', 'px-what', tr(A.proWhat)));
     grid.appendChild(offer);
     function list(title, rows) {
@@ -390,7 +392,7 @@
   }
 
   root.querySelectorAll('[data-px-billing] button').forEach(function (b) {
-    b.addEventListener('click', function () { state.billing = b.dataset.value; renderControls(); renderPlans(); renderAi(); });
+    b.addEventListener('click', function () { state.billing = b.dataset.value; renderControls(); renderPlans(); });
   });
   root.querySelectorAll('[data-px-currency] button').forEach(function (b) {
     b.addEventListener('click', function () { state.currency = b.dataset.value; state.currencyChosen = true; renderControls(); renderPlans(); renderAi(); });
