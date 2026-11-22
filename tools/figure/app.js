@@ -213,19 +213,20 @@ async function makeIcon(ref, x, y, size, colors) {
   obj.set({ left: x, top: y, originX: "center", originY: "center", scaleX: scale, scaleY: scale, iconRef: ref, credit: meta.credit, license: meta.license, kind: "icon" });
   if (ref.startsWith("own:")) {
     obj.set({ inkColor: INK, accentColor: ACCENT, tintColor: TINT });
-    if (colors && (colors.ink || colors.accent || colors.tint)) setIconColors(obj, colors.ink || INK, colors.accent || ACCENT, colors.tint || TINT);
+    const c = colors || {};
+    if (c.ink || c.accent || c.tint || ink() !== INK) setIconColors(obj, c.ink || ink(), c.accent || ACCENT, c.tint || TINT);
   }
   return obj;
 }
 function makeText(text, x, y, opts) {
   opts = opts || {};
   const o = new fabric.Textbox(text || tr("text"), { left: x, top: y, originX: opts.originX || "center", originY: "center", width: opts.w || Math.max(80, Math.min(560, (text || "").length * (opts.size || 32) * 0.62 + 20)),
-    fontSize: opts.size || 32, fontWeight: opts.bold ? 700 : 400, fill: opts.color || INK, textAlign: opts.align || "center", fontFamily: FONT, splitByGrapheme: true, kind: "text" });
+    fontSize: opts.size || 32, fontWeight: opts.bold ? 700 : 400, fill: opts.color || ink(), textAlign: opts.align || "center", fontFamily: FONT, splitByGrapheme: true, kind: "text" });
   return o;
 }
 function makeArrow(x1, y1, x2, y2, opts) {
   opts = opts || {};
-  const color = opts.color || INK, width = opts.width || 5, head = opts.head || "end";
+  const color = opts.color || ink(), width = opts.width || 5, head = opts.head || "end";
   const len = Math.hypot(x2 - x1, y2 - y1) || 1, ang = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
   const hs = Math.max(14, width * 3.4);
   const parts = [];
@@ -240,11 +241,11 @@ function makeArrow(x1, y1, x2, y2, opts) {
 }
 function makeRect(x, y, w, h, opts) {
   opts = opts || {};
-  return new fabric.Rect({ left: x, top: y, width: w, height: h, rx: opts.rx ?? 14, ry: opts.rx ?? 14, fill: opts.fill ?? TINT, stroke: opts.stroke ?? INK, strokeWidth: opts.strokeWidth ?? 3, originX: "center", originY: "center", kind: "shape", strokeUniform: true });
+  return new fabric.Rect({ left: x, top: y, width: w, height: h, rx: opts.rx ?? 14, ry: opts.rx ?? 14, fill: opts.fill ?? TINT, stroke: opts.stroke ?? ink(), strokeWidth: opts.strokeWidth ?? 3, originX: "center", originY: "center", kind: "shape", strokeUniform: true });
 }
 function makeEllipse(x, y, w, h, opts) {
   opts = opts || {};
-  return new fabric.Ellipse({ left: x, top: y, rx: w / 2, ry: h / 2, fill: opts.fill ?? TINT, stroke: opts.stroke ?? INK, strokeWidth: opts.strokeWidth ?? 3, originX: "center", originY: "center", kind: "shape", strokeUniform: true });
+  return new fabric.Ellipse({ left: x, top: y, rx: w / 2, ry: h / 2, fill: opts.fill ?? TINT, stroke: opts.stroke ?? ink(), strokeWidth: opts.strokeWidth ?? 3, originX: "center", originY: "center", kind: "shape", strokeUniform: true });
 }
 async function objectFromItem(it) {
   if (it.t === "icon") return makeIcon(it.ref, it.x, it.y, it.size || Math.max(it.w || 0, it.h || 0) || 160, { ink: it.ink, accent: it.accent, tint: it.tint });
@@ -309,7 +310,34 @@ function bgFill(bg) {
   return bg;
 }
 function applyBg() { canvas.backgroundColor = bgFill(S.bg); canvas.requestRenderAll(); }
-function setBg(bg) { S.bg = bg; applyBg(); snapshot(); }
+// On a dark background the default ink (text, arrows, outlines) switches to white, and back.
+// Only items still in the default ink change; colours someone picked stay as they are.
+const LIGHT_INK = "#ffffff";
+function luminance(c) { const n = parseInt(toHex(c).slice(1), 16); return (0.2126 * (n >> 16 & 255) + 0.7152 * (n >> 8 & 255) + 0.0722 * (n & 255)) / 255; }
+function bgDark(bg) {
+  if (!bg || bg === "transparent") return false;
+  if (bg.startsWith("grad:")) { const [, a, b] = bg.split(":"); return (luminance(a) + luminance(b)) / 2 < 0.4; }
+  return luminance(bg) < 0.4;
+}
+function ink() { return bgDark(S.bg) ? LIGHT_INK : INK; }
+function swapInk(from, to) {
+  const same = v => typeof v === "string" && toHex(v) === from;
+  canvas.getObjects().forEach(o => {
+    if (o.type === "textbox" || o.type === "i-text" || o.type === "text") { if (same(o.fill)) o.set("fill", to); }
+    else if (o.kind === "arrow") {
+      if (same(o.inkColor || INK)) { o.set("inkColor", to); (o._objects || []).forEach(p => { if (same(p.stroke)) p.set("stroke", to); if (same(p.fill)) p.set("fill", to); }); o.dirty = true; }
+    } else if (o.kind === "icon" && (o.iconRef || "").startsWith("own:")) {
+      if (same(o.inkColor || INK)) setIconColors(o, to, o.accentColor || ACCENT, o.tintColor || TINT);
+    } else if (o.kind === "shape") { if (same(o.stroke)) o.set("stroke", to); }
+  });
+}
+function changeBg(bg) {
+  const was = bgDark(S.bg), now = bgDark(bg);
+  S.bg = bg;
+  if (was !== now) swapInk(was ? LIGHT_INK : INK, now ? LIGHT_INK : INK);
+  applyBg();
+}
+function setBg(bg) { changeBg(bg); snapshot(); }
 function bgMenu(anchor) {
   const mark = v => (S.bg === v ? "✓ " : "");
   showMenu(anchor, BG_PRESETS.map(([k, v]) => [mark(v) + tr(k), () => setBg(v)])
@@ -626,7 +654,7 @@ $("zoomOut").onclick = () => setZoom(Math.max(0.1, S.zoom / 1.2));
 $("zoomFit").onclick = fitZoom;
 $("size").onchange = e => { const [w, h] = e.target.value.split("x").map(Number); setSize(w, h); };
 $("bgBtn").onclick = e => bgMenu(e.currentTarget);
-$("bgColor").addEventListener("input", e => { S.bg = e.target.value; applyBg(); queueSnap(); });
+$("bgColor").addEventListener("input", e => { changeBg(e.target.value); queueSnap(); });
 $("newBtn").onclick = e => { if (!canvas.getObjects().length) return newFigure(); showMenu(e.currentTarget, [[tr("newConfirm"), newFigure]]); };
 $("exportBtn").onclick = e => showMenu(e.currentTarget, [[tr("exportPng"), () => exportAs("png")], [tr("exportSvg"), () => exportAs("svg")], [tr("legend"), showLegend]]);
 $("title").addEventListener("change", persist);
