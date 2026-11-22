@@ -15,7 +15,7 @@ const T = {
         dup: "Duplicate", del: "Delete", lock: "Lock", unlock: "Unlock", group: "Group", ungroup: "Ungroup", flip: "Flip", alignTo: "Align", head: "Arrow head", dash: "Dashed",
         none: "None", end: "End", both: "Both", radius: "Corners", saved: "Saved", credit: "Icon credits", exportPng: "PNG image", exportSvg: "SVG (vector)", exportPdf: "PDF",
         sizes: { "1600x900": "16:9 slide", "1200x900": "4:3 slide", "1000x1000": "Square", "1240x1754": "A4 portrait", "1754x1240": "A4 landscape" },
-        replace: "Replace the current figure", canvasBg: "Background", white: "White", transparent: "Transparent", busy: "Working…", emptyHint: "Click or drag an icon from the left onto the canvas" },
+        replace: "Replace the current figure", canvasBg: "Background", white: "White", transparent: "Transparent", busy: "Working…", soft: "Soft grey", night: "Midnight", gradNight: "Night glow (gradient)", gradViolet: "Violet glow (gradient)", customBg: "Custom colour…", effect: "Effect", glow: "Glow", dropShadow: "Shadow", strength: "Strength", emptyHint: "Click or drag an icon from the left onto the canvas" },
   zh: { title: "未命名图", legend: "复制图注推荐语", legendTitle: "图注推荐语", legendHelp: "把这段话写进图注或致谢。Pasero 图标采用 CC BY 4.0 许可，写上这一句就满足署名要求。", legendCopy: "复制", legendCopied: "已复制", undo: "撤销（Ctrl+Z）", redo: "重做（Ctrl+Y）", text: "文字", arrow: "箭头", line: "线", rect: "方框", ellipse: "椭圆", fit: "适合窗口",
         ai: "✨ AI 排版", save: "保存", note: "存到笔记", export: "导出", aiGo: "排版", aiClose: "关闭", aiPh: "描述你要的图，例如：HEK293T 转染 Flag-X，48 h 后做 IP，再用 WB 检测 Flag 和 GAPDH",
         aiInfo: "AI 从图库挑图标并排好位置，之后每一处都可以自己改。每次用 3 点 AI 点数。", aiAppend: "加到当前图里",
@@ -26,7 +26,7 @@ const T = {
         dup: "复制", del: "删除", lock: "锁定", unlock: "解锁", group: "组合", ungroup: "取消组合", flip: "翻转", alignTo: "排列", head: "箭头", dash: "虚线",
         none: "无", end: "末端", both: "两端", radius: "圆角", saved: "已保存", credit: "图标来源", exportPng: "PNG 图片", exportSvg: "SVG 矢量图", exportPdf: "PDF",
         sizes: { "1600x900": "16:9 幻灯片", "1200x900": "4:3 幻灯片", "1000x1000": "正方形", "1240x1754": "A4 竖版", "1754x1240": "A4 横版" },
-        replace: "替换当前的图", canvasBg: "背景", white: "白色", transparent: "透明", busy: "处理中…", emptyHint: "从左边点击或拖动图标到画布上" },
+        replace: "替换当前的图", canvasBg: "背景", white: "白色", transparent: "透明", busy: "处理中…", soft: "浅灰", night: "午夜蓝", gradNight: "夜空渐变", gradViolet: "紫光渐变", customBg: "自定义颜色…", effect: "效果", glow: "外发光", dropShadow: "阴影", strength: "强度", emptyHint: "从左边点击或拖动图标到画布上" },
   ja: { title: "無題の図", legend: "図の説明用クレジットをコピー", legendTitle: "図の説明に入れるクレジット", legendHelp: "図の説明（レジェンド）か謝辞に貼り付けてください。Pasero のアイコンは CC BY 4.0 なので、この 1 文でクレジットの条件を満たします。", legendCopy: "コピー", legendCopied: "コピーしました", undo: "元に戻す（Ctrl+Z）", redo: "やり直す（Ctrl+Y）", text: "テキスト", arrow: "矢印", line: "線", rect: "四角", ellipse: "楕円", fit: "ウィンドウに合わせる",
         ai: "✨ AI レイアウト", save: "保存", note: "ノートに保存", export: "書き出し", aiGo: "レイアウト", aiClose: "閉じる", aiPh: "図の内容を書いてください。例：HEK293T に Flag-X をトランスフェクションし、48 時間後に IP、Flag と GAPDH をウェスタンで検出",
         aiInfo: "AI が図ライブラリからアイコンを選んで配置します。あとからすべて編集できます。1 回 3 ポイント。", aiAppend: "今の図に追加",
@@ -37,7 +37,7 @@ const T = {
         dup: "複製", del: "削除", lock: "ロック", unlock: "ロック解除", group: "グループ化", ungroup: "グループ解除", flip: "反転", alignTo: "整列", head: "矢印の先", dash: "破線",
         none: "なし", end: "終点", both: "両端", radius: "角の丸み", saved: "保存しました", credit: "アイコンの出典", exportPng: "PNG 画像", exportSvg: "SVG（ベクター）", exportPdf: "PDF",
         sizes: { "1600x900": "16:9 スライド", "1200x900": "4:3 スライド", "1000x1000": "正方形", "1240x1754": "A4 縦", "1754x1240": "A4 横" },
-        replace: "今の図と置き換える", canvasBg: "背景", white: "白", transparent: "透明", busy: "処理中…", emptyHint: "左のアイコンをクリックまたはドラッグして配置" },
+        replace: "今の図と置き換える", canvasBg: "背景", white: "白", transparent: "透明", busy: "処理中…", soft: "ライトグレー", night: "ミッドナイト", gradNight: "夜空グラデーション", gradViolet: "紫の光グラデーション", customBg: "カスタム色…", effect: "効果", glow: "光彩", dropShadow: "影", strength: "強さ", emptyHint: "左のアイコンをクリックまたはドラッグして配置" },
 };
 const CAT = {
   own: { lab: ["Lab ware", "实验器材", "実験器具"], instrument: ["Instruments", "仪器", "機器"], cell: ["Cells & microbes", "细胞与微生物", "細胞・微生物"],
@@ -266,7 +266,7 @@ async function loadSpec(spec, replace) {
   if (!spec) return;
   S.restoring = true;
   if (replace) {
-    canvas.clear(); canvas.backgroundColor = S.bg;
+    canvas.clear(); applyBg();
     if (spec.w && spec.h && (spec.w !== S.w || spec.h !== S.h)) setSize(spec.w, spec.h, false);
   }
   for (const it of spec.items || []) { const o = await objectFromItem(it); if (o) canvas.add(o); }
@@ -290,8 +290,31 @@ function setZoom(z) {
 function setSize(w, h, record) {
   S.w = w; S.h = h;
   $("size").value = SIZES.includes(`${w}x${h}`) ? `${w}x${h}` : $("size").value;
+  applyBg();
   fitZoom();
   if (record !== false) snapshot();
+}
+
+/* ------------------------------------------------------------------ background */
+// S.bg is a colour ("#ffffff"), "transparent", or a radial gradient "grad:<centre>:<edge>".
+const BG_PRESETS = [["white", "#ffffff"], ["soft", "#f3f5f8"], ["night", "#0b1026"], ["gradNight", "grad:#17224f:#05070f"], ["gradViolet", "grad:#3b2a73:#0d0a1f"]];
+function bgFill(bg) {
+  if (!bg || bg === "transparent") return null;
+  if (bg.startsWith("grad:")) {
+    const [, inner, outer] = bg.split(":");
+    const cx = S.w / 2, cy = S.h * 0.4;
+    return new fabric.Gradient({ type: "radial", gradientUnits: "pixels", coords: { x1: cx, y1: cy, r1: 0, x2: cx, y2: cy, r2: Math.hypot(S.w, S.h) * 0.62 },
+      colorStops: [{ offset: 0, color: inner }, { offset: 1, color: outer }] });
+  }
+  return bg;
+}
+function applyBg() { canvas.backgroundColor = bgFill(S.bg); canvas.requestRenderAll(); }
+function setBg(bg) { S.bg = bg; applyBg(); snapshot(); }
+function bgMenu(anchor) {
+  const mark = v => (S.bg === v ? "✓ " : "");
+  showMenu(anchor, BG_PRESETS.map(([k, v]) => [mark(v) + tr(k), () => setBg(v)])
+    .concat([[tr("customBg"), () => { $("bgColor").value = toHex(S.bg.startsWith("#") ? S.bg : "#ffffff"); $("bgColor").click(); }],
+             [mark("transparent") + tr("transparent"), () => setBg("transparent")]]));
 }
 
 /* ------------------------------------------------------------------ history */
@@ -317,7 +340,7 @@ function restore(json) {
     try { data = JSON.parse(json); } catch (e) { S.restoring = false; return resolve(); }
     S.w = data.w || 1600; S.h = data.h || 900; S.bg = data.bg || "#ffffff";
     canvas.loadFromJSON(data.canvas || {}, () => {
-      canvas.backgroundColor = S.bg === "transparent" ? null : S.bg;
+      applyBg();
       fitZoom(); canvas.requestRenderAll(); S.restoring = false; updateButtons(); resolve();
     });
   });
@@ -377,6 +400,11 @@ function renderProps() {
        + row(tr("dash"), `<input type="checkbox" id="pDash" ${o.arrowDash ? "checked" : ""}>`);
   }
   h += row(tr("opacity"), `<input type="number" id="pOp" min="10" max="100" step="10" value="${Math.round((o.opacity ?? 1) * 100)}">`);
+  const sh = (multi ? o.getObjects()[0] || o : o).shadow;
+  h += `<div class="ph">${tr("effect")}</div>`
+     + row(tr("effect"), `<select id="pFx"><option value="none">${tr("none")}</option><option value="glow">${tr("glow")}</option><option value="shadow">${tr("dropShadow")}</option></select>`)
+     + row(tr("color"), colorIn("pFxC", sh ? sh.color : "#38e1ff"))
+     + row(tr("strength"), `<input type="range" id="pFxB" min="4" max="80" value="${sh ? Math.round(sh.blur) : 24}">`);
   h += `<div class="ph">${tr("order")}</div><div class="btns"><button data-a="front">${tr("front")}</button><button data-a="up">${tr("up")}</button><button data-a="down">${tr("down")}</button><button data-a="back">${tr("back")}</button><button data-a="flip">${tr("flip")}</button><button data-a="lock">${o.lockMovementX ? tr("unlock") : tr("lock")}</button></div>`;
   h += `<div class="ph">${tr("alignTo")}</div><div class="btns"><button data-a="al">⟸ ${tr("left")}</button><button data-a="ac">⇔ ${tr("center")}</button><button data-a="ar">${tr("right")} ⟹</button><button data-a="at">⇑</button><button data-a="am">⇕</button><button data-a="ab">⇓</button></div>`;
   h += `<div class="ph"></div><div class="btns"><button data-a="dup">${tr("dup")}</button>${multi ? `<button data-a="group">${tr("group")}</button>` : o.type === "group" && !o.kind ? `<button data-a="ungroup">${tr("ungroup")}</button>` : "<span></span>"}<button data-a="del">${tr("del")}</button></div>`;
@@ -385,6 +413,7 @@ function renderProps() {
   bindProps(o);
   if (!multi && $("pAlign")) $("pAlign").value = o.textAlign || "center";
   if (!multi && $("pHead")) $("pHead").value = o.arrowHead || "end";
+  $("pFx").value = !sh ? "none" : Math.abs(sh.offsetX || 0) + Math.abs(sh.offsetY || 0) < 0.5 ? "glow" : "shadow";
   setTimeout(fitZoomIfNeeded, 130);
 }
 function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
@@ -403,6 +432,24 @@ function bindProps(o) {
   on("pSW", "change", e => { o.set("strokeWidth", +e.target.value); changed(); });
   on("pRx", "change", e => { o.set({ rx: +e.target.value, ry: +e.target.value }); changed(); });
   on("pOp", "change", e => { o.set("opacity", Math.max(0.1, +e.target.value / 100)); changed(); });
+  const applyFx = () => {
+    const kind = $("pFx").value, c = $("pFxC").value, b = +$("pFxB").value;
+    const rgba = (hex, a) => `rgba(${parseInt(hex.slice(1, 3), 16)},${parseInt(hex.slice(3, 5), 16)},${parseInt(hex.slice(5, 7), 16)},${a})`;
+    (o.type === "activeSelection" ? o.getObjects() : [o]).forEach(t => {
+      t.set("shadow", kind === "none" ? null : kind === "glow"
+        ? new fabric.Shadow({ color: c, blur: b, offsetX: 0, offsetY: 0 })
+        : new fabric.Shadow({ color: rgba(c, 0.45), blur: b, offsetX: Math.round(b * 0.15), offsetY: Math.round(b * 0.3) }));
+      t.dirty = true;
+    });
+    changed();
+  };
+  on("pFx", "change", e => {
+    if (e.target.value === "shadow") $("pFxC").value = "#000000";
+    else if (e.target.value === "glow" && $("pFxC").value === "#000000") $("pFxC").value = "#38e1ff";
+    applyFx();
+  });
+  on("pFxC", "input", applyFx);
+  on("pFxB", "input", applyFx);
   const rebuildArrow = patch => {
     const p = o.calcTransformMatrix ? fabric.util.transformPoint({ x: -o.width / 2, y: 0 }, o.calcTransformMatrix()) : { x: o.left, y: o.top };
     const len = (o.arrowLen || o.width) * (o.scaleX || 1), rad = (o.angle || 0) * Math.PI / 180;
@@ -477,11 +524,14 @@ function withExtras(fn) {
   S.restoring = true;
   const active = sel(); canvas.discardActiveObject();
   extras.forEach(e => canvas.add(e));
+  const bgRect = (S.bg || "").startsWith("grad:") ? new fabric.Rect({ left: 0, top: 0, width: S.w, height: S.h, fill: bgFill(S.bg), strokeWidth: 0, selectable: false, evented: false }) : null;
+  if (bgRect) { canvas.insertAt(bgRect, 0); canvas.backgroundColor = null; }
   const z = S.zoom;
   canvas.setZoom(1); canvas.setDimensions({ width: S.w, height: S.h });
   let out;
   try { out = fn(); } finally {
     extras.forEach(e => canvas.remove(e));
+    if (bgRect) { canvas.remove(bgRect); applyBg(); }
     setZoom(z);
     if (active) canvas.setActiveObject(active);
     canvas.requestRenderAll();
@@ -536,7 +586,7 @@ function exportAs(format) {
   toast(tr("exported"));
 }
 function newFigure() {
-  S.restoring = true; canvas.clear(); canvas.backgroundColor = "#ffffff"; S.bg = "#ffffff"; S.restoring = false;
+  S.restoring = true; canvas.clear(); S.bg = "#ffffff"; applyBg(); S.restoring = false;
   $("title").value = ""; S.history = []; S.future = []; snapshot(); fitZoom();
 }
 function busy(on) { $("busy").textContent = tr("busy"); $("busy").classList.toggle("show", !!on); }
@@ -550,7 +600,7 @@ function showMenu(anchor, items) {
   m.style.left = Math.min(window.innerWidth - m.offsetWidth - 8, r.left) + "px";
   m.style.top = r.bottom + 4 + "px";
 }
-document.addEventListener("click", e => { if (!e.target.closest("#menu") && !e.target.closest("#exportBtn") && !e.target.closest("#newBtn") && !e.target.closest(".tpl")) $("menu").style.display = "none"; });
+document.addEventListener("click", e => { if (!e.target.closest("#menu") && !e.target.closest("#exportBtn") && !e.target.closest("#newBtn") && !e.target.closest("#bgBtn") && !e.target.closest(".tpl")) $("menu").style.display = "none"; });
 
 /* ------------------------------------------------------------------ wiring */
 function texts() {
@@ -562,6 +612,7 @@ function texts() {
   $("search").placeholder = tr("search");
   $("size").innerHTML = SIZES.map(s => `<option value="${s}">${S.t.sizes[s]}</option>`).join("");
   $("size").value = SIZES.includes(`${S.w}x${S.h}`) ? `${S.w}x${S.h}` : SIZES[0];
+  $("bgBtn").textContent = tr("canvasBg") + " ▾";
   renderTabs(); renderCats(); renderGrid();
 }
 $("undo").onclick = undo; $("redo").onclick = redo;
@@ -574,6 +625,8 @@ $("zoomIn").onclick = () => setZoom(Math.min(4, S.zoom * 1.2));
 $("zoomOut").onclick = () => setZoom(Math.max(0.1, S.zoom / 1.2));
 $("zoomFit").onclick = fitZoom;
 $("size").onchange = e => { const [w, h] = e.target.value.split("x").map(Number); setSize(w, h); };
+$("bgBtn").onclick = e => bgMenu(e.currentTarget);
+$("bgColor").addEventListener("input", e => { S.bg = e.target.value; applyBg(); queueSnap(); });
 $("newBtn").onclick = e => { if (!canvas.getObjects().length) return newFigure(); showMenu(e.currentTarget, [[tr("newConfirm"), newFigure]]); };
 $("exportBtn").onclick = e => showMenu(e.currentTarget, [[tr("exportPng"), () => exportAs("png")], [tr("exportSvg"), () => exportAs("svg")], [tr("legend"), showLegend]]);
 $("title").addEventListener("change", persist);
