@@ -1,5 +1,5 @@
 {
-  "version": "1.2.26",
+  "version": "1.2.27",
   "trial": {
     "id": "pasero_public_trial_2026",
     "startsAt": "2026-11-10T00:00:00+09:00",
@@ -12,25 +12,25 @@
   },
   "files": {
     "windows": {
-      "filename": "Pasero-Windows-1.2.26-Setup.exe",
-      "bytes": 154736063,
-      "sha256": "c5bad342dfa4dba7b8cf574fe16206d8aef307747e46e8dbbc36a01d35affb36",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.26/Pasero-Windows-1.2.26-Setup.exe",
+      "filename": "Pasero-Windows-1.2.27-Setup.exe",
+      "bytes": 154828909,
+      "sha256": "cf2bcd039d13e01887da8cccf59fe82b5ce476a49d63aca03f575b5a1ca55b04",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.27/Pasero-Windows-1.2.27-Setup.exe",
       "verified": true
     },
     "android": {
-      "filename": "Pasero-Android-1.2.22.apk",
-      "bytes": 121868178,
-      "sha256": "5579fc197da9cffda3c3b1eac67e993fb5212183cf1a5a840a8dee4b56db9f79",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.25/Pasero-Android-1.2.22.apk",
+      "filename": "Pasero-Android-1.2.23.apk",
+      "bytes": 121870942,
+      "sha256": "90f93b6554aab7417c439cc094b361f0d0e9ac17c991633462cba486bd37df89",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.27/Pasero-Android-1.2.23.apk",
       "verified": true,
-      "version": "1.2.22"
+      "version": "1.2.23"
     },
     "macos": {
-      "filename": "Pasero-macOS-1.2.26-AppleSilicon.dmg",
-      "bytes": 257513191,
-      "sha256": "a142d29bfbd936e503e9f9ef065af4cb58050868872c91ba80b4e2e2fbbfbe5e",
-      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.26/Pasero-macOS-1.2.26-AppleSilicon.dmg",
+      "filename": "Pasero-macOS-1.2.27-AppleSilicon.dmg",
+      "bytes": 255257682,
+      "sha256": "5ea56bdb30c234bbabb3449942f03803a1ac60ab46e7fbf10605ba09e1655a1e",
+      "url": "https://github.com/CleanYANG/pasero-ELN/releases/download/v1.2.27/Pasero-macOS-1.2.27-AppleSilicon.dmg",
       "verified": true
     }
   }
